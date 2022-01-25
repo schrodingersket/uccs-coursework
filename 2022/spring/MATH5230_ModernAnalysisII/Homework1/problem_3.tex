@@ -5,21 +5,78 @@ a.  Let $\{a_k\}$ be a real sequence. Define
     false.
 
     \begin{proof}\ \\\\
-    
+
+        Observe that since $\lim_{k \rightarrow \infty}{a_k} = a$, there exists
+        for each fixed $\epsilon > 0$ some $N \in \mathbb{N}$ such that
+        whenever $k > N$, $|a_k - a| < \frac{\epsilon}{2}$. Then for
+        $n > N$, we have:
+
         \begin{align*}
+            |\sigma_n - a|
+             &= \left|\frac{1}{n}\sum\limits_{k=1}^{n}{a_k} - \frac{1}{n}\sum\limits_{k=1}^{n}{a} \right| \\
+             &= \left|\frac{1}{n}\sum\limits_{k=1}^{n}{\left(a_k - a\right)} \right| \\
+             &\le \frac{1}{n}\sum\limits_{k=1}^{n}{|a_k - a|} \\
+             &= \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \frac{1}{n}\sum\limits_{k=N+1}^{n}{|a_k - a|} \\
+             &< \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \frac{n - (N + 1)}{n} \cdot \frac{\epsilon}{2} \\
+             &= \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \left(1 - \frac{N + 1}{n}\right) \cdot \frac{\epsilon}{2}
         \end{align*}
+
+        Furthermore, since $N > n$ and $n, N \in \mathbb{N}$, we have that
+        $N + 1 \le n$ and hence $0 < \frac{N + 1}{n} \le 1$. Lastly, since
+        $\sum\limits_{k=1}^{N}{|a_k - a|}$ is a finite series made up of
+        positive terms, we pick
+        $n > \max{\{N, \frac{2}{\epsilon} \cdot \sum\limits_{k=1}^{N}{|a_k - a|}\}}$.
+        Thus we have for such an $n$ that:
+
+        \begin{align*}
+            \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \left(1 - \frac{N + 1}{n}\right) \cdot \frac{\epsilon}{2}
+              &< \frac{\epsilon}{2} + \left(1 - \frac{N + 1}{n}\right) \cdot \frac{\epsilon}{2} \\
+              &\le \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+              &= \epsilon.
+        \end{align*}
+
+        By the $\epsilon$-definition of a limit,
+        $\lim_{n \rightarrow \infty}{\sigma_n} = a$.
+
+        To prove that the converse does not hold, let $\{a_n\}$ be the
+        sequence defined by:
+
+        \begin{align*}
+            a_n = (-1)^{n+1}.
+        \end{align*}
+        
+        Then $\lim_{n \rightarrow \infty}{a_n}$ does not exist since the odd
+        terms are 1 and the even terms are -1. The $n^{th}$ term of
+        $\sigma_n$ is thus given by:
+
+        \begin{align*}
+            \sigma_1 &= \frac{1}{1} = 1 \\
+            \sigma_2 &= \frac{1 - 1}{2} = 0 \\
+            \sigma_3 &= \frac{1 - 1 + 1}{3} = 1/3 \\
+            \sigma_4 &= \frac{1 - 1 + 1 - 1}{4} = 0 \\
+            \sigma_5 &= \frac{1 - 1 + 1 - 1 + 1}{5} = 1/5 \\
+                     &\vdots \\
+            \sigma_n &= \frac{1 - (-1)^n}{2n} \\
+        \end{align*}
+
+        Since $\lim_{n \rightarrow \infty}{\sigma_n = \frac{1 - (-1)^n}{2n}} = 0$,
+        we have that
+        $\lim_{n \rightarrow \infty}{\sigma_n} \neq \lim_{n \rightarrow \infty}{a_n}$.
+        \\\\
     \end{proof}
-    \ \\\\
+    \pagebreak
 
 b.  For a real sequence $\{a_n\}$, define $d_n \coloneqq a_{n+1} - a_n$ for
     $n \ge 1$. If $\lim_{n \rightarrow \infty}{nd_n} = 0$ and the sequence
     $\{\sigma_n\}$ defined in part (a) converges, prove that the sequence
     $\{a_n\}$ converges and that
     $\lim_{n \rightarrow \infty}{a_n} = \lim_{n \rightarrow \infty}{\sigma_n}$.
+    (Hint: Show that $\frac{1}{n}\sum\limits_{k=1}^{n-1}{kd_k} = a_n - \sigma_n$
+     for $n > 1$).
 
-    \begin{proof}\ \\\\
+    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
 
         \begin{align*}
         \end{align*}
-
+        \\\\
     \end{proof}
