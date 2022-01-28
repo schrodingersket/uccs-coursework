@@ -1,0 +1,91 @@
+Give an example of a pseudometric space.
+
+    \ \\
+    \emph{Claim.} The mapping
+    $d: \mathbb{R} \times \mathbb{R} \rightarrow \mathbb{R}^+$ defined by 
+    $d(x, y) \coloneqq \ln{\left(|x^2 - y^2| + 1\right)}, x,y \in \mathbb{R}$ 
+    is a pseudometric and hence $(X, d)$ defines a pseudometric space for 
+    $X = \mathbb{R}$.
+
+    \begin{proof}\ \\\\
+        Let $x, y, z \in \mathbb{R}$.
+        
+        Because $|x^2 - y^2| \ge 0$ and
+        $\ln{x} \ge 0$ whenever $x \ge 1$, we have that
+        $d(x, y) = \ln{\left(|x^2 - y^2| + 1\right)} \ge 0$ for all
+        $x, y \in \mathbb{R}$. Moreover, when $x = y$:
+
+        \begin{align*}
+            d(x, y) &= \ln{\left(|x^2 - y^2| + 1\right)} \\
+                    &= \ln{\left(|x^2 - x^2| + 1\right)} \\
+                    &= \ln{1} \\
+                    &= 0.
+        \end{align*}
+
+        Hence $d(x, y)$ satisfies the non-negative condition for a pseudometric. 
+        Furthermore, for some $x \neq 0$ (and hence $x \neq -x$), observe that:
+
+        \begin{align*}
+            d(x, -x) &= \ln{\left(|x^2 - (-x)^2| + 1\right)} \\
+                     &= \ln{\left(|x^2 - x^2| + 1\right)} \\
+                     &= \ln{1} \\
+                     &= 0.
+        \end{align*}
+
+        We therefore conclude that $d(x,y)$ is \emph{not} a metric.\footnote{
+            Any metric is of course itself a pseudometric; the purpose of
+            demonstrating that $d(x, y)$ is not a metric is purely pedagogical
+            and is in no way required for $d(x, y)$ to satisfy the definition of
+            a pseudometric.
+        } $d(x, y)$ is, however, transitive:
+
+        \begin{align*}
+            d(x, y) &= \ln{\left(|x^2 - y^2| + 1\right)} \\
+                    &= \ln{\left(|-(y^2 - x^2)| + 1\right)} \\
+                    &= \ln{\left(|y^2 - x^2| + 1\right)} \\
+                    &= d(y, x).
+        \end{align*}
+
+        \pagebreak
+        Lastly, $d(x, y)$ satisfies the Triangle Inequality:
+
+        \begin{align*}
+            d(x, z) + d(z, y) &= \ln{\left(|x^2 - z^2| + 1\right)}
+                                 + \ln{\left(|z^2 - y^2| + 1\right)} \\
+                              &= \ln{\left[
+                                   \left(|x^2 - z^2| + 1\right)
+                                   \cdot
+                                   \left(|z^2 - y^2| + 1\right)
+                                 \right]} \\
+                              &= \ln{\left( 
+                                   |x^2 - z^2| \cdot |z^2 - y^2|
+                                 + |x^2 - z^2|
+                                 + |z^2 - y^2|
+                                 + 1
+                                 \right)} \\
+                              &= \ln{\left(
+                                   |x^2 - z^2| \cdot |z^2 - y^2|
+                                   + \Big| |x^2 - z^2| + |z^2 - y^2| \Big|
+                                   + 1
+                                 \right)} \\
+                              &\ge \ln{\left(
+                                   |x^2 - z^2| \cdot |z^2 - y^2|
+                                   + |(x^2 - z^2) + (z^2 - y^2)|
+                                   + 1
+                                 \right)} \\
+                              &= \ln{\left(
+                                   |x^2 - z^2| \cdot |z^2 - y^2|
+                                   + |x^2  - y^2|
+                                   + 1
+                                 \right)} \\
+                              &\ge \ln{\left(
+                                   |x^2  - y^2| + 1
+                                 \right)} \\
+                              &= d(x, y).
+        \end{align*}
+
+        Hence $d$ is pseudometric on $\mathbb{R}$ and $(X, d)$
+        therefore forms a pseudometric space for $X = \mathbb{R}$.
+        \\\\    
+
+    \end{proof}
