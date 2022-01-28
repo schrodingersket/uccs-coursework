@@ -17,26 +17,27 @@ a.  Let $\{a_k\}$ be a real sequence. Define
              &= \left|\frac{1}{n}\sum\limits_{k=1}^{n}{\left(a_k - a\right)} \right| \\
              &\le \frac{1}{n}\sum\limits_{k=1}^{n}{|a_k - a|} \\
              &= \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \frac{1}{n}\sum\limits_{k=N+1}^{n}{|a_k - a|} \\
-             &< \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \frac{n - (N + 1)}{n} \cdot \frac{\epsilon}{2} \\
-             &= \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \left(1 - \frac{N + 1}{n}\right) \cdot \frac{\epsilon}{2}
+             &< \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \frac{n - N}{n} \cdot \frac{\epsilon}{2} \\
+             &= \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \left(1 - \frac{N}{n}\right) \cdot \frac{\epsilon}{2}
         \end{align*}
 
-        Furthermore, since $N > n$ and $n, N \in \mathbb{N}$, we have that
-        $N + 1 \le n$ and hence $0 < \frac{N + 1}{n} \le 1$. Lastly, since
+        Furthermore, $0 < \frac{N}{n} < 1$ and hence 
+        $\left(1 - \frac{N}{n}\right) < 1$. Since 
         $\sum\limits_{k=1}^{N}{|a_k - a|}$ is a finite series made up of
         positive terms, we pick
         $n > \max{\{N, \frac{2}{\epsilon} \cdot \sum\limits_{k=1}^{N}{|a_k - a|}\}}$.
         Thus we have for such an $n$ that:
 
         \begin{align*}
-            \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \left(1 - \frac{N + 1}{n}\right) \cdot \frac{\epsilon}{2}
-              &< \frac{\epsilon}{2} + \left(1 - \frac{N + 1}{n}\right) \cdot \frac{\epsilon}{2} \\
+            \frac{1}{n}\sum\limits_{k=1}^{N}{|a_k - a|} + \left(1 - \frac{N}{n}\right) \cdot \frac{\epsilon}{2}
+              &< \frac{\epsilon}{2} + \left(1 - \frac{N}{n}\right) \cdot \frac{\epsilon}{2} \\
               &\le \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
               &= \epsilon.
         \end{align*}
 
         By the $\epsilon$-definition of a limit,
         $\lim_{n \rightarrow \infty}{\sigma_n} = a$.
+        \pagebreak
 
         To prove that the converse does not hold, let $\{a_n\}$ be the
         sequence defined by:
@@ -74,9 +75,79 @@ b.  For a real sequence $\{a_n\}$, define $d_n \coloneqq a_{n+1} - a_n$ for
     (Hint: Show that $\frac{1}{n}\sum\limits_{k=1}^{n-1}{kd_k} = a_n - \sigma_n$
      for $n > 1$).
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+
+        To demonstrate the provided hint, observe that:
+
+        \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+        \begin{align*}
+            \sum\limits_{k=1}^{n-1}{kd_k} &= 1d_1 + 2d_2 + 3d_3 + \cdots + (k - 1)d_{k-1} \\
+                                          &= 1(a_2 - a_1) 
+                                           + 2(a_3 - a_2)
+                                           + 3(a_4 - a_3)
+                                           + \cdots
+                                           + (n - 2)(a_{n-1} - a_{n-2})\footnotemark[2]
+                                           + (n - 1)(a_n - a_{n-1}) \\
+                                          &= -a_1 
+                                             + (1 - 2)a_2 
+                                             + (2 - 3)a_3
+                                             +  \cdots
+                                             +  \left[(n - 2) - (n - 1)\right]a_{n-1}
+                                             + (n-1)a_{n} \\
+                                          &= -a_1 
+                                             - a_2
+                                             - a_3 
+                                             - \cdots
+                                             - a_{n-1}
+                                             - a_n + na_{n} \\
+                                          &= na_n - n\sum\limits_{k=1}^{n}{\frac{a_1 + a_2 + \cdots + a_n}{n}} \\
+                                          &= n(a_n - \sigma_n).
+        \end{align*}
+
+        Hence $\frac{1}{n}\sum\limits_{k=1}^{n-1}{kd_k} = a_n - \sigma_n$ and
+        in particular, $\frac{1}{n}\sum\limits_{k=1}^{n-1}{kd_k} =  - d_n + \frac{1}{n}\sum\limits_{k=1}^{n}{kd_k}$.
+        \\\\
+        \footnotetext[2]{
+            Observe that the $-a_{n-2}(n-2)$ term gets grouped with a
+            corresponding $(n-3)a_{n-2}$ term from the previous summand in the
+            series. Hence we omit this value in the next line, as it is
+            understood to be included in the implicit summation term.
+        }
+
+
+        Furthermore, because
+        $\left\{\frac{1}{n}\sum\limits_{k=1}^{n}{kd_k}\right\}$ converges to
+        zero as the Cesàro sum of $\{kd_k\}$ by part (a) and because $\{d_k\}$
+        also converges to zero\footnotemark[3], for any fixed $\epsilon > 0$,
+        there exist some $N_1, N_2 \in \mathbb{N}$ such that
+        $\left|\frac{1}{n}\sum\limits_{k=1}^{n}{kd_k}\right| < \frac{\epsilon}{4}$
+        and $|d_n| < \frac{\epsilon}{4}$ whenever $n > \max{\{N_1, N_2\}}$. Let
+        $a$ be the limit to which $\{\sigma_n\}$ converges. Then there exists
+        an $N_3$ such that $|(\sigma_n - a)| < \frac{\epsilon}{2}$ whenever
+        $n > N_3$. Defining $N \coloneqq \max{\{N_1, N_2, N_3}\}$ we have for
+        $n > N$ that:
+
+        \footnotetext[3] {
+            Since $|d_k| \le k\left|d_k\right|$ and $\{kd_k\}$ converges to
+            zero, $\{d_k\}$ itself must also converge to zero.
+        }
 
         \begin{align*}
+            |a_n - a| &= |a_n - a| - \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+                      &\le \left| |a_n - a| - \frac{\epsilon}{2}\right| + \frac{\epsilon}{2}  \\
+                      &\le \Big| |a_n - a | - |\sigma_n - a| \Big| + \frac{\epsilon}{2}  \\
+                      &\le |(a_n - a ) - (\sigma_n - a)| + \frac{\epsilon}{2} \\
+                      &= |a_n - \sigma_n| + \frac{\epsilon}{2} \\
+                      &= \left|\frac{1}{n}\sum\limits_{k=1}^{n-1}{kd_k}\right| + \frac{\epsilon}{2} \\
+                      &= \left| -d_n + \frac{1}{n}\sum\limits_{k=1}^{n}{kd_k} \right| + \frac{\epsilon}{2} \\
+                      &\le |-d_n| + \left|\frac{1}{n}\sum\limits_{k=1}^{n}{kd_k}\right| + \frac{\epsilon}{2} \\
+                      &< \frac{\epsilon}{4} + \frac{\epsilon}{4} + \frac{\epsilon}{2} \\
+                      &= \epsilon. \\
         \end{align*}
+
+        Since $|a_n - a| < \epsilon$ for any arbitrary $\epsilon > 0$, we have
+        that  $\lim_{n \rightarrow \infty}{a_n} = a = \lim_{n \rightarrow \infty}{\sigma_n}$.
         \\\\
+        \renewcommand*{\thefootnote}{\arabic{footnote}}
+
     \end{proof}

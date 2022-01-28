@@ -6,7 +6,7 @@ a.  Use the Mean Value Theorem to show that
         \frac{1}{n+1} \le \ln{\left(1 + \frac{1}{n}\right)} \le \frac{1}{n}
     \end{align*}
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
         Observe that $f(x) = \ln{(1+x)}$ is continuous on $[0, x]$ and
         differentiable on $(0, x)$. Hence by the Mean Value Theorem, there
         exists some $c \in (0, x)$ such that:
@@ -20,8 +20,31 @@ a.  Use the Mean Value Theorem to show that
         that $\frac{\ln{(1+x)}}{x} \le 1$ and hence $\ln{(1+x)} \le x$, which
         satisfies the right-most inequality.
 
-        TODO: Prove the left inequality.
-        \\\\
+        To prove the left inequality, we define
+        $h(x) \coloneqq \frac{x}{1+x} - \ln{(1+x)}, x \in [0, \infty)$. Then
+        $h(x)$ is continuous and differentiable on its domain and hence by the
+        Mean Value Theorem there exists some $c \in (0, x)$ such that:
+
+        \begin{align*}
+            f'(c) &= \frac{\frac{x}{1+x} - \ln(1+x) - \left(\frac{0}{1+0} - \ln(1+0)\right)}{x-0} \\
+            \frac{1}{(1+c)^2} - \frac{1}{1+c} &= \frac{1}{x} \cdot \left(\frac{x}{1+x} - \ln(1+x)\right) \\
+            x\left(\frac{1}{(1+c)^2} - \frac{1}{1+c}\right) &= \frac{x}{1+x} - \ln(1+x)
+        \end{align*}
+
+        Observe that $(1+c)^2 > 1+c, c \in (0, \infty)$ and hence 
+        $\frac{1}{(1+c)^2} - \frac{1}{1+c} < 0$. Since $x \ge 0$, we see that
+        $x\left(\frac{1}{(1+c)^2} - \frac{1}{1+c}\right) \le 0$. Thus,
+        $\frac{x}{1+x} - \ln(1+x) \le 0$ and so $\frac{x}{1+x} \le \ln(1+x)$,
+        which satisfies the left-most inequality.
+
+        Lastly, since $\frac{\frac{1}{n}}{1 + \frac{1}{n}} = \frac{n}{n(n+1)} = \frac{1}{n+1}$,
+        we have for $x = \frac{1}{n}$ that:
+
+        \begin{align*}
+            \frac{1}{n+1} \le \ln{\left(1 + \frac{1}{n}\right)} \le \frac{1}{n}
+        \end{align*}
+
+        as desired.
     \end{proof}
     \pagebreak
 
@@ -29,17 +52,55 @@ b.  Define $\gamma_n \coloneqq \left(1 + \frac{1}{2} + \frac{1}{3} + \cdots + \f
     Use part (a) to show that $\gamma_n \ge 0$ and that $\{\gamma_n\}$ is a
     decreasing sequence.
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+
+        We first show that $\{\gamma_n\}$ is decreasing. Observe that:
 
         \begin{align*}
+            \gamma_{n+1} - \gamma_n &= \sum\limits_{k=1}^{n+1}{\frac{1}{k}} - \ln{(n+1)} - \left(\sum\limits_{k=1}^{n}{\frac{1}{k}} - \ln{n}\right) \\
+                                    &= \frac{1}{1+n} - \left[\ln{(n+1)} - \ln{n}\right] \\
+                                    &= \frac{1}{1+n} - \ln{\frac{n+1}{n}} \\
+                                    &= \frac{1}{1+n} - \ln{\left(1 + \frac{1}{n}\right)} \\
         \end{align*}
+
+        By the left-most inequality from (a) we have that
+        $\gamma_{n+1} - \gamma_n \le 0$ and hence $\{\gamma_n\}$ is decreasing.
         \\\\
+
+        To show that $\gamma_n \ge 0$, recall from (a) that for each
+        $k \in \mathbb{N}$:
+
+        \begin{align*}
+            \frac{1}{k} &\ge \ln{\frac{k + 1}{k}} 
+        \end{align*}
+
+        Summing each side from 1 to $n$ yields:
+
+        \begin{align*}
+             \sum\limits_{k=1}^{n}{\frac{1}{k}} &\ge \sum\limits_{k=1}^{n}{\ln{\frac{k + 1}{k}}} \\
+                                                &= \sum\limits_{k=1}^{n}{\ln{(k + 1) - \ln{k}}}  \\
+                                                &= \left[\ln{(n+1)}  - \ln{n}\right] + \left[\ln{n} - \ln{(n-1)}\right] + \cdots - \ln{1} \\
+                                                &= \ln{(n+1)} \\
+                                                &\ge \ln{n}.
+        \end{align*}
+
+        Hence $\gamma_n = \sum\limits_{k=1}^{n}{\frac{1}{k}} - \ln{n} \ge 0$.
+
     \end{proof}
+
     \pagebreak
 
 c.  Show that $\{\gamma_n\}$ converges. (Extra credit: Prove that $\gamma > 0$).
 
     \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+        Observe that $\gamma_1 = \frac{1}{1} - \ln{1} = 1$. By part (b),
+        $\{\gamma_n\}$ is decreasing and bounded below by 0. Hence 
+        $\{\gamma_n\}$ is bounded and monotonically decreasing, and therefore
+        converges.
+        \\
+
+        TODO: Show that $\gamma > 0$. To show that $\gamma > 0$, we should find a
+        non-zero lower bound for $\{\gamma_n\}$.
 
         \begin{align*}
         \end{align*}
