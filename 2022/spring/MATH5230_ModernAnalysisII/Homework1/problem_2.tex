@@ -1,7 +1,7 @@
 a.  A sequence of real numbers $\{a_n\}$ is defined by $a_1 = 0$ and
     $a_{n+1} = 0$ and $a_{n+1} = \sqrt{3a_n + 4}$, $n \ge 1$. Prove that
     $\{a_n\}$ is a convergent sequence and find
-    $\lim_{n \rightarrow \infty}{a_n}$.
+    $\nlim{a_n}$.
 
     \begin{proof}\ \\\\
 
@@ -28,7 +28,7 @@ a.  A sequence of real numbers $\{a_n\}$ is defined by $a_1 = 0$ and
         Hence we have:
 
         \begin{align*}
-            \lim_{n \rightarrow \infty}{a_{n+1}} &= \lim_{n \rightarrow \infty}{\sqrt{3a_n + 4}} \\
+            \nlim{a_{n+1}} &= \nlim{\sqrt{3a_n + 4}} \\
                                                a &= \sqrt{3a + 4} \\
                                              a^2 &= 3a + 4 \\
                                                0 &= a^2 - 3a - 4 \\
@@ -36,8 +36,8 @@ a.  A sequence of real numbers $\{a_n\}$ is defined by $a_1 = 0$ and
         \end{align*}
 
         Since $0 \le a_n \le 4, n \in \mathbb{N}$, we have that 
-        $\lim_{n \rightarrow \infty}{a_n} = a = 4$.
-        \\\\
+        $\nlim{a_n} = a = 4$.
+        \\
     \end{proof}
     \pagebreak
 
@@ -81,5 +81,5 @@ b.  Define a sequence
         $x_{n+1} - x_n = \left(1 - x_n\right) - \sqrt{1 - x_n} < 0$.
         $\{x_n\}$ is therefore monotonically decreasing, and since it is
         bounded, $\{x_n\}$ converges.
-        \\\\
+        \\
     \end{proof}

@@ -1,6 +1,6 @@
 a.  Let $\{a_n\}$ be a strictly decreasing sequence of positive numbers. Assume
     $\sum\limits_{n=1}^{\infty}{a_n}$ converges. Prove that
-    $\lim_{n \rightarrow \infty}{na_n} = 0$.
+    $\nlim{na_n} = 0$.
 
     \begin{proof}\ \\\\
         Since $\sum\limits_{n=1}^{\infty}{a_n}$ converges, the sequence of
@@ -19,8 +19,9 @@ a.  Let $\{a_n\}$ be a strictly decreasing sequence of positive numbers. Assume
                      &\ge |(2n)a_{2n}|. \\
         \end{align*}
 
-        Now pick $M$ such that for each $\epsilon > 0$,
-        $|(2k)a_{2k}| < \frac{\epsilon}{2}$ whenever $k > M$. Then:
+        Hence for any fixed $\epsilon > 0$, there exists $M \in \mathbb{N}$ such
+        that for each $|(2k)a_{2k}| < \frac{\epsilon}{2}$ whenever $k > M$.
+        Then whenever $k > M$, we have:
 
         \begin{align*}
             |(2k+1)a_{2k+1}| &= (2k)a_{2k+1} + a_{2k+1} \\
@@ -29,21 +30,21 @@ a.  Let $\{a_n\}$ be a strictly decreasing sequence of positive numbers. Assume
                              &\le \epsilon. \\
         \end{align*}
 
-        Hence for any fixed $\epsilon > 0$, there exists some $N > 0$ such that
-        $|na_n| < \epsilon$ whenever $n > N$, and thus
-        $\lim_{n \rightarrow \infty}{na_n} = 0$.
-        \\\\
+        We have thus shown that for each $\epsilon > 0$ there exists an 
+        $M \in \mathbb{N}$ such that $|na_n| < \epsilon$ whenever $n > M$ for
+        both even and odd $n$, and hence $\nlim{na_n} = 0$.
+        \\
     \end{proof}
     \pagebreak
 
 b.  Give an example of a strictly decreasing positive sequence $\{b_n\}$ such
-    that $\lim_{n \rightarrow \infty}{nb_n} = 0$, but
+    that $\nlim{nb_n} = 0$, but
     $\sum\limits_{n=1}^{\infty}{b_n}$ diverges.
           
     \emph{Claim.} The sequence $\{b_n\}$ defined by 
     $b_n \coloneqq \frac{1}{n\ln{n}}, n > e, n \in \mathbb{N}$ is a strictly
     decreasing positive sequence such that 
-    $\lim_{n \rightarrow \infty}{nb_n} = 0$, but
+    $\nlim{nb_n} = 0$, but
     $\sum\limits_{n=3}^{\infty}{b_n}$ diverges.
 
     \begin{proof}\ \\\\
@@ -52,8 +53,8 @@ b.  Give an example of a strictly decreasing positive sequence $\{b_n\}$ such
         $\{b_n\}$ is a strictly decreasing sequence. Furthermore:
 
         \begin{align*}
-            \lim_{n \rightarrow \infty}{nb_n} &= \lim_{n \rightarrow \infty}{\frac{n}{n\ln{n}}} \\
-                                              &= \lim_{n \rightarrow \infty}{\frac{1}{\ln{n}}} \\
+            \nlim{nb_n} &= \nlim{\frac{n}{n\ln{n}}} \\
+                                              &= \nlim{\frac{1}{\ln{n}}} \\
                                               &= 0
         \end{align*}
 
@@ -65,5 +66,5 @@ b.  Give an example of a strictly decreasing positive sequence $\{b_n\}$ such
                                              &= \lim_{x \rightarrow \infty}{\ln{\ln{x}}} - \ln{\ln{3}} \\
                                              &\rightarrow \infty.
         \end{align*}
-        \\\\
+        \\
     \end{proof}

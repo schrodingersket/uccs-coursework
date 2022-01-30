@@ -21,7 +21,7 @@ a.  Let $\{a_n\}$ be a sequence of real numbers such that
         Hence $\{a_n\}$ is Cauchy and since $\mathbb{R}$ is complete, $\{a_n\}$
         converges to a value also in $\mathbb{R}$ and $\{a_n\}$ is therefore a
         convergent sequence.
-        \\\\
+        \\
     \end{proof}
     \pagebreak
 
@@ -30,10 +30,10 @@ b.  Let $\{a_n\}$ and $\{b_n\}$ be real sequences such that
     Prove that $b_n \rightarrow L$. \\
 
     \begin{proof}\ \\\\
-        Since $\lim_{n \rightarrow \infty}{\frac{1}{n}} = 0$, for any fixed 
+        Since $\nlim{\frac{1}{n}} = 0$, for any fixed 
         $\epsilon > 0$ there exists $N_1$ such that when $n > N_1$,
         $|\frac{1}{n} - 0| = \frac{1}{n} < \frac{\epsilon}{2}$. Similarly,
-        since $\lim_{n \rightarrow \infty}{\{a_n\}} = L$, there exists $N_2$
+        since $\nlim{\{a_n\}} = L$, there exists $N_2$
         such that when $n > N_2$, $|a_n - L| < \frac{\epsilon}{2}$. \\\\
         
         Let $N \coloneqq \max{\{N_1, N_2\}}$. Then for $n > N$ we have:
@@ -62,6 +62,6 @@ b.  Let $\{a_n\}$ and $\{b_n\}$ be real sequences such that
         \end{align*}
 
         Hence by the $\epsilon$-definition of a limit, we have that 
-        $\lim_{n \rightarrow \infty}{b_n} = L$.
-        \\\\
+        $\nlim{b_n} = L$.
+        \\
     \end{proof}

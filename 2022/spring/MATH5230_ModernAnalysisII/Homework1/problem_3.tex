@@ -1,7 +1,7 @@
 a.  Let $\{a_k\}$ be a real sequence. Define
     $\sigma_n \coloneqq \frac{a_1 + a_2 + \cdots + a_n}{n}$. If 
     $\lim_{k \rightarrow \infty}{a_k} = a$, prove that
-     $\lim_{n \rightarrow \infty}{\sigma_n} = a$.  Show that the converse is
+     $\nlim{\sigma_n} = a$.  Show that the converse is
     false.
 
     \begin{proof}\ \\\\
@@ -36,7 +36,7 @@ a.  Let $\{a_k\}$ be a real sequence. Define
         \end{align*}
 
         By the $\epsilon$-definition of a limit,
-        $\lim_{n \rightarrow \infty}{\sigma_n} = a$.
+        $\nlim{\sigma_n} = a$.
         \pagebreak
 
         To prove that the converse does not hold, let $\{a_n\}$ be the
@@ -46,7 +46,7 @@ a.  Let $\{a_k\}$ be a real sequence. Define
             a_n = (-1)^{n+1}.
         \end{align*}
         
-        Then $\lim_{n \rightarrow \infty}{a_n}$ does not exist since the odd
+        Then $\nlim{a_n}$ does not exist since the odd
         terms are 1 and the even terms are -1. The $n^{th}$ term of
         $\sigma_n$ is thus given by:
 
@@ -60,18 +60,18 @@ a.  Let $\{a_k\}$ be a real sequence. Define
             \sigma_n &= \frac{1 - (-1)^n}{2n} \\
         \end{align*}
 
-        Since $\lim_{n \rightarrow \infty}{\sigma_n = \frac{1 - (-1)^n}{2n}} = 0$,
+        Since $\nlim{\sigma_n = \frac{1 - (-1)^n}{2n}} = 0$,
         we have that
-        $\lim_{n \rightarrow \infty}{\sigma_n} \neq \lim_{n \rightarrow \infty}{a_n}$.
-        \\\\
+        $\nlim{\sigma_n} \neq \nlim{a_n}$.
+        \\
     \end{proof}
     \pagebreak
 
 b.  For a real sequence $\{a_n\}$, define $d_n \coloneqq a_{n+1} - a_n$ for
-    $n \ge 1$. If $\lim_{n \rightarrow \infty}{nd_n} = 0$ and the sequence
+    $n \ge 1$. If $\nlim{nd_n} = 0$ and the sequence
     $\{\sigma_n\}$ defined in part (a) converges, prove that the sequence
     $\{a_n\}$ converges and that
-    $\lim_{n \rightarrow \infty}{a_n} = \lim_{n \rightarrow \infty}{\sigma_n}$.
+    $\nlim{a_n} = \nlim{\sigma_n}$.
     (Hint: Show that $\frac{1}{n}\sum\limits_{k=1}^{n-1}{kd_k} = a_n - \sigma_n$
      for $n > 1$).
 
@@ -110,7 +110,7 @@ b.  For a real sequence $\{a_n\}$, define $d_n \coloneqq a_{n+1} - a_n$ for
         \footnotetext[2]{
             Observe that the $-a_{n-2}(n-2)$ term gets grouped with a
             corresponding $(n-3)a_{n-2}$ term from the previous summand in the
-            series. Hence we omit this value in the next line, as it is
+            series. We therefore omit this value in the next line, as it is
             understood to be included in the implicit summation term.
         }
 
@@ -146,8 +146,8 @@ b.  For a real sequence $\{a_n\}$, define $d_n \coloneqq a_{n+1} - a_n$ for
         \end{align*}
 
         Since $|a_n - a| < \epsilon$ for any arbitrary $\epsilon > 0$, we have
-        that  $\lim_{n \rightarrow \infty}{a_n} = a = \lim_{n \rightarrow \infty}{\sigma_n}$.
-        \\\\
+        that  $\nlim{a_n} = a = \nlim{\sigma_n}$.
+        \\
         \renewcommand*{\thefootnote}{\arabic{footnote}}
 
     \end{proof}

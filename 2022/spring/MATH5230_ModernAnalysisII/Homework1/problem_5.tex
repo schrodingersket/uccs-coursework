@@ -92,17 +92,51 @@ b.  Define $\gamma_n \coloneqq \left(1 + \frac{1}{2} + \frac{1}{3} + \cdots + \f
 
 c.  Show that $\{\gamma_n\}$ converges. (Extra credit: Prove that $\gamma > 0$).
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
         Observe that $\gamma_1 = \frac{1}{1} - \ln{1} = 1$. By part (b),
-        $\{\gamma_n\}$ is decreasing and bounded below by 0. Hence 
-        $\{\gamma_n\}$ is bounded and monotonically decreasing in $\mathbb{R}$,
-        and therefore converges.
+        $\{\gamma_n\}$ is monotonically decreasing and bounded below by 0. Hence 
+        $\{\gamma_n\}$ is bounded and therefore converges as a bounded monotonic
+        sequence in $\mathbb{R}$.
         \\
 
-        TODO: Show that $\gamma > 0$. To show that $\gamma > 0$, we should find a
-        non-zero lower bound for $\{\gamma_n\}$.
+        To show that $\gamma > 0$, we seek a strictly positive non-decreasing
+        sequence which converges to the same limit as $\{\gamma_n\}$. Recall
+        from (b) that $\ln{n} = \sum\limits_{k=1}^{n-1}{\ln{(k+1)} - \ln{k}}$
+        and hence:
 
         \begin{align*}
+            \gamma &= \nlim{\sum\limits_{k=1}^n{\frac{1}{k}} - \ln{n}} \\
+                   &= \nlim{\sum\limits_{k=1}^n{\frac{1}{k}} - \ln{n}} \\
+                   &= \nlim{\sum\limits_{k=1}^n{\frac{1}{k}} - \sum\limits_{k=1}^{n-1}{\left[
+                        \ln{(k+1)} - \ln k
+                      \right]}} \\
+                   &= \nlim{\sum\limits_{k=1}^{n-1}{\frac{1}{k} - \left[
+                        \ln{(k+1)} - \ln k
+                      \right]} + \frac{1}{n}} \\
+                   &= \nlim{\sum\limits_{k=1}^{n-1}{\left(
+                        \frac{1}{k} - \ln{\frac{k+1}{k}}
+                      \right)} + \frac{1}{n}}.
         \end{align*}
-        \\\\
+
+        We therefore define a new sequence $\{\Gamma_n\}$ as the partial sums of
+        the sequence $\{d_n\}$ defined by
+        $d_n \coloneqq \frac{1}{k} - \ln{\frac{k+1}{k}}$. From part (a), we know
+        that each term of $d_n$ is non-negative. Furthermore,
+        $d_1 = 1 - \ln{2} > 0$ and hence
+        $\Gamma_n = \sum\limits_{k=1}^{n-1}{\frac{1}{k} - \ln{\frac{k+1}{k}}}$ 
+        is a strictly positive non-decreasing sequence. To complete our proof,
+        we let $\{a_n\}$ be the sequence defined by $a_n = \frac{1}{n}$ and
+        observe that $\Gamma_n = \gamma_n - a_n$. Because $\{\gamma_n\}$ and 
+        $\{a_n\}$ are both convergent non-zero sequences, we have:
+        
+        \begin{align*}
+            \nlim{\Gamma_n} &= \nlim{\gamma_n - a_n} \\
+                            &= \nlim{\gamma_n} - \nlim{a_n} \\
+                            &= \gamma - \nlim{\frac{1}{n}} \\
+                            &= \gamma.
+        \end{align*}
+
+        We have therefore found a strictly positive non-decreasing sequence
+        which converges to $\gamma$, and hence $\gamma > 0$.
+        \\
     \end{proof}
