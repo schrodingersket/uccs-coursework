@@ -1,7 +1,43 @@
 (\#11 in 2.5) Prove that if Card$(A) = n$ for any $n\in \mathbb{N}$, then
 Card$(\mathcal{P}(A))=2^n$.
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        We proceed by way of induction on $n$. To establish the base case for
+        induction (i.e., $n = 1$), suppose $A$ is a set containing a single
+        element, $a$. Then since $\emptyset \in A$, we have that
+        $\mathcal{P}(A) = \{\emptyset, \{a\}\}$ and hence 
+        Card$\left(\mathcal{P}(A)\right) = 2^1$, which establishes our base
+        case.
+
+        For our inductive step, we suppose that 
+        Card$\left(\mathcal{P}(A)\right) = 2^n$ holds for any finite set $A$
+        such that Card$(A) = n$, and consider an arbitrary finite set $B$ such
+        that Card$(B) = n + 1$. Since $B$ is finite, we may list its elements
+        $\{b_i\}_{i=1}^{n+1}$ and observe that 
+        $B = \{b_i\}_{i=1}^n \cup \{b_{n+1}\}$. Since there are $n$ elements in
+        $\{b_i\}_{i=1}^n$, we have by our inductive hypothesis that
+        Card$\left(\mathcal{P}\left(\{b_i\}_{i=1}^n\right)\right) = 2^n$.
+        Furthermore, the collection of sets $\mathcal{A} \subset \mathcal{P}(B)$
+        which contain
+        $b_{n+1}$ is given by $\mathcal{A} = \{E \cup \{b_{n+1}\} | E \in \mathcal{P}\left(\{b_i\}_{i=1}^n\right)\}$.
+        Because there are $2^n$ sets in $\mathcal{P}\left(\{b_i\}_{i=1}^n\right)$,
+        we conclude that Card$(\mathcal{A}) = 2^n$. Finally, because
+        $\mathcal{P}(B)$ is equal to all of the sets of $\mathcal{P}(B)$
+        without $\{b_{n+1}\}$ unioned with all of the sets of $\mathcal{P}(B)$
+        which contain $\{b_{n+1}\}$ (and these two sets are disjoint), we
+        see that:
+
         \begin{align*}
+            \text{Card}\left(\mathcal{P}(B)\right) 
+              &= \text{Card}\left(\mathcal{A}\right)
+                 + \text{Card}\left(\mathcal{P}\left(\{b_i\}_{i=1}^n\right)\right) \\
+              &= 2^n + 2^n \\
+              &= 2 \cdot 2^n \\
+              &= 2^{n+1}. \\
         \end{align*}
+
+        Hence by the Principle of Mathematical Induction, if Card$(A) = n$ for
+        any $n \in \mathbb{N}$, then Card$\left(\mathcal{P}(A)\right) = 2^n$.
+
+        \ \\
     \end{proof}
