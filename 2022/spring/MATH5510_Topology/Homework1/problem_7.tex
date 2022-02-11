@@ -1,7 +1,25 @@
 Prove that if $B\subseteq A$ and $B$ is infinite, then $A$ is infinite. 
 Conclude that every subset of a finite set is finite.
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-        \begin{align*}
-        \end{align*}
-    \end{proof}
+\begin{proof}\ \\\\
+    For the sake of contradiction, suppose that $A$ is finite. Observe that
+    because $B$ is infinite, it is non-empty. Because $B$ is contained in $A$,
+    we see that $A$ must therefore also be non-empty. Since $A$ is finite, there
+    exists some $n \in \mathbb{N}$ such that $A \sim \{k\}_{k=1}^n$, and so
+    there exists a bijection $\phi:A \to \{k\}_{k=1}^n$. We apply $\phi\vert_B$
+    to $B$, and observe that since $B \subseteq A$, the restriction 
+    $\phi\vert_B$ is a bijection from $B$ to $\{k\}_{k=1}^m, m \in \mathbb{N}$
+    for some $m \le n$, This contradicts our assertion that $B$ is 
+    infinite,\footnotemark and hence $A$ cannot be finite.
+
+    To see that every subset of a finite set is finite, we simply consider the
+    contrapositive of this proposition: If $B \subseteq A$ and $A$ is not
+    infinite (i.e., it is finite), then $B$ is also not infinite (i.e., it is
+    finite).
+    
+    \footnotetext{
+        We apply the contrapositive of Theorem 2.5.2 from the text, i.e., if a 
+        set $B$ is not empty and is not equivalent to $\{k\}_{k=1}^n$ for any
+        $n \in \mathbb{N}$, then it is not finite.
+    }
+\end{proof}

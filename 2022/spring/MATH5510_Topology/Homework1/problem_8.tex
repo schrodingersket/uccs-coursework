@@ -1,6 +1,46 @@
 Prove that the union of a finite collection of finite sets is finite. 
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-        \begin{align*}
-        \end{align*}
-    \end{proof}
+\begin{proof}\ \\\\
+
+    Let $\mathcal{S}$ denote a finite collection of finite sets. If $\mathcal{S}$ is empty, the union of all sets in
+    $\mathcal{S}$ is empty, and is therefore by definition finite. Furthermore, if $\mathcal{S}$ consists
+    of a single finite set, the union of all sets in $\mathcal{S}$ is simply the single finite set which comprises 
+    $\mathcal{S}$ and is therefore finite.
+
+    To show that unions of finite collections of finite sets are finite, we proceed by induction on
+    the number of elements in the collection, which we denote $n$.
+
+    We begin by establishing our base case for $n = 2$, and let $S_1$ and $S_2$ be finite sets.
+    If both sets are empty, then $S_1 \cup S_2 = \emptyset$, which is finite. If $S_1$ is empty,
+    then $S_2 \cup S_1 = S_2$ and hence $S_2 \cup S_1$ is finite; a similar
+    argument holds if $S_2$ is empty.
+
+    We may therefore assume that $S_1$ and $S_2$ are non-empty. Because $S_1$
+    and $S_2$ are finite, there exist bijections $\phi_1:S_1 \to \{k\}_{k=1}^n$
+    and $\phi_2:S_2 \to \{k\}_{k=1}^m$ for some $n, m \in \mathbb{N}$. We construct a 
+    bijection $\phi:(S_1 \cup S_2) \to \{k\}_{k=1}^N, N \le m+n$
+    defined by:
+    
+    \begin{align*}
+        \phi(s) = \begin{cases}
+            \phi_1(s), s \in S_1 \\
+            \phi_2(s), s \in S_2 \backslash S_1 \\
+        \end{cases}
+    \end{align*}
+
+    Observe that $\phi$ carries elements uniquely from $S_1 \cup S_2$ to $\{k\}_{k=1}^N$ and
+    that because $S_1 \cup S_2 = S_2 \cup (S_1 \backslash S_2)$, every element of $S_1 \cup S_2$ 
+    maps to a value in $\mathbb{N}$. Hence $\phi$ is bijective and since we have shown
+    the existence of a bijection from $S_1 \cup S_2$ to a set $\{k\}_{k=1}^N$, the set $S_1 \cup S_2$ is finite
+    and our base case is established. 
+
+    Now suppose that the union $\bigcup\limits_{i=1}^{n}{S_i}$ of a collection of finite sets $\{S_i\}_{i=1}^{n}$ 
+    is finite for $n \in \mathbb{N}$ sets, and let $\bigcup\limits_{i=1}^{n+1}{T_i}$ represent the union of a collection
+    of $n+1$ arbitrary finite sets. Then
+    $\bigcup\limits_{i=1}^{n+1}{T_i} = \bigcup\limits_{i=1}^{n}{T_i} \cup \{T_{n+1}\}$.  Observe that $T_{n+1}$ is a
+    finite set by assumption and that $\bigcup\limits_{i=1}^{n+1}{T_i}$ is finite by our
+    inductive hypothesis; hence $\bigcup\limits_{i=1}^{n}{T_i} \cup \{T_{n+1}\}$ is nothing more than the union of two
+    finite sets and is therefore itself finite by our base case. By the Principal of Mathematical Induction,
+    the union of a finite collection of finite sets is therefore finite.
+
+\end{proof}

@@ -1,7 +1,15 @@
 (\#3 in 2.2) Prove or disprove the following:
 For $B\subseteq Y$ and $f:X\to Y$, $f^{-1}(Y\backslash B)=X\backslash f^{-1}(B)$. 
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-        \begin{align*}
-        \end{align*}
-    \end{proof}
+\ \\
+\emph{Claim.} For $B\subseteq Y$ and $f:X\to Y$, $f^{-1}(Y\backslash B)$ is 
+equal to $X\backslash f^{-1}(B)$.
+
+\begin{proof}\ \\\\
+    Observe that by definition, $f^{-1}(Y \backslash B) = \left\{x \in X | f(x) \in Y \backslash B\right\}$.
+    Furthermore, $X \backslash f^{-1}(B)$ is the set of all elements in $X$ whose image is not in $B$, i.e., it
+    is the set of all elements whose image is in $Y \backslash B$ (since the co-domain $Y$ by definition contains the
+    image of $X$). Hence $X \backslash f^{-1}(B) = \left\{x \in X | f(x) \in Y \backslash B\right\}$, and so
+    $f^{-1}(Y\backslash B) = X\backslash f^{-1}(B)$.
+    \ \\
+\end{proof}

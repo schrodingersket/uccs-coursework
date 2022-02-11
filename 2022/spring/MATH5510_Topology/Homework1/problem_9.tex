@@ -2,7 +2,39 @@ Prove that the product of a finite collection of finite sets is finite.
 (Hint: First prove that the product of two finite sets is finite by writing the
 product $A\times B$ as a finite union.)
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Let $\mathcal{S}$ denote a finite collection of finite sets.
+        Observe that the product of the empty set with any arbitrary set is empty and is therefore finite.
+        We may therefore assume that $\mathcal{S}$ is non-empty. Furthermore, if $\mathcal{S}$ conists of a single
+        finite set, the product is the set itself, and is again therefore finite. Hence we may assume further that
+        $\mathcal{S}$ contains at least two elements.
+
+        We therefore proceed by way of induction on the number of elements $n$ in a finite collection 
+        $\mathcal{S}$ of finite sets.
+
+        Observe that the product of two non-empty finite sets $S$ (with $n$ elements) and $T$ (which $m$ elements) may
+        be written:
+
         \begin{align*}
+            S \times T = \bigcup\limits_{i=1}^{n}{\left\{\bigcup\limits_{k=1}^{m}{(s_i, t_j)}\right\}}
         \end{align*}
+
+        Hence $S \times T$ is the finite union of a collection of finite sets and by (8), $S \times T$ is finite which
+        establishes our base case for the product of two sets. 
+
+        Now suppose that the product of $n$ finite sets is itself finite, and consider an arbitrary collection
+        $\mathcal{S}$ of $n + 1$ finite sets. Denote the product of the first $n$ elements in $\mathcal{S}$ by
+        $U$ and observe that the product of the elements in $\mathcal{S}$ may be written:
+
+
+        \begin{align*}
+            S_1 \times S_2 \times \cdots \times S_n \times S_{n+1} &= (S_1 \times S_2 \times \cdots \times S_n) \times S_{n+1} \\
+                                                                   &= U \times S_{n+1} 
+        \end{align*}
+
+        By our inductive hypothesis, $U$ is finite; furthermore, because $S_{n+1}$ is finite by assumption, we have that
+        $U \times S_{n+1}$ is simply the product of two finite collections of finite sets and is therefore finite by our
+        base case. Hence $S_1 \times S_2 \times \cdots \times S_n \times S_{n+1}$ is finite,
+        and by the Principal of Mathematical Induction, the product of a finite collection of finite sets is finite.
+        \ \\
     \end{proof}
