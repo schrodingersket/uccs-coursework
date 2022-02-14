@@ -6,11 +6,26 @@ Conclude that every subset of a finite set is finite.
     because $B$ is infinite, it is non-empty. Because $B$ is contained in $A$,
     we see that $A$ must therefore also be non-empty. Since $A$ is finite, there
     exists some $n \in \mathbb{N}$ such that $A \sim \{k\}_{k=1}^n$, and so
-    there exists a bijection $\phi:A \to \{k\}_{k=1}^n$. We apply $\phi\vert_B$
-    to $B$, and observe that since $B \subseteq A$, the restriction 
-    $\phi\vert_B$ is a bijection from $B$ to $\{k\}_{k=1}^m, m \in \mathbb{N}$
-    for some $m \le n$, This contradicts our assertion that $B$ is 
-    infinite,\footnotemark and hence $A$ cannot be finite.
+    there exists a bijection $\phi:A \to \{k\}_{k=1}^n$. We apply $\phi$
+    to $B$, and observe that because $\phi$ maps elements of $A$ to unique elements in 
+    $\{k\}_{k=1}^n$ and because $\phi(B) \subseteq \phi(A)$, the image $\phi(B)$ is a set which
+    also consists of distinct positive integers. We now construct a bijection $p:\phi(B) \to \{k\}_{k=1}^m$
+     between these integers and a set $\{k\}_{k=1}^m, m \le n$.
+    
+    By the well-ordering principle, $\phi(B)$ contains a smallest element.
+    We denote this element $b_1$, assign $p(b_1) = 1$, and observe that the set 
+    $\phi(B) \backslash \{b_1\}$ is a proper subset of $\phi(B)$. Hence $\phi(B) \backslash \{b_1\}$
+    is therefore again a collection of distinct integers. A second invocation of the well-ordering
+    principle on this set yields a new smallest element, which we denote $b_2$ and to which we assign 
+    $p(b_2) = 2$.  Observe that because $B \subseteq A$ and Card$(A) = n$, proceeding in this 
+    manner $n$ times must necessarily exhaust all elements in $\phi(B)$.  We therefore repeat this 
+    process until all elements of $\phi(B)$ have been exhausted or until we have assigned $n$ such 
+    elements to $p$. Lastly, we note that because $p$ assigns every element of $\phi(B)$ to a unique
+    element $k \in \{k\}_{k=1}^m$ for some $m \le n$ where $m,n \in \mathbb{N}$, the function
+    $p:\phi(B) \to \{k\}_{k=1}^m$ is a bijection from $\phi(B)$ to $\{k\}_{k=1}^m$. By (5), the
+    composition $(p \circ \phi):B \to \{k\}_{k=1}^m$ is a bijection from $B$ to a finite
+    set of ordered natural numbers, which contradicts our assertion that $B$ is 
+    infinite\footnotemark and $A$ therefore is not finite.
 
     To see that every subset of a finite set is finite, we simply consider the
     contrapositive of this proposition: If $B \subseteq A$ and $A$ is not
