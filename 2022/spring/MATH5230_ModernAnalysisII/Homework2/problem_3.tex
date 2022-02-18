@@ -1,10 +1,58 @@
 Let $X$ be the space of all bounded real sequences and let $d$ be the metric
 defined by $d(\textbf{x}, \textbf{y}) = \sup\limits_{n \ge 1}{|x_n - y_n|}$
-for $\textbf{x}, \textbf{y} \in X$. Prove that each Cauchy sequence
-$\{\textbf{x}^{(m)}\} \subset X$ converges to some $x \in X$.
+for $\textbf{x}, \textbf{y} \in X$. Prove that every Cauchy sequence 
+$\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$ of bounded real sequences converges to some $\textbf{x} \in X$.
 
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+ Let $\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$ be a Cauchy sequence of bounded real sequences so that
+ $\textbf{x}^{(k)} \in X$ for every $k \in \mathbb{N}$, and let $x_i^{(k)}$ represent the $i^{th}$ element of
+ the sequence $\textbf{x}^{(k)}$. Then for any fixed $\epsilon > 0$, there exists some 
+ $N \in \mathbb{N}$ such that
+ $\sup\limits_{i \in \mathbb{N}}{\{|x_i^{(m)} - x_i^{(n)}|\}} = d(\textbf{x}^{(m)}, \textbf{x}^{(n)}) < \frac{\epsilon}{2}$
+ whenever $m, n > N$. In particular, for any fixed $i \in \mathbb{N}$ and $m, n > N$, observe that
+ $|x_i^{(m)} - x_i^{(n)}| < \frac{\epsilon}{2} < \epsilon$ and so the real sequence
+ $\{x_i^{(k)}\}_{k=1}^{\infty}$ is Cauchy. Hence $\{x_i^{(k)}\}_{k=1}^{\infty}$ converges to some $x_i$ by the completeness of 
+ $\mathbb{R}$. We therefore define
+ $\textbf{x} \coloneqq \{x_i \vert x_i=\lim\limits_{k \to \infty}{x_i^{(k)}}\}_{i=1}^{\infty}$ and observe that
+ $\{\textbf{x}^{(i)}\}_{i=1}^{\infty}$ converges pointwise to $\textbf{x}$.
+ 
+ We now show that
+ $\{\textbf{x}^{(i)}\}_{i=1}^{\infty}$ converges to $\textbf{x}$ in $(X, d)$. Let $m, n > N$. Then
+
+ $\sup\limits_{i \in \mathbb{N}}{\{|x_i^{(m)} - x_i^{(n)}|\}} < \frac{\epsilon}{2}$ and hence
+ $|x_i^{(m)} - x_i^{(n)}| < \frac{\epsilon}{2}$ for all $i \in \mathbb{N}$. Moreover, we have for all $m > N$ that:
+
+ \begin{align*}
+    -\frac{\epsilon}{2} + x_i^{(n)} < x_i^{(m)} < \frac{\epsilon}{2} + x_i^{(n)}.
+ \end{align*}
+
+ Taking the limit as $m \to \infty$ yields:
+
+ \begin{align*}
+    -\frac{\epsilon}{2} + x_i^{(n)} \le x_i \le \frac{\epsilon}{2} + x_i^{(n)}.
+ \end{align*}
+
+ Hence $|x_i^{(n)} - x_i| \le \frac{\epsilon}{2}$ for all $i \in \mathbb{N}$, and so 
+ $d(\textbf{x}^{(n)}, \textbf{x}) = \sup\limits_{i \in \mathbb{N}}{\{|x_i^{(n)} - x_i|\}} \le \frac{\epsilon}{2} < \epsilon$,
+ as desired.
+
+ Lastly, we show that $\textbf{x}$ is bounded. Let $\epsilon = 1$. Then because $\{\textbf{x}^{(i)}\}_{i=1}^{\infty}$
+ converges to $\textbf{x}$, there exists an $N \in \mathbb{N}$ such that $d(\textbf{x}, \textbf{x}^{(n)}) < 1$ whenever
+ $n > N$. Let $n = N + 1$, and observe that because $\textbf{x}^{(N+1)} \in X$, there exists some $L \in \mathbb{R}$
+ such that $0 \le \left|x_i^{(N+1)}\right| < L$ for all $i \in \mathbb{N}$.
+ Then by the reverse triangle inequality, we have:
+
+ \begin{equation*}
+ \left| \sup\limits_{i \in \mathbb{N}}{\{|x_i|\}} - L \right| 
+    \le \left| \sup\limits_{i \in \mathbb{N}}{\{|x_i| - L\}} \right| 
+    \le \sup\limits_{i \in \mathbb{N}}{\{|x_i - x_i^{(N+1)}|\}}
+    < 1. 
+ \end{equation*}
+
+ Hence $|x_i| \le 1 + L$ for all $i \in \mathbb{N}$. Since $\textbf{x}$ is a bounded real sequence, we have that
+ $\textbf{x} \in X$ as desired.
+ \\
 \end{proof}
 
 \pagebreak

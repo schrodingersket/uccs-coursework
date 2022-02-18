@@ -3,19 +3,72 @@ Let $(X, d)$ be a metric space.
 a.  Let $E$ be a non-empty subset of $X$, and define the distance between an
     element $x \in X$ and $E$ by
     $\rho_E(x) \coloneqq \inf\limits_{y \in E}{d(x, y)}$.  Prove that: \ \\\\
-    (i) $\rho_E(x) = 0$ if and only if $x$ is in the closure of $E$, and \ \\\\
-    (ii) $\rho_E:X \to \mathbb{R}$ is uniformly continuous on $X$.\ \\\\
+    \sout{(i) $\rho_E(x) = 0$ if and only if $x$ is in the closure of $E$, and} \ \\\\
+    (ii) $\rho_E:X \to \mathbb{R}$ is uniformly continuous on $X$ with the usual metric on $\mathbb{R}$.\ \\\\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Let $x_1, x_2 \in X$ and let $\epsilon > 0$. Then because $E$ is non-empty, we have by the definition of the infimum
+        of a set that there exists a $y \in E$ such that
+
+        \begin{align}
+            d(x_1, y) < \inf\limits_{\alpha \in E}{d(x_1, \alpha)} + \frac{\epsilon}{2} = \rho_E(x_1) + \frac{\epsilon}{2}.
+        \end{align}
+        
+        Furthermore, since $y \in E$, we see that 
+        $\rho_E(x_2) = \inf\limits_{\alpha \in E}{d(x_2, \alpha)} \le d(x_2, y) \le d(x_2, x_1) + d(x_1, y)$.
+        Hence by (1):
+        
+        \begin{align*}
+                          \rho_E(x_2) &< d(x_1, x_2) + \rho_E(x_1) + \frac{\epsilon}{2} \\
+            \rho_E(x_2) - \rho_E(x_1) &< d(x_1, x_2) + \frac{\epsilon}{2}.
+        \end{align*}
+
+        Lastly, by symmetry of $d$, interchanging $x_1$ and $x_2$ in the above argument yields:
+        \begin{align*}
+            \rho_E(x_1) - \rho_E(x_2) &< d(x_1, x_2) + \frac{\epsilon}{2}.
+        \end{align*}
+
+        Hence we let $\delta = \frac{\epsilon}{2}$ and observe that $|\rho_E(x_1) - \rho_E(x_2)| < \epsilon$ whenever
+         $d(x_1, x_2) < \delta$ for any $x_1, x_2 \in X$, and so $\rho_E(x)$ is therefore uniformly continuous on $X$ 
+         with respect to the usual metric on $\mathbb{R}$.
+
+
     \end{proof}
 
     \pagebreak
 
 b.  Let $\{x_n\}$ and $\{y_n\}$ be two Cauchy sequences in $X$. Show that the
-    sequence $\{a_n\}$ defined by $a_n = d(x_n, y_n)$ converges in $\mathbb{R}.$
+    sequence $\{a_n\}$ defined by $a_n = d(x_n, y_n)$ converges in $\mathbb{R}$ with respect to the usual metric.
     \ \\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Firstly, observe the following consequence of the Triangle Inequality for any metric $d$ and elements
+        $a, b, c \in X$:
+
+        \begin{align}
+            d(a, b) &\ge d(a, c) - d(b, c) = d(a, c) - d(c, b)
+        \end{align}
+
+
+        Consider some fixed $\epsilon > 0$, and observe that because $\{x_n\}$ and $\{y_n\}$ are Cauchy sequences in 
+        $X$, there exist $N_x, N_y \in \mathbb{N}$
+        such that $d(x_{m_x}, x_{n_x}) < \frac{\epsilon}{2}$ whenever $m_x,n_x > N_x$ and
+        $d(y_{m_y}, y_{n_y}) < \frac{\epsilon}{2}$ whenever $m_y,n_y > N_y$. Let $N = \max{\{N_x, N_y\}}$. Then whenever
+        $m, n > N$ for $m, n \in \mathbb{N}$, we have by (2) that:
+
+        \begin{align*}
+            |a_m - a_n| &= |d(x_m, y_m) - d(x_n, y_n)| \\
+                        &= |d(x_m, y_m) - d(x_m, y_n) + d(x_m, y_n) - d(x_n, y_n)| \\
+                        &= |d(y_m, x_m) - d(x_m, y_n) + d(x_m, y_n) - d(y_n, x_n)| \\
+                        &\le |d(y_m, x_m) - d(x_m, y_n)| + |d(x_m, y_n) - d(y_n, x_n)| \\
+                        &\le |d(y_m, y_n)| + |d(x_m, x_n)| \\
+                        &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+                        &= \epsilon. \\
+        \end{align*}
+
+        The sequence $\{a_n\}$ defined by $a_n = d(x_n, y_n)$ is therefore Cauchy in $\mathbb{R}$ with respect to the
+        usual metric. Since $\mathbb{R}$ is complete, $\{a_n\}$ converges in $\mathbb{R}$.
+
     \end{proof}
 
     \pagebreak
