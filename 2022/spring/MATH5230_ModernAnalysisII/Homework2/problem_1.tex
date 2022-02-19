@@ -2,10 +2,48 @@ Determine whether each of the following pairs $(X, d)$ define a metric space.
 
 a.  $X = \mathbb{R}, d(x, y) = \sqrt{|x - y|}$ for $x, y \in X$. \ \\
 
-    \emph{Claim.} 
-    \ \\
+    We first prove the following lemma:
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \emph{Lemma.} If $a, b$ are non-negative numbers in  $\mathbb{R}$, then
+    $\sqrt{a} + \sqrt{b} \ge \sqrt{a + b}$.
+
+    \begin{proof}\ \\\\
+        Let $a,b$ be non-negative numbers in $\mathbb{R}$. Then the following inequality holds:
+
+        \begin{align*}
+            (\sqrt{a} + \sqrt{b})^2 &= (\sqrt{a})^2 + (\sqrt{b})^2 + \sqrt{ab} \\
+                                    &= a + b + \sqrt{ab} \\
+                                    &\ge a + b.
+        \end{align*}
+
+        Taking the square root of both sides\footnote{
+            Because $f(x) = \sqrt{x}$ is a monotonically increasing function and because the quantities on both sides of the inequality are 
+            positive, the inequality is preserved when taking the square root.
+        } yields the desired inequality.
+    \end{proof}
+
+    We are now ready to prove the following claim:\ \\
+
+    \emph{Claim.} $d(x, y) = \sqrt{|x - y|}$ defines a metric on $X$.
+
+    \begin{proof}\ \\\\
+        Let $x, y, z \in \mathbb{R}$.
+       
+        Observe that since $|x - y| =  |-(y - x)| = |y - x|$ for all $x, y \in \mathbb{R}$, we have that $d(x, y) = d(y, x)$.
+
+        To show that $d(x, y) = 0$ if and only if $x = y$, we first let $x = y$ and observe that $d(x, y) = \sqrt{|x - y|} = \sqrt{|x - x|} = 0$.
+        Now suppose $d(x, y) = 0$. Then $0 = \sqrt{|x - y|}$, and hence $|x - y| = 0$. We therefore have that $x - y = 0$ and $-(x - y) = 0$, and so
+        $x = y$, as desired. 
+
+        To prove that the triangle inequality holds for $d$, we observe by the above lemma that:
+        
+        \begin{align*}
+            d(x, z) + d(z, y) &= \sqrt{|x - z|} + \sqrt{|z - y|} \\
+                              &\ge \sqrt{|x - z| + |z - y|} \\
+                              &\ge \sqrt{|x - z + z - y|} \\
+                              &= \sqrt{|x - y|} \\
+                              &= d(x, y).
+        \end{align*}
     \end{proof}
 
     \pagebreak
@@ -13,7 +51,7 @@ a.  $X = \mathbb{R}, d(x, y) = \sqrt{|x - y|}$ for $x, y \in X$. \ \\
 b.  $X = \mathbb{R}, d(x, y) = |x| + |x - y| + |y|$ when $x \neq y$, and 
     $d(x, y) = 0$ when $x = y$ for $x, y \in X$. \ \\
 
-    \emph{Claim.} 
+    \emph{Claim.} $d(x, y) = |x| + |x - y| + |y|$ defines a metric on $X$.
     \ \\
 
     \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
