@@ -24,7 +24,7 @@ a.  $X = \mathbb{R}, d(x, y) = \sqrt{|x - y|}$ for $x, y \in X$. \ \\
 
     We are now ready to prove the following claim:\ \\
 
-    \emph{Claim.} $d(x, y) = \sqrt{|x - y|}$ defines a metric on $X$.
+    \emph{Claim.} $d: X \times X \to \mathbb{R}$ defines a metric on $X$.
 
     \begin{proof}\ \\\\
         Let $x, y, z \in \mathbb{R}$.
@@ -51,10 +51,38 @@ a.  $X = \mathbb{R}, d(x, y) = \sqrt{|x - y|}$ for $x, y \in X$. \ \\
 b.  $X = \mathbb{R}, d(x, y) = |x| + |x - y| + |y|$ when $x \neq y$, and 
     $d(x, y) = 0$ when $x = y$ for $x, y \in X$. \ \\
 
-    \emph{Claim.} $d(x, y) = |x| + |x - y| + |y|$ defines a metric on $X$.
+    \emph{Claim.} $d: X \times X \to \mathbb{R}$ defines a metric on $X$.
     \ \\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Let $x, y, z \in \mathbb{R}$.
+        
+        We first show that $d$ is transitive:
+        \begin{align*}
+            d(x, y) &= |x| + |x - y| + |y| \\
+                    &= |y| + |-(y - x)| + |x| \\
+                    &= |y| + |y - x| + |x| \\
+                    &= d(y, x).
+        \end{align*}
+
+        To show that $d(x, y) = 0$ if and only if $x = y$, we need only show that $d(x, y) = 0$ implies that
+        $x = y$, as the reverse direction is true by the definition of $d$. Suppose that $d(x, y) = 0$ for 
+        some $x, y \in \mathbb{R}$. Then $|x| + |x - y| + |y| = 0$ and in particular, $|x - y| = -(|x| + |y|)$.
+        Observe that the expression on the left is non-negative and the expression on the right is
+        non-positive; hence because the only intersection point of non-negative and non-positive numbers is 0, we
+        see that $|x - y| = -(|x| + |y|) = 0$. In particular, $|x - y| = 0$, and by an argument similar to that
+        in (a), we have that $x = y$, as desired.
+
+        Lastly, we show that the triangle inequality holds for $d$:
+
+        \begin{align*}
+            d(x, z) + d(z, y) &= |x| + |z| + |x - z| + |z| + |y| + |z - y| \\
+                              &= |x| + |y| + 2|z| + (|x - z| + |z - y|) \\
+                              &\ge |x| + |y| + (|x - z| + |z - y|) \\
+                              &\ge |x| + |y| + |x - z + z - y| \\
+                              &= |x| + |y| + |x - y| \\
+                              &= d(x, y).
+        \end{align*}
     \end{proof}
 
     \pagebreak
@@ -63,21 +91,48 @@ c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and
     $d(f, g)$ is the function defined by 
     $d(f, g) = \int_a^b{|f(x) - g(x)|dx}$ for $f, g \in X$. \ \\
 
-    \emph{Claim.} 
+    \emph{Claim.} $d: X \times X \to \mathbb{R}$ is not a metric on $X$.
     \ \\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        To show that $d$ is not a metric on $X$, we show that $d$ violates the metric axiom that requires
+        that $f = g$ whenever $d(f, g) = 0$. In particular, let $g:[a, b] \to \mathbb{R}$ be the function defined
+        by $g(x) = 0, x \in [a, b]$, and let $f:[a, b] \to \mathbb{R}$ be defined thus:
+
+        \begin{align*}
+            f(x) = \begin{cases}
+                0, x \in [a, b) \\
+                1, x = b \\
+            \end{cases}
+        \end{align*}
+
+        Then the function $h \coloneqq f - g = f$ is 
+        Then $f$ and $g$ are both non-negative Riemann-integrable functions\footnote{
+            In particular, $f = 0$ except at a finite number of points and is thus Riemann integrable.
+        } which differ only at a single point; moreover, since $h$ differs from 0 at only a single point
+        and is non-zero, we have that:
+        
+        \begin{align*}
+            d(f, g) &= \int_a^b{|f(x) - g(x)|dx} \\
+                    &= \int_a^b{|h(x)|dx} \\
+                    &= \int_a^b{h(x) dx} \\
+                    &= \int_a^b{0 \hspace{1mm} dx} \\
+                    &= 0.
+        \end{align*}
+
+        Since $f \neq g$ but $d(f, g) = 0$, $d$ is not a metric.
+            
     \end{proof}
 
     \pagebreak
 
-d.  Let $(U, d_U)$ and $(V, d_V)$ be metric spaces, and define $X = U \times V$
-    to be the set of ordered pairs $(u, v)$ with $u \in U$ and $v \in V$.
-    Let $d\left((u_1, v_1), (u_2, v_2))\right)$ be the function defined by
+d.  Let $(U, d_U)$ and $(V, d_V)$ be metric spaces, let $X = U \times V$
+    be the set of ordered pairs $(u, v)$ with $u \in U$ and $v \in V$, and
+    let $d\left((u_1, v_1), (u_2, v_2))\right)$ be the function defined by
     $d\left((u_1, v_1), (u_2, v_2)\right) 
      = \text{max}\left\{d_U(u_1, v_1), d_V(u_2, v_2)\right\}$. \ \\
     
-     \emph{Claim.} 
+    \emph{Claim.} $d:X \times X \to \mathbb{R}$ defines a metric on $X$.
     \ \\
 
     \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
