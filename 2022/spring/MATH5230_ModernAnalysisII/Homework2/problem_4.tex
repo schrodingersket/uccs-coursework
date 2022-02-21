@@ -39,11 +39,27 @@ a.  Show that $d(A, B)$ is a metric on $M_n(\mathbb{R})$. \ \\
 
     \pagebreak
 
-b.  Let $\{A^{(k)}\}$ be a sequence in $M_n(\mathbb{R})$. Prove that
-    $\{A^{(k)}\}$ is a convergent sequence if and only if $\{a_{ij}^{(k)}\}$ is
-    a convergent subsequence in $\mathbb{R}$.\ \\
+b.  Let $\{A^{(k)}\}_{k=1}^{\infty}$ be a sequence in $M_n(\mathbb{R})$. Prove that $\{A^{(k)}\}_{k=1}^{\infty}$ is a
+    convergent sequence if and only if $\{a_{ij}^{(k)}\}_{k=1}^{\infty}$ is a convergent subsequence in $\mathbb{R}$.\ \\
 
     \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+        Suppose first that $\{A^{(k)}\}_{k=1}^{\infty}$ is a convergent sequence so that $\{A^{(k)}\}_{k=1}^{\infty}$ 
+        converges to some $A \in M_n(\mathbb{R})$. Then for any fixed $\epsilon > 0$, there exists some 
+        $N \in \mathbb{N}$ such that $\max\limits_{1 \le i,j \le n}{|a_{ij} - a^{(k)}_{ij}|} = d(A, A^{(k)}) < \epsilon$
+        whenever $k > N$, where $a_{ij}^{(k)}$ represents the $i^{th}$ row and $j^{th}$ column of the $k^{th}$ element 
+        of $\{A^{(k)}\}_{k=1}^{\infty}$. In particular, by the definition of the maximum element of a set, we have that 
+        $|a_{ij} - a_{ij}^{(k)}| < \epsilon$ for any particular choice of $i$ and $j$. Since our choice of $\epsilon$ 
+        was arbitrary, we have that $\lim\limits_{k \to \infty}{a_{ij}^{(k)} = a_{ij}}$ and hence 
+        $\{a_{ij}^{(k)}\}_{k=1}^{\infty}$ is a convergent sequence in $\mathbb{R}$ with the usual metric.
+        
+        Conversely, suppose that each $\{a_{ij}^{(k)}\}_{k=1}^{\infty}$ represents a convergent sequence in $\mathbb{R}$
+        with the usual metric so that each $\{a_ij^{(k)}\}_{k=1}^{\infty}$ converges to some $a_{ij}$. Then for any 
+        fixed $\epsilon > 0$, there exists for each unique $i, j$ some $N_{ij} \in \mathbb{N}$ such that 
+        $|a_{ij}^{(k)} - a_{ij}| < \epsilon$ whenever $k > N_{ij}$. Let $N = \max\limits_{1 \le i,j \le n}{\{N_{ij}\}}$.
+        Then whenever $k > N$, we have that 
+        $d(A, A^{(k)}) = \max\limits_{1 \le i,j \le n}{|a_{ij} - a^{(k)}_{ij}|} < \epsilon$. Lastly, we let 
+        $A$ be the matrix defined by $A = \left(a_{ij}\right)$ and observe that $a_{ij} \in \mathbb{R}$ for all
+        $1 \le i,j \le n$. Hence $A \in M_n(\mathbb{R})$, and so $\{A^{(k)}\}_{k=1}^{\infty}$ is a convergent sequence.
     \end{proof}
 
     \pagebreak
