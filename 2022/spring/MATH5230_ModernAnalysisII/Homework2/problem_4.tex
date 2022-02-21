@@ -66,7 +66,38 @@ b.  Let $\{A^{(k)}\}_{k=1}^{\infty}$ be a sequence in $M_n(\mathbb{R})$. Prove t
 
 c.  Show that $\left(M_n(\mathbb{R}), d\right)$ is a complete metric space.
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Let $\{A^{(k)}\}$ be a Cauchy sequence in $M_n(\mathbb{R})$. Then for any fixed $\epsilon > 0$, there exists
+        some $N_0 \in \mathbb{N}$ such that $d(A^{(k)}, A^{(l)}) < \frac{\epsilon}{4}$ whenever $k,l > N_0$. In 
+        particular, by the definition of the maximum element of a set, we see that 
+        $|a_{ij}^{(k)} - a_{ij}^{(l)}| < \frac{\epsilon}{4}$ for any particular choice of $i$ and $j$ for all 
+        $k,l > N_0$. Since our choice of $\epsilon$ was arbitrary, we have that ${\{a_{ij}^{(k)}\}}_{k=1}^{\infty}$ is a
+        Cauchy sequence in $\mathbb{R}$ and hence converges to some $a_{ij} \in \mathbb{R}$ by the completeness of 
+        $\mathbb{R}$ with respect to the usual metric. Moreover, because ${\{a_{ij}^{(k)}\}}_{k=1}^{\infty}$ converges 
+        to $a_{ij}$, there exists some $N_{ij} \in \mathbb{N}$ such that $|a_{ij}^{(l)} - a_{ij}| < \frac{\epsilon}{4}$ 
+        whenever $l > N_{ij}$. We therefore define $N = \max\limits_{1 \le i, j \le n}{\left\{N_0, N_{ij}\right\}}$ and
+        observe that the following holds for all $1 \le i, j \le n$ whenever $k, l > N$:
+
+        \begin{align*}
+            |a_{ij}^{(k)} - a_{ij}| &\le |a_{ij}^{(k)} - a_{ij}^{(l)}| + |a_{ij}^{(l)} - a_{ij}| \\
+                                    &\le \frac{\epsilon}{4} + \frac{\epsilon}{4} \\
+                                    &= \frac{\epsilon}{2} \\
+                                    &< \epsilon.
+        \end{align*}
+
+        Lastly, because the above $N$ holds for every $i, j$, we have that:
+        
+        \begin{align*}
+            d(A^{(k)}, A) &= \max\limits_{1 \le i,j \le n}{|a_{ij}^{(k)} - a_{ij}|} \\
+                          &\le \frac{\epsilon}{2} \\
+                          &< \epsilon.
+        \end{align*}
+
+        The sequence ${\{A^{(k)}\}}_{k=1}^{\infty}$ therefore converges to $A$ with respect to $d$, and since $A$
+        is comprised of entries in $\mathbb{R}$, $A$ is in $M_n(\mathbb{R})$. Since ${\{A^{(k)}\}}_{k=1}^{\infty}$ was 
+        chosen to be an arbitrary Cauchy sequence in $M_n(\mathbb{R})$, we have that $(M_n(\mathbb{R}), d)$ is a 
+        complete metric space.
+        \ \\
     \end{proof}
 
     \pagebreak
