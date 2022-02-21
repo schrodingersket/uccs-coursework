@@ -4,7 +4,37 @@ the function $d(A, B) = \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|}$.
 
 a.  Show that $d(A, B)$ is a metric on $M_n(\mathbb{R})$. \ \\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Let $A, B, C \in M_n(\mathbb{R})$ and observe that because $d$ is the maximum of a set of absolute values in
+        $\mathbb{R}$, $d$ is a non-negative real-valued function.
+        
+        We first show that $d$ is transitive:
+
+        \begin{align*}
+            d(A, B) &= \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} \\
+                    &= \max\limits_{1 \le i,j \le n}{|-(b_{ij} - a_{ij})|} \\
+                    &= \max\limits_{1 \le i,j \le n}{|b_{ij} - a_{ij}|} \\
+                    &= d(B, A). 
+        \end{align*}
+
+        To show that $d(A, B) = 0$ if and only if $A = B$, we first suppose that $A = B$ and observe that
+        $d(A, B) = \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} = \max\limits_{1 \le i,j \le n}{|a_{ij} - a_{ij}|} = 0$.
+        
+        Conversely, suppose that $d(A, B) = 0$. Then $d(A, B) = \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} = 0$
+        and so by the definition of maximum, we have that $|a_{ij} - b_{ij}| \le 0$ for each $1 \le i, j \le n$. Since
+        $|a_{ij} - b_{ij}| \ge 0$ trivially, we have that $|a_{ij} - b_{ij}| = 0$ and hence $a_{ij} = b_{ij}$ by a
+        similar argument as from (1a). Since this is true for every $1 \le i, j \le n$, we have that $A = B$ as
+        desired.
+        
+        Lastly, recall by the triangle inequality for the usual metric on $\mathbb{R}$ that 
+        $|a - c| + |c - b| \ge |a - b|$ for any $a, b, c \in \mathbb{R}$. Hence for each $1 \le i, j \le n$, we have
+        that $|a_{ij} - c_{ij}| + |c_{ij} - b_{ij}| \ge |a_{ij} - b_{ij}|$ and so the triangle inequality holds for $d$:
+
+        \begin{align*}
+            d(A, C) + d(C, B) &= \max\limits_{1 \le i,j \le n}{|a_{ij} - c_{ij}|} + \max\limits_{1 \le i,j \le n}{|c_{ij} - b_{ij}|} \\
+                              &\ge \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} \\
+                              &= d(A, B).
+        \end{align*}
     \end{proof}
 
     \pagebreak
