@@ -3,7 +3,35 @@ a.  Suppose that $\left\{f_n:[0,1] \to \mathbb{R}\right\}$ is a sequence of
     $g_n = [f_n]^2$. Prove that $\{g_n\}$ converges uniformly to 
     $g = f^2$ on $[0, 1]$.\ \\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Recall that the uniform limit of continuous functions is itself continuous. Then by the Extreme Value Theorem,
+        $f$ attains is maximum and minimum on $[0, 1]$ and is therefore bounded by some $B \in \mathbb{R}$. Furthermore,
+        by the uniform convergence of $\{f_n\}$ to $f$, there exists an $N_1 \in \mathbb{N}$ such that 
+        $|f_n(x) - f(x)| < 1$ for all $x \in [0, 1]$ whenever $n > N_1$. Hence whenever $n > N_1$, we have that the 
+        following holds for all $x \in [0, 1]$:
+
+        \begin{align*}
+            |f(x)| - B &\le |f(x)| - |f_n(x)| \\
+                       &\le \big| |f(x)| - |f_n(x)| \big| \\
+                       &\le |f(x) - f_n(x)| \\
+                       &< 1. \\
+        \end{align*}
+        
+        Thus $|f_n(x)| \le B + 1$ for all $x \in [0, 1]$ and $n > N_1$.
+        Furthermore, for any fixed $\epsilon > 0$, there exists an $N_2 \in \mathbb{N}$ such that 
+        $|f_n(x) - f(x)| < \frac{\epsilon}{2B + 1}$ for all $x \in [0, 1]$ whenever $n > N_2$. We therefore let 
+        $n > \max{\{N_1, N_2\}}$ and observe that for all $x \in [0, 1]$:
+
+        \begin{align*}
+            |f^2(x)| - f_n^2(x)| &= |f(x) - f_n(x)| \cdot |f(x) + f_n(x)| \\
+                                 &\le |f(x) - f_n(x)| \cdot \left(|f(x)| + |f_n(x)|\right) \\
+                                 &< \frac{\epsilon}{2B + 1} \cdot \left(B + (B+1)\right) \\
+                                 &= \epsilon. \\
+        \end{align*}
+
+        Since our choice of $\epsilon$ was arbitrary and the above holds for all $x \in [0, 1]$, the sequence 
+        $\left\{f_n^2\right\}$ converges uniformly to $f^2$, as desired.
+        \ \\
     \end{proof}
 
     \pagebreak
@@ -12,7 +40,27 @@ b.  Let $f:(0, 1] \to \mathbb{R}$ be a uniformly continuous function. Prove that
     $f$ is bounded on $(0, 1]$. (Hint: First show that there exists a
     $\delta > 0$ such that $f:(0, \delta)\to\mathbb{R}$ is bounded). \ \\
 
-    \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    \begin{proof}\ \\\\
+        Fix $\epsilon = 1$. Then because $f:(0, 1] \to \mathbb{R}$ is uniformly continuous, there exists a $\delta$ with
+        $1 > \delta > 0$ such that $|f(x) - f(x_0)| < \epsilon$ whenever $|x - x_0| < \delta$ for all $x$ and $x_0$ in
+        $(0, 1]$. Furthermore, observe that$(0, 1] = (0, \delta) \cup [\delta, 1]$ and so $f$ is uniformly continuous on 
+        $(0, \delta)$ and on $[\delta, 1]$. Because $f$ is continuous on $[\delta, 1]$, it attains its maximum
+        and minimum values on $[\delta, 1]$ by the Extreme Value Theorem and is therefore bounded by some $B_1$ on 
+        $[\delta, 1]$. To show that $f$ is bounded on $(0, \delta)$ (and therefore on $(0, 1]$), observe that 
+        $|x - x_0| < \delta - 0 = \delta$ for all $x, x_0 \in (0, \delta)$ and so $|f(x) - f(x_0)| < \epsilon = 1$. For 
+        a fixed $f(x_0) = B_2$, we by the reverse triangly inequality the following:
+
+        \begin{align*}
+            |f(x)| - B_2 &\le |f(x)| - |f(x_0)| \\
+                         &\le \big| |f(x)| - |f(x_0)| \big| \\
+                         &\le |f(x) - f(x_0)| \\
+                         &\le \epsilon \\
+                         &= 1. \\
+        \end{align*}
+
+        Hence $|f(x)| < B_2 + 1$ for all $x \in (0, \delta)$ and so $f$ is bounded  by $B_2 + 1$ on $(0, \delta)$. Thus
+        $f:(0, 1] \to \mathbb{R}$ is bounded by $\max{\{B_1, B_2 + 1\}}$, as desired.
+        \ \\
     \end{proof}
 
     \pagebreak
