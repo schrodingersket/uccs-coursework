@@ -106,8 +106,8 @@ c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and
             \end{cases}
         \end{align*}
 
-        Let $P_n$ be an equidistant partition of $[a, b]$ into $n$ intervals, and observe that the infimum of any 
-        neighborhood $B_{\epsilon}(b)$ centered about $b$ is equal to zero. Then because \linebreak
+        Let $P_n$ be an equidistant partition of $[a, b]$ into $n$ intervals, and observe that the infimum of $f$ over
+        any neighborhood $B_{\epsilon}(b)$ centered about $b$ is equal to zero. Then because \linebreak
         $f:[a, b - \epsilon] \to \mathbb{R}$ is identically zero, we see have that the Lower Darboux sum $L(f, P)$
         for any partition is equal to 0 and in particular $L(f, P_n) = 0$. For any particular interval $k$ of $P_n$, let 
         $M_k \coloneqq \sup\limits_{x \in [x_{k-1}, x_{k}]}{\{f(x)\}}$. Because $f$ is identically zero for every 
@@ -120,8 +120,9 @@ c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and
                       &= \frac{(b - a)}{n}.
         \end{align*}
 
-        Hence $\lim\limits_{n \to \infty}{L(f, P_n)} = \lim\limits_{n \to \infty}{U(f, P_n)} = 0$, and so by the 
-        Archimedes-Riemann Theorem, $f$ is integrable and in particular integrates to 0 on $[a, b]$.
+        Hence $\lim\limits_{n \to \infty}{L(f, P_n)} = \lim\limits_{n \to \infty}{U(f, P_n)} = 0$, and so because $f$
+        is bounded (by 1), we have by the Archimedes-Riemann Theorem that $f$ is integrable and in 
+        particular that $\int_a^b{f(x) \hspace{1mm} dx} = 0$.
         
         \pagebreak
         Observe that $f - g = f - 0 = f$. Moreover, because $f$ and $g$ are non-negative functions with $f \ge g$ for 
