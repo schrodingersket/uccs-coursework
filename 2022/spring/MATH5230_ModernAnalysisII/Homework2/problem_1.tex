@@ -95,7 +95,7 @@ c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and
     \ \\
 
     \begin{proof}\ \\\\
-        To show that $d$ is not a metric on $X$, we show that $d$ violates the metric axiom that requires
+        To show that $d$ is not a metric on $X$, we show that $d$ violates the metric axiom which requires
         that $f = g$ whenever $d(f, g) = 0$. In particular, let $g:[a, b] \to \mathbb{R}$ be the function defined
         by $g(x) = 0, x \in [a, b]$, and let $f:[a, b] \to \mathbb{R}$ be defined thus:
 
@@ -106,22 +106,36 @@ c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and
             \end{cases}
         \end{align*}
 
-        Then the function $h \coloneqq f - g = f$ is 
-        Then $f$ and $g$ are both non-negative Riemann-integrable functions\footnote{
-            In particular, $f = 0$ except at a finite number of points and is thus Riemann integrable. Refer to Appendix
-            A for this proof.
-        } which differ only at a single point; moreover, since $h$ differs from 0 at only a single point
-        and is non-zero, we have that:
+        Let $P_n$ be an equidistant partition of $[a, b]$ into $n$ intervals, and observe that the infimum of any 
+        neighborhood $B_{\epsilon}(b)$ centered about $b$ is equal to zero. Then because 
+        $f:[a, b - \epsilon] \to \mathbb{R}$ is identically zero, we see have that the Lower Darboux sum $L(f, P)$
+        for any partition is equal to 0 and in particular $L(f, P_n) = 0$. For any particular interval $k$ of $P_n$, let 
+        $M_k \coloneqq \sup\limits_{x \in [x_{k-1}, x_{k}]}{\{f(x)\}}$. Then because $f$ is identically zero for every 
+        interval save for the last (in which $M_n = \sup\limits_{x \in [x_{n-1}, b]}{\{f(x)\}} = 1$), we have that 
+        $M_k = 0, 1 \le i < n$ and $M_n = 1$. The Upper Darboux sum for $P_n$ is thus given by:
+
+        \begin{align*}
+            U(f, P_n) &= \sum\limits_{k=1}^{n}{M_k \cdot \frac{(b - a)}{n}} \\
+                      &= M_n \cdot \frac{(b - a)}{n} + \sum\limits_{k=1}^{n-1}{0 \cdot \frac{(b - a)}{n}} \\
+                      &= \frac{(b - a)}{n}.
+        \end{align*}
+
+        Hence $\lim\limits_{n \to \infty}{L(f, P_n)} = \lim\limits_{n \to \infty}{U(f, P_n)} = 0$, and so by the 
+        Archimedes-Riemann Theorem, $f$ is integrable and in particular integrates to 0 on $[a, b]$.
+        
+        \pagebreak
+        Observe that $f - g = f - 0 = f$. Moreover, because $f$ and $g$ are non-negative functions with $f \ge g$ for 
+        all $x \in [a, b]$, we see that $f - g = |f - g|$. In particular, we have:
         
         \begin{align*}
             d(f, g) &= \int_a^b{|f(x) - g(x)|dx} \\
-                    &= \int_a^b{|h(x)|dx} \\
-                    &= \int_a^b{h(x) dx} \\
-                    &= \int_a^b{0 \hspace{1mm} dx} \\
+                    &= \int_a^b{f(x) - g(x) \hspace{1mm} dx} \\
+                    &= \int_a^b{f(x) \hspace{1mm} dx} \\
                     &= 0.
         \end{align*}
 
-        Since $f \neq g$ but $d(f, g) = 0$, $d$ is not a metric.
+        We have thus shown that there exist $f, g \in X$ such that $d(f, g) = 0$ but $f \neq g$, and hence $d$ does not
+        define a metric on $X$.
             
     \end{proof}
 
