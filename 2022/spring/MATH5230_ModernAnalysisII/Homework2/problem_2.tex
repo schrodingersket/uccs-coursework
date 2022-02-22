@@ -14,10 +14,11 @@ a.  Let $E$ be a non-empty subset of $X$, and define the distance between an
             d(x_1, y) < \inf\limits_{\alpha \in E}{d(x_1, \alpha)} + \frac{\epsilon}{2} = \rho_E(x_1) + \frac{\epsilon}{2}.
         \end{align}
         
-        Furthermore, since $y \in E$, we see that 
-        $\rho_E(x_2) = \inf\limits_{\alpha \in E}{d(x_2, \alpha)} \le d(x_2, y) \le d(x_2, x_1) + d(x_1, y)$.
+        Furthermore, since $y \in E$, we see that the following holds:
+        \begin{align*}
+            \rho_E(x_2) = \inf\limits_{\alpha \in E}{d(x_2, \alpha)} \le d(x_2, y) \le d(x_2, x_1) + d(x_1, y).
+        \end{align*}
         Hence by (1):
-        
         \begin{align*}
                           \rho_E(x_2) &< d(x_1, x_2) + \rho_E(x_1) + \frac{\epsilon}{2} \\
             \rho_E(x_2) - \rho_E(x_1) &< d(x_1, x_2) + \frac{\epsilon}{2}.

@@ -107,10 +107,10 @@ c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and
         \end{align*}
 
         Let $P_n$ be an equidistant partition of $[a, b]$ into $n$ intervals, and observe that the infimum of any 
-        neighborhood $B_{\epsilon}(b)$ centered about $b$ is equal to zero. Then because 
+        neighborhood $B_{\epsilon}(b)$ centered about $b$ is equal to zero. Then because \linebreak
         $f:[a, b - \epsilon] \to \mathbb{R}$ is identically zero, we see have that the Lower Darboux sum $L(f, P)$
         for any partition is equal to 0 and in particular $L(f, P_n) = 0$. For any particular interval $k$ of $P_n$, let 
-        $M_k \coloneqq \sup\limits_{x \in [x_{k-1}, x_{k}]}{\{f(x)\}}$. Then because $f$ is identically zero for every 
+        $M_k \coloneqq \sup\limits_{x \in [x_{k-1}, x_{k}]}{\{f(x)\}}$. Because $f$ is identically zero for every 
         interval save for the last (in which $M_n = \sup\limits_{x \in [x_{n-1}, b]}{\{f(x)\}} = 1$), we have that 
         $M_k = 0, 1 \le i < n$ and $M_n = 1$. The Upper Darboux sum for $P_n$ is thus given by:
 
@@ -182,12 +182,11 @@ d.  Let $(U, d_U)$ and $(V, d_V)$ be metric spaces, let $X = U \times V$
         Hence $d_U(u_1, u_2) = d_V(v_1, v_2) = 0$, and a third application of the metric axioms to $d_U$ and $d_V$
         yields that $u_1 = u_2$ and $v_1 = v_2$. Hence $(u_1, v_1) = (u_2, v_2)$, as desired.
 
-        Lastly, because $d_U(u_1, u_3) + d_U(u_3, u_2) \ge d_U(u_1, u_2)$ and 
-        $d_V(v_1, v_3) + d_V(v_3, v_2) \ge d_V(v_1, v_2)$, we have that $d$ satisfies the triangle inequality:
-
+        Lastly, observe that $d_U(u_1, u_3) + d_U(u_3, u_2) \ge d_U(u_1, u_2)$ and 
+        $d_V(v_1, v_3) + d_V(v_3, v_2) \ge d_V(v_1, v_2)$. Hence $d$ satisfies the triangle inequality:
         \begin{align*}
-            d((u_1, v_1), (u_3, v_3)) + d((u_3, v_3), (u_2, u_2)) &= \max{\{d_U(u_1, u_3), d_V(v_1, v_3)\}}
-                                                                   + \max{\{d_U(u_3, u_2), d_V(v_3, v_2)\}} \\
+            d((u_1, v_1), (u_3, v_3)) + d((u_3, v_3), (u_2, u_2)) &= \max{\{d_U(u_1, u_3), d_V(v_1, v_3)\}} \\
+                                                                  &+ \max{\{d_U(u_3, u_2), d_V(v_3, v_2)\}} \\
                                                                   &\ge \max {\{d_U(u_1, u_2), d_V(v_1, v_2)\}} \\
                                                                   &= d((u_1, v_1), (u_2, v_2)).
         \end{align*}
