@@ -43,12 +43,12 @@ b.  Let $f:(0, 1] \to \mathbb{R}$ be a uniformly continuous function. Prove that
     \begin{proof}\ \\\\
         Fix $\epsilon = 1$. Then because $f:(0, 1] \to \mathbb{R}$ is uniformly continuous, there exists a $\delta$ with
         $1 > \delta > 0$ such that $|f(x) - f(x_0)| < \epsilon$ whenever $|x - x_0| < \delta$ for all $x$ and $x_0$ in
-        $(0, 1]$. Furthermore, observe that$(0, 1] = (0, \delta) \cup [\delta, 1]$ and so $f$ is uniformly continuous on 
+        $(0, 1]$. Furthermore, observe that $(0, 1] = (0, \delta) \cup [\delta, 1]$ and so $f$ is uniformly continuous on 
         $(0, \delta)$ and on $[\delta, 1]$. Because $f$ is continuous on $[\delta, 1]$, it attains its maximum
         and minimum values on $[\delta, 1]$ by the Extreme Value Theorem and is therefore bounded by some $B_1$ on 
         $[\delta, 1]$. To show that $f$ is bounded on $(0, \delta)$ (and therefore on $(0, 1]$), observe that 
         $|x - x_0| < \delta - 0 = \delta$ for all $x, x_0 \in (0, \delta)$ and so $|f(x) - f(x_0)| < \epsilon = 1$. For 
-        a fixed $f(x_0) = B_2$, we by the reverse triangly inequality the following:
+        a fixed $|f(x_0)| = B_2 \ge 0$, we have by the reverse triangle inequality the following:
 
         \begin{align*}
             |f(x)| - B_2 &\le |f(x)| - |f(x_0)| \\

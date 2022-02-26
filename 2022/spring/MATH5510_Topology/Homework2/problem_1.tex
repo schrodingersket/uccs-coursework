@@ -1,5 +1,30 @@
 (\#6 in 2.5) Show that the countable union of countable sets is countable. (Hint: consider a table similar to the one 
 used to show that the set of rational numbers is countable).
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+    Let each $S = \bigcup\limits_{i=1}^{\infty}{S_i}$ be a countable collection of countable sets $S_i$, and observe
+    that each $S_i$ may be written $S_i = \bigcup\limits_{j=1}^{\infty}{\{s_{ij}\}}, s_{ij} \in S_i$.  Hence $S$ may be
+    written $S = \bigcup\limits_{i=1}^{\infty}\bigcup\limits_{j=1}^{\infty}{\{s_{ij}\}}$. Let 
+    $f: \mathbb{N} \times \mathbb{N} \to S$ be the function defined by $f((i, j)) = s_{ij}$ for each 
+    $i,j \in \mathbb{N}$. Then $f$ is surjection from $\mathbb{N} \times \mathbb{N}$ to $S$. 
+
+    We next show that $\mathbb{N} \times \mathbb{N}$ is countable by constructing a bijection
+    $g:\mathbb{N} \to \mathbb{N} \times \mathbb{N} $. We first partition the elements of $\mathbb{N} \times \mathbb{N}$ 
+    by the sum of the elements in each pair (i.e., an element $(a, b)$ is similar to $(c, d)$ if and only if 
+    $a + b = c + d$) and impose a total ordering of the equivalence classes according to the usual "less than or equal
+    to" relation on this sum. Each equivalence class contains a finite number of elements (in particular, for a 
+    particular class $[(a, b)]$, there are always precisely $a + b - 1$ elements in the class), and observe that the
+    elements within each class may be ordered according to the usual "less than or equal to" relation imposed upon the
+    first element in each pair. Then since each equivalence class is a finite set with a total ordering, each such 
+    class is well-ordered. We choose the least element of the least equivalence class, and it is to this value that we
+    assign $g(1)$. We then assign to $g(2)$ the next least element of the equivalence class, and proceed in this manner
+    until all the elements in a particular (finite) equivalence class are exhausted. Since the equivalence classes are
+    totally-ordered, we then move to the next least equivalence class and assign each element in that class to a 
+    corresponding unique $g(k)$. In this fashion, we see that $g$ uniquely assigns every element of $\mathbb{N}$ 
+    to every element in $\mathbb{N} \times \mathbb{N}$, and is therefore a bijection from $\mathbb{N}$ to 
+    $\mathbb{N} \times \mathbb{N}$. 
+   
+    Because $g$ and $f$ are both surjective, the composition $f \circ g:\mathbb{N} \to S$ is a surjection from 
+    $\mathbb{N}$ to $S$ and so $S$ is countable.
+    \ \\
 \end{proof}
