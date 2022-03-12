@@ -38,8 +38,8 @@ c.  $A = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z = 0 \}$, where $
 
 \pagebreak
 
-d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $X = C[a, b]$ and 
-    $d(f, g) = \sup\limits_{x \in [a, b]}{|f(x) = g(x)|}$. 
+d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $d(f, g) = \sup\limits_{x \in [a, b]}{|f(x) - g(x)|}$ and 
+    $X = C[a, b]$.
 
 \ \\
 \emph{Claim.} 
@@ -51,8 +51,8 @@ d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $X = C[a, b]$ and
 
 \pagebreak
 
-e.  $A = \{ f \in X \mid \int_a^b{f(x) dx} = 0 \}$ where $X = C[a, b]$ and 
-    $d(f, g) = \sup\limits_{x \in [a, b]}{|f(x) = g(x)|}$. 
+e.  $A = \{ f \in X \mid \int_a^b{f(x) \,dx} = 0 \}$ where $d(f, g) = \sup\limits_{x \in [a, b]}{|f(x) - g(x)|}$ and 
+    $X = C[a, b]$.
 
 \ \\
 \emph{Claim.} 
@@ -64,7 +64,7 @@ e.  $A = \{ f \in X \mid \int_a^b{f(x) dx} = 0 \}$ where $X = C[a, b]$ and
 
 \pagebreak
 
-f.  $A = \{ x \in X \mid y = f(x) \}$ where $X = \mathbb{R}^2$, $f:\mathbb{R} \to \mathbb{R}$ is continuous, and $d$ is 
+f.  $A = \{ (x, y) \in X \mid y = f(x) \}$ where $X = \mathbb{R}^2$, $f:\mathbb{R} \to \mathbb{R}$ is continuous, and $d$ is 
     the Euclidean metric.
 
 \ \\
