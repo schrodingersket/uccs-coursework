@@ -3,18 +3,40 @@ Let $(X, d)$ be a metric space and let $A \subset X$.
 a.  Prove that $\bar{A}$ is the closure of $A$ if and only if $\bar{A}$ is the intersection of all closed subsets of $X$
     which contain $A$.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
-\end{proof}
+\begin{proof}\ \\\\
+    Let $\bar{A}$ denote the closure of $A$, and let $U = \bigcap\limits_{i \in I}{U_i}$ denote the intersection of all 
+    closed subsets of $X$ which contain $A$.\ \\
+
+    Observe that $A \subseteq A \cup A' = \bar{A}$; $A$ is therefore contained in $\bar{A}$. Then since the closure of
+    $A$ is a closed set, there exists some $k \in I$ for which $U_k = \bar{A}$, and so 
+    $U = \bigcap\limits_{i \in I}{U_i} \subseteq U_k = \bar{A}$.
+
+    To prove the reverse set inclusion, observe that because $U$ is the intersection of all closed sets which contain 
+    $A$, $U$ itself must also contain $A$. Moreover, because the arbitrary intersection of closed sets is itself closed,
+    $U$ is closed and therefore must also contain every limit point of $A$. Hence $\bar{A} = A \cup A' \subseteq U$, and
+    so $\bar{A} = U$.
+    \ \\
+ \end{proof}
 
 \pagebreak
 
 b.  Show that $x \in \bar{A}$ if and only if $\inf\limits_{y \in A}{d(x, y)} = 0$.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+\begin{proof}\ \\\\
+    Suppose that $x \in \bar {A} = A \cup A'$. If $x \in A$, then $0 = d(x, x) \in \{ d(x, y) \mid y \in A\}$ and hence
+    $\inf\limits_{y \in A}{d(x, y)} = 0$. If, on the other hand, $x \in A'$, then $x$ is a limit point of $A$ and every
+    open ball $B_r(x)$ with radius $r > 0$ centered about $x$ contains a point in $A$. Hence for any fixed 
+    $\epsilon > 0$, there exists a point $y \in A \cap B_{\epsilon}(x)$ and so for such a point, we have that 
+    $d(x, y) < \epsilon$.  Since $\epsilon$ was chosen to be arbitrary, we see that 
+    $\inf\limits_{y \in A}{d(x, y)} \le 0$; moreover, because $d(x, y) \ge 0$ for all $x, y \in X$, this inequality 
+    becomes equality and thus $\inf\limits_{y \in A}{d(x, y)} = 0$. \ \\
+
+    Conversely, suppose that $\inf\limits_{y \in A}{d(x, y)} = 0$. If $x$ is in $A$, then we have 
+    $x \in A \subseteq A \cup A' = \bar{A}$; we may therefore assume that $x \in X \setminus A$. Because 
+    $\inf\limits_{y \in A}{d(x, y)} = 0$, we have for any $\epsilon > 0$ that there must exist some point $y \in A$ such
+    that $d(x, y) < \epsilon$. Hence $y$ is in the open ball $B_{\epsilon}(x)$ centered about $x$. Since this holds for 
+    any $\epsilon > 0$, $x$ is a limit point of $A$, and hence $x \in A' \subseteq A \cup A' = \bar{A}$.
+    \ \\
 \end{proof}
 
 \pagebreak
