@@ -11,9 +11,27 @@ a) Prove the following:
 i.  $(A \cap B)^{\circ} = A^{\circ} \cap B^{\circ}$, where $A^{\circ}$ and $B^{\circ}$ denote the interior of $A$ and 
     $B$, respectively. \ \\
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+\begin{proof}\ \\\\
+    Observe that if $A$ or $B$ are empty, then $A \cap B = \emptyset$, $(A \cap B)^\circ = \emptyset$, 
+    $A^{\circ} = \emptyset$, $B^{\circ} = \emptyset$, and hence $A^{\circ} \cap B^{\circ} = \emptyset$. We may therefore 
+    assume that $A$ and $B$ are non-empty sets.
+
+    Let $x \in (A \cap B)^{\circ}$. Then because $(A \cap B)^{\circ}$ is open, there exists an open ball 
+    $B_\epsilon(x) \subseteq (A \cap B)^{\circ} \subseteq A \cap B$. Hence $B_\epsilon(x)$ is an open ball which is 
+    contained in both $B$ and $A$, and because $A^\circ$ and $B^\circ$ are the largest open sets contained in $A$ and 
+    $B$ respectively, we have that $B_\epsilon(x) \subseteq A^\circ$ and $B_\epsilon(x) \subseteq B^\circ$. Thus 
+    $B_\epsilon(x) \subseteq A^\circ \cap B^\circ$, and so $x \in A^\circ \cap B^\circ$. Since $x$ was chosen to be
+    an arbitrary point in $(A \cap B)^{\circ}$, we have that $(A \cap B)^{\circ} \subseteq A^\circ \cap B^\circ$. \\
+
+    Conversely, suppose $x \in A^\circ \cap B^\circ$. Because $A^\circ$ and $B^\circ$ are open, there exist radii 
+    $\alpha > 0$ and $\beta > 0$ such that the open balls $B_\alpha(x) \subseteq A^\circ$ and 
+    $B_\beta(x) \subseteq B^\circ$ are fully contained in their respective open sets. Let 
+    $\epsilon = \min{(\alpha, \beta)}$, and observe that the open ball $B_\epsilon(x)$ is an open set contained in both
+    $A$ and $B$, and hence $B_\epsilon(x) \subseteq (A \cap B)^\circ$. Since $x \in B_\epsilon(x)$ by definition, we
+    have that $x \in (A \cap B)^\circ$. Because $x$ was chosen to be an arbitrary point in $A^\circ \cap B^\circ$, we
+    have that $A^\circ \cap B^\circ \subseteq (A \cap B)^\circ$ and hence 
+    $A^\circ \cap B^\circ = (A \cap B)^\circ$, as desired.
+    \ \\
 \end{proof}
 
 \pagebreak
@@ -49,8 +67,32 @@ iv. The set of boundary points $\text{bd}(A)$ is a closed set in $X$.  \ \\
 v. $A^{\circ} \cup \text{bd}(A) = A \cup A'$ \ \\
     
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+    Observe that if $A = \emptyset$, then $A^\circ = bd(A) = A' = \emptyset$ and our claim is trivially true. We may
+    therefore assume that $A$ is non-empty.
+
+    Suppose that $x \in A^\circ \cup bd(A)$. Then $x$ is in at least one of $A^\circ$ or $bd(A)$. If $x \in A^\circ$, 
+    then $x$ is also in $A$ and hence $x \in A \cup A'$.  Suppose $x \in bd(A)$. If $x \in A$, then $x \in A \cup A'$ 
+    trivially, and so we may assume that $x \in X \setminus A$. Then every open ball centered about $x$
+    contains a point in $A$ which is different from $x$, and hence $x$ is a limit point of $A$. 
+    Hence $x \in A' \subseteq A \cup A'$. Since $x$ was chosen to be arbitrary, we have that 
+    $A^\circ \cup bd(A) \subseteq A \cup A'$. \\
+
+    Now suppose that $x \in A \cup A'$. Then $x$ is in at least one of $A$ or $A'$. Suppose $x \in A'$ and furthermore
+    that $x \in X \setminus A$. Then because $x$ is a limit point, every open ball centered about $x$ contains a point
+    in $A$ which is not $x$. Since $x$ itself is not in $A$, every such open ball contains a point in $A$ and a 
+    point not in $A$, and so $x$ is in the boundary of $A$. Conversely, if $x$ is
+    a limit point of $A$ which is also in $A$, then either every open ball centered about $x$ contains a point in $A$
+    and a point in $X \setminus A$ (in which case $x$ is in the boundary of $A$), or there exists an open ball centered 
+    about $x$ which contains no points in $X \setminus A$ (in which case $x$ is in the interior of $A$). Thus, 
+    $x \in A^\circ \cup bd(A)$. 
+    \ \\\\
+    Similarly, if $x \in A \setminus A^\circ$, then no open ball centered about $x$ is
+    contained in $A$, and hence every open ball contains a point in $A$ ($x$ itself) and a point in $X \setminus A$ and
+    so $x$ is therefore a boundary point of $A$. Hence any point in $A$ is either in the interior of $A$ or is a
+    boundary point of $A$, and so $A \subseteq A^\circ \cup bd(A)$.
+    \ \\\\
+    Since $x \in A \cup A'$ was chosen to be arbitrary, we have that $A \cup A' \subseteq A^\circ \cup bd(A)$, and hence 
+    $A \cup A' = A^\circ \cup bd(A)$, as desired.
 \end{proof}
 
 \pagebreak
