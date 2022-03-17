@@ -55,12 +55,27 @@ v. $A^{\circ} \cup \text{bd}(A) = A \cup A'$ \ \\
 
 \pagebreak
 
-b. Prove that if either $A$ is open or it is closed, then $\text{bd}(A)^{\circ} = \emptyset$. Prove that this assertion
-   fails when $A$ is neither open nor closed. \ \\
+b. Prove that if either $A$ is open or it is closed, then $\text{bd}(A)^{\circ} = \emptyset$. Provide a counterexample
+   which shows that this assertion fails when $A$ is neither open nor closed. \ \\
     
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+\begin{proof}\ \\\\
+    Suppose that $bd(A)^{\circ}$ is non-empty. We will show that $A$ cannot be open or closed. Since $bd(A)^{\circ}$ is 
+    non-empty, there exists some point $x \in bd(A)^{\circ}$, and because $bd(A)^{\circ} \subseteq bd(A)$, we have that
+    $x$ is therefore also in the boundary of $A$. Moreover, because the interior of any set is open, there exists an 
+    open ball $B_{\epsilon}(x) \subseteq bd(A)$ centered about $x$; since $x \in bd(A)$, $B_{\epsilon}(x)$ also 
+    contains a point $a \in A$ and a point $z \in X \setminus A$. If $A$ is open, then there exists an open ball 
+    $B_{\delta}(a)$ centered about $a$ which is entirely contained in $A$. However, because $a$ is in the boundary of 
+    $A$, every open ball about $a$ must necessarily contain a point in $A$ and a point in $X \setminus A$ , which 
+    yields a contradiction. Similarly, if $A$ is closed, then $X \setminus A$ is open, and so there exists an open ball
+    $B_{\delta}(z)$ centered about $z$ which is entirely contained in $X \setminus A$, which again contradicts the fact 
+    that $z$ is in the boundary of $A$, as before. \\
+
+    By contraposition, we see that if either $A$ is open or it is closed, then $\text{bd}(A)^{\circ} = \emptyset$. \\
+
+    Lastly, observe that the set of rationals $\mathbb{Q} \subset \mathbb{R}$ is neither open nor closed, and that the
+    closure of $\mathbb{Q}$ is $\mathbb{R}$. Moreover, $\mathbb{R}$ is open and hence is equal to its interior. Since
+    $\mathbb{R}$ is non-empty, we see that $bd(\mathbb{Q})^{\circ} = \mathbb{R} \neq \emptyset$.
+    \ \\
 \end{proof}
 
 \pagebreak
