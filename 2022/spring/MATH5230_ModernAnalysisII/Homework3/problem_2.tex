@@ -45,8 +45,36 @@ c.  The diameter $d(A)$ of a set $A$ in a metric space is defined to be $d(A) = 
     that $d(A) = d(\bar{A})$. (Note that $d(A) < \infty$ if $A$ is bounded and $d(A) = \infty$ if $A$ is unbounded).
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    Observe that $A \in A \cup A' = \bar{A}$, and so 
+    $\sup\limits_{x,y \in A}{d(x, y)} \le \sup\limits_{x,y \in \bar{A}}{d(x, y)}$
+    by definition of the supremum.
+
+    To prove the reverse inequality, observe that $\bar{A} = A \cup A'$ and let $x', y' \in \bar{A}$. If $x'$ and $y'$ 
+    are points in $A$, then we have by definition that $d(x', y') \le \sup\limits_{x,y \in A}{d(x, y)}$. Hence we may 
+    assume that $x'$ and $y'$ are in $A'$. Let $\epsilon > 0$. Because $x'$ and $y'$ are limit points, there exist 
+    $x, y \in A$ such that $d(x, x') < \frac{\epsilon}{2}$ and $d(y, y') < \frac{\epsilon}{2}$. Applying the Triangle
+    Inequality twice yields the following inequality.
+
     \begin{align*}
+        d(x', y') &\le d(x', x) + d(x, y) + d(y, y') \\
+                  &< \frac{\epsilon}{2} + d(x, y) + \frac{\epsilon}{2} \\
+                  &= d(x, y) + \epsilon.
     \end{align*}
+
+    Since $\epsilon$ was chosen to be arbitrary, we have for any points $x', y' \in A'$ that $d(x', y') \le d(x, y)$ for
+    some $x, y \in A$, and hence $\sup\limits_{x,y \in A'}{d(x, y)} \le \sup\limits_{x,y \in A}{d(x, y)}$. Lastly, if
+    only one of $x'$ or $y'$ is in $A'$ (we may assume without loss of generality that it is $x'$), the above inequality
+    simplifies to:
+    
+    \begin{align*}
+        d(x', y') &\le d(x', x) + d(x, y') \\
+                  &< \frac{\epsilon}{2} + d(x, y') \\
+                  &< d(x, y') + \epsilon.
+    \end{align*}
+
+    By a similar argument as above, we have that
+    $\sup\limits_{x \in A', y \in A}{d(x, y)} \le \sup\limits_{x,y \in A}{d(x, y)}$ and so
+    $d(\bar{A}) = \sup\limits_{x,y \in \bar{A}}{d(x, y)} = \sup\limits_{x,y \in A}{d(x, y)} = d(A)$, as desired.
 \end{proof}
 
 \pagebreak
