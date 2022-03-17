@@ -38,7 +38,28 @@ i.  $(A \cap B)^{\circ} = A^{\circ} \cap B^{\circ}$, where $A^{\circ}$ and $B^{\
 
 ii.  $(A \cup B)' = A' \cup B'$, where $A'$ and $B'$ denote the set of limit points of $A$ and $B$, respectively.\ \\
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+    We first consider the case in which either $A$ or $B$ are empty. Without loss of generality, we may assume that $A$
+    is empty. Then $A' = \emptyset$, and so $(A \cup B)' = (B)' = B' = A' \cup B'$. We may therefore assume that $A$ and
+    $B$ are non-empty.
+
+    Let $x \in (A \cup B)'$. Then for every $r > 0$, the open ball $B_r(x)$ centered about $x$ contains a least one
+    point $p \in A \cup B$ which is not $x$. Let $\{c_n\}_{n=1}^{\infty}$ be the sequence obtained by selecting
+    a unique point from $B_{1/n}(x)$ which is not $x$ itself. Then $c_n \in A \cup B$ for every $n \in \mathbb{N}$, and
+    so at least one of $A$ or $B$ must be infinite. Without loss of generality, we may assume $A$ to be infinite. We
+    may therefore create a new subsequence $\{c_{n_k}\}_{k=1}^{\infty}$ consisting of terms which are in $A$, and 
+    observe that every open ball $B_r(x)$ contains at least one element from $\{c_{n_k}\}_{k=1}^{\infty}$, and thus
+    contains an element in $A$ which is not $x$. Hence $x$ is a limit point of $A$, and so 
+    $x \in A' \subseteq A' \cup B'$. Since $x$ was chosen to be arbitrary, we see that 
+    $(A \cup B)' \subseteq A' \cup B'$.
+
+    Conversely, suppose that $x \in A' \cup B'$. Then $x$ is a limit point of at least one of $A$ or $B$; without loss
+    of generality, we assume that $x$ is a limit point of $A$. Then every open ball $B_r(x)$ centered about $x$ contains
+    a point in $A$ which is not $x$. Moreover, every such point is also in $A \cup B$, and so $x$ is also limit point of 
+    $A \cup B$. Since $x$ was chosen to be arbitrary, we have that $A' \cup B' \subseteq (A \cup B)'$ and hence
+    $A' \cup B' = (A \cup B)'$, as desired.
+
+
     \begin{align*}
     \end{align*}
 \end{proof}
@@ -47,18 +68,35 @@ ii.  $(A \cup B)' = A' \cup B'$, where $A'$ and $B'$ denote the set of limit poi
 
 iii. $A \setminus \text{bd}(A) = A^{\circ}$, where $\text{bd}(A)$ represents the set of boundary points of $A$.  \ \\
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+\begin{proof}\ \\\\
+    Let $x \in A \setminus \text{bd}(A)$. Then $x \in A$, and because $x$ is not a boundary point of $A$, there exists 
+    an open ball $B_r(x)$ centered about $x$ which contains no point outside of $A$. Hence $B_r(x)$ is an open set 
+    contained in $A$ which contains $x$, and so $x$ is an interior point of $A$. Since $x$ was chosen to be arbitrary, 
+    we see that $A \setminus \text{bd}(A) \subseteq A^\circ$.
+
+    Now suppose that $x$ is an interior point of $A$. Then $x \in A$, and so it remains to show that $x$ is not in the
+    boundary of $A$. For the sake of contradiction, suppose that $x \in \text{bd}(A)$. Then every open ball centered 
+    about $x$ contains a point in $A$ and a point not in $A$. But this contradicts the fact that there must exist an 
+    open ball centered about $x$ which is entirely contained in $A$ by virtue of the fact that $x$ is an interior point.
+    Hence $x$ is not in the boundary of $A$, and so $x \in A \setminus \text{bd}(A)$. Since $x$ was chosen to be 
+    arbitrary, we see that $A^\circ \subseteq A \setminus \text{bd}(A)$ and so $A^\circ = A \setminus \text{bd}(A)$, as 
+    desired.
+    \ \\
 \end{proof}
 
 \pagebreak
 
 iv. The set of boundary points $\text{bd}(A)$ is a closed set in $X$.  \ \\
     
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+\begin{proof}\ \\\\
+    Let $x \in X \setminus \text{bd}(A)$. If $x \in A$, then because $x$ is not a boundary point of $A$, there exists 
+    some open ball $B_\epsilon(x)$ centered about $x$ which contains no elements in $X \setminus A$; hence 
+    $B_\epsilon(x) \subseteq A$, and so $x \in A^\circ$. Similarly, if $x \in X \setminus A$, then there exists some
+    open ball $B_\delta(x)$ centered about $x$ which contains no elements in $A$; hence 
+    $B_\delta(x) \subseteq X \setminus A$, and so $x \in (X \setminus A)^\circ$. We therefore observe that there exists
+    an open ball around every point in $X \setminus \text{bd}(A)$ which is contained completely in the open set 
+    $A^\circ \cup (X \setminus A)^\circ$. Hence $X \setminus \text{bd}(A)$ is open, and so $\text{bd}(A)$ is closed.
+    \ \\
 \end{proof}
 
 \pagebreak
@@ -67,16 +105,16 @@ iv. The set of boundary points $\text{bd}(A)$ is a closed set in $X$.  \ \\
 v. $A^{\circ} \cup \text{bd}(A) = A \cup A'$ \ \\
     
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    Observe that if $A = \emptyset$, then $A^\circ = bd(A) = A' = \emptyset$ and our claim is trivially true. We may
-    therefore assume that $A$ is non-empty.
+    Observe that if $A = \emptyset$, then $A^\circ = \text{bd}(A) = A' = \emptyset$ and our claim is trivially true. We 
+    may therefore assume that $A$ is non-empty.
 
-    Suppose that $x \in A^\circ \cup bd(A)$. Then $x$ is in at least one of $A^\circ$ or $bd(A)$. If $x \in A^\circ$, 
-    then $x$ is also in $A$ and hence $x \in A \cup A'$.  Suppose $x \in bd(A)$. If $x \in A$, then $x \in A \cup A'$ 
-    trivially, and so we may assume that $x \in X \setminus A$. Then every open ball centered about $x$
-    contains a point in $A$ which is different from $x$, and hence $x$ is a limit point of $A$. 
-    Hence $x \in A' \subseteq A \cup A'$. Since $x$ was chosen to be arbitrary, we have that 
-    $A^\circ \cup bd(A) \subseteq A \cup A'$. \\
-
+    Suppose that $x \in A^\circ \cup \text{bd}(A)$. Then $x$ is in at least one of $A^\circ$ or 
+    $\text{bd}(A)$. If $x \in A^\circ$, then $x$ is also in $A$ and hence $x \in A \cup A'$.  Suppose 
+    $x \in \text{bd}(A)$. If $x \in A$, then $x \in A \cup A'$ trivially, and so we may assume that 
+    $x \in X \setminus A$. Then every open ball centered about $x$ contains a point in $A$ which is different from $x$, 
+    and hence $x$ is a limit point of $A$.  Hence $x \in A' \subseteq A \cup A'$. Since $x$ was chosen to be arbitrary, 
+    we have that $A^\circ \cup \text{bd}(A) \subseteq A \cup A'$.
+    \ \\
     Now suppose that $x \in A \cup A'$. Then $x$ is in at least one of $A$ or $A'$. Suppose $x \in A'$ and furthermore
     that $x \in X \setminus A$. Then because $x$ is a limit point, every open ball centered about $x$ contains a point
     in $A$ which is not $x$. Since $x$ itself is not in $A$, every such open ball contains a point in $A$ and a 
@@ -84,15 +122,15 @@ v. $A^{\circ} \cup \text{bd}(A) = A \cup A'$ \ \\
     a limit point of $A$ which is also in $A$, then either every open ball centered about $x$ contains a point in $A$
     and a point in $X \setminus A$ (in which case $x$ is in the boundary of $A$), or there exists an open ball centered 
     about $x$ which contains no points in $X \setminus A$ (in which case $x$ is in the interior of $A$). Thus, 
-    $x \in A^\circ \cup bd(A)$. 
+    $x \in A^\circ \cup \text{bd}(A)$. 
     \ \\\\
     Similarly, if $x \in A \setminus A^\circ$, then no open ball centered about $x$ is
     contained in $A$, and hence every open ball contains a point in $A$ ($x$ itself) and a point in $X \setminus A$ and
     so $x$ is therefore a boundary point of $A$. Hence any point in $A$ is either in the interior of $A$ or is a
-    boundary point of $A$, and so $A \subseteq A^\circ \cup bd(A)$.
+    boundary point of $A$, and so $A \subseteq A^\circ \cup \text{bd}(A)$.
     \ \\\\
-    Since $x \in A \cup A'$ was chosen to be arbitrary, we have that $A \cup A' \subseteq A^\circ \cup bd(A)$, and hence 
-    $A \cup A' = A^\circ \cup bd(A)$, as desired.
+    Since $x \in A \cup A'$ was chosen to be arbitrary, we have that $A \cup A' \subseteq A^\circ \cup \text{bd}(A)$, 
+    and hence $A \cup A' = A^\circ \cup \text{bd}(A)$, as desired.
 \end{proof}
 
 \pagebreak
@@ -101,16 +139,17 @@ b. Prove that if either $A$ is open or it is closed, then $\text{bd}(A)^{\circ} 
    which shows that this assertion fails when $A$ is neither open nor closed. \ \\
     
 \begin{proof}\ \\\\
-    Suppose that $bd(A)^{\circ}$ is non-empty. We will show that $A$ cannot be open or closed. Since $bd(A)^{\circ}$ is 
-    non-empty, there exists some point $x \in bd(A)^{\circ}$, and because $bd(A)^{\circ} \subseteq bd(A)$, we have that
-    $x$ is therefore also in the boundary of $A$. Moreover, because the interior of any set is open, there exists an 
-    open ball $B_{\epsilon}(x) \subseteq bd(A)$ centered about $x$; since $x \in bd(A)$, $B_{\epsilon}(x)$ also 
-    contains a point $a \in A$ and a point $z \in X \setminus A$. If $A$ is open, then there exists an open ball 
-    $B_{\delta}(a)$ centered about $a$ which is entirely contained in $A$. However, because $a$ is in the boundary of 
-    $A$, every open ball about $a$ must necessarily contain a point in $A$ and a point in $X \setminus A$ , which 
-    yields a contradiction. Similarly, if $A$ is closed, then $X \setminus A$ is open, and so there exists an open ball
-    $B_{\delta}(z)$ centered about $z$ which is entirely contained in $X \setminus A$, which again contradicts the fact 
-    that $z$ is in the boundary of $A$, as before. \\
+    Suppose that $\text{bd}(A)^{\circ}$ is non-empty. We will show that $A$ cannot be open or closed. Since 
+    $\text{bd}(A)^{\circ}$ is non-empty, there exists some point $x \in \text{bd}(A)^{\circ}$, and because 
+    $\text{bd}(A)^{\circ} \subseteq \text{bd}(A)$, we have that $x$ is therefore also in the boundary of $A$. Moreover, 
+    because the interior of any set is open, there exists an open ball $B_{\epsilon}(x) \subseteq \text{bd}(A)$ centered
+    about $x$; since $x \in \text{bd}(A)$, $B_{\epsilon}(x)$ also contains a point $a \in A$ and a point 
+    $z \in X \setminus A$. If $A$ is open, then there exists an open ball $B_{\delta}(a)$ centered about $a$ which is 
+    entirely contained in $A$. However, because $a$ is in the boundary of $A$, every open ball about $a$ must 
+    necessarily contain a point in $A$ and a point in $X \setminus A$ , which yields a contradiction. Similarly, if $A$ 
+    is closed, then $X \setminus A$ is open, and so there exists an open ball $B_{\delta}(z)$ centered about $z$ which 
+    is entirely contained in $X \setminus A$, which again contradicts the fact that $z$ is in the boundary of $A$, as 
+    before. \\
 
     By contraposition, we see that if either $A$ is open or it is closed, then $\text{bd}(A)^{\circ} = \emptyset$. \\
 
