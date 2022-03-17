@@ -3,11 +3,18 @@ Let $(X, d)$ be a metric space. Determine for each $A \subseteq X$ whether $A$ i
 a.  The set of integers $\mathbb{Z} \subset \mathbb{R}$ where $X = \mathbb{R}$ and $d$ is the usual metric.
 
 \ \\
-\emph{Claim.} 
+\emph{Claim.} $\mathbb{Z}$ is closed and not open.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+    Observe that $\mathbb{R} \setminus \mathbb{Z} = \bigcup\limits_{z \in \mathbb{Z}}{(z, z + 1)}$. Since each 
+    $(z, z + 1)$ is open in $\mathbb{R}$ with respect to the usual metric, $\mathbb{R} \setminus \mathbb{Z}$ is the
+    union of open sets and is therefore itself open. Since the complement of $\mathbb{Z}$ is open, $\mathbb{Z}$ itself
+    is closed.
+
+    Observe also that every open ball $B_\epsilon(1)$ centered about any $1 \in \mathbb{Z}$ contains a point in 
+    $\mathbb{R} \setminus \mathbb{Q}$ by the density of the irrationals; hence there exists no open ball 
+    $B_\epsilon(1) \subseteq \mathbb{Z}$, and so $\mathbb{Z}$ is not open.
+    \ \\
 \end{proof}
 
 \pagebreak
@@ -16,11 +23,22 @@ b.  $A = \{(x, y) \in \mathbb{R}^2 \mid y=x^2, x \in \mathbb{Q} \}$ where $X = \
      metric.
 
 \ \\
-\emph{Claim.} 
+\emph{Claim.} $A$ is neither closed nor open.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+\begin{proof}\ \\\\
+    Observe that the sequence of partial sums of the sequence $\{s_n\}$ defined by 
+    $s_n = \sum\limits_{k = 0}^{n}{\frac{1}{k!}}$ is a sequence consisting of elements of $\mathbb{Q}$, but that
+    $\{s_n\}$ converges to $e \in \mathbb{R} \setminus \mathbb{Q}$. Then the sequence $\{s_n, s_n^2\}$ is a sequence in
+    of terms in $A$, and the element $(e, e^2)$ is a limit point\footnote{
+        Since $f(x) = x^2$ is a continuous function in $(X, d)$, and $s_n$ converges to $e$, we have that 
+        $f(s_n^2) = f(e^2)$.
+    } of $A$ which is not in $A$. Hence $A$ is not closed.
+
+    To show that $A$ is not open, observe that the point $(0, 0)$ lies in $A$, and consider any open ball $B_r((0, 0))$ 
+    with $r > 0$ centered about $(0, 0)$. Then the point $(\frac{r}{2}, \frac{r}{2})$ is in the open ball, but is not in
+    $A$; hence there exists no open ball centered about $(0, 0)$ which is entirely contained in $A$, and so $A$ is 
+    not open.
+    \ \\
 \end{proof}
 
 \pagebreak
@@ -29,7 +47,7 @@ c.  $A = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z = 0 \}$, where $
     Euclidean metric.
 
 \ \\
-\emph{Claim.} 
+\emph{Claim.} $A$ is closed and not open.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
     \begin{align*}
@@ -42,7 +60,7 @@ d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $d(f, g) = \sup\li
     $X = C[a, b]$.
 
 \ \\
-\emph{Claim.} 
+\emph{Claim.} $A$ is open and not closed. 
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
     \begin{align*}
@@ -55,7 +73,7 @@ e.  $A = \{ f \in X \mid \int_a^b{f(x) \,dx} = 0 \}$ where $d(f, g) = \sup\limit
     $X = C[a, b]$.
 
 \ \\
-\emph{Claim.} 
+\emph{Claim.} $A$ is closed and not open.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
     \begin{align*}
