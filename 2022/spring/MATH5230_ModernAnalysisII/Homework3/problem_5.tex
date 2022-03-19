@@ -1,11 +1,47 @@
-Let $(X, d)$ be a metric space and let $Y \subset X$.
+Let $(X, d)$ be a metric space and let $Y$ be a subspace of $X$.
 
 a.  Prove that $Z \subseteq Y$ is closed in $Y$ if and only if there exists a closed subset $A \subseteq X$ such that 
     $Z = A \cap Y$. 
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+    Suppose first that $A$ is closed in $X$ and that $Z = A \cap Y$. To show that $Z$ is closed in $Y$, we first show
+    that $Y \setminus Z$ can be written as the intersection of the subspace $Y$ and a set which is open in $X$; from
+    this, we will deduce that $Y \setminus Z$ is open in $Y$ and hence that $Z$ is closed in $Y$.
+    \ \\
+    
+    We first observe that the fact that $Z = A \cap Y$ yields the following:
     \begin{align*}
+        Y \setminus Z &= Y \setminus (A \cap Y) \\
+                      &= (Y \setminus A) \cup (Y \setminus Y) \\
+                      &= Y \setminus A.
     \end{align*}
+
+    Hence $Y \setminus Z = Y \setminus A$. Furthermore, because $Y$ is contained in $X$, we have the following: 
+    \begin{align*}
+        Y \cap (X \setminus A) &= Y \cap (Y \setminus A) \\
+                               &= Y \setminus A.
+    \end{align*}
+
+    We therefore see that $Y \setminus Z = Y \setminus A = Y \cap (X \setminus A)$; because $X \setminus A$ is open in 
+    $X$ (since $A$ is closed in $X$), $Y \setminus Z$ may be written as the intersection of $Y$ and a set which is open
+    in $X$. $Y \setminus Z$ is therefore open in $Y$, and so $Z$ is closed in $Y$, as desired.
+
+    \ \\
+    Suppose conversely that $Z$ is closed in $Y$. Then $Y \setminus Z$ is open in $Y$, and since $Y$ is a subspace of 
+    $X$, there exists a set $B$ which is open in $X$ such that $Y \setminus Z = B \cap Y$. Hence we see that the 
+    following equality holds:
+
+    \begin{align*}
+        Z &= Y \setminus (Y \setminus Z) \\
+          &= Y \setminus (B \cap Y) \\
+          &= (Y \setminus B) \cup (Y \setminus Y) \\
+          &= Y \setminus B.
+    \end{align*}
+
+    Finally, because $Y$ is contained in $X$, we have that $Y \setminus B = Y \cap (X \setminus B)$, and so 
+    $Z = Y \cap (X \setminus B)$. Because $X \setminus B$ is closed in $X$, we see that $Z$ may be written as the 
+    intersection of the subspace $Y$ and a set which is open in $X$, as desired.
+    \ \\
 \end{proof}
 
 \pagebreak
