@@ -96,7 +96,7 @@ d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $d(f, g) = \sup\li
 \ \\
 \emph{Claim.} $A$ is open and not closed. 
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
     We first show that $A$ is not closed. Observe that for every $n \in \mathbb{N}$, the function $f_n$ defined by 
     $f_n(x) = \frac{1}{n}$ defines a continuous function which takes values strictly between zero and one and so 
     $f_n \in A$ for all $n \in \mathbb{N}$. Moreover, for any $n \in \mathbb{N}$, we have the following:
@@ -110,7 +110,22 @@ d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $d(f, g) = \sup\li
     $f_N \in B_\epsilon(0)$. Since $f_N \neq 0$, we have that $g(x) = 0$ is a limit point of $A$ which is not in $A$, 
     and hence $A$ is not closed.
 
-    TODO: Show that $f(x)$ is open.
+    \ \\
+    We now show that $A$ is open. Let $g \in A$, and observe that because $g(x)$ is a continuous bounded function
+    in $\mathbb{R}$ defined on a compact set $[a, b]$, $g(x)$ attains its maximum and minimum values on $[a, b]$. We 
+    denote these values by $M$ and $m$, respectively, and observe that by definition of $A$, we have $0 < m \le M < 1$. 
+    Let $\epsilon = \min{\{ d(g, 0), d(g, 1) \}} = \min{\{ m, 1 - M \}}$, and observe that $g(x) \ge m \ge \epsilon$ and 
+    $1 - g(x) \ge 1 - M \ge \epsilon$ for all $x \in [a, b]$. Hence $g(x) - \epsilon \ge 0$ and $1 \ge g(x) + \epsilon$
+    for all $x \in [a, b]$.
+
+    With those inequalities in hand, we now consider the open ball $B_\epsilon(g)$ of
+    radius $\epsilon$ centered about $g$. For any $h \in B_\epsilon(g)$, we have by definition that 
+    $g(x) - \epsilon < h(x) < g(x) + \epsilon$ for all $x \in [a, b]$. By our earlier inequalities, we have that 
+    $g(x) - \epsilon \ge 0$ and $g(x) + \epsilon \le 1$, and so $0 < h(x) < 1$ and therefore $h \in A$. Since $h$ was
+    chosen to be an arbitrary element in $B_\epsilon(g)$, we have that $B_\epsilon(g) \subseteq A$, and so $g$ is an 
+    interior point of $A$. Moreover, since $g$ was chosen to be an arbitrary element of $A$, we have that every point in
+    $A$ is an interior point, and so $A$ is open.
+    \ \\
 \end{proof}
 
 \pagebreak
