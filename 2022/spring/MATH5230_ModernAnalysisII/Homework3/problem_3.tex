@@ -34,10 +34,10 @@ b.  $A = \{(x, y) \in \mathbb{R}^2 \mid y=x^2, x \in \mathbb{Q} \}$ where $X = \
         $f(s_n^2) = f(e^2)$.
     } of $A$ which is not in $A$. Hence $A$ is not closed.
 
-    To show that $A$ is not open, observe that the point $(0, 0)$ lies in $A$, and consider any open ball $B_r((0, 0))$ 
-    with $r > 0$ centered about $(0, 0)$. Then the point $(\frac{r}{2}, \frac{r}{2})$ is in the open ball, but is not in
-    $A$; hence there exists no open ball centered about $(0, 0)$ which is entirely contained in $A$, and so $A$ is 
-    not open.
+    We first show that $A$ is not open, observe that the point $(0, 0)$ lies in $A$, and consider any open ball 
+    $B_r((0, 0))$ with $r > 0$ centered about $(0, 0)$. Then the point $(\frac{r}{2}, \frac{r}{2})$ is in the open ball,
+    but is not in $A$; hence there exists no open ball centered about $(0, 0)$ which is entirely contained in $A$, and 
+    so $A$ is not open.
     \ \\
 \end{proof}
 
@@ -50,6 +50,15 @@ c.  $A = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z = 0 \}$, where $
 \emph{Claim.} $A$ is closed and not open.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    To show that $A$ is not open, consider the point $p = (0, 0, 0) \in A$, and observe that for any $\epsilon > 0$, the 
+    open ball $B_\epsilon(p)$ centered about $p$ contains the point 
+    $q = \left( \frac{\epsilon}{2}, \frac{\epsilon}{2}, \frac{\epsilon}{2} \right)$. Then because 
+    $(\frac{\epsilon}{2})^2 + (\frac{\epsilon}{2})^2 + (\frac{\epsilon}{2})^2 + \epsilon > 0$, we have that $q$
+    is not in $A$. Thus, there exists no open ball centered about $p \in A$ which is contained in $A$, and hence $A$ is
+    not open.
+
+    TODO: Show that $A$ is closed.
+
     \begin{align*}
     \end{align*}
 \end{proof}
@@ -63,8 +72,20 @@ d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $d(f, g) = \sup\li
 \emph{Claim.} $A$ is open and not closed. 
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    We first show that $A$ is not closed. Observe that for every $n \in \mathbb{N}$, the function $f_n$ defined by 
+    $f_n(x) = \frac{1}{n}$ defines a continuous function which takes values strictly between zero and one and so 
+    $f_n \in A$ for all $n \in \mathbb{N}$. Moreover, for any $n \in \mathbb{N}$, we have the following:
     \begin{align*}
+         d(f_n, 0) &= \sup\limits_{x \in [a, b]}{|f_n(x) - 0|} \\ 
+                   &= \sup\limits_{x \in [a, b]}{|f_n(x)|} \\ 
+                   &= \frac{1}{n}.
     \end{align*}
+
+    Thus, for any fixed $\epsilon > 0$, we can find an $N \in \mathbb{N}$ such that $d(f_N, 0) < \epsilon$ and hence
+    $f_N \in B_\epsilon(0)$. Since $f_N \neq 0$, we have that $g(x) = 0$ is a limit point of $A$ which is not in $A$, 
+    and hence $A$ is not closed.
+
+    TODO: Show that $f(x)$ is open.
 \end{proof}
 
 \pagebreak
@@ -76,17 +97,33 @@ e.  $A = \{ f \in X \mid \int_a^b{f(x) \,dx} = 0 \}$ where $d(f, g) = \sup\limit
 \emph{Claim.} $A$ is closed and not open.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    We first show that $A$ is not open. Observe that $X \setminus A = \{f \in X \mid \int_a^b{f(x) \,dx} \neq 0 \}$, and
+    let $f_n$ be the constant function defined by $f_n(x) = \frac{1}{n(b - a)}$ for $n \in \mathbb{N}$. Then 
+    $\int_a^b{f(x) \,dx} = \frac{1}{n} > 0$. As before, we have the following:
+
+
     \begin{align*}
+         d(f_n, 0) &= \sup\limits_{x \in [a, b]}{|f_n(x) - 0|} \\ 
+                   &= \sup\limits_{x \in [a, b]}{|f_n(x)|} \\ 
+                   &= \frac{1}{n(b - a)}.
     \end{align*}
+
+    Since $b - a > 0$ is constant, we may for any fixed $\epsilon > 0$ pick an $N \in \mathbb{N}$ to be large enough 
+    (specifically, larger than $\frac{1}{\epsilon(b - a)}$) so that $d(f_N, 0) < \epsilon$. Hence $f_N$ is in
+    the open ball $B_\epsilon(0)$ of radius $\epsilon$ centered about $g(x) = 0$. Since $\epsilon$ was chosen to be
+    arbitrary, $g(x) = 0$ is a limit point of $X \setminus A$ which is not in $A$ (since $g(x) = 0$ integrates to zero 
+    over any interval), and so $X \setminus A$ is not closed. Since $X \setminus A$ is not closed, $A$ is not open.
+
+    TODO: Show that $A$ is not open.
 \end{proof}
 
 \pagebreak
 
-f.  $A = \{ (x, y) \in X \mid y = f(x) \}$ where $X = \mathbb{R}^2$, $f:\mathbb{R} \to \mathbb{R}$ is continuous, and $d$ is 
-    the Euclidean metric.
+f.  $A = \{ (x, y) \in X \mid y = f(x) \}$ where $X = \mathbb{R}^2$, $f:\mathbb{R} \to \mathbb{R}$ is continuous, and 
+    $d$ is the Euclidean metric.
 
 \ \\
-\emph{Claim.} 
+\emph{Claim.} $A$ is closed and not open.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
     \begin{align*}
