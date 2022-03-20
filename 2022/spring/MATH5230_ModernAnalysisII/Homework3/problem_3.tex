@@ -136,7 +136,7 @@ e.  $A = \{ f \in X \mid \int_a^b{f(x) \,dx} = 0 \}$ where $d(f, g) = \sup\limit
 \ \\
 \emph{Claim.} $A$ is closed and not open.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
     We first show that $A$ is not open. Observe that $X \setminus A = \{f \in X \mid \int_a^b{f(x) \,dx} \neq 0 \}$, and
     let $f_n$ be the constant function defined by $f_n(x) = \frac{1}{n(b - a)}$ for $n \in \mathbb{N}$. Then 
     $\int_a^b{f(x) \,dx} = \frac{1}{n} > 0$. As before, we have the following:
@@ -154,7 +154,24 @@ e.  $A = \{ f \in X \mid \int_a^b{f(x) \,dx} = 0 \}$ where $d(f, g) = \sup\limit
     arbitrary, $g(x) = 0$ is a limit point of $X \setminus A$ which is not in $A$ (since $g(x) = 0$ integrates to zero 
     over any interval), and so $X \setminus A$ is not closed. Since $X \setminus A$ is not closed, $A$ is not open.
 
-    TODO: Show that $A$ is not open.
+    \ \\
+    We now show that $A$ is closed. Let $p \in X$ be a limit point of $A$. Then since every open ball $B_r(p)$ of radius
+    $r$ centered about the point $p$ contains a point in $A$ which is not $p$, we may construct a sequence 
+    $\{ f_n \}$ in $X$ with each $f_n \in A$ by choosing a unique element $f_n$ from each $B_{1/n}(p)$ for each
+    $n \in \mathbb{N}$. Then $d(f_n, p) < \frac{1}{n}$ and hence for any $\epsilon > 0$, we may choose 
+    $N > \frac{1}{\epsilon}$ such that $d(f_n, p) < \epsilon$. Then $\lim\limits_{n \to \infty}{f_n} = p$, and so
+    $f_n$ converges to $p$ in the uniform metric (and hence converges uniformly); since the uniform limit of continuous 
+    functions is itself continuous, we have that $p \in C[a, b]$. Since $p$ is continuous on a closed interval, it is 
+    also Riemann integrable. Moreover, because $f_n$ converges uniformly to $p$, we have:
+    \begin{align*}
+       \int_a^b{p(x) \,dx} &= \int_a^b{\lim\limits_{n \to \infty}{f_n(x)} \,dx} \\
+                           &= \lim\limits_{n \to \infty}{\int_a^b{f_n(x) \,dx}} \\
+                           &= \lim\limits_{n \to \infty}{0} \\
+                           &= 0.
+    \end{align*}
+
+    Thus, $p \in A$, and since $p$ was chosen to be an arbitrary, $A$ contains all of its limit points and is therefore
+    complete.
 \end{proof}
 
 \pagebreak
