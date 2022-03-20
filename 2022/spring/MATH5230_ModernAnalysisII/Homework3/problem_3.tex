@@ -34,10 +34,10 @@ b.  $A = \{(x, y) \in \mathbb{R}^2 \mid y=x^2, x \in \mathbb{Q} \}$ where $X = \
         $f(s_n^2) = f(e^2)$.
     } of $A$ which is not in $A$. Hence $A$ is not closed.
 
-    We first show that $A$ is not open, observe that the point $(0, 0)$ lies in $A$, and consider any open ball 
-    $B_r((0, 0))$ with $r > 0$ centered about $(0, 0)$. Then the point $(\frac{r}{2}, \frac{r}{2})$ is in the open ball,
-    but is not in $A$; hence there exists no open ball centered about $(0, 0)$ which is entirely contained in $A$, and 
-    so $A$ is not open.
+    To show that $A$ is not open, observe that the point $(0, 0)$ lies in $A$, and consider any open ball $B_r((0, 0))$ 
+    with $r > 0$ centered about $(0, 0)$. Then the point $(\frac{r}{2}, \frac{r}{2})$ is in the open ball, but is not in
+    $A$; hence there exists no open ball centered about $(0, 0)$ which is entirely contained in $A$, and so $A$ is 
+    not open.
     \ \\
 \end{proof}
 
@@ -49,7 +49,7 @@ c.  $A = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z = 0 \}$, where $
 \ \\
 \emph{Claim.} $A$ is closed and not open.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
     To show that $A$ is not open, consider the point $p = (0, 0, 0) \in A$, and observe that for any $\epsilon > 0$, the 
     open ball $B_\epsilon(p)$ centered about $p$ contains the point 
     $q = \left( \frac{\epsilon}{2}, \frac{\epsilon}{2}, \frac{\epsilon}{2} \right)$. Then because 
@@ -57,10 +57,35 @@ c.  $A = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z = 0 \}$, where $
     is not in $A$. Thus, there exists no open ball centered about $p \in A$ which is contained in $A$, and hence $A$ is
     not open.
 
-    TODO: Show that $A$ is closed.
+    \ \\
+    We next show that $A$ is closed by showing that $X \setminus A$ is open. Let  \linebreak
+    $L = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z < 0 \}$,
+    $G = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z > 0 \}$, and observe that $X \setminus A = L \cup G$.
+    Moreover, observe that in the Euclidean metric, $L$ is precisely the open unit ball centered about the point 
+    $r_0 = (0, 0, -1)$; since open balls are open sets, $L$ is therefore an open set.
 
+    Let $p$ be a point in $G$, let $r = d(r_0, p) - 1$, and let $B_r(p)$ be the open ball of radius $r$ centered about
+    $p$. \footnote{
+        $r$ therefore represents the incremental distance between the edge of the unit sphere and the point $p$.
+    }
+
+    Consider an arbitrary point $q \in B_r(p)$, and observe that $d(r_0, q) \ge d(r_0, p) - d(p, q)$ by the Triangle
+    Inequality. Furthermore, since $q$ is in $B_r(p)$, we have that $d(p, q) < r$, and so 
+    $d(r_0, p) - d(p, q) > d(r_0, p) - r$. But $d(r_0, p) = 1 + r$, and so putting this all together yields the 
+    following inequality:
     \begin{align*}
+        d(r_0, q) &\ge d(r_0, p) - d(p, q) \\
+                  &> d(r_0, p) - r \\
+                  &> (1 + r) - r \\
+                  &= 1.
     \end{align*}
+
+    Hence $d(r_0, q) > 1$, and so $q \in G$. Since $q$ was chosen to be an arbitrary point in $G$, we have that 
+    $B_r(p) \subseteq G$ is an open ball about $p$ which is entirely contained in $G$, and so $p$ is an interior point
+    of $G$. Since $p$ was chosen to be an arbitrary point in $G$, every point of $G$ is an interior point, and so $G$
+    must be open. Thus, $X \setminus A = L \cup G$ is the union of open sets and is therefore itself open, and so $A$
+    is closed, as desired.
+    \ \\
 \end{proof}
 
 \pagebreak
