@@ -182,9 +182,31 @@ f.  $A = \{ (x, y) \in X \mid y = f(x) \}$ where $X = \mathbb{R}^2$, $f:\mathbb{
 \ \\
 \emph{Claim.} $A$ is closed and not open.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+    We first show that $A$ is closed. Let $p = (x, y) \in \mathbb{R}^2$ be a limit point of $A$. Then since every open
+    ball $B_r(p)$ of radius $r$ centered about $p$ contains a point in $A$ which is not $p$, we may construct a sequence 
+    $\{ p_n \}$ by choosing for each $n \in \mathbb{N}$ a unique element from $B_{1/n}(p)$. Then 
+    $d(p_n, p) < \frac{1}{n}$ and hence for any $\epsilon > 0$, we may choose $N > \frac{1}{\epsilon}$ such 
+    that $d(p_n, p) < \epsilon$. Then $\lim\limits_{n \to \infty}{p_n} = p$, and so $p_n$ converges to $p$ in
+    $(\mathbb{R}^2, d)$. Since convergence in $\mathbb{R}^2$ implies element-wise convergence in $\mathbb{R}$, we have 
+    for each $p_n = (x_n, f(x_n))$ that the sequence $\{x_n\}$ converges to $x$. Lastly, because $f$ is continuous, we
+    see that $\{ f(x_n) \}$ converges to $f(x)$. Since element-wise convergence in $\mathbb{R}$ implies convergence in
+    $\mathbb{R}^2$, $\{p_n\}$ converges to $p = (x, f(x))$ and hence $p$ is an element in $A$. Since $p$ was chosen to 
+    be an arbitrary limit point of $A$, we have that $A$ contains all of its limit points and is therefore closed.
+
+    To show that $A$ is open, let $p = (x, f(x)) \in A$, and consider any open ball $B_r(p)$ of radius $r > 0$ centered 
+    about $p$. Let $q = (x, f(x) + \frac{r}{2}) \in B_r(p)$. Then in the Euclidean metric, we have that:
     \begin{align*}
+        d(q, p) &= \left[(x - x)^2 + \left( f(x) + \frac{r}{2} - f(x) \right)^2\right]^\frac{1}{2} \\
+                &= \left[ \left(\frac{r}{2}\right)^2 \right]^\frac{1}{2} \\
+                &= \frac{r}{2} \\
+                &< r. \\
     \end{align*}
+    
+    Hence $q \in B_r(p)$, and since $f(x) \neq f(x) + \frac{r}{2}$, we furthermore see $q$ is not in $A$. Thus, every 
+    open ball centered about $p$ contains a point not in $A$, and so no open ball about $p$ is contained in $A$. $A$ is
+    therefore not open.
+    \ \\
 \end{proof}
 
 \pagebreak
