@@ -1,68 +1,85 @@
 Let $(X, d)$ be a metric space and let $Y$ be a subspace of $X$.
 
-a.  Prove that $Z \subseteq Y$ is closed in $Y$ if and only if there exists a closed subset $A \subseteq X$ such that 
-    $Z = A \cap Y$. 
+a.  Prove that $Z \subseteq Y$ is closed in $Y$ if and only if there exists a subset $A \subseteq X$ which is closed in
+    $X$ such that $Z = A \cap Y$. 
+\ \\\\
+We begin by proving the following lemma. \ \\
+\ \\
+\emph{Claim.} If $D \subseteq E \subset F$, then $E \cap (F \setminus D) = E \setminus D$.
+\begin{proof}\ \\\\
+    If either side is empty, then $E$ and $D$ are disjoint and the result is immediate.
+    Let $x \in E \cap (F \setminus D)$. Then $x$ is both in $E$ and not in $D$, and so $x \in E \setminus D$. 
+    Conversely, if $x \in E \setminus D$, then $x$ is in $E$ and is not in $D$; since $E \subset F$, $x$ is also in $F$,
+    and so $x \in E \cap (F \setminus D)$.
+    \ \\
+\end{proof}
 
 \begin{proof}\ \\\\
-    Suppose first that $A$ is closed in $X$ and that $Z = A \cap Y$. To show that $Z$ is closed in $Y$, we first show
-    that $Y \setminus Z$ can be written as the intersection of the subspace $Y$ and a set which is open in $X$; from
-    this, we will deduce that $Y \setminus Z$ is open in $Y$ and hence that $Z$ is closed in $Y$.
-    \ \\
-    
-    We first observe that the fact that $Z = A \cap Y$ yields the following:
+    Suppose first that $A$ is closed in $X$ and that $Z = A \cap Y$. We first observe that the fact that $Z = A \cap Y$
+    with our previous lemma yields the following:
     \begin{align*}
         Y \setminus Z &= Y \setminus (A \cap Y) \\
                       &= (Y \setminus A) \cup (Y \setminus Y) \\
-                      &= Y \setminus A.
+                      &= Y \setminus A \\
+                      &= Y \cap (X \setminus A).
     \end{align*}
 
-    Hence $Y \setminus Z = Y \setminus A$. Furthermore, because $Y$ is contained in $X$, we have the following: 
-    \begin{align*}
-        Y \cap (X \setminus A) &= Y \cap (Y \setminus A) \\
-                               &= Y \setminus A.
-    \end{align*}
-
-    We therefore see that $Y \setminus Z = Y \setminus A = Y \cap (X \setminus A)$; because $X \setminus A$ is open in 
-    $X$ (since $A$ is closed in $X$), $Y \setminus Z$ may be written as the intersection of $Y$ and a set which is open
-    in $X$. $Y \setminus Z$ is therefore open in $Y$, and so $Z$ is closed in $Y$, as desired.
+    Then because $X \setminus A$ is open in $X$ (since $A$ is closed in $X$), we see that $Y \setminus Z$ may be 
+    written as the intersection of $Y$ and a set which is open in $X$. Because $Y$ is a subspace of $Z$, we have that
+    $Y \setminus Z$ must be open in $Y$, and so $Z$ is closed in $Y$, as desired.
 
     \ \\
     Suppose conversely that $Z$ is closed in $Y$. Then $Y \setminus Z$ is open in $Y$, and since $Y$ is a subspace of 
-    $X$, there exists a set $B$ which is open in $X$ such that $Y \setminus Z = B \cap Y$. Hence we see that the 
-    following equality holds:
-
+    $X$, there exists a set $B$ which is open in $X$ such that $Y \setminus Z = B \cap Y$. An application of our 
+    previous lemma yields:
     \begin{align*}
         Z &= Y \setminus (Y \setminus Z) \\
           &= Y \setminus (B \cap Y) \\
           &= (Y \setminus B) \cup (Y \setminus Y) \\
-          &= Y \setminus B.
+          &= Y \setminus B \\
+          &= Y \cap (X \setminus B).
     \end{align*}
 
-    Finally, because $Y$ is contained in $X$, we have that $Y \setminus B = Y \cap (X \setminus B)$, and so 
-    $Z = Y \cap (X \setminus B)$. Because $X \setminus B$ is closed in $X$, we see that $Z$ may be written as the 
-    intersection of the subspace $Y$ and a set which is open in $X$, as desired.
+    Lastly, because $X \setminus B$ is closed in $X$, we see that $Z$ may be written as the 
+    intersection of the subspace $Y$ and a set which is closed in $X$, as desired.
     \ \\
 \end{proof}
 
 \pagebreak
-
 b.  Show that every subset $Z \subseteq Y$ that is closed in $Y$ is closed in $X$ if and only if $Y$ is a closed subset
     of $X$.
 
 \begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+    Suppose first that every subset which is closed in $Y$ is also closed in $X$. Since $Y$ itself is a subset of $Y$ 
+    which is closed in $Y$, it is also closed in $X$.
+
+    Now suppose that $Y$ is a closed subset of $X$, and let $Z \subseteq Y$ be an arbitrary subset of $Y$ which is 
+    closed in $Y$. Then by part $(a)$, there exists a set $A \subseteq X$ which is closed in $X$ such that 
+    $Z = A \cap Y$. Since the intersection of closed sets is itself closed, $A \cap Y$ is closed in $X$
+    and hence $Z = A \cap Y$ is also closed in $X$. Because our choice of $Z$ was arbitrary, we see that every
+    subset $Z \subseteq Y$ which is closed in $Y$ is also closed in $X$, as desired.
     \begin{align*}
     \end{align*}
 \end{proof}
 
 \pagebreak
+c.  Let $(X, d)$ be a metric space where $X = \mathbb{R}^2$ and $d$ is the Euclidean metric. Let 
+    $Y = \{(x, 0) \mid x \in \mathbb{R} \} \subset X$ with the induced metric, and let 
+    $Z = \{(x, 0) \mid 0 < x < 1 \} \subset Y$. Show that $Z$ is an open subset of $Y$ but that it is not an open subset
+    of $X$.
 
-c.  Let $X = \mathbb{R}^2$ with the Euclidean metric, let $Y = \{(x, 0) \mid x \in \mathbb{R} \} \subset X$ with the
-    induced metric, and let $Z = \{(x, 0) \mid 0 < x < 1 \} \subset Y$. Show that $Z$ is an open subset of $Y$ but that
-    it is not an open subset of $X$.
+\begin{proof}\ \\\\
+    Let $B = \{(x, y) \mid \left((x - \frac{1}{2})^2 + y^2 \right)^{\frac{1}{2}} < \frac{1}{2} \}$. Then with respect to
+    the Euclidean metric in $\mathbb{R}^2$, $B$ defines an open ball of radius $\frac{1}{2}$ centered about the point 
+    $(\frac{1}{2}, 0)$, and is therefore open in $\mathbb{R}^2$. Then $B \cap Y = \{ (x, y) \mid 0 < x < 1 \} = Z$, and 
+    hence $Z$ can be written as the intersection of $Y$ and a set $B$ which is open in $X$. Hence $Z$ is open in $Y$,
+    as desired.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
-    \begin{align*}
-    \end{align*}
+    To show that $Z$ is not an open subset of $X$, observe that any ball $B_\epsilon(p)$ of radius
+    $\epsilon > 0$ centered about the point $p = (\frac{1}{2}, 0) \in Z$ which is open in $X$ contains the point
+    $q = (\frac{1}{2}, \frac{\epsilon}{2})$. Since $q$ is not in $Z$, we see that no open ball about $p$ is contained
+    in $Z$, and hence $p \in Z$ is not an interior point of $Z$. Thus, $Z \neq Z^\circ$, and so $Z$ is not open.
+    \ \\
 \end{proof}
 
 \pagebreak
