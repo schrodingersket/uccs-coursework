@@ -8,9 +8,11 @@ We begin by proving the following lemma. \ \\
 \emph{Claim.} If $D \subseteq E \subset F$, then $E \cap (F \setminus D) = E \setminus D$.
 \begin{proof}\ \\\\
     If either side is empty, then $E$ and $D$ are disjoint and the result is immediate.
-    Let $x \in E \cap (F \setminus D)$. Then $x$ is both in $E$ and not in $D$, and so $x \in E \setminus D$. 
+    Let $x \in E \cap (F \setminus D)$. Then $x$ is both in $E$ and not in $D$, and so $x \in E \setminus D$. Hence
+    $E \cap (F \setminus D) \subseteq E \setminus D$.
     Conversely, if $x \in E \setminus D$, then $x$ is in $E$ and is not in $D$; since $E \subset F$, $x$ is also in $F$,
-    and so $x \in E \cap (F \setminus D)$.
+    and so $x \in E \cap (F \setminus D)$. Hence $E \setminus D \subseteq E \cap (F \setminus D)$, and so 
+    $E \setminus D = E \cap (F \setminus D)$, as desired.
     \ \\
 \end{proof}
 
@@ -49,7 +51,7 @@ We begin by proving the following lemma. \ \\
 b.  Show that every subset $Z \subseteq Y$ that is closed in $Y$ is closed in $X$ if and only if $Y$ is a closed subset
     of $X$.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
     Suppose first that every subset which is closed in $Y$ is also closed in $X$. Since $Y$ itself is a subset of $Y$ 
     which is closed in $Y$, it is also closed in $X$.
 
@@ -58,8 +60,7 @@ b.  Show that every subset $Z \subseteq Y$ that is closed in $Y$ is closed in $X
     $Z = A \cap Y$. Since the intersection of closed sets is itself closed, $A \cap Y$ is closed in $X$
     and hence $Z = A \cap Y$ is also closed in $X$. Because our choice of $Z$ was arbitrary, we see that every
     subset $Z \subseteq Y$ which is closed in $Y$ is also closed in $X$, as desired.
-    \begin{align*}
-    \end{align*}
+    \ \\
 \end{proof}
 
 \pagebreak
@@ -69,16 +70,16 @@ c.  Let $(X, d)$ be a metric space where $X = \mathbb{R}^2$ and $d$ is the Eucli
     of $X$.
 
 \begin{proof}\ \\\\
-    Let $B = \{(x, y) \mid \left((x - \frac{1}{2})^2 + y^2 \right)^{\frac{1}{2}} < \frac{1}{2} \}$. Then with respect to
+    Let $B = \{(x, y) \mid [(x - \frac{1}{2})^2 + y^2 ]^{\frac{1}{2}} < \frac{1}{2} \}$. Then with respect to
     the Euclidean metric in $\mathbb{R}^2$, $B$ defines an open ball of radius $\frac{1}{2}$ centered about the point 
     $(\frac{1}{2}, 0)$, and is therefore open in $\mathbb{R}^2$. Then $B \cap Y = \{ (x, y) \mid 0 < x < 1 \} = Z$, and 
     hence $Z$ can be written as the intersection of $Y$ and a set $B$ which is open in $X$. Hence $Z$ is open in $Y$,
     as desired.
 
-    To show that $Z$ is not an open subset of $X$, observe that any ball $B_\epsilon(p)$ of radius
-    $\epsilon > 0$ centered about the point $p = (\frac{1}{2}, 0) \in Z$ which is open in $X$ contains the point
-    $q = (\frac{1}{2}, \frac{\epsilon}{2})$. Since $q$ is not in $Z$, we see that there exists no open ball about 
-    $p \in Z$ which is contained in $Z$, and hence $Z$ is not open.
+    We now show that $Z$ is not an open subset of $X$. Let $\epsilon > 0$ and $p = \left( \frac{1}{2}, 0 \right) \in Z$,
+    and observe that any open ball $B_\epsilon(p)$ which is open in $\mathbb{R}^2$ also contains the point 
+    $q = (\frac{1}{2}, \frac{\epsilon}{2})$. Since $\frac{\epsilon}{2} \neq 0$, $q$ is not in $Z$, and so no open ball
+    centered about $p \in Z$ is entirely contained in $Z$. Hence $Z$ is not open.
     \ \\
 \end{proof}
 

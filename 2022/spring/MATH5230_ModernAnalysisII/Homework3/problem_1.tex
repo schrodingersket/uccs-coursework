@@ -4,7 +4,7 @@ A point $p \in X$ is called an \emph{exterior point} of $A$ provided there exist
 $p$ such that $B_r(p) \subseteq X \setminus A$.
 
 A point $p \in X$ is called a \emph{boundary point} of $A$ provided every open ball of radius $r > 0$ contains both
-a point in $A$ and a point in $X \setminus A$. Prove the following: \\
+a point in $A$ and a point in $X \setminus A$. \\
 
 a) Prove the following:
 
@@ -12,9 +12,9 @@ i.  $(A \cap B)^{\circ} = A^{\circ} \cap B^{\circ}$, where $A^{\circ}$ and $B^{\
     $B$, respectively. \ \\
 
 \begin{proof}\ \\\\
-    Observe that if $A$ or $B$ are empty, then $A \cap B = \emptyset$, $(A \cap B)^\circ = \emptyset$, 
-    $A^{\circ} = \emptyset$, $B^{\circ} = \emptyset$, and hence $A^{\circ} \cap B^{\circ} = \emptyset$. We may therefore 
-    assume that $A$ and $B$ are non-empty sets.
+    Observe that if $A$ or $B$ are empty, then all of the following hold: $A \cap B = \emptyset$, 
+    $(A \cap B)^\circ = \emptyset$, $A^{\circ} = \emptyset$, $B^{\circ} = \emptyset$, and hence 
+    $A^{\circ} \cap B^{\circ} = \emptyset$. We may therefore assume that $A$ and $B$ are non-empty sets.
 
     Let $x \in (A \cap B)^{\circ}$. Then because $(A \cap B)^{\circ}$ is open, there exists an open ball 
     $B_\epsilon(x) \subseteq (A \cap B)^{\circ} \subseteq A \cap B$. Hence $B_\epsilon(x)$ is an open ball which is 
@@ -104,7 +104,7 @@ iv. The set of boundary points $\text{bd}(A)$ is a closed set in $X$.  \ \\
 
 v. $A^{\circ} \cup \text{bd}(A) = A \cup A'$ \ \\
     
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
     Observe that if $A = \emptyset$, then $A^\circ = \text{bd}(A) = A' = \emptyset$ and our claim is trivially true. We 
     may therefore assume that $A$ is non-empty.
 
@@ -112,7 +112,7 @@ v. $A^{\circ} \cup \text{bd}(A) = A \cup A'$ \ \\
     $\text{bd}(A)$. If $x \in A^\circ$, then $x$ is also in $A$ and hence $x \in A \cup A'$.  Suppose 
     $x \in \text{bd}(A)$. If $x \in A$, then $x \in A \cup A'$ trivially, and so we may assume that 
     $x \in X \setminus A$. Then every open ball centered about $x$ contains a point in $A$ which is different from $x$, 
-    and hence $x$ is a limit point of $A$.  Hence $x \in A' \subseteq A \cup A'$. Since $x$ was chosen to be arbitrary, 
+    and hence $x$ is a limit point of $A$. Hence $x \in A' \subseteq A \cup A'$. Since $x$ was chosen to be arbitrary, 
     we have that $A^\circ \cup \text{bd}(A) \subseteq A \cup A'$.
     \ \\
     Now suppose that $x \in A \cup A'$. Then $x$ is in at least one of $A$ or $A'$. Suppose $x \in A'$ and furthermore
@@ -145,7 +145,7 @@ b. Prove that if either $A$ is open or it is closed, then $\text{bd}(A)^{\circ} 
     because the interior of any set is open, there exists an open ball $B_{\epsilon}(x) \subseteq \text{bd}(A)$ centered
     about $x$; since $x \in \text{bd}(A)$, $B_{\epsilon}(x)$ also contains a point $a \in A$ and a point 
     $z \in X \setminus A$. If $A$ is open, then there exists an open ball $B_{\delta}(a)$ centered about $a$ which is 
-    entirely contained in $A$. However, because $a$ is in the boundary of $A$, every open ball about $a$ must 
+    entirely contained in $A$. However, because $a$ is also in the boundary of $A$, every open ball about $a$ must 
     necessarily contain a point in $A$ and a point in $X \setminus A$ , which yields a contradiction. Similarly, if $A$ 
     is closed, then $X \setminus A$ is open, and so there exists an open ball $B_{\delta}(z)$ centered about $z$ which 
     is entirely contained in $X \setminus A$, which again contradicts the fact that $z$ is in the boundary of $A$, as 

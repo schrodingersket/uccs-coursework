@@ -6,10 +6,12 @@ a.  Let $(X, d)$ be a complete metric space and suppose that $Y \subset X$ is no
     sequences, and is thus both closed and complete. We may therefore assume that $Y$ is an infinite set.
 
     Suppose first that $(Y, d)$ is complete, and let $x_0$ be a limit point of $Y$. Then since every open ball 
-    $B_r(x_0)$ contains a point in $Y$ which is not $x_0$, we may form a Cauchy sequence $\{x_n\}$ (which tends toward
-    $x_0$) by choosing distinct points of $Y$ from each open ball $B_{1/n}(x_0)$ for $n \in \mathbb{N}$. Then 
-    because $Y$ is complete, $\lim\limits_{n \to \infty}{\{x_n\}} = x_0 \in Y$. Since $x_0$ was chosen to be an 
-    arbitrary limit point of $Y$, all limit points of $Y$ are contained in $Y$ itself and hence $Y$ is a closed set.
+    $B_r(x_0)$ contains a point in $Y$ which is not $x_0$, we may form a sequence $\{x_n\}$ by choosing distinct points
+    of $Y$ from each open ball $B_{1/n}(x_0)$ for $n \in \mathbb{N}$. Then $d(x_n, x_0) < \frac{1}{n}$, and so for any 
+    $\epsilon > 0$, we may choose $N > \frac{1}{\epsilon}$ so that $d(x_N, x_0) < \epsilon$. Hence $\{x_n\}$ forms a 
+    sequence which converges to $x_0$, and is therefore Cauchy. Because $Y$ is complete, 
+    $\lim\limits_{n \to \infty}{\{x_n\}} = x_0 \in Y$. Since $x_0$ was chosen to be an arbitrary limit point of $Y$, 
+    all limit points of $Y$ are contained in $Y$ itself and hence $Y$ is a closed set.
     \ \\
 
     Conversely, suppose that $Y$ is a closed set, and let $\{y_n\}$ be a Cauchy sequence in $Y$. Then $\{y_n\}$ is also
