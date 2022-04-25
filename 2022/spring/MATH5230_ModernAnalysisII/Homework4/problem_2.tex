@@ -2,7 +2,15 @@ a) Let $f: \mathbb{R}^n \to \mathbb{R}$ be a continuous function such that $f(\t
    for every $\textbf{x} \in \mathbb{R}^n$, where $\lVert \cdot \rVert$ denotes the Euclidean norm on $\mathbb{R}^n$.
    Prove that the inverse image $f^{-1}([0, 1])$ is a compact subset of $\mathbb{R}^n$.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+   Observe that by definition, $f^{-1}([0, 1]) = \{ \textbf{x} \in \mathbb{R}^n \mid 0 \le f(\textbf{x}) \le 1 \}$.
+   Then because $f(\textbf{x}) \ge \lVert \textbf{x} \lVert$ and $\lVert \textbf{x} \rVert| \ge 0$, we see that 
+   $1 \ge \lVert \textbf{x} \rVert \ge 0$ for every $\textbf{x} \in f^{-1}([0, 1])$ and hence $f^{-1}([0, 1])$ is
+   bounded in $\mathbb{R}^n$ with the Euclidean metric. Moreover, $[0, 1]$ is closed in $\mathbb{R}$ and because $f$
+   is continous, $f^{-1}([0, 1])$ is closed in $\mathbb{R}^n$. The inverse image $f^{-1}([0, 1])$ is therefore a closed
+   and bounded subset of $\mathbb{R}^2$ and so by the Heine-Borel Theorem, $f^{-1}([0, 1])$ is a compact subset of 
+   $\mathbb{R}^n$ as desired.
+   \ \\
 \end{proof}
 
 \pagebreak
@@ -10,5 +18,16 @@ a) Let $f: \mathbb{R}^n \to \mathbb{R}$ be a continuous function such that $f(\t
 b) Prove that the set $A = \{(x, \tan{x}) \mid 0 \le x < \frac{\pi}{2} \}$ is closed in $\mathbb{R}^2$, but is not 
    sequentially compact.
 
-\begin{proof}\renewcommand{\qedsymbol}{}\ \\\\
+\begin{proof}\ \\\\
+   Observe that because $\lim\limits_{x \to \frac{\pi}{2}}{\tan{x}} = \infty$, $A$ is not a bounded subset of 
+   $\mathbb{R}^2$. By the Heine-Borel Theorem, $A$ is not compact and is therefore also not sequentially compact.
+   To see that $A$ is closed, observe that for any $0 < x < \frac{\pi}{2}$, there exists an open ball of radius 
+   $r \coloneqq \frac{1}{2} \min{\{(x - 0), \frac{\pi}{2} - \tan(x)\}}$ centered about $(x, \tan(x))$ which is entirely
+   contained in $A$. Hence the only possible boundary point\footnote{
+      Because $\tan{\frac{\pi}{2}}$ is undefined, the point $(\frac{\pi}{2}, \tan{\frac{\pi}{2}})$ is undefined and
+      hence cannot be a boundary point of $A$.
+   } of $A$ is $(0, \tan(0))$ which is contained in $A$ by definition. Since $A$ contains all of its boundary points and
+   interior points, $A$ is equal to its closure and is therefore closed.
+   \ \\
 \end{proof}
+
