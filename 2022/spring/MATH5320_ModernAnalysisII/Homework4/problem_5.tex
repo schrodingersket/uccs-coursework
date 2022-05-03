@@ -7,16 +7,18 @@ a) Prove that every open connected subset of $\mathbb{R}^n$ is path connected.
     Let $x$ be an arbitrary point in $A$, and let $G$ be the set of all points $p \in A$ for which there exists a path 
     between $p$ and $x$. Because each such point is in the open set $A$, there exists for each $p$ an open ball 
     $B_{r_p}(p) \subseteq A$ of radius $r_p > 0$ centered about $p$ which is entirely contained in $A$. Moreover, 
-    because open balls are themselves path connected, each $B_{r_p}(p)$ is also a subset of $G$. Thus, there exists an 
-    open neighborhood about every point in $G$ which is entirely contained in $G$, and hence $G$ is open.
+    because open balls are themselves path connected in $\mathbb{R}^n$ with the usual metric, each $B_{r_p}(p)$ is also
+    a subset of $G$. Thus for each point in $p \in G$, there exists an open neighborhood about $p$ which is entirely 
+    contained in $G$. Hence $G$ is open.
 
     Conversely, let $H$ be the set of all points $q \in A$ for which no path exists between $q$ and $x$, and observe
-    that $G \cup H = A$. Because each $q \in H$ is also in $A$, there exists for each $q$ an open ball 
-    $B_{r_q}(q) \subseteq A$ which is contained in $A$. Moreover, each open ball $B_{r_q}(q)$ must also be contained in 
-    $H$. To see this, suppose that there exists some point $z \in B_{r_q}(q)$ such that a path exists which connects 
-    $z$ to $x$. Since open balls are path connected, a path exists between $z$ and every point $q \in H$, and hence
-    between $q$ and $x$. This contradicts the fact that points in $H$ admit no path to $x$, and so no such $z$ exists.
-    Each $B_{r_q}(q)$ is therefore contained in $H$ and consequently $H$ is open.
+    that $H$ is the complement of $G$ with respect to $A$ and hence $G \cap H = \emptyset$. Because each $q \in H$ is 
+    also in $A$, there exists for each $q$ an open ball $B_{r_q}(q) \subseteq A$ which is contained in $A$. Moreover,
+    each open ball $B_{r_q}(q)$ must also be contained in $H$. To see this, suppose that there exists some point 
+    $z \in B_{r_q}(q)$ such that a path exists which connects $z$ to $x$. Since open balls are path connected, a path 
+    exists between $z$ and every point $q \in H$, and hence between $q$ and $x$. This contradicts the fact that points 
+    in $H$ admit no path to $x$, and so no such $z$ exists. Each $B_{r_q}(q)$ is therefore contained in $H$ and 
+    consequently $H$ is open.
 
     Lastly, recall that $G$ is non-empty by construction, and that $G$ and $H$ are open sets such that $G \cup H = A$.
     If $H$ is non-empty, then $G \cup H$ forms a disconnection of $A$, which contradicts the fact that $A$ is connected.
@@ -45,8 +47,8 @@ b) Prove that no continous real function on a closed interval $I \subset \mathbb
     To derive our desired contradcition, observe that the set 
     $I \setminus \{x_1, x_2, x_3\} \subset \mathbb{R}^2$ is path connected\footnote{
         This result follows from the fact that for any linear path between two points in $I$ which might intersect 
-        $x_1$, $x_2$, or $x_3$, we may simply define a piecewise linear path around these three missing points as 
-        demonstrated in lecture.
+        $x_1$, $x_2$, or $x_3$, we may simply define a continuous piecewise linear path around these three missing 
+        points as demonstrated in lecture.
     } and hence is also connected. Furthermore, because the restriction of a continuous function is itself continuous, 
     the restriction $\tilde{f} \coloneqq f\vert_{I \setminus \{x_1, x_2, x_3\}}$ \linebreak
     is continuous and so the continuous image
