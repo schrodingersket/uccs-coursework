@@ -1,0 +1,51 @@
+\textbf{LeVeque 1.1} 
+Determine the interpolating polynomial $p(x)$ discussed in Example 1.3 and verify that evaluating $p'(x)$ yields 
+equation (1.11).
+
+\begin{solution}\ \\\\
+    Let $\phi_k(x) = x^k$ be the $k^{th}$ basis function of the Lagrange basis for polynomials. We wish to find a 
+    quadratic interpolation $p(x)$ which approximates $u(x)$ at $x_0 = \bar{x} - 2h$, $x_1 = \bar{x} - h$, and 
+    $x_2 = \bar{x}$.  By Appendix B.2.2, our first three basis functions are given by:
+
+    \begin{align*}
+        \phi_0(x) &= \frac{x - (\bar{x} - h)}{(\bar{x} - 2h) - (\bar{x} - h)} \cdot \frac{x - (\bar{x})}{(\bar{x} - 2h) - (\bar{x})} \\
+                  &= \frac{x - \bar{x} + h}{-h} \cdot \frac{x - \bar{x}}{-2h} \\
+                  &= \frac{(x - \bar{x} + h)(x - \bar{x})}{2h^2}. \\\\
+        \phi_1(x) &= \frac{x - (\bar{x} - 2h)}{(\bar{x} - h) - (\bar{x} - 2h)} \cdot \frac{x - (\bar{x})}{(\bar{x} - h) - (\bar{x})} \\
+                  &= \frac{x - \bar{x} + 2h}{h} \cdot \frac{x - \bar{x}}{-h} \\
+                  &= \frac{(x - \bar{x} + 2h)(x - \bar{x})}{-h^2}. \\\\
+        \phi_2(x) &= \frac{x - (\bar{x} - 2h)}{(\bar{x}) - (\bar{x} - 2h)} \cdot \frac{x - (\bar{x} - h)}{(\bar{x}) - (\bar{x} - h)} \\
+                  &= \frac{x - \bar{x} + 2h}{2h} \cdot \frac{x - \bar{x} + h}{h} \\
+                  &= \frac{(x - \bar{x} + 2h)(x - \bar{x} + h)}{2h^2}. \\
+    \end{align*}
+
+    Our quadratic interpolation function is thus given by $p(x) = c_0\phi_0(x) + c_1\phi_1(x) + c_2\phi_2(x)$; in the 
+    case of Lagrange interpolation, $c_i = u(x_i)$, which yields:
+
+    \begin{align*}
+        p(x) &= u(\bar{x} - 2h)\phi_0(x) + u(\bar{x} - h)\phi_1(x) + u(\bar{x})\phi_2(x) \\
+             &= u(x_0)\frac{(x - \bar{x} + h)(x - \bar{x})}{2h^2} 
+              + u(x_1)\frac{(x - \bar{x} + 2h)(x - \bar{x})}{-h^2}
+              + u(x_2)\frac{(x - \bar{x} + 2h)(x - \bar{x} + h)}{2h^2}
+    \end{align*}
+
+    \pagebreak
+
+    Moreover, since $u(x_i)$ is constant with respect to $x$, differentiating $p(x)$ with respect to $x$ yields:
+
+    \begin{align*}
+        p'(x) &= u(x_0)\frac{2x - 2\bar{x} + h}{2h^2}
+               + u(x_1)\frac{2x - 2\bar{x} + 2h}{-h^2}
+               + u(x_2)\frac{2x - 2\bar{x} + 3h}{2h^2}
+    \end{align*}
+
+    Lastly, we evaluate $p'(x)$ at $x = \bar{x}$ to find:
+
+    \begin{align*}
+        p'(\bar{x}) &= u(x_0)\frac{1}{2h} + u(x_1)\frac{2}{-h} + u(x_2)\frac{3}{2h} \\
+                    &= \frac{1}{2h}\left[u(x_0) - 4u(x_1) + 3u(x_2)\right] \\
+                    &= \frac{1}{2h}\left[3u(\bar{x}) - 4u(\bar{x} - h) + u(\bar{x} - 2h)\right] \\
+                    &= D_{2}u(\bar{x}).
+    \end{align*}
+    \\
+\end{solution}

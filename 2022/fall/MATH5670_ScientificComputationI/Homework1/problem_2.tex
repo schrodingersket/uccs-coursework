@@ -1,0 +1,31 @@
+\textbf{LeVeque 1.2} \\\\
+a)  Use the method of undetermined coefficients to set up the $5\times5$ Vandermonde system which would determine a 
+  fourth-order accurate finite difference approximation to $u''(x)$ based on five equally spaced points:
+
+  $$
+    u''(x) = c_{-2}u(x-2h) + c_{-1}u(x-h) + c_0u(x) + c_1u(x+h) + c_2u(x+2h) + \mathcal{O}(h^4)
+  $$
+
+
+\begin{solution}\ \\\\
+\end{solution}
+
+
+b)  Compute the coefficients using the MATLAB code \texttt{fdstencil.m} available from the website, and check that they
+  satisfy the system determined in part (a).
+
+\begin{solution}\ \\\\
+\end{solution}
+
+c)  Test this finite difference formula to approximate $u''(1)$ for $u(x) = \sin(2x)$ with values of $h$ from the array 
+  \texttt{hvals = logspace(-1, -4, 13)}. Make a table of the error vs.\ $h$ for several values of $h$ and compare 
+  against the predicted error from the leading term of the expression printed by \texttt{fdstencil}. You may want to 
+  look at the m-file \texttt{chap1example1.m} for guidance on how to make such a table.
+
+  Also produce a log-log plot of the absolute value of the error vs.~$h$.  
+
+  You should observe the predicted accuracy for larger values of $h$. For smaller values, numerical cancellation in 
+  computing the linear combination of $u$ values impacts the accuracy observed.
+    
+\begin{solution}\ \\\\
+\end{solution}
