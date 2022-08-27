@@ -8,6 +8,68 @@ a)  Use the method of undetermined coefficients to set up the $5\times5$ Vanderm
 
 
 \begin{solution}\ \\\\
+    We begin by finding the Taylor expansion about each of our points; because our approximation contains five points,
+    we need only determine the first five terms:
+
+    \begin{align*}
+    u(\bar{x} - 2h) &= u(\bar{x}) + \frac{(-2h)}{1!}u^{(1)}(\bar{x}) 
+                                 + \frac{(-2h)^2}{2!}u^{(2)}(\bar{x}) 
+                                 + \frac{(-2h)^3}{3!}u^{(3)}(\bar{x})
+                                 + \frac{(-2h)^4}{4!}u^{(4)}(\bar{x})
+                                 + \mathcal{O}(h^5) \\
+    u(\bar{x} - h) &= u(\bar{x}) + \frac{(-h)}{1!}u^{(1)}(\bar{x}) 
+                                 + \frac{(-h)^2}{2!}u^{(2)}(\bar{x}) 
+                                 + \frac{(-h)^3}{3!}u^{(3)}(\bar{x})
+                                 + \frac{(-h)^4}{4!}u^{(4)}(\bar{x})
+                                 + \mathcal{O}(h^5) \\
+    u(\bar{x}) &= u(\bar{x}) \\
+    u(\bar{x} + h) &= u(\bar{x}) + \frac{(h)}{1!}u^{(1)}(\bar{x}) 
+                                 + \frac{(h)^2}{2!}u^{(2)}(\bar{x}) 
+                                 + \frac{(h)^3}{3!}u^{(3)}(\bar{x})
+                                 + \frac{(h)^4}{4!}u^{(4)}(\bar{x})
+                                 + \mathcal{O}(h^5) \\
+    u(\bar{x} + 2h) &= u(\bar{x}) + \frac{(2h)}{1!}u^{(1)}(\bar{x}) 
+                                 + \frac{(2h)^2}{2!}u^{(2)}(\bar{x}) 
+                                 + \frac{(2h)^3}{3!}u^{(3)}(\bar{x})
+                                 + \frac{(2h)^4}{4!}u^{(4)}(\bar{x})
+                                 + \mathcal{O}(h^5) \\
+    \end{align*}
+
+    We now collect coefficients; since we are interested in an an approximation for $u^{(2)}(x)$, each
+    collection of coefficients sums to zero save for that of the second derivative:
+
+    \begin{align*}
+    \begin{cases}
+        c_{-2} + c_{-1} + c_0 + c_1 + c_2 = 0 \\
+        (-2h)c_{-2} + (-h)c_{-1} + (h)c_1 + (2h)c_2 = 0 \\
+        (2h^2)c_{-2} + (\frac{1}{2}h^2)c_{-1} + (\frac{1}{2}h^2)c_1 + (2h^2)c_2 = 0 \\
+        (-\frac{4}{3}h^3)c_{-2} + (-\frac{1}{6}h^3)c_{-1} + (\frac{1}{6}h^3)c_1 + (\frac{4}{3}h^3)c_2 = 0 \\
+        (\frac{2}{3}h^4)c_{-2} + (\frac{1}{24}h^4)c_{-1} + (\frac{1}{24}h^4)c_1 + (\frac{2}{3}h^4)c_2 = 0 \\
+    \end{cases}
+    \end{align*}
+
+    Lastly, we divide each equation by an appropriate power of $h$ and write the result as a linear system, as desired:
+
+    $$
+    \begin{pmatrix}
+        1            &           1  & 1 &           1 & 1 \\
+        -2           &           -1 & 0 &           1 & 2 \\
+        2            & \frac{1}{2}  & 0 & \frac{1}{2} & 2 \\
+        -\frac{4}{3} & -\frac{1}{6} & 0 & \frac{1}{6} & \frac{4}{3} \\
+        \frac{2}{3}  &           -1 & 0 & 1           & \frac{2}{3} \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        c_{-2} \\ c_{-1} \\ c_0 \\ c_1 \\ c_2
+    \end{pmatrix}
+        =
+    \begin{pmatrix}
+        0 \\
+        0 \\
+        \frac{1}{h^2} \\ 
+        0 \\
+        0 \\
+    \end{pmatrix}
+    $$
 \end{solution}
 
 
