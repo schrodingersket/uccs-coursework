@@ -167,4 +167,36 @@ c)  Test this finite difference formula to approximate $u''(1)$ for $u(x) = \sin
   computing the linear combination of $u$ values impacts the accuracy observed.
     
 \begin{solution}\ \\\\
+    We denote fourth-order approximation of the second derivative of $u$ at $\bar{x} = 1$ in the table below by
+    \texttt{DD4u}. The MATLAB code to produce this table and associated plot are provided in the included 
+    \verb|problem_2.m| file. Observe that the error predicted by the leading term of the expression printed by 
+    \texttt{fdstencil} matches the actual error quite closely for $h \ge 0.01$: \\
+
+    \begin{lstlisting}[language=bash]
+       h           Error [DD4u]    Predicted Error [DD4u]
+   1.0000e-01      6.4431e-05      6.4661e-05
+   5.6234e-02      6.4588e-06      6.4661e-06
+   3.1623e-02      6.4638e-07      6.4661e-07
+   1.7783e-02      6.4653e-08      6.4661e-08
+   1.0000e-02      6.4608e-09      6.4661e-09
+   5.6234e-03      6.3753e-10      6.4661e-10
+   3.1623e-03      5.2040e-11      6.4661e-11
+   1.7783e-03     -3.9182e-11      6.4661e-12
+   1.0000e-03     -2.8103e-10      6.4661e-13
+   5.6234e-04     -4.8242e-10      6.4661e-14
+   3.1623e-04     -4.3333e-09      6.4661e-15
+   1.7783e-04     -9.9178e-09      6.4661e-16
+   1.0000e-04     -3.3754e-08      6.4661e-17
+    \end{lstlisting}
+
+    \pagebreak
+
+    As expected, we see that the accuracy varies when $h < 0.01$ due to numerical cancellation in computing the linear
+    combination of $u$ values, but is log-linear otherwise:
+
+    \begin{figure}[h]
+        \includegraphics[width=10cm]{fourth-order-uxx-error.png}
+        \centering
+        \caption{Fourth-order approximation error of second derivative of $\sin{1}$}
+    \end{figure}
 \end{solution}
