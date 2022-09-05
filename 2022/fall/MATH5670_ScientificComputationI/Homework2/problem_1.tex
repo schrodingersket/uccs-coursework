@@ -52,10 +52,36 @@ c) If $f(x) = x$, determine the discrete approximation to the solution of the bo
    sketch this solution and the five Green's functions whose sum gives this solution.
 
 
-\begin{solution}
-    Since $f(x) = x$, the corresponding Green's function at each $x_j = j h, 0 \le j \le 1$ is given by:
+\begin{solution}\ \\\\
+    Since $f(x) = x$, we approximate $f$ on a uniform gride with mesh size $n=5$ as the discrete sum of delta 
+    functions at each $x_k$:
+
+    \begin{align*}
+        f(x) = \sum\limits_{k=1}^{n}{x_k}\delta(x - x_k).
+    \end{align*}
+
+    The solution to our BVP is therefore given by the following linear combination of Green's functions:
+    
+    \begin{align*}
+        u(x) = \sum\limits_{k=1}^{n}{x_k}G(x; x_k).
+    \end{align*}
+
+    where each Green's function is given by:
+
+    \begin{align*}
+        G(x; x_k) = \begin{cases}
+            (x_k - 1)x, \text{ for } 0 \le x \le x_k \\
+            x_k(x - 1), \text{ for } x_k \le x \le 1 \\
+        \end{cases}\, .
+    \end{align*}
+
+    The resulting solution and constituent Green's functions are shown below:
+
+    \begin{figure}[h]
+        \includegraphics[width=8cm]{problem1c_discrete_approx.png}
+        \centering
+        \caption{Discrete approximation to $u''(x)=x$ with Dirichlet boundary conditions}
+    \end{figure}
 
 
-
-                                                                          
 \end{solution}
