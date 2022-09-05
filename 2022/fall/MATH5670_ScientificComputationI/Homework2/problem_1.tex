@@ -1,0 +1,61 @@
+\textbf{LeVeque 2.1} 
+
+a) Write out the $5 \times 5$ matrix $A$ from (2.43) for the boundary value problem \linebreak $u''(x) = f(x)$ with 
+   $u(0) = u(1) = 0$ with a step size of $h = 0.25$.
+
+\begin{solution}\ \\\\
+    With a step size of $h = 0.25$, our discretization yields five points and hence our matrix $A$ is given by:
+
+    \begin{align*}
+        A &= \frac{1}{h^2}
+        \begin{pmatrix}
+         h^2 &  0 &  0 &  0 &   0 \\
+           1 & -2 &  1 &  0 &   0 \\
+           0 &  1 & -2 &  1 &   0 \\
+           0 &  0 &  1 & -2 &   1 \\
+           0 &  0 &  0 &  0 & h^2 \\
+        \end{pmatrix} \\\\
+        &= 
+        \begin{pmatrix}
+             1 &   0 &   0  &   0 &  0 \\
+            16 & -32 &  16  &   0 &  0 \\
+             0 &  16 & -32  &  16 &  0 \\
+             0 &   0 &  16  & -32 & 16 \\
+             0 &   0 &   0  &   0 &  1 \\
+        \end{pmatrix}.
+    \end{align*}
+\end{solution}
+
+\pagebreak
+b) Write out the $5 \times 5$ inverse matrix $A^{-1}$ explicitly for this problem.
+
+\begin{solution}\ \\\\
+    The inverse matrix $A^{-1}$ is given by\footnote{Calculated with MATLAB}:
+
+    \begingroup
+    \renewcommand*{\arraystretch}{1.5}
+    \begin{align*}
+        A^{-1} &=
+        \begin{pmatrix}
+                      1 &             0 &             0  &             0 &           0 \\
+            \frac{3}{4} & -\frac{3}{64} & -\frac{1}{32}  & -\frac{1}{64} & \frac{1}{4} \\
+            \frac{1}{2} & -\frac{1}{32} & -\frac{1}{16}  & -\frac{1}{32} & \frac{1}{2} \\
+            \frac{1}{4} & -\frac{1}{64} & -\frac{1}{32}  & -\frac{3}{64} & \frac{3}{4} \\
+                      0 &             0 &             0  &             0 &           1 \\
+        \end{pmatrix}.
+    \end{align*}
+    \endgroup
+\end{solution}
+
+\pagebreak
+c) If $f(x) = x$, determine the discrete approximation to the solution of the boundary value problem on this grid and
+   sketch this solution and the five Green's functions whose sum gives this solution.
+
+
+\begin{solution}
+    Since $f(x) = x$, the corresponding Green's function at each $x_j = j h, 0 \le j \le 1$ is given by:
+
+
+
+                                                                          
+\end{solution}
