@@ -3,8 +3,8 @@ a = 0;
 b = 1;
 grid_points = 5;
 h = (b - a) / (grid_points - 1);
-x = linspace(0, 1, 20 * grid_points);
-xbar = linspace(0, 1, grid_points);
+x = linspace(a, b, 20 * grid_points);
+xbar = linspace(a, b, grid_points);
 alpha = 0;
 beta = 0;
 

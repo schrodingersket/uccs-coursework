@@ -121,4 +121,60 @@ b) Using this as guidance, find the general formulas for the elements of the inv
    Write out the $5 \times 5$ matrices $A$ and $A^{-1}$ for the case $h = 0.25$.
 
 \begin{solution}\ \\\\
+    Let $B$ denote the $(m+2) \times (m+2)$ inverse of $A$ from (2.54). Elements in the interior columns 
+    (i.e., $1 \le i,j \le m$) are given by:
+
+    \begin{align*}
+    B_{ij} = hG(x_i;\; x_j) = \begin{cases}
+                                x_j - 1,\; 0 \le x_i \le x_j \\
+                                x_i - 1,\; x_j \le x_i \le 1 \\
+                            \end{cases}.
+    \end{align*}
+
+    Elements in the first column (i.e, $j = 0$) of $B$ are given by:
+
+    $$
+    B_{i0} = G_0(x_i) = x_i - 1.
+    $$
+
+    Similarly, the elements in the last column (i.e., $j = m + 1$) of $B$ are given by:
+
+    $$
+    B_{i,m+1} = G_1(x_i) = 1.
+    $$
+
+    We let $h = 0.25$ and $m = 3$. From the above, we may write our matrix $B = A^{-1}$ explicitly:
+
+
+    \begingroup
+    \renewcommand*{\arraystretch}{1.5}
+    $$
+        B =A^{-1} =
+        \begin{pmatrix}
+                      -1 & -\frac{3}{16} &  -\frac{1}{8} & -\frac{1}{16} & 1 \\
+            -\frac{3}{4} & -\frac{3}{16} &  -\frac{1}{8} & -\frac{1}{16} & 1 \\
+            -\frac{1}{2} &  -\frac{1}{8} &  -\frac{1}{8} & -\frac{1}{16} & 1 \\
+            -\frac{1}{4} & -\frac{1}{16} & -\frac{1}{16} & -\frac{1}{16} & 1 \\
+                       0 &             0 &             0 &             0 & 1 \\
+        \end{pmatrix}.
+    $$
+    \endgroup
+
+    From (2.54), $A$ is given by:\footnote{
+        See \texttt{problem\_2.m} for calculation of $B$ and verification that it's inverse is $A$ in MATLAB.
+    }
+
+    \begingroup
+    \renewcommand*{\arraystretch}{1.5}
+    $$
+        A =
+        \begin{pmatrix}
+            -4 &   4 &   0  &   0 &  0 \\
+            16 & -32 &  16  &   0 &  0 \\
+             0 &  16 & -32  &  16 &  0 \\
+             0 &   0 &  16  & -32 & 16 \\
+             0 &   0 &   0  &   0 &  1 \\
+        \end{pmatrix}.
+    $$
+    \endgroup
 \end{solution}
