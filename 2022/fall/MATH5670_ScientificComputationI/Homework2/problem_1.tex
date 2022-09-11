@@ -4,7 +4,8 @@ a) Write out the $5 \times 5$ matrix $A$ from (2.43) for the boundary value prob
    $u(0) = u(1) = 0$ with a step size of $h = 0.25$.
 
 \begin{solution}\ \\\\
-    With a step size of $h = 0.25$, our discretization yields five points and hence our matrix $A$ is given by:
+    With a step size of $h = 0.25$, our discretization yields five points and hence our discretization matrix $A$ is 
+    given by:
 
     \begin{align*}
         A &= \frac{1}{h^2}
@@ -30,7 +31,7 @@ a) Write out the $5 \times 5$ matrix $A$ from (2.43) for the boundary value prob
 b) Write out the $5 \times 5$ inverse matrix $A^{-1}$ explicitly for this problem.
 
 \begin{solution}\ \\\\
-    The inverse matrix $A^{-1}$ is given by\footnote{Calculated with MATLAB}:
+    The inverse discretization matrix $A^{-1}$ is given by\footnote{Calculated with MATLAB}:
 
     \begingroup
     \renewcommand*{\arraystretch}{1.5}
@@ -53,24 +54,18 @@ c) If $f(x) = x$, determine the discrete approximation to the solution of the bo
 
 
 \begin{solution}\ \\\\
-    Since $f(x) = x$, we approximate $f$ on a uniform gride with mesh size $n=5$ as the discrete sum of delta 
-    functions at each $x_k$:
+    By (2.49) in the text, our discrete approximation to the solution of the boundary problem on a uniform grid with 
+    mesh size $h=0.25$ with Dirichlet boundary conditions (i.e., $f(0) = \alpha$ and $f(1) = \beta$) is given by:
 
     \begin{align*}
-        f(x) = \sum\limits_{k=1}^{n}{x_k}\delta(x - x_k).
+        U_i = \alpha (1 - x_i)  + \beta x_i + h \sum\limits_{k=1}^{3}{f(x_k) G(x_i; x_k)}.
     \end{align*}
 
-    The solution to our BVP is therefore given by the following linear combination of Green's functions:
-    
-    \begin{align*}
-        u(x) = \sum\limits_{k=1}^{n}{x_k}G(x; x_k).
-    \end{align*}
-
-    where each Green's function is given by:
+    where each Green's function $G(x; x_k)$ is given by:
 
     \begin{align*}
         G(x; x_k) = \begin{cases}
-            (x_k - 1)x, \text{ for } 0 \le x \le x_k \\
+            x(x_k - 1), \text{ for } 0 \le x \le x_k \\
             x_k(x - 1), \text{ for } x_k \le x \le 1 \\
         \end{cases}\, .
     \end{align*}
@@ -78,7 +73,7 @@ c) If $f(x) = x$, determine the discrete approximation to the solution of the bo
     The resulting solution and constituent Green's functions are shown below:
 
     \begin{figure}[h]
-        \includegraphics[width=8cm]{problem1c_discrete_approx.png}
+        \includegraphics[width=13cm]{problem1c_discrete_approx.png}
         \centering
         \caption{Discrete approximation to $u''(x)=x$ with Dirichlet boundary conditions}
     \end{figure}
