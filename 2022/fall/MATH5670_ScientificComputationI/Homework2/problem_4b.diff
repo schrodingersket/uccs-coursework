@@ -1,7 +1,7 @@
 diff --git a/../fdmbook/matlab/bvp_4.m b/problem_4b.m
 old mode 100644
 new mode 100755
-index de241f5..979ba22
+index de241f5..79226fa
 --- a/../fdmbook/matlab/bvp_4.m
 +++ b/problem_4b.m
 @@ -1,3 +1,4 @@
@@ -59,3 +59,11 @@ index de241f5..979ba22
    
    % solve linear system:
    U = A\F;
+@@ -83,6 +84,7 @@ for jtest=1:ntest
+   
+   % pause to see this plot:  
+   drawnow
++  print('-dpng', sprintf('problem4b_%i_grid_points.png', m2));
+   input('Hit <return> for next plot ');
+   
+   end

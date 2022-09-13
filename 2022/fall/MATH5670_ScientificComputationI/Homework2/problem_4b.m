@@ -84,6 +84,7 @@ for jtest=1:ntest
   
   % pause to see this plot:  
   drawnow
+  print('-dpng', sprintf('problem4b_%i_grid_points.png', m2));
   input('Hit <return> for next plot ');
   
   end

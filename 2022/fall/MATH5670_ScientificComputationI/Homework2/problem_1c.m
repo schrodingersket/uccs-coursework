@@ -40,4 +40,5 @@ legend;
 
 hold off;
 
+print('-dpng', 'problem1c_discrete_approx.png')
 waitfor(plt);
