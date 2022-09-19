@@ -77,14 +77,14 @@ $u(x, 0) = x$ and Dirichlet boundary conditions $u(0, t) = u(\pi, t) = 0$.
     our solution $u(x, t)$ is given by:
 
     \begin{equation}
-    u(x, t) = \sum\limits_{k=1}^{\infty}{b_n \sin\left(\frac{n \pi x}{L}\right)} d_n e^{-\left(\frac{n \pi}{L}\right)^2 t}
-            = \sum\limits_{k=1}^{\infty}{a_n \sin\left(\frac{n \pi x}{L}\right)} e^{-\left(\frac{n \pi}{L}\right)^2 t}.
+    u(x, t) = \sum\limits_{n=1}^{\infty}{b_n \sin\left(\frac{n \pi x}{L}\right)} d_n e^{-\left(\frac{n \pi}{L}\right)^2 t}
+            = \sum\limits_{n=1}^{\infty}{a_n \sin\left(\frac{n \pi x}{L}\right)} e^{-\left(\frac{n \pi}{L}\right)^2 t}.
     \end{equation}
 
     To determine our Fourier sine coefficients $a_n$, we substitute (2) into our initial condition $u_0(x) = x$:
 
     \begin{align*}
-        x = u_0(x) = u(x, 0) = \sum\limits_{k=1}^{\infty}{a_n \sin\left(\frac{n \pi x}{L}\right)}.
+        x = u_0(x) = u(x, 0) = \sum\limits_{n=1}^{\infty}{a_n \sin\left(\frac{n \pi x}{L}\right)}.
     \end{align*}
 
     We multiply each side by $\sin\left(\frac{m \pi x}{L}\right)$ for some fixed $m \in \mathbb{N}$ and integrate over 
@@ -114,7 +114,7 @@ $u(x, 0) = x$ and Dirichlet boundary conditions $u(0, t) = u(\pi, t) = 0$.
     Substituting this expression into our full solution (2) yields our full solution $u(x, t)$:
     
     $$
-    u(x, t) = \sum\limits_{k=1}^{\infty}{\frac{2 L}{m \pi} (-1)^{m+1} \sin\left(\frac{n \pi x}{L}\right)} e^{-\left(\frac{n \pi}{L}\right)^2 t}.
+    u(x, t) = \sum\limits_{n=1}^{\infty}{\frac{2 L}{n \pi} (-1)^{n+1} \sin\left(\frac{n \pi x}{L}\right)} e^{-\left(\frac{n \pi}{L}\right)^2 t}.
     $$
 
     For completeness, we plot two Fourier Series approximations to $u_0(x) = x$ below: \\
