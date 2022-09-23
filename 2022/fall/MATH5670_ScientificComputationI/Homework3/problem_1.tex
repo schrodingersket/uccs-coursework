@@ -1,0 +1,42 @@
+\textbf{LeVeque 3.1} The \texttt{MATLAB} script \texttt{poisson.m} solves the Poisson problem on a square $m \times m$ 
+grid with $\Delta x = \Delta y = h $ using the 5-point Laplacian. It is set up to solve a test problem for which the 
+exact solution is $u(x, y) = e^{x + \frac{y}{2}}$, using Dirichlet boundary conditions and the right hand side 
+$f(x, y) = 1.25 e^{x + \frac{y}{2}}$.
+
+a) Test this script by performing a grid refinement study to verify that it is second order accurate.
+
+\begin{solution}\ \\\\
+    We compute relative error for step sizes listed below:
+
+    \begin{figure}[h]
+        \begin{lstlisting}
+        Grid points      Grid size (h)           Relative error
+        -------------------------------------------------------
+         20              0.050000                3.602e-05 
+         50              0.020000                5.786e-06 
+        100              0.010000                1.447e-06 
+        200              0.005000                3.618e-07 
+        500              0.002000                5.790e-08 
+         
+        Least squares fit gives E(h) = 0.0143751 * h^1.99874
+        \end{lstlisting}
+        \caption{Output of \texttt{problem\_1a.m} showing error resulting from grid refinement}
+    \end{figure}
+
+    Since our least squares fit for error is given by $E(h) = 0.0143751 h^{1.99874}$, we see that the error is 
+    $\mathcal{O}(h^2)$, as expected.
+
+\end{solution}
+
+\pagebreak
+b) Modify the script so that it works on a rectangular domain $[a_x, b_x] \times [a_y, b_y]$, but still with
+   $\Delta x = \Delta y = h$. Test your modified script on a non-square domain.
+
+\begin{solution}\ \\\\
+\end{solution}
+
+\pagebreak
+c) Further modify the code to allow $\Delta x \neq \Delta y$ and test the modified script.
+
+\begin{solution}\ \\\\
+\end{solution}
