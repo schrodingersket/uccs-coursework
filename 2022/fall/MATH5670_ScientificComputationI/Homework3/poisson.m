@@ -77,8 +77,8 @@ function [hx, hy, err] = poisson(ax, bx, ay, by, m, n, f, u, plot_soln)
     % form matrix A:
     e = ones(max(m, n),1);
     T = spdiags([(1/hx^2)*e (-2/hx^2 - 2/hy^2)*e (1/hx^2)*e], [-1 0 1], m, m);
-    S = spdiags([e e], [-1 1], n, n);
-    A = (kron(speye(n), T) + kron(S, speye(m)/hy^2));
+    S = spdiags([(1/hy^2)*e (1/hy^2)*e], [-1 1], n, n);
+    A = (kron(speye(n), T) + kron(S, speye(m)));
     
     % Solve the linear system:
     uvec = A\F;  
