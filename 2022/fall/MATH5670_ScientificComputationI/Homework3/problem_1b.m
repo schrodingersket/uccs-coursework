@@ -2,13 +2,13 @@
 
 warning('off', 'all');
 
-a = [0, 0];   % left boundary
-b = [1, 1];   % right boundary
+a = [0, 0];   % bottom-left boundary (x, y)
+b = [1, 2];   % top-right boundary (x, y)
 
 % List of intervals to use for computation in [x, y] form. For instance,
 % [4, 5] means that we create 4 intervals in x and 5 intervals in y.
 %
-intervals = [[9, 9]; [19, 19]; [49, 49]; [99, 99]; [199, 199]; [399, 399]];
+intervals = [[9, 9*2+1]; [19, 19*2+1]; [49, 49*2+1]; [99, 99*2+1]; [199, 199*2+1]; [399, 399*2+1]];
 ntest = length(intervals);
 
 step_sizes_x = zeros(ntest, 1);

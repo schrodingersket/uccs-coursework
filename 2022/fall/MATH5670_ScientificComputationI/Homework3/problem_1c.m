@@ -2,8 +2,8 @@
 
 warning('off', 'all');
 
-a = [0, 0];   % left boundary
-b = [1, 1];   % right boundary
+a = [0, 0];   % bottom-left boundary (x, y)
+b = [1, 2];   % top-right boundary (x, y)
 
 % List of intervals to use for computation in [x, y] form. For instance,
 % [4, 5] means that we create 4 intervals in x and 5 intervals in y.
@@ -40,7 +40,7 @@ for i = 1:ntest
     );
 end
 
-% Estimate order of accuracy from least squares fit:
+% Estimate order of accuracy from least squares fit for both x- and y-partitions:
 %
 % (see ../fdmbook/matlab/error_loglog.m)
 %
@@ -51,5 +51,13 @@ Kp = Ap\bp;
 K = Kp(1);
 p = Kp(2);
 disp(' ')
-disp(sprintf('Least squares fit gives E(h) = %g * h^%g',exp(K),p))
+disp(sprintf('Least squares fit in x gives E_x(h) = %g * h^%g',exp(K),p))
+
+Ap = ones(ntest,2);
+Ap(:,2) = log(step_sizes_y);
+bp = log(errors);
+Kp = Ap\bp;
+K = Kp(1);
+p = Kp(2);
+disp(sprintf('Least squares fit in y gives E_y(h) = %g * h^%g',exp(K),p))
 disp(' ')

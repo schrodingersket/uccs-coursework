@@ -5,15 +5,37 @@
 % This system of equations is then solved using backslash.
 % 
 % From  http://www.amath.washington.edu/~rjl/fdmbook/chapter3  (2007)
-function [h, err] = poisson(a, b, m, f, u, plot_soln)
+
+function [hx, hy, err] = poisson(ax, bx, ay, by, m, n, f, u, plot_soln)
+    arguments
+        bx (1,1) double
+        ax (1,1) double {mustBeLessThan(ax, bx)}
+        by (1,1) double
+        ay (1,1) double {mustBeLessThan(ay, by)}
+
+        m (1,1) integer {mustBePositive}
+        n (1,1) integer {mustBePositive}
+
+        f  {mustBeA(f, function_handle)}
+        u  {mustBeA(u, function_handle)}
+        
+        plot_soln (1, 1) logical
+    end
 
     if ~exist('plot_soln','var')
         plot_soln = 0;
     end
 
-    h = (b-a)/(m+1);
-    x = linspace(a,b,m+2);   % grid points x including boundaries
-    y = linspace(a,b,m+2);   % grid points y including boundaries
+    hx = (bx-ax)/(m+1);
+    hy = (by-ay)/(n+1);
+
+    % grid points for x including boundaries
+    %
+    x = linspace(ax, bx, m + 2);
+
+    % Grid points for y including boundaries
+    %
+    y = linspace(ay, by, n + 2);
     
     
     [X,Y] = meshgrid(x,y);      % 2d arrays of x,y values
@@ -21,9 +43,9 @@ function [h, err] = poisson(a, b, m, f, u, plot_soln)
     Y = Y';                     % coordinates of (i,j) point
     
     Iint = 2:m+1;              % indices of interior points in x
-    Jint = 2:m+1;              % indices of interior points in y
-    Xint = X(Iint,Jint);       % interior points
-    Yint = Y(Iint,Jint);
+    Jint = 2:n+1;              % indices of interior points in y
+    Xint = X(Iint,Jint);        % interior points
+    Yint = Y(Iint,Jint); 
     
     
     rhs = f(Xint,Yint);        % evaluate f at interior points for right hand side
@@ -43,22 +65,20 @@ function [h, err] = poisson(a, b, m, f, u, plot_soln)
     
     
     % adjust the rhs to include boundary terms:
-    rhs(:,1) = rhs(:,1) - usoln(Iint,1)/h^2;
-    rhs(:,m) = rhs(:,m) - usoln(Iint,m+2)/h^2;
-    rhs(1,:) = rhs(1,:) - usoln(1,Jint)/h^2;
-    rhs(m,:) = rhs(m,:) - usoln(m+2,Jint)/h^2;
+    rhs(:,1) = rhs(:,1) - usoln(Iint, 1)/(hy^2);
+    rhs(:,n) = rhs(:,n) - usoln(Iint, n + 2)/(hy^2);
+    rhs(1,:) = rhs(1,:) - usoln(1, Jint)/(hx^2);
+    rhs(m,:) = rhs(m,:) - usoln(m + 2, Jint)/(hx^2);
     
     
     % convert the 2d grid function rhs into a column vector for rhs of system:
-    F = reshape(rhs,m*m,1);
+    F = reshape(rhs, m*n, 1);
     
     % form matrix A:
-    I = speye(m);
-    e = ones(m,1);
-    T = spdiags([e -4*e e],[-1 0 1],m,m);
-    S = spdiags([e e],[-1 1],m,m);
-    A = (kron(I,T) + kron(S,I)) / h^2;
-    
+    e = ones(max(m, n),1);
+    T = spdiags([(1/hx^2)*e (-2/hx^2 - 2/hy^2)*e (1/hx^2)*e], [-1 0 1], m, m);
+    S = spdiags([e e], [-1 1], n, n);
+    A = (kron(speye(n), T) + kron(S, speye(m)/hy^2));
     
     % Solve the linear system:
     uvec = A\F;  
@@ -67,10 +87,10 @@ function [h, err] = poisson(a, b, m, f, u, plot_soln)
     % insert this interior solution into usoln for plotting purposes:
     % (recall boundary conditions in usoln are already set) 
     
-    usoln(Iint,Jint) = reshape(uvec,m,m);
+    usoln(Iint, Jint) = reshape(uvec, m, n);
     
     % assuming true solution is known and stored in utrue:
-    err = max(max(abs(usoln-utrue)));   
+    err = max(max(abs(usoln - utrue)));   
     
     % plot results if specified:
     if plot_soln 
@@ -81,11 +101,13 @@ function [h, err] = poisson(a, b, m, f, u, plot_soln)
         % plot(X,Y,'g');  plot(X',Y','g')
         
         % plot solution:
-        contour(X,Y,usoln,30,'k')
+        contour(X, Y, usoln, 30, 'k')
         
-        axis([a b a b])
+        axis([ax bx ay by])
         daspect([1 1 1])
         title('Contour plot of computed solution')
         hold off
+
+        input('Press [Enter] to continue...')
     end
 end
