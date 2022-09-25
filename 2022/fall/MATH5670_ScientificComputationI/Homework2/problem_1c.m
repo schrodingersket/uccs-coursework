@@ -1,4 +1,3 @@
-#!/usr/bin/octave
 a = 0;
 b = 1;
 grid_points = 5;

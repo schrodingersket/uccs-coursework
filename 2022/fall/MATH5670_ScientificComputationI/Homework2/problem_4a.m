@@ -1,4 +1,3 @@
-#!/usr/bin/octave
 %
 % bvp_2.m 
 % second order finite difference method for the bvp
@@ -49,7 +48,7 @@ for jtest=1:ntest
   % interior rows:
   for i=2:m1
      A(i,i-1:i+1) = fdcoeffF(2, x(i), x((i-1):(i+1)));
-     end
+  end
 
   % last row for Neumann BC at bx:
   A(m2,m:m2) = fdcoeffF(1, x(m2), x(m:m2)); 

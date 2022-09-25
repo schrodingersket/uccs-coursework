@@ -1,5 +1,3 @@
-#!/usr/bin/env /usr/bin/octave
-
 order = 4;
 
 % Point of interest

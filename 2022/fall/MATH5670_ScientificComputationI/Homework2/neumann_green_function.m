@@ -1,6 +1,6 @@
 function G = neumann_green_function(xbar, x)
     arguments
-        xbar   (1,1) double {mustBeNonnegative,mustBeLessThanOrEqual(x_bar, 1)}
+        xbar   (1,1) double {mustBeNonnegative,mustBeLessThanOrEqual(xbar, 1)}
         x      (1,:) double {mustBeNonnegative,mustBeLessThanOrEqual(x, 1)}
     end
 

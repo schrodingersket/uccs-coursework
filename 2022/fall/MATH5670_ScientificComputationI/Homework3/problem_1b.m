@@ -1,5 +1,3 @@
-#!/usr/bin/env octave
-
 warning('off', 'all');
 
 a = [0, 0];   % bottom-left boundary (x, y)
@@ -30,14 +28,8 @@ disp(' ')
 fprintf('Grid points      Grid size (hx, hy)      Relative error\n')
 fprintf('-------------------------------------------------------\n')
 for i = 1:ntest
-    [step_sizes_x(i), step_sizes_y(i), errors(i)] = poisson_5pt(a(1), b(1), a(2), b(2), intervals(i, 1), intervals(i, 2), f, utrue);
-    fprintf('(%3d, %3d)       (%7.6f, %7.6f)   %10.3e \n',
-        intervals(i, 1) + 1,
-        intervals(i, 2) + 1,
-        step_sizes_x(i),
-        step_sizes_y(i),
-        errors(i)
-    );
+    [step_sizes_x(i), step_sizes_y(i), errors(i)] = poisson_5pt(b(1), a(1), b(2), a(2), intervals(i, 1), intervals(i, 2), f, utrue, 0);
+    fprintf('(%3d, %3d)       (%7.6f, %7.6f)   %10.3e \n', intervals(i, 1) + 1, intervals(i, 2) + 1, step_sizes_x(i), step_sizes_y(i), errors(i));
 end
 
 % Estimate order of accuracy from least squares fit:
@@ -51,5 +43,5 @@ Kp = Ap\bp;
 K = Kp(1);
 p = Kp(2);
 disp(' ')
-disp(sprintf('Least squares fit gives E(h) = %g * h^%g',exp(K),p))
+fprintf('Least squares fit gives E(h) = %g * h^%g',exp(K),p);
 disp(' ')

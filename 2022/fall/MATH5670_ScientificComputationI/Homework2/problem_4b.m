@@ -1,4 +1,3 @@
-#!/usr/bin/octave
 %
 % bvp4.m 
 % second order finite difference method for the bvp

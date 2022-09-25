@@ -6,18 +6,18 @@
 % 
 % From  http://www.amath.washington.edu/~rjl/fdmbook/chapter3  (2007)
 
-function [hx, hy, err] = poisson(ax, bx, ay, by, m, n, f, u, plot_soln)
+function [hx, hy, err] = poisson_5pt(bx, ax, by, ay, m, n, f, u, plot_soln)
     arguments
         bx (1,1) double
         ax (1,1) double {mustBeLessThan(ax, bx)}
         by (1,1) double
         ay (1,1) double {mustBeLessThan(ay, by)}
 
-        m (1,1) integer {mustBePositive}
-        n (1,1) integer {mustBePositive}
+        m (1,1) double {mustBePositive}
+        n (1,1) double {mustBePositive}
 
-        f  {mustBeA(f, function_handle)}
-        u  {mustBeA(u, function_handle)}
+        f  {mustBeA(f, "function_handle")}
+        u  {mustBeA(u, "function_handle")}
         
         plot_soln (1, 1) logical
     end
