@@ -67,14 +67,14 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     0 = \phi_x(0) = b_{\lambda} \lambda \cos{(0)} - c_{\lambda} \lambda \sin{(0)} = b_{\lambda} \lambda.
     $$
 
-    Since we assume non-zero eigenvalues (since we recover the trivial solution otherwise), we therefore see that 
-    $b_{\lambda} = 0$. Our Neumann boundary condition at $x = L$ yields:
+    If we assume non-zero eigenvalues (since we recover the trivial solution otherwise), we find that $b_{\lambda} = 0$.
+    Similarly, our Neumann boundary condition at $x = L$ yields:
 
     $$
     0 = \phi_x(L) = -c_{\lambda} \lambda \sin{(\lambda L)}.
     $$
 
-    Since we assume a non-trivial solution (i.e., $c_{\lambda} \neq 0$), we have that $\lambda$ must be:
+    We again assume a non-trivial solution (i.e., $c_{\lambda} \neq 0$), and so we have that $\lambda$ must be:
 
     $$
     \lambda_n = \frac{n \pi}{L}, n \in \mathbb{N}
@@ -82,7 +82,9 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
 
     Hence for any particular $n$, we have that $v_n(x, t) = \phi_n(x)G_n(t)$ is a solution to our PDE. Because arbitrary
     linear combinations of solutions are themselves solutions to the PDE by the principle of superposition, we have that
-    our transient solution $v(x, t)$ is given by (letting $a_n = c_n d_n$):
+    our transient solution $v(x, t)$ is given by:\footnote{
+        We reindex by letting $a_n = c_n d_n$.
+    }
 
     \begin{equation}
     v(x, t) = \sum\limits_{n=1}^{\infty}{c_n \cos{\left(\frac{n \pi x}{L}\right)}} d_n e^{-\left(\frac{n \pi}{L}\right)^2 t}
