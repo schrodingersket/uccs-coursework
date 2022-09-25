@@ -71,7 +71,7 @@ a) Show that the 9-point Laplacian (3.17) has the truncation error derived in Se
    \end{align*}
 
    \pagebreak
-   Substituting this result along with (2) into (1) yields the following truncation error for the 9-point Laplacian:
+   Substituting this result along with (2) into (1) yields the following expression for the 9-point Laplacian:
 
    \begin{align*}
       \nabla_9^2 \bar{u} &= \frac{1}{6h^2} \left[
@@ -87,8 +87,13 @@ a) Show that the 9-point Laplacian (3.17) has the truncation error derived in Se
                          &= \nabla^2 \bar{u} + \frac{1}{12} h^2 \nabla^2 f(x_i, y_j) + \mathcal{O}(h^4).
    \end{align*}
 
-   Hence our truncation error $\nabla_9^2 \bar{u} - \nabla^2 \bar{u}$ is given by 
-   $\frac{1}{12} h^2 \nabla^2 f_{ij} + \mathcal{O}(h^4)$, as desired.
+   Hence our (local) truncation error at $(x_i, y_j)$is given by:
+   
+   $$
+      \tau_{ij} = \nabla_9^2 \bar{u} - \nabla^2 \bar{u} = \frac{1}{12} h^2 \nabla^2 f(x_i, y_j) + \mathcal{O}(h^4).
+   $$
+
+   as desired.
    \ \\\\
 \end{solution}
 
