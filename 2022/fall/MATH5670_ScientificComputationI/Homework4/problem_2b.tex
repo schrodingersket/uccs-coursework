@@ -1,0 +1,16 @@
+Implement this method in \texttt{iter\_bvp\_Asplit.m} and observe that it converges at the same rate as forward 
+Gauss-Seidel for this problem.
+
+\begin{solution}\ \\\\
+    We show the error per iteration for the boundary value problem $u''(x) = f(x)$ for the forward and backward
+    Gauss-Seidel matrix splitting methods below: \\\\
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=.7\textwidth]{problem_2b_forward_backward_gs_error_500_iterations.png}
+        \caption[]{Comparison of matrix-splitting methods}
+    \end{figure}
+
+    As expected, we see that the forward and backward Gauss-Seidel method converge at the same rate.
+    \ \\\\
+\end{solution}
