@@ -116,7 +116,8 @@ function [hx, hy, err] = poisson_9pt(bx, ax, by, ay, m, n, f, laplace_f, u, plot
 
         axis([ax bx ay by])
         daspect([1 1 1])
-        title('Contour plot of computed solution')
+        title(sprintf('Contour plot of computed solution on [%0.2f, %0.2f] x [%0.2f, %0.2f]', ax, ay, bx, by))
+        print('-dpng', sprintf('poisson_9pt_stencil_%0.0f-%0.0f_%0.0f-%0.0f_hx-%0.3f_hy-%0.3f.png', ax, ay, bx, by, hx, hy));
         hold off
 
         input('Press [Enter] to continue...')
