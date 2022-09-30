@@ -47,3 +47,49 @@ fprintf('b_1 is (20 - T_0)(%0.5f) \n', c_m(lambda1));
 fprintf('b_2 is (20 - T_0)(%0.5f) \n', c_m(lambda2));
 fprintf('b_3 is (20 - T_0)(%0.5f) \n', c_m(lambda3));
 fprintf('b_4 is (20 - T_0)(%0.5f) \n', c_m(lambda4));
+
+T0 = 30;
+u0 = 20;
+x_0 = 0;
+x_1 = 1;
+x_bar = linspace(x_0, x_1);
+max_computation_order = 1;
+u_true = @(x) x; % true initial condition
+u_steady = T0 * ones(size(x_bar)); % true steady state
+
+% Computes a particular Fourier series term
+f_term = @(x, lambda, a_n, t) a_n * cos(lambda*x) * exp(-t * (lambda)^2);
+
+% Computes a particular Fourier cosine coefficient
+lambdas = [lambda1, lambda2, lambda3, lambda4];
+fs_coefficients = [(20 - T0)*c_m(lambda1), (20 - T0)*c_m(lambda2), (20 - T0)*c_m(lambda3), (20 - T0)*c_m(lambda4)];
+
+terms = length(fs_coefficients);
+    
+figure; 
+hold on;
+
+title(sprintf('Fourier series approximation to u(x, t_0) with %d terms', terms));
+xlabel('x');
+ylabel('Temperature u(x, t_0)');
+
+if u0 > T0
+    axis([x_0 x_1 T0-0.5 u0+0.5]);
+else
+    axis([x_0 x_1 u0-0.5 T0+0.5]);
+end
+
+for t=0:2:10
+    U = (T0) * ones(size(x_bar));
+    for j=1:terms
+        U = U + f_term(x_bar, lambdas(j), fs_coefficients(j), t);
+    end
+
+    plot(x_bar, U, 'DisplayName', sprintf('u(x, %0.2f)', t));
+end
+
+plot(x_bar, u_steady, 'DisplayName', 'u_s(x)');
+
+legend('Location', 'southeast');
+hold off;
+print('-dpng', sprintf('problem1_fourier_series_solution_%d_terms_t0_%d.png', terms, T0));
