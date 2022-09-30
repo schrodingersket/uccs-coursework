@@ -169,6 +169,40 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
 
     \begin{align*}
         \int_{0}^{1}{(20 - T_0) \cos{(\lambda_m x)}\; dx} &= \int_{0}^{1}{\sum_{n=1}^{\infty}{c_n \cos{(\lambda_n x)}} \cos{(\lambda_m x)}\; dx} \\
-                                                          &= \sum_{n=1}^{\infty}{c_n  \int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_m x)}\; dx} }
+                                                          &= \sum_{n=1}^{\infty}{c_n  \int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_m x)}\; dx} } \\
+                                                          &= c_m \int_{0}^{1}{\cos^2{(\lambda_m x)}\; dx} \\
+                                                          &\sim c_m \left(\frac{1}{2} + \frac{1}{2}\frac{\alpha}{(m-1)^2 \pi^2} \right).
     \end{align*}
+
+    where we use the fact that $\int_{0}^{1}{\cos^2{(\lambda_m x)}\; dx} \sim \left(\frac{1}{2} + \frac{1}{2}\frac{\alpha}{(m-1)^2 \pi^2} \right)$.
+    The integral on the left evaluates to:
+
+    \begin{align*}
+        \int_{0}^{1}{(20 - T_0) \cos{(\lambda_m x)}\; dx} &= \frac{(20 - T_0) \sin{(\lambda_m)}}{\lambda_m}
+    \end{align*}
+
+    and hence our Fourier coefficients $c_m$ are given by (for $m \ge 2$):
+
+    $$
+        c_m \sim \frac{(20 - T_0) \sin{(\lambda_m)}}{\lambda_m} \left(\frac{1}{2} + \frac{1}{2}\frac{\alpha}{(m-1)^2 \pi^2} \right)^{-1}.
+    $$
+
+    If we let $\alpha = \frac{1}{4}$, we calculate (numerically) the following values for $\lambda_n$ and $b_n$: 
+
+    \begin{center}
+        \begin{tabular}{ ||c c c c|| } 
+            \hline
+            $m$ & $\lambda_m$ & $c_m$ & Size comment  \\ [0.5ex] 
+            \hline\hline
+            $1$ & 0.48        & $1.03818 (20 - T_0)$  & it's big \\ 
+            \hline
+            $2$ & 3.219       & $-0.04692 (20 - T_0)$ & it's less big \\ 
+            \hline
+            $3$ & 6.323       & $0.01251 (20 - T_0)$  & it's small \\ 
+            \hline
+            $4$ & 9.451       & $-0.00553 (20 - T_0)$ & it's smaller \\ [1ex]
+        \hline
+        \end{tabular}
+    \end{center}
+
 \end{solution}

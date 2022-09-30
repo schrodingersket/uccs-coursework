@@ -34,3 +34,17 @@ legend('\alpha / \lambda', 'tan(\lambda)');
 xlabel('\lambda');
 
 print('-dpng', 'problem1_transcendental_eigenvalues.png')
+
+c_m = @(lambda) (sin(lambda)/lambda)/;
+
+lambda1 = .48;
+lambda2 = 3.219;
+lambda3 = 6.323;
+lambda4 = 9.451;
+
+fun = @(lambda, x) (cos(lamdba * x))^2;
+
+fprintf('b_1 is (20 - T_0)(%0.4f) \n', c_m(1, lambda1, 0.25));
+fprintf('b_2 is (20 - T_0)(%0.4f) \n', c_m(2, lambda2, 0.25));
+fprintf('b_3 is (20 - T_0)(%0.4f) \n', c_m(3, lambda3, 0.25));
+fprintf('b_4 is (20 - T_0)(%0.4f) \n', c_m(4, lambda4, 0.25));
