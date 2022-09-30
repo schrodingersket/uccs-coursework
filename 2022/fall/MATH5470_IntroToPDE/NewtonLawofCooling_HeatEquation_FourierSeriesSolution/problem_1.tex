@@ -1,5 +1,6 @@
 Solve the heat equation $u_{xx} = u_t$ on the domain $\Omega = [0, 1]$ with initial temperature distribution 
-$u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
+$u(x, 0) = x$, Neumann boundary condition $u_x(0, t) = 0$ at $x = 0$, and Newton's Law of Cooling 
+$u_x(1, t) = -\alpha\left[ u(1, t) - T_0 \right]$ at $x = 1$.
 
 \begin{solution}\ \\\\
     We assume the full solution $u(x, t)$ to our system is the sum of a steady state function $u_s(x)$ and a transient 
@@ -16,19 +17,19 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     $v(x, t) = \phi(x) G(t)$. Substituting the product form of $v(x, t)$ into the heat equation yields:
 
     $$
-        \frac{\partial^2}{\partial x^2} (\phi(x) G(t)) = \frac{\partial}{\partial t} (\phi(x) G(t)) \\
+        \frac{\partial^2}{\partial x^2} (\phi(x) G(t)) = \frac{\partial}{\partial t} (\phi(x) G(t))
     $$
 
     and hence (observing that the partial derivatives on either side reduce to standard derivatives):
 
     $$
-        G \frac{d^2 \phi}{d x^2} = \phi \frac{d G}{d t}.
+        G \frac{d^2 \phi}{d x^2} = \phi \frac{d G}{d t}
     $$
 
     We divide both sides by $\phi G$ to find:
 
     $$
-        \frac{1}{\phi} \frac{d^2 \phi}{d x^2} = \frac{1}{G} \frac{d G}{d t}.
+        \frac{1}{\phi} \frac{d^2 \phi}{d x^2} = \frac{1}{G} \frac{d G}{d t}
     $$
 
     Since the left-hand side depends on $x$ only and the right-hand side on $t$, the left and right sides must be equal
@@ -37,7 +38,7 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     The time-dependent side therefore becomes the first-order ODE:
 
     $$
-        \frac{d G}{d t} = -\lambda^2 G.
+        \frac{d G}{d t} = -\lambda^2 G
     $$
 
     with solutions for any particular $\lambda$ given by:\footnote{
@@ -46,25 +47,25 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     }
 
     $$
-        G_{\lambda}(t) = d_{\lambda}e^{-\lambda^2 t}.
+        G_{\lambda}(t) = d_{\lambda}e^{-\lambda^2 t}
     $$
 
     Similarly, the space-dependent side becomes the following second-order ODE:
 
     $$
-        \frac{d^2 \phi}{d x^2} = -\lambda^2 \phi.
+        \frac{d^2 \phi}{d x^2} = -\lambda^2 \phi
     $$
 
     with the following general solution (where coefficient values again depend on $\lambda$):
 
     $$
-        \phi(x) = b_{\lambda} \sin{(\lambda x)} + c_{\lambda} \cos{(\lambda x)}.
+        \phi(x) = b_{\lambda} \sin{(\lambda x)} + c_{\lambda} \cos{(\lambda x)}
     $$
 
     We substitute our boundary condition $0 = v_x(0, t) = \phi_x(0)$ to find:
 
     $$
-        0 = \phi_x(0) = \lambda b_{\lambda} \cos{(0)} - \lambda c_{\lambda} \sin{(0)} = \lambda b_{\lambda}.
+        0 = \phi_x(0) = \lambda b_{\lambda} \cos{(0)} - \lambda c_{\lambda} \sin{(0)} = \lambda b_{\lambda}
     $$
 
     If we assume non-zero eigenvalues (since we recover the trivial solution otherwise), we find that $b_{\lambda} = 0$.
@@ -135,8 +136,8 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
         \sin{(\alpha - \beta)} = \sin{(\alpha)}\cos{(\beta)} - \sin{(\beta)}\cos{(\alpha)}
     \end{align*}
 
-    Hence the left expression inside the parenthesis in the above integral evaluation becomes\footnote[\dagger]{
-        We substitute $\cos{(\lambda_k)} = \frac{1}{\alpha} \lambda_k \sin{(\lambda_k)}$
+    Hence the left expression inside the parenthesis in the above integral evaluation becomes\footnote{
+        We also substitute $\cos{(\lambda_k)} = \frac{1}{\alpha} \lambda_k \sin{(\lambda_k)}$ from our transcendental equation.
     }:
 
     \begin{align*}
@@ -173,8 +174,7 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     \begin{align*}
         \int_{0}^{1}{(20 - T_0) \cos{(\lambda_m x)}\; dx} &= \int_{0}^{1}{\sum_{n=1}^{\infty}{c_n \cos{(\lambda_n x)}} \cos{(\lambda_m x)}\; dx} \\
                                                           &= \sum_{n=1}^{\infty}{c_n  \int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_m x)}\; dx} } \\
-                                                          &= c_m \int_{0}^{1}{\cos^2{(\lambda_m x)}\; dx} \\
-                                                          &\sim c_m \left(\frac{1}{2} + \frac{1}{2}\frac{\alpha}{(m-1)^2 \pi^2} \right).
+                                                          &= c_m \int_{0}^{1}{\cos^2{(\lambda_m x)}\; dx}.
     \end{align*}
 
     where we use the fact that $\int_{0}^{1}{\cos^2{(\lambda_m x)}\; dx} \sim \left(\frac{1}{2} + \frac{1}{2}\frac{\alpha}{(m-1)^2 \pi^2} \right)$.
@@ -187,23 +187,23 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     and hence our Fourier coefficients $c_m$ are given by (for $m \ge 2$):
 
     $$
-        c_m \sim \frac{(20 - T_0) \sin{(\lambda_m)}}{\lambda_m} \left(\frac{1}{2} + \frac{1}{2}\frac{\alpha}{(m-1)^2 \pi^2} \right)^{-1}.
+        c_m = \frac{(20 - T_0) \sin{(\lambda_m)}}{\lambda_m} \left(\int_{0}^{1}{\cos^2{(\lambda_m x)}\; dx} \right)^{-1}.
     $$
 
     If we let $\alpha = \frac{1}{4}$, we calculate (numerically) the following values for $\lambda_n$ and $b_n$: 
 
     \begin{center}
-        \begin{tabular}{ ||c c c c|| } 
+        \begin{tabular}{ ||c c c|| } 
             \hline
-            $m$ & $\lambda_m$ & $c_m$ & Size comment  \\ [0.5ex] 
+            $m$ & $\lambda_m$ & $c_m$                  \\ [0.5ex] 
             \hline\hline
-            $1$ & 0.48        & $1.03818 (20 - T_0)$  & it's big \\ 
+            $1$ & 0.48        & $1.03818 (20 - T_0)$  \\ 
             \hline
-            $2$ & 3.219       & $-0.04692 (20 - T_0)$ & it's less big \\ 
+            $2$ & 3.219       & $-0.04692 (20 - T_0)$ \\ 
             \hline
-            $3$ & 6.323       & $0.01251 (20 - T_0)$  & it's small \\ 
+            $3$ & 6.323       & $0.01251 (20 - T_0)$  \\ 
             \hline
-            $4$ & 9.451       & $-0.00553 (20 - T_0)$ & it's smaller \\ [1ex]
+            $4$ & 9.451       & $-0.00553 (20 - T_0)$ \\ [1ex]
         \hline
         \end{tabular}
     \end{center}
@@ -279,7 +279,7 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
                                                               &= \frac{1}{2} + \frac{1}{2} \frac{\alpha}{(n-1)^2 \pi^2}.
     \end{align*}
 
-    Hence $\int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_n x)}} \sim \frac{1}{2} + \frac{1}{2} \frac{\alpha}{(n-1)^2 \pi^2}$, as desired.
-
-    \footnotetext{I did indeed like this mathematical adventure. :)}
+    Hence $\int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_n x)}} \sim \frac{1}{2} + \frac{1}{2} \frac{\alpha}{(n-1)^2 \pi^2}$, as desired.\footnote{
+        I did indeed like this mathematical adventure. :)
+    }
 \end{solution}
