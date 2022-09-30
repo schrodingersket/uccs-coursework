@@ -28,7 +28,12 @@ a) Test this script by performing a grid refinement study to verify that it is s
 
     Since our least squares fit for error is given by $E(h) = 0.014195 h^{1.99622}$, we see that the error is 
     $\mathcal{O}(h^2)$, as expected.
-    \ \\
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{poisson_5pt_stencil_0-0_1-1_hx-0.003_hy-0.003.png}
+        \caption{Contour plot of solution on $[0, 1] \times [0, 1]$ with grid size $\Delta x = \Delta y = 0.0025$}
+    \end{figure}
 \end{solution}
 
 \pagebreak
@@ -58,7 +63,12 @@ b) Modify the script so that it works on a rectangular domain $[a_x, b_x] \times
 
     Since our least squares fit for error is given by $E(h) = 0.030209 h^{1.99712}$, we see that the error is 
     $\mathcal{O}(h^2)$, as expected.
-    \ \\
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{poisson_5pt_stencil_0-0_1-2_hx-0.003_hy-0.003.png}
+        \caption{Contour plot of solution on $[0, 1] \times [0, 2]$ with grid size $\Delta x = \Delta y = 0.0025$}
+    \end{figure}
 \end{solution}
 
 \pagebreak
@@ -88,5 +98,10 @@ c) Further modify the code to allow $\Delta x \neq \Delta y$ and test the modifi
 
     Since our least squares fit for error with respect to $x$ is given by $E_x(h) = 0.0350613 h^{1.99446}$, and 
     $E_y(h) = 0.00879903 h^{1.99446}$, we see that the error is $\mathcal{O}(h^2)$, as expected.
-    \ \\
+    
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{poisson_5pt_stencil_0-0_1-2_hx-0.003_hy-0.005.png}
+        \caption{Contour plot of solution on $[0, 1] \times [0, 2]$ with grid size $\Delta x = 0.0025$ and $\Delta y = 0.005$}
+    \end{figure}
 \end{solution}
