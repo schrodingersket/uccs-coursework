@@ -97,9 +97,11 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
     \pagebreak
 
     From the above plot, we see that the plots of $\tan(\lambda)$ and $\frac{\alpha}{\lambda}$ (evidently) intersect near 
-    $\lambda_2 = (2 - 1)\pi$ and $\lambda_3 = (3 - 2) \pi$ and so we conjecture that $\lambda_n \approx (n - 1) \pi$.
+    $\lambda_2 = (2 - 1)\pi$ and $\lambda_3 = (3 - 2) \pi$; in fact, as $n$ increases, we find that $\lambda_n$ gets closer
+    to $(n - 1) \pi$ and so we conjecture that $\lambda_n \sim (n - 1) \pi$.
 
-    To find our constants $c_n$, we first observe that our initial transient condition is given by:
+    \ \\
+    To find our constants $c_n$, we first observe that our transient initial condition is given by:
 
     $$
         20 = u(x, 0) = u_s(x) + v(x, 0) = T_0 + v(x, 0)
@@ -113,7 +115,8 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
 
     In order to isolate a particular $c_n$, we wish to multiply both sides by $\cos{(\lambda_m x)}$ and integrate over our domain;
     to do so, we must first show that $\cos{(\lambda_n x)}$ and $\cos{(\lambda_m x)}$ are orthogonal with respect to the integral 
-    inner product, i.e., $\int_{0}^{1}{\cos{(\lambda_m x)}\cos{(\lambda_n x)}\; dx} = 0$.
+    inner product, i.e., that
+    \linebreak $\int_{0}^{1}{\cos{(\lambda_m x)}\cos{(\lambda_n x)}\; dx} = 0$.
 
     \pagebreak
 
@@ -125,14 +128,14 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
                                                                   &= \frac{1}{2} \left[ \frac{\sin{(\lambda_m + \lambda_n)x}}{\lambda_m + \lambda_n} + \frac{\sin{(\lambda_m - \lambda_n)x}}{\lambda_m - \lambda_n} \right] \bigg\vert_{0}^{1} \\
                                                                   &= \frac{1}{2} \left[ \frac{\sin{(\lambda_m + \lambda_n)}}{\lambda_m + \lambda_n} + \frac{\sin{(\lambda_m - \lambda_n)}}{\lambda_m - \lambda_n} \right].
     \end{align*}
-    To further simplify this expresion, we recall the following two $\sin$ identities:
+    To further simplify this expresion, we recall the following two sine identities:
 
     \begin{align*}
         \sin{(\alpha + \beta)} = \sin{(\alpha)}\cos{(\beta)} + \sin{(\beta)}\cos{(\alpha)} \\
         \sin{(\alpha - \beta)} = \sin{(\alpha)}\cos{(\beta)} - \sin{(\beta)}\cos{(\alpha)}
     \end{align*}
 
-    Hence left expression inside the parenthesis in the above integral evaluation becomes\footnote[\dagger]{
+    Hence the left expression inside the parenthesis in the above integral evaluation becomes\footnote[\dagger]{
         We substitute $\cos{(\lambda_k)} = \frac{1}{\alpha} \lambda_k \sin{(\lambda_k)}$
     }:
 
@@ -240,6 +243,43 @@ $u(x, 0) = x$ and Neumann boundary conditions $u_x(0, t) = u_x(1, t) = 0$.
         \includegraphics[width=0.7\textwidth]{problem1_fourier_series_solution_4_terms_t0_30.png}
         \caption{Fourier Series solution for $T_0 = 30^{\circ}$C}
     \end{figure}
+
+    \pagebreak
+    \textbf{Extra Credit:}\ \\
+
+    To show that $\int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_n x)}\; dx} \sim \frac{1}{2} + \frac{1}{2} \frac{\alpha}{(n - 1)^2 \pi^2}$,
+    we first recall the following cosine identity:
+
+    $$
+        \cos^{2}{(\beta)} = \frac{\cos{(2 \beta)} + 1}{2}
+    $$
+
+    Our integral therefore becomes:
+
+    \begin{align*}
+        \int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_n x)}} &= \int_{0}^{1}{\cos^2{(\lambda_n x)}\; dx} \\
+                                                              &= \int_{0}^{1}{\frac{1}{2} + \frac{\cos{(2 \lambda_n x)}}{2}\; dx} \\
+                                                              &= \left( \frac{x}{2} + \frac{\sin{(2 \lambda_n x)}}{4 \lambda_n} \right) \bigg\vert_{0}^{1} \\
+                                                              &= \frac{1}{2} + \frac{\sin{(2 \lambda_n)}}{4 \lambda_n}.
+    \end{align*}
+
+    To simplify this further, we utilize the following double-angle sine identity:
+
+    $$
+        \sin{(2 \beta)} = 2 \sin{(\beta)} \cos{(\beta)}
+    $$
+
+    ...in conjunction with our transcendental equation $\sin{(\lambda_n) = \frac{\alpha \cos{(\lambda_n)}}{\lambda_n}}$ and our
+    earlier conjecture that $\lambda_n \sim (n - 1) \pi$ for $n \ge 2$ to find:
+
+    \begin{align*}
+        \frac{1}{2} + \frac{\sin{(2 \lambda_n)}}{4 \lambda_n} &= \frac{1}{2} + \frac{2 \sin{(\lambda_n)} \cos{(\lambda_n)}}{4 \lambda_n} \\
+                                                              &= \frac{1}{2} + \frac{2 \alpha \cos^2{(\lambda_n)}}{4 \lambda_n^2} \\
+                                                              &\approx \frac{1}{2} + \frac{\alpha \cos^2{\left((n-1) \pi\right)}}{2 (n-1)^2 \pi^2} \\
+                                                              &= \frac{1}{2} + \frac{1}{2} \frac{\alpha}{(n-1)^2 \pi^2}.
+    \end{align*}
+
+    Hence $\int_{0}^{1}{\cos{(\lambda_n x)} \cos{(\lambda_n x)}} \sim \frac{1}{2} + \frac{1}{2} \frac{\alpha}{(n-1)^2 \pi^2}$, as desired.
 
     \footnotetext{I did indeed like this mathematical adventure. :)}
 \end{solution}
