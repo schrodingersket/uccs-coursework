@@ -1,0 +1,18 @@
+t = linspace(.01, 4*pi);
+
+alpha = 1/4;
+f = @(x) alpha ./ x;
+g = @(x) tan(x);
+y = tan(t);
+
+figure;
+hold on;
+grid on;
+
+title('Transendental equation solution for \alpha = 0.25');
+plot(t, x);
+plot(t, y);
+axis([0 4*pi -2 2]);
+legend('\alpha / \lambda', 'tan(\lambda)');
+
+print('-dpng', 'problem1_transcendental_eigenvalues.png')
