@@ -1,4 +1,53 @@
-TODO
+The Gauss-Seidel method for the discretization of $u''(x) = f(x)$ takes the form (4.5) if
+we assume we are marching forwards across the grid for $\{k\}_{i=1}^{m}$. We can also
+define a \textit{backwards Gauss-Seidel method} by setting
+
+\begin{equation}
+    u_i^{[k+1]} = \frac{1}{2} \left(u_{i-1}^{[k]} + u_{i+1}^{[k+1]} - h^2 f_i \right)
+\end{equation}
+
+Show that this is a matrix splitting method of the type described in Section 4.2 with
+$M = D - U$ and $N = L$.
 
 \begin{solution}\ \\\\
+    We collect all $[k+1]$ iteration terms on the left of (3) and all other terms on the right to find:
+
+    \begin{equation}
+        2 u_i^{k+1} - u_{i+1}^{[k+1]} = u_{i-1}^{[k]} - h^2 f_i \\
+    \end{equation}
+
+    If we recall that $D$, $U$, and $L$ are given by
+
+    \[
+    D = -\frac{1}{h^2} \begin{pmatrix} 
+         2 &       0 \\
+         0 &       2 &      0 \\
+           & \ddots & \ddots & \ddots \\
+           &        &      0 &      2 &  0 \\
+           &        &        &      0 &  2 
+    \end{pmatrix},\;
+    U = -\frac{1}{h^2} \begin{pmatrix} 
+         0 &       1 \\
+           &      0 &      1 \\
+           & \ddots & \ddots & \ddots \\
+           &        &      0 &      0 &  1 \\
+           &        &        &      0 &  0 
+    \end{pmatrix}, \;
+    L = U^T
+    \]
+
+    then (4) becomes:
+
+    $$
+        (D - U) \textbf{u}^{[k+1]} = L \textbf{u}^{[k]} + f_i
+    $$
+
+    and hence 
+
+    \begin{align*}
+        M &= D - U \\
+        N &= L
+    \end{align*}
+    
+    as desired.
 \end{solution}
