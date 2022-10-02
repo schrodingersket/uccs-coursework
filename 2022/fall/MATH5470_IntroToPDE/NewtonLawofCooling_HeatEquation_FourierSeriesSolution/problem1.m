@@ -38,6 +38,8 @@ print('-dpng', 'problem1_transcendental_eigenvalues.png')
 fun = @(lambda, x) (cos(lambda * x)).^2;
 c_m = @(lambda) sin(lambda) / (lambda * integral(@(x) fun(lambda, x), 0, 1, 'RelTol',0,'AbsTol',1e-12));
 
+% Found visually via Desmos: https://www.desmos.com/calculator/6drk08awls
+%
 lambda1 = .48;
 lambda2 = 3.219;
 lambda3 = 6.323;

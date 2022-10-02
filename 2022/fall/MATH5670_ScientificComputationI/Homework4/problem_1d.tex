@@ -19,8 +19,9 @@ not work well. Explain what is wrong with this and derive the correct expression
         \caption{Comparison of Naive SOR implementation and Correct SOR implementation}
     \end{figure}
 
-    The above naive two-step formulation amplifies the error in each GS step by a factor of $\omega$ before applying
-    the iteration update. (I \textbf{think} this is what's wrong with this method).
+    The above naive two-step formulation fails to account for the fact that the Gauss-Seidel method is an implicit
+    method which encodes a dependency on a grid value from the current iteration $[k+1]$ when solving the system for
+    the current iteration values. 
 
     To derive (4.24), we first recall the Gauss-Seidel update:
 
