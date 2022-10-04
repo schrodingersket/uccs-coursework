@@ -83,7 +83,7 @@ transient solution.
     \phi(x) = b_{\lambda} \sin{(\lambda x)} + c_{\lambda} \cos{(\lambda x)}.
     $$
 
-    We substitute our boundary condition $10 = u(0, t) = 10 + v_x(0, t) = \phi_x(0) G(t)$ to find:
+    We substitute our boundary condition $10 = u(0, t) = 10 + v_x(0, t)$ to find:
 
     $$
     10 = 10 + \phi(0) G(t) = 10 + \left[b_{\lambda} \sin{(0)} + c_{\lambda} \cos{(0)}\right] G(t) = 10 + c_{\lambda} G(t).
@@ -106,7 +106,7 @@ transient solution.
       = \lambda b_{\lambda} \cos{(\lambda L)} G(t).
     $$
 
-    Since we are looking to find non-trivial solutions, we assume $c_{\lambda} \neq 0$ (and recall that $G(t) \neq 0$).
+    Since we are looking to find non-trivial solutions, we assume $b_{\lambda} \neq 0$ (and recall that $G(t) \neq 0$).
     Hence $\lambda$ must satisfy:
 
     $$
@@ -122,45 +122,51 @@ transient solution.
     }
 
     \begin{equation}
-    v(x, t) = \sum\limits_{n=1}^{\infty}{c_n \cos{\left(\frac{n \pi x}{L}\right)}} d_n e^{-\left(\frac{n \pi}{L}\right)^2 t}
-            = \sum\limits_{n=1}^{\infty}{a_n \cos{(n \pi x)}} e^{-(n \pi)^2 t}.
+    v(x, t) = \sum\limits_{n=1}^{\infty}{b_n \sin{(\lambda_n x)}} d_n e^{-\lambda_n^2 t}
+            = \sum\limits_{n=1}^{\infty}{a_n \sin{(\lambda_n x)}} e^{-\lambda_n^2 t}
     \end{equation}
 
-    To determine our Fourier cosine coefficients $a_n$, we substitute (1) and (2) into our initial condition 
-    $u(x, 0) = x$:
+    where $\lambda_n = \frac{(2 n - 1) \pi}{2L}$. To determine our Fourier cosine coefficients $a_n$, we substitute (1)
+    and (2) into our initial condition $u(x, 0) = 10 + x$:
 
     \begin{align*}
-        x = u(x, 0) = u_s(x) + v(x, 0) = \frac{1}{2} + \sum\limits_{n=1}^{\infty}{a_n \cos{(n \pi x)}}.
+        10 + x = u(x, 0) = u_s(x) + v(x, 0) = 10 + \sum\limits_{n=1}^{\infty}{a_n \sin{(\lambda_n x)}}.
     \end{align*}
 
-    We subtract $\frac{1}{2}$ from each side, multiply by $\cos{(m \pi x)}$ for some fixed $m \in \mathbb{N}$, and 
-    integrate over our domain $\Omega = [0, 1]$ to find:\footnote{
+    We subtract 10 from each side, multiply by $\sin{(\lambda_m x)}$ for some fixed $m \in \mathbb{N}$, and 
+    integrate over our domain $\Omega = [0, L]$ to find:\footnote{
         We may switch the order of integration and summation by the Dominated Convergence Theorem.
+    } \footnote{
+        It can be shown via sine identities that 
+        $\int_0^L{\sin{(\lambda_m x)} \sin{(\lambda_n x)}}\; dx = \frac{L}{2} \delta_{mn}$ for 
+        $\lambda_n = \frac{(2n - 1) \pi}{2L}$.
     }
 
     \begin{align*}
-        \int_{0}^{1}{\left(x - \frac{1}{2}\right) \cos{(m \pi x)}\; dx}
-            &= \int_{0}^{1}{\sum\limits_{n=1}^{\infty}{a_n \cos{(n \pi x)} \cos{(m \pi x)} }\; dx} \\
-            &= \sum\limits_{n=1}^{\infty}{a_n \int_{0}^{1}{\cos{(n \pi x)} \cos{(m \pi x)}\; dx }} \\
-            &= \frac{1}{2} a_m.
+        \int_{0}^{L}{x \sin{\frac{(2 m - 1) \pi x}{2L}}\; dx}
+            &= \int_{0}^{L}{\sum\limits_{n=1}^{\infty}{a_n \sin{\frac{(2 n - 1) \pi x}{2L}} \sin{\frac{(2 m - 1) \pi x}{2L}} }\; dx} \\
+            &= \sum\limits_{n=1}^{\infty}{a_n \int_{0}^{L}{\sin{\frac{(2 n - 1) \pi x}{2L}} \sin{\frac{(2 m - 1) \pi x}{2L}} \; dx }} \\
+            &= \frac{L}{2} a_m.
     \end{align*}
 
     Our Fourier cosine coefficients (for $m \ge 1$) are therefore given by:
 
     \begin{alignat*}{2}
-        a_m &= 2 \int_{0}^{1}{\left( x - \frac{1}{2} \right) \cos{(m \pi x)}\; dx} \\
-            % &= 2 \int_{0}^{1}{x \cos{(m \pi x)}\; dx} - \int_{0}^{1}{\cos{(m \pi x)}\; dx} \\
-            &= 2 \int_{0}^{1}{x \cos{(m \pi x)}\; dx} - \frac{1}{m \pi} \sin{(m \pi x)} \biggm\rvert_{0}^{1} \\
-            &= 2 \int_{0}^{1}{x \cos{(m \pi x)}\; dx} \\
-            &= -\frac{2}{(m \pi)^2} \left(1 - (-1)^{m}\right).
+        a_m &= \frac{2}{L} \int_{0}^{L}{x \sin{\frac{(2m - 1) \pi x}{2L}} \; dx} \\
+            &= -\frac{4}{(2m - 1)\pi} x \cos{\frac{(2m - 1) \pi x}{2L}} \biggm\rvert_{0}^{L} 
+               + \frac{4}{(2m - 1)\pi} \int_{0}^{L}{\cos{\frac{(2m - 1) \pi x}{2L}} \; dx}  \\
+            &= 0 + \frac{8 L}{(2m - 1)^2 \pi^2} \sin{\frac{(2m - 1) \pi x}{2L} \biggm\rvert_{0}^{L} \; dx}  \\
+            &= \frac{8L}{(2m - 1)^2 \pi^2} (-1)^{m+1}.
     \end{alignat*}
 
+    \pagebreak
     Substituting this expression into (2) yields our full solution $u(x, t)$:
     
-    $$
-    u(x, t) = u_s(x) + v(x, t) 
-            = \frac{1}{2} + \sum\limits_{n=1}^{\infty}{-\frac{2}{(n \pi)^2} \left(1 - (-1)^{m}\right) \cos{(n \pi x)} e^{-(n \pi)^2 t}}
-    $$
+    \begin{align*}
+    u(x, t) &= u_s(x) + v(x, t) \\
+            &= 10 + \sum\limits_{n=1}^{\infty}{a_n \sin{\left(\lambda_n x\right)} e^{-\lambda_n^2 t}} \\
+            &= 10 + \sum\limits_{n=1}^{\infty}{\frac{8 L}{(2n - 1)^2 \pi^2} (-1)^{n+1} \sin{\left[\frac{(2n - 1) \pi}{2L} x \right]} e^{-\left[ \frac{(2 n - 1) \pi}{2L} \right]^2 t}}
+    \end{align*}
 
     % For completeness, we plot two Fourier Series approximations to $u(x, 0) = x$:
 
