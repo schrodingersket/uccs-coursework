@@ -1,0 +1,44 @@
+Let 
+
+$$
+R(z) = \frac{1 + z/2}{1 - z/2}.
+$$
+
+Show that $R(z) = e^z + \mathcal{O}(z^3)$ and conclude that the one-step error of the trapezoidal method on this problem
+is $\mathcal{O}(k^3)$.
+
+\begin{solution}\ \\\\
+    Let $k < \frac{1}{\lambda}$. Then we have
+
+    $$
+    \frac{1}{1 - z/2} = \sum\limits_{n=0}^{\infty}{\left(\frac{z}{2}\right)^n}
+    $$
+
+    as a geometric series. We multiply this series by $(1 + z/2)$ to find:
+
+    \begin{align*}
+    \frac{1 + z/2}{1 - z/2} &= \left(1 + \frac{z}{2}\right) \sum\limits_{n=0}^{\infty}{\left(\frac{z}{2}\right)^n} \\
+                            &= \left(1 + \frac{z}{2}\right) 
+                             + \left(1 + \frac{z}{2}\right) \frac{z}{2} 
+                             + \left(1 + \frac{z}{2}\right) \left(\frac{z}{2} \right)^2 
+                             + \left(1 + \frac{z}{2}\right) \sum\limits_{n=3}^{\infty}{\left(\frac{z}{2}\right)^n} \\
+                            &= 1 + z + \frac{z^2}{2} + \frac{z^3}{4}  
+                             + \left(1 + \frac{z}{2}\right) \sum\limits_{n=3}^{\infty}{\left(\frac{z}{2}\right)^n} \\
+                            &= 1 + z + \frac{z^2}{2!} + \left( \frac{2z^3}{24} + \frac{x^3}{3!} \right)
+                             + \left(1 + \frac{z}{2}\right) \sum\limits_{n=3}^{\infty}{\left(\frac{z}{2}\right)^n} \\
+                            &= e^z + \frac{2z^3}{24} 
+                             + \sum\limits_{n=3}^{\infty}{\left(1 + \frac{z}{2}\right) \left(\frac{z}{2}\right)^n - \frac{z^{n+1}}{(n+1)!}} \\
+                            &= e^z + \mathcal{O}(z^3).
+    \end{align*}
+
+    Since $z = \lambda k$, we have:
+
+    \begin{align*}
+    U^{n+1} &= \left( \frac{1 + z/2}{1 - z/2} \right) U^n \\
+            &= \left[e^{\lambda k} + \mathcal{O}\left( k^3 \lambda^3 \right)\right] U^n \\
+            &= \mathcal{O}\left( k^3 \right) U^n.
+    \end{align*}
+
+    Hence the one-step error of the trapezoidal method on this problem is $\mathcal{O}(k^3)$, as desired.
+    \ \\
+\end{solution}

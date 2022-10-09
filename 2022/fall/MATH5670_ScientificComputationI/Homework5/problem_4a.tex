@@ -1,0 +1,28 @@
+Apply the trapezoidal method to the equation $u' = \lambda u$ and show that 
+
+$$
+    U^{n+1} = \left( \frac{1 + z/2}{1 - z/2} \right) U^n
+$$
+
+where $z = \lambda k$.
+
+\begin{solution}\ \\\\
+    Recall that the trapezoidal method is given by
+
+    $$
+    \frac{U^{n+1} - U^n}{k} = \frac{1}{2} \left( f(U^n) + f(U^{n+1}) \right). 
+    $$
+
+    Substituting $f(U^n) = \lambda U^n$ and $f(U^{n+1}) = \lambda U^{n+1}$, rearranging terms, and defining 
+    $z \coloneqq \lambda k$ yields:
+
+    \begin{align*}
+        U^{n+1} - U^{n} &= \frac{k}{2} \left( \lambda U^n + \lambda U^{n+1} \right) \\
+        U^{n+1} - \frac{k \lambda}{2} U^{n+1} &= U^n + \frac{k \lambda}{2} U^{n} \\
+        \left(1 - \frac{k \lambda}{2} \right) U^{n+1}  &= \left(1 + \frac{k \lambda}{2} \right) U^{n} \\
+        U^{n+1}  &= \left( \frac{1 + z/2}{1 - z/2} \right) U^{n}
+    \end{align*}
+
+    as desired.
+    \ \\
+\end{solution}
