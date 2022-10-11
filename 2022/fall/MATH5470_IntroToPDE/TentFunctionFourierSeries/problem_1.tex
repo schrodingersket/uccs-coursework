@@ -1,0 +1,43 @@
+Find the Fourier Series for the tent function defined by:
+
+\[
+f(x) = \begin{cases}
+    1 + x, & x \in (-1, 0) \\
+    1 - x, & x \in (0, 1)
+\end{cases}    
+\]
+
+where $f(x) = f(x + 2)$.
+
+\begin{solution}\ \\\\
+    We wish to find the Fourier coefficients $a_0$, $a_n$, and $b_n$ for $f(x)$ represented by:
+
+    $$
+    f(x) \sim a_0 + \sum\limits_{n=1}^{\infty}{a_n \cos{\left(\frac{n \pi x}{L}\right)} + b_n \sin{\left(\frac{n \pi x}{L}\right)}}
+    $$
+
+    We first solve for $a_0$ with the observation that $L = 1$:
+    \begin{flalign*}
+        a_0 &= \frac{1}{2L} \int_{-L}^{L}{f(x)\; dx}  &\\
+            &= \frac{1}{2} \int_{-1}^{0}{1 + x \; dx} 
+             + \frac{1}{2} \int_{0}^{1}{1 - x \; dx} &\\
+            &= \ \\\\
+    \end{flalign*}
+    
+    Next, we find the Fourier cosine coefficients:
+    \begin{flalign*}
+        a_n &= \frac{1}{L} \int_{-L}^{L}{f(x) \cos{\left( \frac{n \pi x}{L}\right)} \; dx} &\\
+            &= \int_{-1}^{0}{(1 + x) \cos{\left(n \pi x\right)}\; dx} 
+             + \int_{0}^{1}{(1 - x) \cos{\left(n \pi x\right)}\; dx} &\\
+            &= \ \\\\
+    \end{flalign*}
+    
+    Lastly, we solve for the Fourier sine coefficients:
+    \begin{flalign*}
+        b_n &= \frac{1}{L} \int_{-L}^{L}{f(x) \sin{\left( \frac{n \pi x}{L}\right)} \; dx}  &\\
+            &= \int_{-1}^{0}{(1 + x) \sin{\left(n \pi x\right)}\; dx} 
+             + \int_{0}^{1}{(1 - x) \sin{\left(n \pi x\right)}\; dx} &\\
+            &= 
+    \end{flalign*}
+    \ \\
+\end{solution}
