@@ -1,7 +1,7 @@
 Consider the implicit Runge-Kutta method
 
 \begin{align*}
-  U^* &= U^n + \frac{h}{2} f\left( t_n + \frac{h}{2} U* \right) \\
+  U^* &= U^n + \frac{h}{2} f\left( t_n + \frac{h}{2}, U^* \right) \\
   U^{n+1} &= U^n + h f\left(t_n + \frac{h}{2}, U^* \right)
 \end{align*}
 
