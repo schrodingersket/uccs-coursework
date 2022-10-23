@@ -1,4 +1,4 @@
-steps = [5, 20, 100, 200, 300, 400];
+steps = [5, 20, 100, 200, 300];
 
 x0 = 0;
 x1 = 1;
@@ -34,10 +34,23 @@ for i=1:length(steps)
 
 
     [eigvec eigval] = eig(A);
-    alpha = flip(eigval);
+    alpha = flip(diag(eigval));
     
     lambda = alpha ./ (h^2);
     lambdas(i, :) = lambda(1:n_lambdas);
+
+    if i == length(steps)
+        figure;
+        hold on;
+        for j = 1:n_lambdas
+            plot(eigvec(:, j), 'DisplayName', sprintf('Eigenvector for j=%d', j));
+        end
+
+        legend;
+
+        input('Press [Enter] to continue...')
+        hold off;
+    end
 end
 
 
@@ -49,4 +62,5 @@ disp(sprintf('      %d      %3.4f   %3.4f   %3.4f  %3.4f  %3.4f', Inf, -(1*pi)^2
 
 eig_err = abs(lambdas(:, 1) - (-pi^2));
 error_loglog(step_sizes, eig_err)
+
 input('Press [Enter] to continue...')

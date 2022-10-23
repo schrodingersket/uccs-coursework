@@ -1,5 +1,5 @@
-% steps = [5, 20, 30, 50];
-steps = [2:20];
+steps = [5, 20, 30, 50];
+% steps = [2:20];
 
 x0 = 0;
 x1 = 1;
@@ -38,7 +38,19 @@ for i=1:length(steps)
     
     lambda = alpha ./ (h^2);
     lambdas(i, :) = lambda(1:n_lambdas);
-    full(A)
+    
+    if i == length(steps)
+        figure;
+        hold on;
+        for j = 1:n_lambdas
+            plot(eigvec(:, j), 'DisplayName', sprintf('Eigenvector for j=%d', j));
+        end
+
+        legend;
+
+        input('Press [Enter] to continue...')
+        hold off;
+    end
 end
 
 
