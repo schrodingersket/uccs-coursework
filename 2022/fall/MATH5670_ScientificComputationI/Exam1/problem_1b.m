@@ -14,12 +14,12 @@ for i=1:length(steps)
     m = steps(i);
     fprintf('Calculating eigenvalues for %d points...\n', m)
     
-    h = (x1 - x0) / (m);
+    h = (x1 - x0) / (m+1);
 
-    % Create internal matrix A 
+    % Create solution matrix A 
     %
-    e = ones(m, 1);
-    A = spdiags([e -2*e e], -1:1, m, m);
+    e = ones(m+1, 1);
+    A = 1/h^2*spdiags([e -2*e e], -1:1, m+1, m+1);
 
     alpha = 0;
 
@@ -30,16 +30,27 @@ for i=1:length(steps)
     %
     A(1, 1) = A(1, 1) + alpha * h^2;
     
-    % Right Robin condition
+    % Second-order Right Robin condition
     %
-    A(m, m) = 4/(3 + 2*h) - 2;
-    A(m, m-1) = 1 - 1/(3 + 2*h);
+    A(m+1, m+1) = (4/(3 + 2*h) - 2);
+    A(m+1, m) = (1 - 1/(3 + 2*h));
+
+
+    % First-order Right Robin condition
+    %
+%     A(m+1,m+1) = (1+h)/h^2;
+%     A(m+1,m) = -1/h^2;
 
     % RHS
-    B = spdiags(e, 0, m, m);
-    %B(m, m) = 0;
+    B = spdiags(e, 0, m+1, m+1);
+    B(m+1, m+1) = 0;
 
-    [eigvec, eigval] = eig(full(A), full(B));
+    [unsorted_eigvec, unsorted_eigval] = eig(full(A), full(B));
+    [d,ind] = sort(diag(unsorted_eigval));
+    eigval = unsorted_eigval(ind,ind);
+    eigvec = unsorted_eigvec(:,ind);
+
+
     alpha = flip(diag(eigval));
     
     lambda = alpha;
@@ -61,6 +72,5 @@ end
 
 
 disp(' ')
-disp('       n     lambda_1  lambda_2  lambda_3  lambda_4  lambda_5')
+disp('       n    lambda_1  lambda_2  lambda_3  lambda_4  lambda_5')
 disp([steps' lambdas])
-input('Press [Enter] to continue...');
