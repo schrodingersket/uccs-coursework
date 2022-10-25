@@ -4,7 +4,7 @@ function error_loglog(h,E)
 % Estimate order of accuracy by doing a linear least squares fit.
 %
 % From  http://www.amath.washington.edu/~rjl/fdmbook/  (2007)
-
+figure;
 h = h(:);            % make sure it's a column vector
 E = E(:);            % make sure it's a column vector
 ntest = length(h);
