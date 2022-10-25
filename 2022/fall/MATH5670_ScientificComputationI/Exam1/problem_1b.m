@@ -28,14 +28,19 @@ for i=1:length(steps)
     %
     A(1, 1) = A(1, 1) + h^2*alpha;
     
-    % Right Robin condition (first-order approx)
+    % Right Robin condition (second-order approx)
     %
-    A(m, m) = (-2 + 1/(1+h))/(h^2);
+    A(m, m) = (1/h^2) * (-2 + 4/(3 + 2*h));
+    A(m, m-1) = (1/h^2) * (1 - 1/(3 + 2*h));
 
-    [eigvec eigval] = eig(A);
+    [unsorted_eigvec, unsorted_eigval] = eig(full(A));
+    [d,ind] = sort(diag(unsorted_eigval));
+    eigval = unsorted_eigval(ind,ind);
+    eigvec = unsorted_eigvec(:,ind);
+
     lambda = flip(diag(eigval));
     lambdas(i, :) = lambda(1:n_lambdas);
-    
+
     if i == length(steps)
         figure(1);
         title('Eigenvectors');
@@ -51,7 +56,7 @@ end
 
 
 disp(' ')
-disp('       n    lambda_1  lambda_2  lambda_3  lambda_4  lambda_5')
+disp('       n       lambda_1  lambda_2   lambda_3  lambda_4')
 disp([steps' lambdas])
 
 input('Press [Enter] to continue...');

@@ -34,7 +34,11 @@ for i=1:length(steps)
     %
     A(m, m) = A(m, m) + h^2*beta;
 
-    [eigvec eigval] = eig(A);
+    [unsorted_eigvec, unsorted_eigval] = eig(full(A));
+    [d,ind] = sort(diag(unsorted_eigval));
+    eigval = unsorted_eigval(ind,ind);
+    eigvec = unsorted_eigvec(:,ind);
+
     lambda = flip(diag(eigval));
     lambdas(i, :) = lambda(1:n_lambdas);
 
