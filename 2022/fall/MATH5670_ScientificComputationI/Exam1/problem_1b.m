@@ -15,7 +15,7 @@ for i=1:length(steps)
     
     h = (x1 - x0) / (m+1);
 
-    % Create solution matrix A 
+    % Create internal matrix A 
     %
     e = ones(m, 1);
     A = 1/h^2*spdiags([e -2*e e], -1:1, m, m);
@@ -26,20 +26,13 @@ for i=1:length(steps)
     
     % Left Dirichlet condition
     %
-    A(1, 1) = A(1, 1) + alpha * h^2;
-
-    % First-order Right Robin condition
+    A(1, 1) = A(1, 1) + h^2*alpha;
+    
+    % Right Robin condition (first-order approx)
     %
-    A(m, m) = -2 + 1/(1+h);
+    A(m, m) = (-2 + 1/(1+h))/(h^2);
 
-    B = spdiags(e, 0, m, m);
-    B(m, m) = 0;
-
-    [unsorted_eigvec, unsorted_eigval] = eig(full(A), full(B));
-    [d,ind] = sort(diag(unsorted_eigval));
-    eigval = unsorted_eigval(ind,ind);
-    eigvec = unsorted_eigvec(:,ind);
-
+    [eigvec eigval] = eig(A);
     lambda = flip(diag(eigval));
     lambdas(i, :) = lambda(1:n_lambdas);
     

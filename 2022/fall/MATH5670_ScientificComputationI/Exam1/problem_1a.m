@@ -21,32 +21,22 @@ for i=1:length(steps)
     e = ones(m, 1);
     A = 1/h^2*spdiags([e -2*e e], -1:1, m, m);
 
-    alpha = 0;
-    beta = 0;
-
     % Set boundary conditions
     %
+    alpha = 0;
+    beta = 0;
     
     % Left Dirichlet condition
     %
-    A(1, 1) = A(1, 1) + alpha*h^2;
+    A(1, 1) = A(1, 1) + h^2*alpha;
     
     % Right Dirichlet condition
     %
-    A(m, m) = A(m, m) + beta*h^2;
+    A(m, m) = A(m, m) + h^2*beta;
 
-    % RHS
-    B = spdiags(e, 0, m, m);
-
-
-    [unsorted_eigvec, unsorted_eigval] = eig(full(A), full(B));
-    [d,ind] = sort(diag(unsorted_eigval));
-    eigval = unsorted_eigval(ind,ind);
-    eigvec = unsorted_eigvec(:,ind);
-
+    [eigvec eigval] = eig(A);
     lambda = flip(diag(eigval));
     lambdas(i, :) = lambda(1:n_lambdas);
-
 
     if i == length(steps)
         figure(1);
