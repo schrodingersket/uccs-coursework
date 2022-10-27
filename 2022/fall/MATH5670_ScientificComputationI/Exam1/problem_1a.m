@@ -63,6 +63,7 @@ disp(' ')
 disp('       n       lambda_1  lambda_2   lambda_3  lambda_4')
 disp([steps' lambdas])
 fprintf('      %d      %3.4f   %3.4f   %3.4f  %3.4f  %3.4f\n', Inf, -(1*pi)^2, -(2*pi)^2, -(3*pi)^2, -(4*pi)^2);
+disp(' ')
 
 eig_err = abs(lambdas(:, 1) - (-pi^2));
 error_loglog(step_sizes, eig_err)
