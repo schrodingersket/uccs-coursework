@@ -11,8 +11,6 @@ lambdas = zeros(length(steps), n_lambdas);
 
 for i=1:length(steps)
     m = steps(i);
-    fprintf('Calculating eigenvalues for %d points...\n', m)
-    
     h = (x1 - x0) / (m+1);
 
     % Create internal matrix A 
@@ -50,13 +48,12 @@ for i=1:length(steps)
             plot(linspace(0, 1, length(eigvec(:, j))), eigvec(:, j));
             title(sprintf('Eigenvector for j=%d', j));
         end
+        
+        print('-dpng', 'problem_1b_eigenvectors.png')
     end
 end
-
 
 
 disp(' ')
 disp('       n       lambda_1  lambda_2   lambda_3  lambda_4')
 disp([steps' lambdas])
-
-input('Press [Enter] to continue...');

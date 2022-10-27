@@ -12,8 +12,6 @@ step_sizes = (x1 - x0) ./ steps;
 
 for i=1:length(steps)
     m = steps(i);
-    fprintf('Calculating eigenvalues for %d interior points...\n', m)
-    
     h = (x1 - x0) / (m+1);
 
     % Create internal matrix A 
@@ -54,6 +52,8 @@ for i=1:length(steps)
 
         legend;
         shg;
+
+        print('-dpng', 'problem_1a_eigenvectors.png')
     end
 end
 
@@ -67,4 +67,4 @@ fprintf('      %d      %3.4f   %3.4f   %3.4f  %3.4f  %3.4f\n', Inf, -(1*pi)^2, -
 eig_err = abs(lambdas(:, 1) - (-pi^2));
 error_loglog(step_sizes, eig_err)
 
-input('Press [Enter] to continue...');
+print('-dpng', 'problem_1a_error.png')
