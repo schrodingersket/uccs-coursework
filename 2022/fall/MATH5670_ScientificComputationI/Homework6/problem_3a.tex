@@ -1,0 +1,37 @@
+Modify \texttt{heat\_CN.m} to solve the heat equation for $-1 \leq x \leq 1$ with step function initial data
+
+\begin{align*}
+    u(x,0) = \begin{cases}
+          1, \; x < 0 \\
+          0, \; x \geq 0.
+    \end{cases}
+\end{align*} 
+
+With appropriate Dirichlet boundary conditions, the exact solution is
+
+$$
+    u(x,t) = \frac{1}{2} \, \text{erfc} \left(x / \sqrt{4 \kappa t}\right),
+$$
+
+where erfc is the complementary error function
+
+$$
+\text{erfc}(x) = \frac{2}{\sqrt{\pi}} \int_x^\infty e^{-z^2}\,dz.
+$$
+
+\begin{enumerate}
+    \item
+    Test this routine for $m = 39$ and $k = 4h$. Note that there is an initial rapid transient decay of the high wave 
+    numbers which is not captured well with this size time step.
+    
+    \item
+    How small do you need to take the time step to get reasonable results? For a suitably small time step, explain why
+    you get much better results by using $m = 38$ than $m = 39$.  What is the observed order of accuracy as $k \to 0$ 
+    when $k = \alpha h$ with $\alpha$ suitably small and $m$ even?
+\end{enumerate}
+
+
+\begin{solution}\ \\\\
+    \hfill\vfill
+    \ \\
+\end{solution}
