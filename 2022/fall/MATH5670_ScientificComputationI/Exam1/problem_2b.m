@@ -61,7 +61,7 @@ for i=1:length(steps)
     plot(tt, u_true(tt), '--', 'DisplayName', '$u_{true}(t)$')
 
     title(sprintf('$\\Delta t = %3.2f$', k), 'interpreter', 'latex');
-    legend('interpreter', 'latex', 'Location', 'southeast');
+    legend('interpreter', 'latex', 'Location', 'northwest');
 end
 
 print('-dpng', 'problem_2b_solution.png')

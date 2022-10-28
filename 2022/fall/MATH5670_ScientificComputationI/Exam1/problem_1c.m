@@ -3,7 +3,7 @@ clc
 
 n_lambdas = 2;
 lambdas = zeros(n_lambdas, n_lambdas*n_lambdas);
-steps = [5, 10, 15, 20, 30];
+steps = [10, 15, 20, 25, 30];
 
 a = 0;
 b = 1;
@@ -83,9 +83,9 @@ for k=1:length(steps)
 end
 
 disp(' ')
-disp('       n    lambda_1  lambda_2  lambda_3  lambda_4')
+disp('      n    lambda_1 lambda_2 lambda_3 lambda_4')
 disp([steps' lambdas])
-fprintf('     %d    %3.4f  %3.4f  %3.4f  %3.4f  %3.4f\n', Inf, -(1^2 + 1^2)*pi^2, -(1^2 + 2^2)*pi^2, -(2^2 + 1^2)*pi^2, -(2^2 + 2^2)*pi^2);
+fprintf('    %d    %3.3f  %3.3f  %3.3f  %3.3f\n', Inf, -(1^2 + 1^2)*pi^2, -(1^2 + 2^2)*pi^2, -(2^2 + 1^2)*pi^2, -(2^2 + 2^2)*pi^2);
 disp(' ')
 
 eig_err = abs(lambdas(:, 1) - (-(1 + 1)*pi^2));

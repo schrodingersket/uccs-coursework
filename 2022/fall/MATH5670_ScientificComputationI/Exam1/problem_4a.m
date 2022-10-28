@@ -1,7 +1,7 @@
 clc
 clf
 
-grid_points = [9];
+grid_points = [49];
 
 x0 = 0;
 x1 = 1;
@@ -54,7 +54,7 @@ for i=1:length(grid_points)
     u_true = airy(0, x_ref);
 
     hold on;
-    plot(x, u, 'DisplayName', '$U(x)$');
+    plot(x, u, 'o', 'DisplayName', '$U(x)$');
     plot(x_ref, u_true, '--', 'DisplayName', '$Ai(x)$');
     title(sprintf('Airy function on $\\tilde{x} = [0, 1]$ with $h=%3.2f$', h), 'interpreter', 'latex')
     legend('interpreter', 'latex');

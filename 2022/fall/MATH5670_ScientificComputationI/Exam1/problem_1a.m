@@ -50,9 +50,6 @@ for i=1:length(steps)
             title(sprintf('Eigenvector for j=%d', j));
         end
 
-        legend;
-        shg;
-
         print('-dpng', 'problem_1a_eigenvectors.png')
     end
 end
