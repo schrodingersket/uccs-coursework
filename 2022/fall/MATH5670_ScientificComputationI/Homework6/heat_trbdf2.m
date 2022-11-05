@@ -1,4 +1,4 @@
-function [h,k,error] = heat_CN(m, ax, bx, kappa, alpha, utrue)
+function [h,k,error] = heat_trbdf2(m, ax, bx, kappa, alpha, utrue)
   %
   % heat_trbdf2.m
   %
@@ -105,15 +105,16 @@ function [h,k,error] = heat_CN(m, ax, bx, kappa, alpha, utrue)
     u = [g0n_next; uint; g1n_next];
 
     % plot results at desired times:
-    if mod(n,nplot)==0 | n==nsteps
+    if mod(n,nplot)==0 || n==nsteps
       ufine = utrue(xfine,t_next);
-      plot(x,u,'b.-', xfine,ufine,'r')
+      plot(x,u,'b.-', 'DisplayName', 'U', xfine, ufine, 'r', 'DisplayName', 'u_{true}')
       title(sprintf('t = %9.5e  after %4i time steps with %5i grid points',...
       t_next,n,m+2))
       axis([ax bx 0 1])
       error = max(abs(u-utrue(x,t_next)));
-      disp(sprintf('at time t = %9.5e  max error =  %9.5e',t_next,error))
-      pause(0.1)
+      % disp(sprintf('at time t = %9.5e  max error =  %9.5e',t_next,error))
+      legend;
+      pause(0.01)
     end
 
     tn = t_next;   % for next time step
