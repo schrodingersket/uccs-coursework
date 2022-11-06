@@ -1,4 +1,4 @@
-function [h,k,error] = heat_CN(m, ax, bx, kappa, alpha, utrue)
+function [h,k,error] = heat_CN(m, ax, bx, kappa, alpha, utrue, t_capture, prefix)
   %
   % heat_CN.m
   %
@@ -90,7 +90,7 @@ function [h,k,error] = heat_CN(m, ax, bx, kappa, alpha, utrue)
     u = [g0n_next; uint; g1n_next];
 
     % plot results at desired times:
-    if mod(n,nplot)==0 || n==nsteps
+    if mod(n, nplot) == 0 || n == nsteps || n == t_capture
       ufine = utrue(xfine,t_next);
       plot(x,u,'b.-', 'DisplayName', 'U', xfine, ufine, 'r', 'DisplayName', 'u_{true}')
       title(sprintf('t = %9.5e  after %4i time steps with %5i grid points',...
@@ -99,6 +99,11 @@ function [h,k,error] = heat_CN(m, ax, bx, kappa, alpha, utrue)
       error = max(abs(u-utrue(x,t_next)));
       % disp(sprintf('at time t = %9.5e  max error =  %9.5e',t_next,error))
       legend;
+
+      if n == t_capture || (t_capture == -1 && n == nsteps)
+        print('-dpng', sprintf('%sheatCN_t-%d', prefix, n));
+      end
+
       pause(0.01)
     end
 

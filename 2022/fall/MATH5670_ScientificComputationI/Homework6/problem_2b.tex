@@ -3,8 +3,11 @@ same problem. Test it to confirm that it is also second-order accurate. Explain 
 conditions in each stage of the Runge-Kutta method.
 
 \begin{solution}\ \\\\
-    We let $k = 4h$ and fix $T = 1$; the output of \texttt{problem\_2b.m} is given below:
-
+    \hfill\vfill
+    \pagebreak
+    To verify second-order accuracy, we let $k = 4h$ (i.e., $\alpha = 4$); the output of \texttt{problem\_2b.m} is 
+    given below:
+    
     \begin{figure}[h]
         \centering
         \begin{verbatim}
@@ -19,6 +22,22 @@ conditions in each stage of the Runge-Kutta method.
         \end{verbatim}
         \caption{Output of \texttt{problem\_2b.m}}
     \end{figure}
+
+    \begin{figure*}[h]
+        \centering
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{problem_2b_heatTRBDF2_t-25.png}
+            \caption{TR-BDF2 method for $m = 99$ at $t = 1$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{problem_2b_heatTRBDF2_error.png}
+            \caption{TR-BDF2 error}
+        \end{subfigure}
+        \caption[]{TR-BDF2 solution}
+    \end{figure*}
 
     The least squares fit from above corresponds to $h$ versus error, and because \linebreak
     $\Delta t = k = 4h = 4 \Delta x$, we see that the  method is indeed \linebreak

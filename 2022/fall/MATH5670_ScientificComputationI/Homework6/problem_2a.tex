@@ -4,7 +4,8 @@ some fixed time such as $T = 1$ behaves as $k$ and $h$ go to zero with a fixed r
 $k = 4h$.)
 
 \begin{solution}\ \\\\
-    We let $k = 4h$ and fix $T = 1$; the output of \texttt{problem\_2a.m} is given below:
+    To verify second-order accuracy, we let $k = 4h$ (i.e., $\alpha = 4$); the output of \texttt{problem\_2a.m} is 
+    given below:
 
     \begin{figure}[h]
         \centering
@@ -20,6 +21,22 @@ $k = 4h$.)
         \end{verbatim}
         \caption{Output of \texttt{problem\_2a.m}}
     \end{figure}
+    
+    \begin{figure*}[h]
+        \centering
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{problem_2a_heatCN_t-25.png}
+            \caption{CN method for $m = 99$ at $t = 1$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.475\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{problem_2a_heatCN_error.png}
+            \caption{CN error}
+        \end{subfigure}
+        \caption[]{Crank-Nicolson solution}
+    \end{figure*}
 
     The least squares fit from above corresponds to $h$ versus error, and because \linebreak
     $\Delta t = k = 4h = 4 \Delta x$, we see that the Crank-Nicolson method is indeed \linebreak
