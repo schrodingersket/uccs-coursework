@@ -19,6 +19,7 @@ surf(X,Y,Z);
 title('$\Delta u = 0$', 'interpreter', 'latex', 'VerticalAlignment', 'bottom');
 colorbar();
 view(2);
+daspect([1 1])
 
 print('-dpng', 'problem_1');
 
