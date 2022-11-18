@@ -1,0 +1,37 @@
+Modify the m-file to create a version \texttt{advection\_lf\_pbc.m} implementing the leapfrog method and verify that 
+this is second order accurate. Note that you will have to specify two levels of initial data. For the convergence test,
+set $U_j^1 = u(x_j, k)$, the true solution at time $k$.
+
+\begin{solution}\ \\\\
+    We observe approximately second order accuracy with the leapfrog method. The output of \texttt{problem\_4a.m} is
+    given below: \ \\\\
+
+    \begin{figure}[h]
+        \begin{verbatim}
+            h        error       ratio       observed order
+            0.02000   2.62810e-01       NaN             NaN
+            0.01000   7.97836e-02   3.29404         1.71986
+            0.00500   1.79636e-02   4.44140         2.15101
+          
+          
+         Least squares fit gives E(h) = 536.44 * h^1.93544
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_4a.m}}
+    \end{figure}
+
+    Since the least squares fit is given by $E(h) = 536.44 h^{1.93544}$, we see this method is roughly second order 
+    accurate as desired. The \texttt{loglog} and solution plots for this method are given below:
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_4a_error.png}
+            \caption{\texttt{loglog} plot for the leapfrog method}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_4a.png}
+            \caption{Leapfrog method solution}
+        \end{subfigure}
+    \end{figure}
+\end{solution}

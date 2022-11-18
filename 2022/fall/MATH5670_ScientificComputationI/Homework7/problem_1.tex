@@ -1,0 +1,19 @@
+\textbf{LeVeque 10.3}  \textit{(skewed leapfrog)}
+
+Suppose $a > 0$ and consider the following \textit{skewed leapfrog} method for solving the advection equation
+$u_t + a u_x = 0$:
+
+$$
+U_j^{n+1} = U_{j-2}^{n-1} - \left( \frac{a k}{h} - 1 \right) \left( U_j^n - U_{j-2}^n \right)
+$$
+
+Note that if $\frac{ak}{h} \approx 1$ then this stencil roughly follows the characteristic of the advection equation
+and might be expected to be more accurate than standard leapfrog. (If $\frac{ak}{h} = 1$, the method is exact.)
+
+\begin{enumerate}
+  \item \input{problem_1a}
+  \pagebreak
+  \item \input{problem_1b}
+  \pagebreak
+  \item \input{problem_1c}
+\end{enumerate} 

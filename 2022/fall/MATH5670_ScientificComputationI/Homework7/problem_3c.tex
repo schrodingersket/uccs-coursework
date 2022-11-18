@@ -1,0 +1,32 @@
+Keep $m$ fixed and observe what happens with \texttt{advection\_up\_pbc.m} if the time step $k$ is reduced, e.g., try
+$k = 0.4h$, $k = 0.2h$, and $k = 0.1h$. When a convergent method is applied to an ODE, we expect better accuracy as the
+time step is reduced and we can view the upwind method as an ODE solver applied to an MOL system. However, you should
+instead observe decreased accuracy as $k \to 0$ with $h$ fixed. Explain this apparent paradox.
+
+\textbf{Hint:} What ODE system are we solving more accurately? You might also consider the modified equation (10.44).
+
+\begin{solution}\ \\\\
+    We apply the upwind method for $k = \alpha h$ with $\alpha = 0.4, 0.2,$ and $0.1$ and observe decreased accuracy
+    with a smaller time step $k$: \ \\\\
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \includegraphics[width=\textwidth]{problem_3c_alpha-0.40.png}
+            \caption{$\alpha = 0.40$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+            \includegraphics[width=\textwidth]{problem_3c_alpha-0.20.png}
+            \caption{$\alpha = 0.20$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.45\textwidth}
+            \includegraphics[width=\textwidth]{problem_3c_alpha-0.10.png}
+            \caption{$\alpha = 0.10$}
+        \end{subfigure}
+    \end{figure}
+
+    TODO: Explain decreased observed accuracy
+    \ \\
+\end{solution}

@@ -1,0 +1,37 @@
+Observe how this behaves with $m + 1 = 50, 100,$ and 200 grid points. Change the final time to 
+\texttt{tfinal = 0.1} and use the m-files \texttt{error\_table.m} and \texttt{error\_loglog.m} to verify second order 
+accuracy.
+
+\begin{solution}\ \\\\
+    We observe approximately second order accuracy with the Lax-Wendroff method. The output of \texttt{problem\_3a.m} is
+    given below: \ \\\\
+
+    \begin{figure}[h]
+        \begin{verbatim}
+                  h        error       ratio       observed order
+               0.02000   1.66622e-01       NaN             NaN
+               0.01000   6.27543e-02   2.65514         1.40879
+               0.00500   1.70902e-02   3.67195         1.87654
+             
+             
+            Least squares fit gives E(h) = 108.653 * h^1.64267
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_3a.m}}
+    \end{figure}
+
+    Since the least squares fit is given by $E(h) = 108.653 h^{1.64267}$, we see this method is roughly second order 
+    accurate as desired. The \texttt{loglog} and solution plots for this method are given below:
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_3a_error.png}
+            \caption{\texttt{loglog} plot for the Lax-Wendroff method}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_3a.png}
+            \caption{Lax-Wendroff method solution}
+        \end{subfigure}
+    \end{figure}
+\end{solution}
