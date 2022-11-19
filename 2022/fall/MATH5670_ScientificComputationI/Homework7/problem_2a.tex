@@ -2,6 +2,27 @@ This method can be viewed as the trapezoidal method applied to an ODE system $U'
 lines discretization of the advection equation. What is the matrix $A$ (including boundary conditions)?
 
 \begin{solution}\ \\\\
-    \hfill\vfill
+    To realize a method of lines discretization, we begin by discretizing the advection equation in space with $m$ 
+    interior grid points via a backward Euler scheme so that $x_0 = 0$ and $x_{m+1} = 1$:
+
+    \begin{align*}
+    U'_j(t) &= -a \left( \frac{U_j(t) - U_{j-1}(t)}{h} \right) \\
+            &= -\frac{a}{h} [U_j(t) - U_{j-1}(t)]
+    \end{align*}
+
+    By our periodic boundary conditions, we have that $U_0(t) = U_{m+1}(t)$, and so the above system takes the 
+    vectorized form $U'(t) = AU$, where $A$ is the $m + 1 \times m + 1$ matrix given by:
+
+    \[
+    A = -\frac{a}{h}\begin{pmatrix} 
+         1 &         &        &        & -1 \\
+        -1 &       1 &        &        &    \\
+           &      -1 &      1 &        &    \\
+           &         & \ddots & \ddots &    \\
+           &         &        & -1     & 1  \\
+    \end{pmatrix}
+    \]
+ 
+
     \ \\
 \end{solution}
