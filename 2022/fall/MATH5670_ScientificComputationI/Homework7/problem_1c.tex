@@ -4,7 +4,38 @@ Show that this method is in fact stable for this range of Courant numbers by doi
 related to the equation (10.34) that arises from a von Neumann analysis of the leapfrog method.
 
 \begin{solution}\ \\\\
-    TODO:
-    \hfill\vfill
+    We proceed with von Neumann analysis by first making the following substitutions into our skewed leapfrog scheme:
+
+    \begin{align*}
+        U_j^n &= g^n(\xi) e^{i \xi jh} \\
+        \nu &= \frac{ak}{h}
+    \end{align*}
+
+    Our scheme becomes:
+
+    $$
+    g(\xi)^{n+1} e^{i \xi jh} = g(\xi)^{n-1} e^{i \xi (j-2) h} - (\nu - 1) \left(g(\xi)^{n} e^{i \xi jh} - g(\xi)^{n} e^{i \xi (j-2) h}\right)
+    $$
+
+    We divide by $g(\xi)^{n-1} e^{i \xi (j-2) h}$ to find:
+
+    $$
+    \left[g(\xi) e^{i \xi h} \right]^2 = 1 - (\nu - 1)\left(e^{i \xi h} - e^{-i \xi h} \right)\left[ g(\xi) e^{i \xi h} \right]
+    $$
+
+    Letting $\gamma(\xi) = e^{i \xi h}g(\xi)$ yields a quadratic equation for $\gamma(\xi)$:
+
+    $$
+    \gamma(\xi)^2 = 1 - 2i(\nu - 1)\sin{(\xi h)}\gamma(\xi)
+    $$
+   
+    If we define $z = \nu - 1$, we recover equation (10.34):
+
+    $$
+    \gamma(\xi)^2 = 1 - 2iz\sin{(\xi h)}\gamma(\xi)
+    $$
+
+    which yields the stability limit $|z| < 1$ and hence this scheme is stable for $|\nu - 1| < 1$. This is precisely 
+    the range of Courant numbers $\nu = \frac{ak}{h}$ which satisfy the CFL condition in (b).
     \ \\
 \end{solution}

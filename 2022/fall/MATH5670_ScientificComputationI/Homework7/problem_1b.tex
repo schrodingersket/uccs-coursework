@@ -1,6 +1,17 @@
 For what range of Courant number $\frac{ak}{h}$ does this method satisfy the CFL condition?
 
 \begin{solution}\ \\\\
-    \hfill\vfill
+    To satisfy the CFL condition, we require that the domain of dependence for the skewed leapfrog method encompasses
+    that of the advection equation, which has a domain of dependence of $\mathcal{D}(X, T) = \{X - aT\}$. For the 
+    solution at $(X, T)$, the skewed leapfrog method at a particular grid point $(x_j, t_n)$ depends on the values 
+    at $(x_{j-2}, t_{n-1}), (x_{j-2}, t_n), (x_{j}, t_{n})$ and $(x_{j}, t_{n+1})$. We therefore require that
+
+    \begin{align*}
+        |a| &\le \frac{x_{j} - x_{j-2}}{t_{n+1} - t_{n}} \\
+            &\le \frac{2h}{k} 
+    \end{align*}
+
+    and hence the CFL condition is satisfied precisely when $\nu = \big| \frac{ak}{h} \big| \le 2$.
+    
     \ \\
 \end{solution}
