@@ -2,6 +2,9 @@ For what range of $\frac{ak}{h}$ will the CFL condition be satisfied for this me
 conditions)?
 
 \begin{solution}\ \\\\
+    Since the solution at $(x_j, t_{n+1})$ depends on the solution at $(x_{j-1}, t_{n+1})$, the domain of dependence for
+    this implicit method is $(-\infty, \infty)$ and hence the CFL condition is satisfied for all 
+    $\frac{ak}{h} \in \mathbb{R}$.
     \hfill\vfill
     \ \\
 \end{solution}

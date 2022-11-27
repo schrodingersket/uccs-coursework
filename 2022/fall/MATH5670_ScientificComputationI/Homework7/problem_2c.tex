@@ -1,6 +1,30 @@
 Apply von Neumann stability analysis to this method. What is the amplification factor $g(\xi)$?
 
 \begin{solution}\ \\\\
-    \hfill\vfill
+    We substitute $U_j^n = g(\xi)^{n} e^{i \xi j h}$ and $\nu = \frac{ak}{h}$ into our trapezoidal method to find:
+
+    $$
+    g(\xi)^{n+1} e^{i \xi j h} = g(\xi)^{n} e^{i \xi j h} - \frac{\nu}{2}\left[ g(\xi)^{n} e^{i \xi j h} - g(\xi)^{n} e^{i \xi (j-1) h} + g(\xi)^{n+1} e^{i \xi j h} - g(\xi)^{n+1} e^{i \xi (j-1) h} \right]
+    $$ 
+
+    Dividing by $g(\xi)^{n} e^{i \xi j h}$ yields:
+
+    $$
+    g(\xi) = 1 - \frac{\nu}{2} \left[1 - e^{-i \xi h} + g(\xi) - g(\xi) e^{-i \xi h}\right]
+    $$
+
+    and hence
+
+    $$
+    g(\xi) \left[ 1 + \frac{\nu}{2} - \frac{\nu}{2}e^{-i \xi h} \right] = 1 - \frac{\nu}{2} + \frac{\nu}{2}e^{-i \xi h}
+    $$
+
+    so that
+
+    $$
+    g(\xi) = \frac{1 - \frac{\nu}{2}\left(1 -  e^{-i \xi h} \right)}{1 + \frac{\nu}{2}\left(1 -  e^{-i \xi h} \right)}
+    $$
+
+    This method is stable for all values of $\nu$ such that $|g(\xi)| \le 1$.
     \ \\
 \end{solution}
