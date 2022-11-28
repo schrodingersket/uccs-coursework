@@ -7,7 +7,7 @@ instead observe decreased accuracy as $k \to 0$ with $h$ fixed. Explain this app
 
 \begin{solution}\ \\\\
     We apply the upwind method for $k = \alpha h$ with $\alpha = 0.4, 0.2,$ and $0.1$ and observe decreased accuracy
-    with a smaller time step $k$: \ \\\\
+    with each smaller time step $k$: \ \\\\
 
     \begin{figure}[h]
         \centering
@@ -27,6 +27,21 @@ instead observe decreased accuracy as $k \to 0$ with $h$ fixed. Explain this app
         \end{subfigure}
     \end{figure}
 
-    TODO: Explain decreased observed accuracy
+    \pagebreak
+    The second-order modified equation for the upwind method is given by LeVeque (10.44):
+    
+    $$
+    v_t + av_x = \frac{1}{2}ah \left(1 - \frac{ak}{h}\right)v_{xx}
+    $$
+
+    As we decrease $k$ while holding $h$ fixed (that is, we examine the limit of the above PDE as $k \to 0$), our 
+    modified PDE becomes:
+
+    $$
+    v_t + av_x = \frac{1}{2}ah v_{xx}
+    $$
+
+    which contains the diffusive term $\frac{1}{2} ah$ and accounts for the dampening error observed in the numerical 
+    solution above.
     \ \\
 \end{solution}

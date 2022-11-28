@@ -17,7 +17,7 @@ function eta = ic(x)
 end
 
 for n=1:length(grid_points)
-    [h(n), k(n), err(n)] = advection_lf_pbc(grid_points(n) - 1, alpha, final_time, @ic);
+    [h(n), k(n), err(n), _] = advection_lf_pbc(grid_points(n) - 1, alpha, final_time, @ic);
 end
 
 print('-dpng', 'problem_4b')

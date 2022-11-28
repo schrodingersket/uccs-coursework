@@ -1,4 +1,4 @@
-function [h,k,error] = advection_lf_pbc(m, alpha, tfinal, eta)
+function [h,k,error] = advection_sklf_pbc(m, alpha, tfinal, eta)
   %
   % Solve u_t + au_x = 0  on [ax,bx] with periodic boundary conditions,
   % using the Lax-Wendroff method with m interior points.

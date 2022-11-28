@@ -1,4 +1,4 @@
-function [h,k,error] = advection_lf_pbc(m, alpha, tfinal, eta)
+function [h,k,error, w_avg] = advection_lf_pbc(m, alpha, tfinal, eta)
   %
   % Solve u_t + au_x = 0  on [ax,bx] with periodic boundary conditions,
   % using the Lax-Wendroff method with m interior points.
@@ -17,8 +17,11 @@ function [h,k,error] = advection_lf_pbc(m, alpha, tfinal, eta)
   ax = 0;
   bx = 1;
 
+  l_inf_0 = 0;
+  l_inf_tfinal = 0;
+
   h = (bx-ax)/(m+1);         % h = delta x
-  k = alpha*h                  % time step
+  k = alpha*h;                  % time step
   nu = a*k/h;                % Courant number
   x = linspace(ax,bx,m+2)';  % note x(1)=0 and x(m+2)=1
   % With periodic BC's there are m+1 unknowns u(2:m+2)
@@ -37,7 +40,8 @@ function [h,k,error] = advection_lf_pbc(m, alpha, tfinal, eta)
   end
 
   % initial conditions:
-  tn = 0;
+  tinit = 0;
+  tn = tinit;
   u0 = eta(x);
   u = u0;
 
@@ -59,6 +63,8 @@ function [h,k,error] = advection_lf_pbc(m, alpha, tfinal, eta)
 
   % main time-stepping loop:
   u_prev = utrue(x, tn - k, eta)(I);
+  [max_val, l_inf_0] = max(u);
+  disp(sprintf('Initial wave max is at x=%0.2f', ax + l_inf_0 * h));
   for n = 1:nsteps
     tnp = tn + k;   % = t_{n+1}
 
@@ -86,6 +92,11 @@ function [h,k,error] = advection_lf_pbc(m, alpha, tfinal, eta)
 
     tn = tnp;   % for next time step
   end
+  [max_val, l_inf_tfinal] = max(u);
+  disp(sprintf('Final wave max is at x=%0.2f', ax + l_inf_tfinal * h));
+
+  w_avg = h*(l_inf_tfinal - l_inf_0) / (tfinal - tinit);
+  disp(sprintf('Estimated group velocity is %0.2f', w_avg));
 
   %--------------------------------------------------------
 

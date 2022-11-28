@@ -1,8 +1,33 @@
 Suppose we want to fix the Courant number $\frac{ak}{h}$ as $k,h \to 0$. For what range of Courant numbers will the
 method be stable if $a > 0$? If $a < 0$? Justify your answers in terms of the eigenvalues of the matrix $A$ from part 
-(a) and the stability regions of the trapezoidal method.
+(a) and the stability region of the trapezoidal method.
 
 \begin{solution}\ \\\\
+    Let $\epsilon = \frac{ah}{2}$. Then we may look at the trapezoidal method for the advection equation as a forward
+    Euler discretization of the advection diffusion equation $u_t + au_x = \epsilon u_{xx}$, which yields the system
+    of ODEs
+
+    $$
+    U'(t) = A_{\epsilon}U(t)
+    $$
+
+    where $A_{\epsilon}$ is given by (10.15) in LeVeque. For this method to be stable, we require $k$ to be small
+    enough relative to $h$ such that $k \lambda$ lies within the stability region of Euler's method. The eigenvalues
+    of $A_{\epsilon}$ are given by (10.16) in LeVeque:
+
+    \begin{align*}
+        \mu_p &= -\frac{ia}{h}\sin{(2 \pi p h)} - \frac{2 \epsilon}{h^2}[1 - \cos{(2 \pi p h)}]
+    \end{align*}
+
+    In particular, the values $k \mu_p$ lie on an ellipse centered at $-\frac{2k \epsilon}{h^2} = -\frac{ak}{h} = \nu$
+    with semi-axes of length $\frac{2k \epsilon}{h^2} = \frac{ak}{h} = \nu$ in the $x$-direction and 
+    $\frac{ak}{h} = \nu$ in the $y$-direction. Since stability of the forward Euler method requires this ellipse to 
+    lie inside the unit circle centered at -1, this method is stable for $a > 0$ whenever $|\nu| \le 1$. For $a < 0$, 
+    the left-most side of the ellipse only intersects the stability region for Euler's method at the origin, and hence
+    cannot be stable. Since the trapezoidal method is stable in the left half-plane, and so we expect this method to be
+    unstable for $a < 0$.
+   
+
     \hfill\vfill
     \ \\
 \end{solution}
