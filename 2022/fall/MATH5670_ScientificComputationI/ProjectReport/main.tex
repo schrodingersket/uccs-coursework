@@ -1,4 +1,4 @@
-\documentclass[letterpaper,12pt]{article}
+\documentclass[letterpaper,11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[bottom]{footmisc}
 \usepackage{graphicx}
@@ -22,7 +22,7 @@
 \begin{document}
 
     \title{
-        A Deep Learning Approach to Solving Hyperbolic PDEs\\
+        A Deep Learning Approach to Solving Convective PDEs\\
     }
     \author{%
         Thompson, J.
@@ -49,9 +49,9 @@
     sparse data and/or specified boundary conditions provide sufficient convergence conditions for the neural network to
     successfully approximate the true PDE solution.\cite{raissi_physics-informed_2019} In fact, neural networks are 
     particularly well-suited to solve the inverse problem for PDEs - that is, to infer some unknown parameter of 
-    function which is part of the original system of PDEs.\cite{lu_deepxde_2021} In this project, we propose to utilize
-    PINNs to solve both the forward and inverse problem for two well-known hyperbolic PDEs. The first of these is a 
-    standard advection equation, which is perhaps the simplest possible hyperbolic PDE:
+    function which is part of the original system of PDEs.\cite{lu_deepxde_2021} In this project, we utilize PINNs to 
+    solve both the forward and inverse problem for two well-known convective PDEs. The first of these is the standard 
+    advection equation, which is perhaps the simplest possible hyperbolic PDE:
 
     $$
     u_t + a u_x = 0
@@ -59,10 +59,11 @@
 
     \ \\
     \noindent for some constant $a$ and initial condition $u(x, 0) = u_0(x)$. The second equation we will examine is the
-    inviscid Burgers' equation, which we obtain by letting $a = u$ from above:
+    viscous Burgers' equation, which we obtain by letting $a = u$ from above and introducing a diffusive term 
+    $\nu u_{xx}$:
 
     $$
-    u_t + u u_x = 0
+    u_t + u u_x = \nu u_{xx}
     $$
 
     \section{Methodology}\label{sec:proposed-methodology}
@@ -110,9 +111,9 @@
     $\Gamma \in \partial \Omega \cup \Omega$ in the domain. In general, then, our problem reduces to finding appropriate
     neural network parameters $\lambda$ which minimize this aggregate loss:
     
-    $$
-    \min_{\lambda}{||L_{obs} + L_{res}||}
-    $$
+    \begin{equation}
+        \min_{\lambda}{||L_{obs} + L_{res}||}
+    \end{equation}
 
     We do so first by way of the Adam\cite{adam} algorithm to find candidates for global minima and then L-BFGS to 
     narrow in on our solution candidate. Lastly, we utilize the hyperbolic tangent activation function in our neural 
@@ -124,7 +125,7 @@
     % determine whether the trained neural network provides robustness and/or generalizability beyond that of the provided
     % training data set. For the inverse problem in the advection equation, we will examine the trained network's ability 
     % to predict values of $a$ from other initial conditions. Furthermore, if time allows, we will examine the utility
-    % of PINNs in solving the viscid Burgers' equation in both forward and inverse cases with residual-based
+    % of PINNs in solving the viscous Burgers' equation in both forward and inverse cases with residual-based
     % adaptive refinement to account for the sharp front:
 
     % $$
@@ -139,7 +140,13 @@
     statement then becomes:
 
     $$
-    u_t + a u_x = 0, \Omega = [0, 1] \times [0, 1], u(0, t) = u(1, t), u(x, 0) = \eta(x)
+    u_t + a u_x = 0, x \in [0, 1], t \in [0, 1]
+    $$
+
+    \noindent with boundary conditions
+
+    $$
+    u(0, t) = u(1, t), u(x, 0) = \eta(x)
     $$
 
 
@@ -156,10 +163,10 @@
 
 
     \subsection*{Forward Solution}{\label{sec:advection-equation-forwared}}
-    To solve this equation via a PINN, we utilize a neural network with three hidden layers and 12 neurons in each 
-    layer. Because we are solving this equation forward in time, we do not have any pre-existing measurement data from
-    which to train. As such, our optimization target reduces solely to the PDE residual and corresponding boundary
-    conditions.
+    To solve this equation via a PINN, we utilize a fully-connected neural network with three hidden layers and 12 
+    neurons in each layer. Because we are solving this equation forward in time, we do not have any pre-existing 
+    measurement data from which to train. As such, our optimization target reduces solely to the PDE residual and 
+    corresponding boundary conditions.
 
 
     \begin{figure}[h]
@@ -177,7 +184,7 @@
     We find that the neural network solution converges after 10000 iterations with a mean residual on the order of 
     $10^{-4}$ and L2 relative error on the order of $10^{-2}$. Of particular interest is the fact that the neural 
     network solution performs quite well outside the original temporal domain; in fact, we observe that while the neural
-    network is trained to optimize the PDE residual on $t \in [0, 1]$, the learned solution closely mathces the exact 
+    network is trained to optimize the PDE residual on $t \in [0, 1]$, the learned solution closely matches the exact 
     solution up until $t=3$. This suggests that the neural network learns (to some degree) that solutions to the 
     advection equation consist of traveling wave packets.
 
@@ -201,6 +208,7 @@
             \includegraphics*[width=\textwidth]{advection_forward_t3.00.png}
             \caption{$t = 3$}
         \end{subfigure}
+        \caption{Solution to $u_t + a u_x = 0$ with $a = 0.4$}
     \end{figure}
 
     \subsubsection*{Comparison with Finite Differences}
@@ -208,23 +216,102 @@
     discontinuous shock solutions. In particular, finite difference methods for the advection equation typically require
     careful discretization in order to prevent the introduction of numerical oscillations, damping, or instability.
     
-    PINNs, as we shall see, handle this quite well. For the present purposes, it is of interest to note that the 
-    formulation of PINNs as a constrained optimization problem allows for arbitrary meshes from which to sample training
-    points \footnote{
+    PINNs, as we shall see, handle this quite well. In particular, it is of interest to note that the formulation of 
+    PINNs as a constrained optimization problem allows for arbitrary meshes from which to sample training points 
+    \footnote{
         There is most assuredly some lower limit to this, though that limit naturally depends on the problem and domain 
         under consideration.
     }. As such, PINNs fall into the class of \textit{meshfree} numerical methods. In particular, this eliminates
     the need to correlate spatial and temporal discretizations in a particular way, e.g., by enforcing compliance with
-    the Courant-Friedrichs-Lewy (CFL) condition. We demonstrate this explicitly by intentionally introducing an unstable
-    finite difference grid by sampling $n^2$ spatial points - where $n$ is the number of temporal points - in the 
-    forward advection solution.
+    the Courant-Friedrichs-Lewy (CFL) condition for finite difference methods. We demonstrate this explicitly by 
+    intentionally introducing an unstable finite difference grid by sampling $n^2$ spatial points - where $n$ is the 
+    number of temporal points - in our domain.
 
     \subsection*{Inverse Solution}
+    We now turn our attention toward solving the inverse problem, that is, given a PDE which presumably describes some
+    observed phenomenon along with measurement data, we wish to learn one or more corresponding PDE parameters. To do 
+    so, we require both a PDE candidate and a set of measured data which we require the PDE to satisfy so as to train
+    a neural network to satisfy (1).
+    
     It should be noted that the introduction of multiple training targets can sometimes introduce competing gradient 
     optimizations - in other words, satisfying $L_{obs}$ more closely sometimes incurs increased loss from the $L_{res}$
-    term or vice versa.
+    term or vice versa. Such competition typically arises in one of two ways. The first and more obvious of these occurs
+    when the PDE candidate does not accurately describe the physical phenomenon which gave rise to the observed data.
+    The second of these tends to occur in multi-scale dynamic systems.\cite{pino} For the inverse problem, we 
+    accordingly consider PDEs which are already scaled to unit domain.
 
+    PINNs are particularly well-suited to solve the inverse problem. For the present purpose, we consider again the
+    advection equation with unknown advection velocity $a$. As before, we utilize a fully-connected neutral network to 
+    formulate a solution surrogate, but allow $a$ to represent a to-be-learned constant. Our inputs are therefore the
+    spatial variable $x$, temporal variable $t$, and unknown velocity $a$. Given periodic boundary conditions and 
+    initial condition $\eta(x)$ as before, we train the neural network for 15000 iterations with 10 data points computed
+    from the exact solution at $t = 0.5$ with $a = 3$. We find that the neural network infers the correct advection 
+    velocity to within 2\%.
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{advection_inverse_train_loss.png}
+            \caption{Train loss for inverse advection problem}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{advection_inverse_learned_advection_velocity.png}
+            \caption{Learned advection velocity}
+        \end{subfigure}
+        \caption{Inverse Advection Problem}
+    \end{figure}
+
+    \section{Burgers Equation}
+    We now turn our attention away from the advection equation and toward solving a somewhat richer forward problem - 
+    namely, we wish to solve the viscous Burgers equation:
+
+    $$
+    u_t + u u_x = \nu u_{xx}, x \in [-1, 1], t \in [0, 1]
+    $$
+
+    \noindent with boundary conditions
+
+    $$
+    u(-1, t) = u(1, t) = 0,\; u(x, 0) = -\sin{(\pi x)}
+    $$
+
+    \ \\
+    In a similar fashion to the advection problem, we utilize a fully-connected neural network consisting of
+    three hidden layers of 20 neurons each, which takes $x$ and $t$ as input and predicts the corresponding fluid 
+    velocity $u$.  We observe that a shock begins to form approximately $t = 0.5$, and in particular that inaccuracies 
+    occur around the point of discontinuity in the solution. To account for this, we implement residual-based adaptive 
+    refinement (RAR) in order to re-train the network around specific points for which the PDE residual is 
+    high.\cite{WU2023115671} To do so, we compute the maximum PDE residual after training in order to identify which 
+    points contribute the most to the residual term. We then add these points to our training set and re-train the 
+    network to account for the new points. We find that the solutions with and without residual-based adaptive 
+    refinement agree at early timesteps, but the solution with resolves inaccuracies once the solution discontinuity 
+    begins to form at $t = 0.5$.
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{burgers_forward_t0.00.png}
+            \caption{$t = 0.00$ without residual-based adaptive refinement}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{burgers_forward_t0.50.png}
+            \caption{$t = 0.50$ without residual-based adaptive refinement}
+        \end{subfigure}
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{burgers_forward_t0.00_rar.png}
+            \caption{$t = 0.00$ with residual-based adaptive refinement}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{burgers_forward_t0.50_rar.png}
+            \caption{$t = 0.50$ with residual-based adaptive refinement}
+        \end{subfigure}
+        \caption{Residual-based adaptive refinement for Burgers Equation}
+    \end{figure}
     \pagebreak
+
     \nocite{*}
     \bibliographystyle{plain}
     \bibliography{refs}
