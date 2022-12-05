@@ -119,19 +119,6 @@
     narrow in on our solution candidate. Lastly, we utilize the hyperbolic tangent activation function in our neural 
     network in order to satisfy smoothness requirements for PDEs.
 
-    % \section{Goals and Objectives}\label{sec:goals}
-    % We hope to utilize neural networks to solve an advection and inviscid Burgers equation with a known reference 
-    % solution. Moreover, we hope to analyze the applicability of the learned equation to similar systems in order to 
-    % determine whether the trained neural network provides robustness and/or generalizability beyond that of the provided
-    % training data set. For the inverse problem in the advection equation, we will examine the trained network's ability 
-    % to predict values of $a$ from other initial conditions. Furthermore, if time allows, we will examine the utility
-    % of PINNs in solving the viscous Burgers' equation in both forward and inverse cases with residual-based
-    % adaptive refinement to account for the sharp front:
-
-    % $$
-    % u_t + u u_x = \nu u_{xx}
-    % $$
-
     \section{Advection Equation}{\label{sec:advection-equation}}
     We begin with the 1D advection equation. This equation serves as a useful model for describing the movement of some
     material by way of ambient fluid velocity. If we suppose that our system takes place in a one-dimensional donut and
@@ -276,7 +263,6 @@
     u(-1, t) = u(1, t) = 0,\; u(x, 0) = -\sin{(\pi x)}
     $$
 
-    \ \\
     In a similar fashion to the advection problem, we utilize a fully-connected neural network consisting of
     three hidden layers of 20 neurons each, which takes $x$ and $t$ as input and predicts the corresponding fluid 
     velocity $u$.  We observe that a shock begins to form approximately $t = 0.5$, and in particular that inaccuracies 
@@ -284,35 +270,52 @@
     refinement (RAR) in order to re-train the network around specific points for which the PDE residual is 
     high.\cite{WU2023115671} To do so, we compute the maximum PDE residual after training in order to identify which 
     points contribute the most to the residual term. We then add these points to our training set and re-train the 
-    network to account for the new points. We find that the solutions with and without residual-based adaptive 
-    refinement agree at early timesteps, but the solution with resolves inaccuracies once the solution discontinuity 
+    network to account for these new points. We find that the solutions with and without residual-based adaptive 
+    refinement agree at early timesteps, but the solution with RAR resolves inaccuracies once the solution discontinuity 
     begins to form at $t = 0.5$.
 
     \begin{figure}[h]
         \centering
         \begin{subfigure}{0.45\textwidth}
             \includegraphics*[width=\textwidth]{burgers_forward_t0.00.png}
-            \caption{$t = 0.00$ without residual-based adaptive refinement}
+            \caption{$t = 0.00$ without RAR}
         \end{subfigure}
         \hfill
         \begin{subfigure}{0.45\textwidth}
-            \includegraphics*[width=\textwidth]{burgers_forward_t0.50.png}
-            \caption{$t = 0.50$ without residual-based adaptive refinement}
+            \includegraphics*[width=\textwidth]{burgers_forward_t0.00_rar.png}
+            \caption{$t = 0.00$ with RAR}
         \end{subfigure}
         \begin{subfigure}{0.45\textwidth}
-            \includegraphics*[width=\textwidth]{burgers_forward_t0.00_rar.png}
-            \caption{$t = 0.00$ with residual-based adaptive refinement}
+            \includegraphics*[width=\textwidth]{burgers_forward_t0.50.png}
+            \caption{$t = 0.50$ without RAR}
         \end{subfigure}
         \hfill
         \begin{subfigure}{0.45\textwidth}
             \includegraphics*[width=\textwidth]{burgers_forward_t0.50_rar.png}
-            \caption{$t = 0.50$ with residual-based adaptive refinement}
+            \caption{$t = 0.50$ with RAR}
         \end{subfigure}
         \caption{Residual-based adaptive refinement for Burgers Equation}
     \end{figure}
+
+    \section{Conclusions and Future Work}\label{sec:goals}
+    In this report, we examined the efficacy of PINNs in computing forward solutions for the (upwind) advection equation
+    and viscous Burgers equation. For the former, we found excellent agreement with the exact solution on the entire
+    domain. Furthermore, we utilized the same neural network architecture as in the forward solution to learn the 
+    unknown advection velocity, which again displayed excellent correlation with the exact solution.
+    For the viscous Burgers equation, we utilized residual-based adaptive refinement in order to train the PINN solution
+    on problematic solution points which exhibit a steep gradient in the solution in order to bette model highly 
+    dynamic solutions. A natural next step from this work is to solve the inverse problem for the viscous Burgers 
+    equation. Because the viscosity term in the Burgers equation is typically small, this inverse problem embodies an
+    inverse multi-scale PDE. Utilizing techniques such as multi-scale Fourier feature networks may lead to improved 
+    solution accuracy.\cite{Wang_2021} Lastly, PINNs trained in this work all embed the underlying system geometry into
+    the learned network; these networks therefore typically only apply to the domains upon which they were trained. One 
+    notable exception to this case is that of the forward advection equation solution, which suggests the possibility 
+    that these networks may be trainable to solve systems outside the training domain and boundary conditions, perhaps 
+    by way of point-cloud based neural networks and/or Fourier decomposition of initial conditions.\cite{Kashefi_2022}
+    
+
     \pagebreak
 
-    \nocite{*}
     \bibliographystyle{plain}
     \bibliography{refs}
 
