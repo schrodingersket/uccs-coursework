@@ -1,0 +1,14 @@
+$ u' = 2 \sin{(x)} \cos{(x)} e^{\sin^2{(x)}}$
+
+\begin{solution}
+  At around $10^{-13}$, we find that the error flattens out and machine rounding errors dominate. Until then, our convergence is fourth order:
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{problem_2a_fd.png}
+    \caption{Partitions vs. Error and Time}
+  \end{figure}
+
+  As before, we see that the computation time is approximately linear with respect to the number of equidistant partitions.
+  \ \\
+\end{solution}
