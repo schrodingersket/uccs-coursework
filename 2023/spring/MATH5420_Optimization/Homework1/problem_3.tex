@@ -1,0 +1,15 @@
+\textbf{Griva, Nash, Sofer 2.3.1}
+
+Prove that the intersection of a finite number of convex sets is a convex set.
+
+\begin{solution}
+  Let $S = \bigcap_{i \in I}{S_i}$ be the intersection of an arbitrary (but finite) number of convex sets.
+  If $S = \emptyset$, then $S$ is trivially convex. We may therefore suppose that $S$ is non-empty. Let 
+  $x$ and $y$ be arbitrary points in $S$. Then $x, y \in \bigcap_{i \in I}{S_i}$ and so $x$ and $y$ are in every
+  $S_i$. Since each $S_i$ is convex, $\alpha x + (1 - \alpha) y \in S_i$ for all $\alpha \in [0, 1]$; because this 
+  holds for every $i \in I$, we have by definition that 
+  $\left\{ \alpha x + (1 - \alpha) y \mid \alpha \in \left[0, 1\right] \right\} \subseteq \bigcap_{i \in I}{S_i}$.
+  Since $x$ and $y$ were chosen to be arbitrary points in $S$, we see that $\alpha x + (1 - \alpha)y \in S$ for any elements
+  $x$ and $y$ in $S$ for all $0 \le \alpha \le 1$. $S$ is therefore convex and we have the desired result.
+  \ \\
+\end{solution}

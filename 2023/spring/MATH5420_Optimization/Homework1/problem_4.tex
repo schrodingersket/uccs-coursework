@@ -1,0 +1,51 @@
+\textbf{Griva, Nash, Sofer 2.3.2}
+
+Let $S_1 = \left\{ x \mid 1 - x_1 - x_2 \ge 0, x_1 \ge 0 \right\}$ and 
+$S_2 = \left\{ x \mid x_1 - x_2 \ge 0, 1 - x_1 \ge 0 \right\}$, and let $S = S_1 \cup S_2$.
+Prove that $S_1$ and $S_2$ are both convex sets but $S$ is not a convex set (and conclude
+that the union of convex sets is not necessarily convex).
+
+\begin{solution}
+  Let $c, b \in \mathbb{R}^n$ and let $S = \left\{ x \mid c^T x \le b \right\}$ represent an arbitrary linear constraint
+  in $\mathbb{R}^n$. We first show that $S$ is convex, and subsequently apply this result to $S_1$ and $S_2$. Let $x$ 
+  and $y$ be arbitrary points in $S$. Then $c^T x \le b$ and $c^T y \le b$, and we wish to show that 
+  $\alpha x + (1 - \alpha) y \in S$ for any $\alpha \in [0, 1]$. We multiply $\alpha x + (1 - \alpha) y$ by $c^T$ to find 
+  (by linearity and the observation that both $\alpha$ and $1 - \alpha$ are non-negative):
+
+  \begin{align*}
+    c^T \left(\alpha x + (1 - \alpha) y \right) &= c^T \alpha x + c^T (1 - \alpha) y \\
+                                                &= \alpha c^T x + (1 - \alpha) c^T y \\
+                                                &\le \alpha b + (1 - \alpha) b \\
+                                                &= \alpha b + b - \alpha b \\
+                                                &= b \\
+  \end{align*}
+
+  Hence $\alpha x + (1 - \alpha) y \in S$ and so $S$ is convex, as desired. To show $S_1$ and $S_2$ are convex, we restrict
+  our attention to $\mathbb{R}^2$ and observe that we may write
+
+  $$
+  S_1 = \{x \mid x_1 + x_2 \le 1\} \cap \{ x \mid -x_1 \le 0 \}.
+  $$
+
+  Letting $c = (1, 1)\;, b = 1$ for the first linear constraint and $c = (-1, 0)\;, b = 0$ for the second and applying
+  our result from 2.3.1, we have that $S_1$ is convex. We similarly write
+
+  $$
+  S_2 = \{x \mid -x_1 + x_2 \le 0\} \cap \{ x \mid x_1 \le 1 \}
+  $$
+
+  and let $c = (-1, 1)\;, b = 0$ for the first linear inequality and $c = (1, 0)\;, b = 1$ for the second to find that
+  $S_2$ is also convex.
+
+  Lastly, to show that $S_1 \cup S_2$ is \textit{not} convex, we consider the points $x = (0, 1)^T \in S_1$ and 
+  $y = (1, 1)^T \in S_2$ and let $\alpha = \frac{1}{2}$ to find:
+
+  $$
+  \frac{1}{2}x + \left(1 - \frac{1}{2}\right)y = \left(0, \frac{1}{2}\right)^T + \left(\frac{1}{2}, \frac{1}{2}\right)^T
+                                               = \left(\frac{1}{2}, 1\right)^T \notin S_1 \cup S_2,
+  $$
+
+  since $x_1 + x_2 = \frac{1}{2} + 1 \nleq 1$ and $-x_1 + x_2 = -\frac{1}{2} + 1 = \frac{1}{2} \nleq 0$.
+
+  \ \\
+\end{solution}
