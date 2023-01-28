@@ -1,0 +1,22 @@
+\textbf{Griva, Nash, Sofer 2.3.3}
+
+Consider a feasible region $S$ defined by a set of linear constraints 
+$S = \left\{ x \mid Ax \le b \right\}$ where $A \in M_{n \times n}(\mathbb{R})$.
+Prove that $S$ is convex.
+
+\begin{solution}
+  Let $S_i = \left\{ x \mid A_i x \le b_i \right\}$ represent the feasible set for the linear 
+  constraint obtained by multiplying the $i^{th}$ row of $A$ by $x$ and imposing that this sum
+  be less than the correponding $i^{th}$ element of $b$. Then $A_i x \le b_i$ is of the form 
+  $c^T x \le b$ and is convex by the result proved in 2.3.2. Moreover, we may write $S$ thusly:
+ 
+  $$
+    S = \left\{ x \mid Ax \le b \right\} 
+      = \bigcap_{i=1}^n{\left\{ x \mid A_i x \le b_i \right\}} 
+      = \bigcap_{i=1}^n{S_i}
+  $$
+
+  where $I = \{ k \}_{k=1}^n$. Since the finite intersection of convex sets is convex, we see
+  that $S$ is convex, as desired.
+  \ \\
+\end{solution}

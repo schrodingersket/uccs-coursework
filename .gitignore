@@ -279,3 +279,6 @@ __latexindent_temp.tex
 
 # VSCode 
 .vscode/
+
+# Notebooks
+*.xopp

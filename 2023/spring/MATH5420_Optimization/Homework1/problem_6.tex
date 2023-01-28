@@ -1,0 +1,39 @@
+\textbf{Griva, Nash, Sofer 2.3.5}
+
+Let $f:\mathbb{R}^n \to \mathbb{R}$ be a function. Prove that $f$ is convex and concave if
+and only if $f(x) = c^T x$ for some constant vector $c$.
+
+\begin{solution}
+  Suppose first that $f$ is convex and concave, and let $x, y \in \mathbb{R}^n$. 
+  Since $f$ convex over a convex set \footnote{
+    $\mathbb{R}^n$ is convex since it is closed under arbitrary linear combinations.
+  }, the following holds:
+
+  \begin{equation}
+    f(\alpha x + (1 - \alpha)y) \le \alpha f(x) + (1 - \alpha) f(y).
+  \end{equation}
+
+  Similarly, since $f$ is also concave, $-f$ is convex and so we have
+
+  $$
+    -f(\alpha x + (1 - \alpha)y) \le \alpha -f(x) + (1 - \alpha) -f(y).
+  $$
+
+  Multiplying through by $-1$ yields
+
+  $$
+    f(\alpha x + (1 - \alpha)y) \ge \alpha f(x) + (1 - \alpha) f(y)
+  $$
+
+  which combined with (1) gives equality:
+  
+  $$
+    f(\alpha x + (1 - \alpha)y) = \alpha f(x) + (1 - \alpha) f(y)
+  $$
+
+  We now show that this equality implies that $f$ is linear (and hence that $f = c^T x$ for some
+  constant $c \in \mathbb{R}^n$).
+
+  TODO.
+  \ \\
+\end{solution}
