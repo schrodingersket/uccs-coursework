@@ -13,6 +13,64 @@ a bound on the accuracy of the four-term series. Compare the derived bound with 
 actual errors for $p = 0.1$ and $p = 0.01$.
 
 \begin{solution}
-  TODO.
+  The first four derivatives of $f(x)$ are given by:
+
+  \begin{align*}
+    f'(x) &= (1 + x)^{-1} \\
+    f''(x) &= -(1 + x)^{-2} \\
+    f'''(x) &= 2(1 + x)^{-3} \\
+    f''''(x) &= -6(1 + x)^{-4} \\
+  \end{align*}
+
+  and hence the first four terms of the Taylor series for $f$ centered about $x_0 = 0$ are
+
+  \begin{align*}
+    f(x) &\approx f(x_0) + \frac{1}{1!} f'(x_0)(x - x_0) + \frac{1}{2!} f''(x_0)(x - x_0)^2 + \frac{1}{3!} f'''(x_0)(x - x_0)^3 \\
+         &= f(0) + f'(0) x + \frac{1}{2} f''(0) x^2 + \frac{1}{6} f'''(0) x^3 \\
+         &= x - \frac{1}{2} x^2 + \frac{1}{3} x^3 \\
+  \end{align*}
+
+  and so we find
+
+  \begin{align*}
+    f(x + p_1) = f(x + 0.1)  &\approx 0.1 - \frac{1}{2} (0.1)^2 + \frac{1}{3} (0.1)^3 = 0.095333 \\
+    f(x + p_2) = f(x + 0.01) &\approx 0.01 - \frac{1}{2} (0.01)^2 + \frac{1}{3} (0.01)^3 = .0099503333
+  \end{align*}
+
+  Moreover, our errors are given by:
+
+  \begin{align*}
+    E(x + p_1) &= \left\vert 0.1 - \frac{1}{2} (0.1)^2 + \frac{1}{3} (0.1)^3 - f(x + 0.1) \right\vert \approx 0.000023 = \mathcal{O}(p_1^4) \\
+    E(x + p_2) &= \left\vert 0.01 - \frac{1}{2} (0.01)^2 + \frac{1}{3} (0.01)^3 - f(x + 0.01) \right\vert \approx 0.00000000248 = \mathcal{O}(p_2^4) \\
+  \end{align*}
+
+  In remainder form, our Taylor series expansion of $f(x)$ about $x_0$ is given by:
+
+  \begin{align*}
+    f(x) &= f(x_0) + \frac{1}{1!} f'(x_0)(x - x_0) + \frac{1}{2!} f''(x_0)(x - x_0)^2 + \frac{1}{3!} f'''(x_0)(x - x_0)^3 + \frac{1}{4!}f''''(\xi)(x - x_0)^4 \\
+         &= x - \frac{1}{2} x^2 + \frac{1}{3} x^3 - \frac{1}{4}(1 + \xi)^{-4} x^4
+  \end{align*}
+
+  for some $\xi \in (x_0, x_0 + p)$. Our error term is therefore given by
+
+  $$
+  R_p(x) = \frac{x^4}{4(1 + \xi)^4}, \; p \in (x_0, x_0 + p)
+  $$
+
+  For $p = 0.1$, we derive a bound on $R_{0.1}(x)$ by taking the sup norm of $R_{0.1}$ to find:
+
+  $$
+  |R_{0.1}(x)| \le \| R_{0.1}(x) \|_{\infty} = \sup_{x,\xi \in (0, 0.1)}{\left\vert \frac{x^4}{4(1 + \xi)^4} \right\vert} 
+                                             = \frac{(0.1)^4}{4} = 0.000025
+  $$
+
+  Similarly, $p = 0.01$ yields the following bound on $R_{0.01}(x)$:
+  
+  $$
+  |R_{0.01}(x)| \le \sup_{x,\xi \in (0, 0.01)}{\left\vert \frac{x^4}{4(1 + \xi)^4} \right\vert} 
+                  = \frac{(0.01)^4}{4} = 0.0000000025
+  $$
+
+  In both cases, our upper bound on the error is just a hair larger than our computed error, as desired. 
   \ \\
 \end{solution}
