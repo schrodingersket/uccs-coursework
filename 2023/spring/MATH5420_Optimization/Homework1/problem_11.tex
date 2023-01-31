@@ -14,6 +14,40 @@ for all $x, y \in S$.
 
 
 \begin{solution}
-  TODO.
+  Let $\nabla^2 f(x)$ be positive definite for all $x$ in the convex set $S$. For the sake
+  of contradiction, suppose that $f$ is not convex on $S$. Then there exist some $x, y \in S$
+  such that $f(y) < f(x) + \nabla f(x)^T (y - x)$ and so 
+ 
+  \begin{equation}\label{eq:2}
+    f(y) - f(x) - \nabla f(x)^T (y - x) < 0
+  \end{equation}
+  
+  Because $f$ has continuous second derivatives,
+  we may apply Taylor's Theorem by expanding $f(y)$ about $x$ to find
+
+  $$
+    f(y) = f(x) + \nabla f(x)^T (y - x) + \frac{1}{2} (y - x)^T \nabla^2 f\big(x + \alpha(y - x)\big) (y - x)
+  $$
+
+  and hence 
+
+  \begin{equation} \label{eq:3}
+    f(y) - f(x) - \nabla f(x)^T (y - x) = \frac{1}{2} (y - x)^T \nabla^2 f\big(x + \alpha(y - x)\big) (y - x)
+  \end{equation}
+
+  for some $\alpha \in (0, 1)$. In particular, we see
+
+  $$
+  x + \alpha (y - x) = x + \alpha y - \alpha x = \alpha y + (1 - \alpha) x.
+  $$
+
+  and so $x + \alpha(y - x) \in S$. Because $\nabla^2 f(x)$ is positive semidefinite, (\ref{eq:3})
+  becomes
+  
+  $$
+    f(y) - f(x) - \nabla f(x)^T (y - x) = \frac{1}{2} (y - x)^T \nabla^2 f\big(x + \alpha(y - x)\big) (y - x) \ge 0
+  $$
+
+  which combined with ($\ref{eq:2}$) yields the desired contradiction.
   \ \\
 \end{solution}

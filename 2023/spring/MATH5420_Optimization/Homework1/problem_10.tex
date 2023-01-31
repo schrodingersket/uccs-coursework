@@ -7,6 +7,28 @@ sufficiently small $\epsilon > 0$.
 $f(x_k + \epsilon p) - f(x_k)$.
 
 \begin{solution}
-  TODO.
+  Let $K$ be a compact neighborhood about $x_k$. Since $f$ is twice continuously
+  differentiable\footnote{
+    Our hint implies that we may expand $f(x_k)$ in Taylor series, and so we therefore 
+    assume that $f$ is at least twice continuously differentiable at $x_k$.
+  }, $\nabla^2 f$ is continuous and hence $\nabla^2 f(K)$ is compact and therefore bounded
+  by the Heine-Borel theorem. Let $c$ be an upper bound for $|p^T \nabla^2 f(x) p|$.
+  Let $p$ be fixed and $\epsilon > 0$ such that $x + \epsilon p \in K$. We expand 
+  $f(x_k + \epsilon p)$ about $x_k$ and subtract $f(x_k)$ to find:
+
+  \begin{align*}
+    f(x_k + \epsilon p) - f(x_k) &= \epsilon p^T \nabla f(x_k) + \frac{\epsilon^2}{2} p^T \nabla^2 f(\xi) p \\
+                                 &= \epsilon \left(p^T \nabla f(x_k) + \frac{\epsilon}{2} p^T \nabla^2 f(\xi) p \right) \\
+  \end{align*}
+
+  for some $\xi \in (x_k, x_k + \epsilon p) \subset K$. Let $\nu = p^T \nabla f(x_k) < 0$.
+  For $\epsilon = \frac{\nu}{c}$, we have:
+
+  $$
+  \epsilon \left(\frac{3 \nu}{2} \right) \le f(x_k + \epsilon p) - f(x_k) \le \epsilon \left(\frac{\nu}{2} \right) < 0
+  $$
+
+  and so $f(x_k + \epsilon p) < f(x_k)$, as desired.
+
   \ \\
 \end{solution}

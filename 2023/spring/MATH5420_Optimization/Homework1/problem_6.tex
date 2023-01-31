@@ -1,15 +1,32 @@
 \textbf{Griva, Nash, Sofer 2.3.5}
 
-Let $f:\mathbb{R}^n \to \mathbb{R}$ be a function. Prove that $f$ is convex and concave if
-and only if $f(x) = c^T x$ for some constant vector $c$.
+Let $f$ be a real-valued function on $\mathbb{R}^n$. Prove that $f$ is convex and concave if and only if 
+$f(x) = c^T x + b$ for some constant vectors $c$ and $b$.
 
 \begin{solution}
-  Suppose first that $f$ is convex and concave, and let $x, y \in \mathbb{R}^n$. 
-  Since $f$ convex over a convex set \footnote{
-    $\mathbb{R}^n$ is convex since it is closed under arbitrary linear combinations.
-  }, the following holds:
 
-  \begin{equation}
+  Suppose first that $f$ is affine, i.e., $f(x) = c^T x + b$ for some constants $b, c \in \mathbb{R}^n$.
+  Then for all $x, y \in \mathbb{R}^n$ and $\alpha \in \mathbb{R}$, we have:
+  
+  \begin{align*}
+    f(\alpha x + (1 - \alpha)y) &= c^T \left( \alpha x + (1 - \alpha)y \right) + b  \\
+                                &= c^T \alpha x + c^T (1 - \alpha)y + b \\
+                                &= c^T \alpha x + c^T (1 - \alpha)y + \alpha b + (1 - \alpha) b \\
+                                &= \alpha (c^T x + b) + (1 - \alpha)(c^T y + b) \\
+                                &= \alpha f(x) + (1 - \alpha)f(y).
+  \end{align*}
+
+  Hence $f(\alpha x + (1 - \alpha)y) \le \alpha f(x) + (1 - \alpha)f(y)$ and 
+  $f(\alpha x + (1 - \alpha)y) \ge \alpha f(x) + (1 - \alpha)f(y)$ and so $f$ is both convex and concave, as desired.
+
+  \vspace{3em}
+
+  Conversely, suppose that $f$ is convex and concave. Let $x, y \in \mathbb{R}^n$. 
+  Since $f$ is convex over a convex set,\footnote{
+    $\mathbb{R}^n$ is convex since it is closed under arbitrary linear combinations.
+  } the following holds:
+
+  \begin{equation} \label{eq:1}
     f(\alpha x + (1 - \alpha)y) \le \alpha f(x) + (1 - \alpha) f(y).
   \end{equation}
 
@@ -25,15 +42,67 @@ and only if $f(x) = c^T x$ for some constant vector $c$.
     f(\alpha x + (1 - \alpha)y) \ge \alpha f(x) + (1 - \alpha) f(y)
   $$
 
-  which combined with (1) gives equality:
+  which combined with (\ref{eq:1}) gives equality:
   
   $$
     f(\alpha x + (1 - \alpha)y) = \alpha f(x) + (1 - \alpha) f(y)
   $$
 
   We now show that this equality implies that $f$ is linear (and hence that $f = c^T x$ for some
-  constant $c \in \mathbb{R}^n$).
+  constant $c \in \mathbb{R}^n$). To do so, we begin by defining $g(x) = f(x) - f(0)$ and show that
+  $g(x)$ is also convex and concave:
 
-  TODO.
+  \begin{align*}
+    g(\alpha x + (1 - \alpha) y) &= f(\alpha x + (1 - \alpha) y) - f(0) \\
+                                 &= f(\alpha x + (1 - \alpha) y) - f(\alpha \cdot 0 - (1 - \alpha) \cdot 0) \\
+                                 &= \alpha f(x) + (1 - \alpha) f(y) - \alpha f(0) - (1 - \alpha) f(0) \\
+                                 &= \alpha \left(f(x) - f(0) \right) + (1 - \alpha) \left(f(y) f(0) \right) \\
+                                 &= \alpha g(x) + (1 - \alpha) g(y).
+  \end{align*}
+
+  We note that $g(0) = f(0) - f(0) = 0$, and so for $\alpha \in [0, 1]$ we have:
+
+  \begin{align*}
+    g(\alpha x) &= f(\alpha x) - f(0) \\
+                &= f(\alpha x + (1 - \alpha) \cdot 0) - f(0) \\
+                &= \alpha f(x) + (1 - \alpha) f(0) - f(0) \\
+                &= \alpha \left(f(x) - f(0)\right) \\
+                &= \alpha g(x).
+  \end{align*}
+
+  When $\alpha > 1$, we define $\beta = \alpha^{-1} < 1$ and apply the concavity and convexity of $g$
+  to find:
+
+  \begin{align*}
+    g(x) &= g(\beta^{-1} \beta x + (1 - \beta) \cdot 0) \\
+         &= \beta g(\beta^{-1} x) + (1 - \beta) g(0) \\
+         &= \alpha^{-1} g(\alpha x) \\
+  \end{align*}
+
+  and hence $\alpha g(x) = g(\alpha x)$. With this result in hand, we show that $g$ is additive (by letting 
+  $\alpha = \frac{1}{2}$ and utilizing the convexity and concavity of $g$):
+
+  \begin{align*}
+    g(x) + g(y) &= 2 \left[ \frac{1}{2} g(x) + \frac{1}{2} g(y) \right] \\
+                &= 2 \left[ \frac{1}{2} g(x) + \left(1 - \frac{1}{2}\right) g(y) \right] \\
+                &= 2g\left( \frac{1}{2}x + \left(1 - \frac{1}{2}\right)y \right) \\
+                &= g\left(2 \left( \frac{1}{2}x + \frac{1}{2}y \right) \right) \\
+                &= g(x + y)
+  \end{align*}
+
+  Lastly, we show that $g(-x) = g(x)$, which shows that $g(\alpha x) = \alpha g(x)$ for \textit{all} $\alpha \in 
+  \mathbb{R}$:
+
+  \begin{align*}
+    g(-x) &= g(x - 2x) \\
+          &= g(x) + g(-2x) \\
+          &= g(x) + 2g(-x) \\
+          &= \left(g(x) + g(-x)\right) + g(-x)
+  \end{align*}
+
+  and so $g(x) + g(-x) = 0$ and $g(-x) = -g(x)$, as desired. Our function $g$ is therefore linear and so takes the form 
+  $g(x) = c^T x$ for some constant $c \in \mathbb{R}^n$. We let $b = f(0)$, and observe by definition of $g$ that 
+  $f(x) = c^T x + b$, as desired.
+  
   \ \\
 \end{solution}
