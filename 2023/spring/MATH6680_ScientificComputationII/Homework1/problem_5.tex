@@ -1,0 +1,21 @@
+\textbf{Trefethen 2.7}
+
+Modify \texttt{Program 3} to determine the maximum error over $\mathbb{R}$ in the sinc function interpolants of the
+square wave and the hat function, and to produce a log-log plot of these two error maxima as functions of $h$. 
+(Good choices for $h$ are $2^{-3}$, $2^{-4}$, $2^{-5}$,$2^{-6}$.) What convergence rates do you observe as $h \to 0$?
+
+\begin{solution}
+  The log-log plots for sinc interpolants of the square wave and hat functions (respectively) are given in the plot 
+  below:
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{problem_5.png}
+    \caption{log-log plot of sinc interpolant errors}
+  \end{figure}
+
+  From the above, we see that the square wave error is approximately constant, and so converges at the rate
+  $\mathcal{O}(h^0)$. Similarly, we see that the convergence rate for the hat function is approximately 
+  $\mathcal{O}(h^1)$ which we attribute to the respective differentiability (or lack thereof) of these functions.
+  \ \\
+\end{solution}

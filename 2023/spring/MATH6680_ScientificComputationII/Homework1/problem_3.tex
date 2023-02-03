@@ -1,0 +1,69 @@
+\textbf{Trefethen 1.6}
+
+By manipulating Taylor series, determine the constant $C$ for an error expansion of (1.3) of the form
+$w_j - u'(x_j) \approx Ch^4 u^{(5)}(x_j)$, where $u^{(5)}$ denotes the fifth derivative. Based on this
+value of $C$ and on the formula for $u^{(5)}(x)$ with $u(x) = e^{\sin{(x)}}$, determine the leading term
+in the expansion for $w_j - u'(x_j)$ for $u(x) = e^{\sin{(x)}}$. (You will have to find 
+$\max_{[-\pi, \pi]}{\left\vert u^{(5)}(x) \right\vert}$ numerically.) Modify \texttt{Program 1} so that
+it plots the dashed line corresponding to this leading term rather than just $N^{-4}$. This adjusted
+dashed line should fit the data almost perfectly. Plot the difference between the two on a log-log scale
+and verify that it shrinks at the rate $O(h^6)$.
+
+
+\begin{solution}
+  From (1.3), we have:
+  
+  $$
+    w_j - u_j^{(1)} = \frac{2}{3h}\left( u_{j-1} - u_{j+1}\right) + \frac{1}{12h}\left(u_{j+2} - u_{j-2} \right) + O(h^6).
+  $$
+
+  Taylor expansion of $u_{j-1}$ and $u_{j-2}$ about $u_j$ gives:
+
+  \begin{align*}
+    u_{j-1} &= u_j - h u_j^{(1)} + \frac{h^2}{2!} u_j^{(2)} - \frac{h^3}{3!} u_j^{(3)} + \frac{h^4}{4!} u_j^{(4)} - \frac{h^5}{5!} u_j^{(5)} + \mathcal{O}(h^6) \\
+    u_{j-2} &= u_j - 2h u_j^{(1)} + \frac{(2h)^2}{2!} u_j^{(2)} - \frac{(2h)^3}{3!} u_j^{(3)} + \frac{(2h)^4}{4!} u_j^{(4)} - \frac{(2h)^5}{5!} u_j^{(5)} + \mathcal{O}(h^6) \\
+  \end{align*}
+
+  By symmetry, we have:
+
+  $$
+  \frac{2}{3h}\left(u_{j-1} + u_{j+1} \right) = -\frac{4}{3} u_j^{(1)} - \frac{2h^2}{9} u_j^{(3)} - \frac{h^4}{90} u_j^{(5)} + \mathcal{O}(h^5)
+  $$
+
+  and 
+
+  $$
+  \frac{1}{12h} \left(u_{j+2} - u_{j-2} \right) = \frac{1}{3} u_j^{(1)} + \frac{2h^2}{9} u_j^{(3)} + \frac{2h^4}{45} u_j^{(5)} + \mathcal{O}(h^5)
+  $$
+
+  and so 
+
+  \begin{align*}
+    w_j - u_j^{(1)} &= \frac{2}{3h}\left( u_{j-1} - u_{j+1}\right) + \frac{1}{12h}\left(u_{j+2} - u_{j-2} \right) + O(h^5) \\
+                       &= \left( -\frac{4}{3} + \frac{1}{3} \right) u_j^{(1)} 
+                        + \left( -\frac{2}{9} + \frac{2}{9} \right) h^2 u_j^{(3)}
+                        + \left( -\frac{1}{90} + \frac{2}{45} \right) h^4 u_j^{(5)} + \mathcal{O}(h^5) - u_j^{(1)} \\
+                       &= \frac{1}{30} h^4 u_j^{(5)} + \mathcal{O}(h^5). \\
+  \end{align*}
+
+  Hence $w_j - u'(x_j) \approx Ch^4 u^{(5)}(x_j) = \frac{1}{30} h^4 u_j^{(5)}$. Moreover, the fifth derivative of $u$ is
+  given by:\footnote{
+    Courtesy of Wolfram Alpha.
+  }
+
+  $$
+  u^{(5)}(x) = e^{\sin{(x)}} \cos{(x)} \left( 15 \sin^2{(x)} + 15 \sin{(x)} + \cos^4{(x)} - 10 (\sin{(x)} + 1) \cos^2{(x)} + 1 \right)
+  $$
+
+  which attains a maximum at $x^* \approx 1.09569$ of $u^{(5)}(x^*) \approx 24.811$.\footnote{
+    Again, courtesy of Wolfram Alpha.
+  } We plot this error term below and observe that the difference between it and the actual error decreases at
+  the rate $\mathcal{O}(h^5)$:
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=\textwidth]{problem_3.png}
+  \end{figure}
+
+  \ \\
+\end{solution}

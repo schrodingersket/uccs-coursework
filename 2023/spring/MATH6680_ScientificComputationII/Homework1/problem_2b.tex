@@ -1,5 +1,14 @@
-$ u' = \frac{\sin{(x)} \sin{(2x)} e^{\sin{(x)} \lvert \sin{(x)} \rvert}}{\lvert\sin{(x)}\rvert}$
+$u = e^{\sin{(x)}|\sin{(x)}|},\; u' = 2 \cos{(2x)} \lvert \sin{(x)} \rvert e^{\sin{(x)}|\sin{(x)}|}$
 
 \begin{solution}
+  We observe in this case only first-order convergence:
+  
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{problem_2b.png}
+    \caption{Finite Difference vs. Spectral Convergence}
+  \end{figure}
+  
+  Moreover, we observe $\mathcal{O}(h)$ spectral convergence, as $u(x)$ is once-differentiable and not analytic.
   \ \\
 \end{solution}

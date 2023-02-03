@@ -282,3 +282,5 @@ __latexindent_temp.tex
 
 # Notebooks
 *.xopp
+
+octave-workspace
