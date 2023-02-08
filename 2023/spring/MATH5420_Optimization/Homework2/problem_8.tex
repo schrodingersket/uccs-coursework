@@ -4,5 +4,10 @@ Let $Z$ be an $n \times r$ null-space matrix for the matrix $A$. If $Y$ is any i
 that $\hat{Z} = ZY$ is also a null-space matrix for $A$.
 
 \begin{solution}
+  Since $Z$ is a null-space matrix for $A$, its columns form a generating set for $N(A)$ (since any vector $p \in N(A)$
+  may be expressed as a linear combination of the columns of $Z$). Moreover, the range of a linear matrix operator is 
+  equal to its column space, and hence $N(A) \subseteq R(Z)$. Since $Y:\mathbb{R}^r \to \mathbb{R}^r$ is invertible, 
+  it is bijective and so its range is $\mathbb{R}^r$ itself. Hence $R(ZY) = R(Z)$ and so $N(A) \subseteq R(ZY)$. The 
+  columns of $ZY$ therefore span $N(A)$ and hence $ZY$ is a null-space matrix for $A$.
   \ \\
 \end{solution}

@@ -1,9 +1,16 @@
 \textbf{Griva, Nash, Sofer 3.2.3}
 
-Let $A$ be a given $m \times n$ matrix and let $Z$ be a null-space matrix for $A$. Let $X$ be an invertible $m \times m$
-matrix and let $Y$ be an invertible $n \times n$ matrix. If a change of variable is made to transform $A$ into 
-$\hat{A} = XAY$, how can $Z$ be transformed into $\hat{Z}$ so that $\hat{Z}$ is also a null-space matrix for $\hat{A}$?
+Let $A$ be a given $m \times n$ matrix and let $Z \in M_{n \times r}$ be a null-space matrix for $A$. Let $X$ be an 
+invertible $m \times m$ matrix and let $Y$ be an invertible $n \times n$ matrix. If a change of variable is made to 
+transform $A$ into $\hat{A} = XAY$, how can $Z$ be transformed into $\hat{Z}$ so that $\hat{Z}$ is also a null-space 
+matrix for $\hat{A}$?
 
 \begin{solution}
+  Let $p \in N(XAY)$ be any vector in the null space of the linear operator $XAY$ so that $XAYp = 0$. Since $X$ is 
+  invertible, we may multiply both sides of this equation by $X^{-1}$ to obtain $AYp = 0$. Evidently, $Yp$ is in the 
+  null space of $A$, and since $Z$ is a null-space vector for $A$, we may write $Yp = Zv$ for some 
+  $v \in \mathbb{R}^r$. Moreover, since $Y$ is invertible, we see that $p$ may be written $p = ZY^{-1}v$. We define
+  $\hat{Z} \coloneqq ZY^{-1}$ and observe that $p = \hat{Z}v$. Since $p$ was chosen to be an arbitrary element of the
+  null space of $XAY$, this holds for each $p \in N(XAY)$ and so $\hat{Z}$ is a null-space matrix vector for $XAY$.
   \ \\
 \end{solution}

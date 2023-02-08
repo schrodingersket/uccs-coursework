@@ -284,3 +284,5 @@ __latexindent_temp.tex
 *.xopp
 
 octave-workspace
+venv/
+__pycache__/
