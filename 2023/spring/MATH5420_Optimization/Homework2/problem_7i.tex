@@ -18,5 +18,120 @@ $$
 
 
 \begin{solution}
+  We observe first that the columns of $A^T$ are linearly independent, since the reduced-row echelon of $A^T$ takes the
+  form
+
+  $$
+  \text{rref}(A^T) = \begin{pmatrix*}[r]
+    I \\
+    0
+  \end{pmatrix*}.
+  $$
+
+  Hence $\text{rank}(A) = 3$, and so by the rank-nullity theorem, $\text{nullity}(A) = 1$. Moreover, the columns of 
+  $A^T$ form a basis for the range space of $A^T$. The reduced-row echelon form of $A$ is
+
+
+  $$
+  \text{rref}(A^T) = \begin{pmatrix*}[r]
+    1 & 0 & 0 & 1 \\
+    0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & -1 \\
+  \end{pmatrix*}.
+  $$
+
+  We let $\text{rref}(A)z = 0$ and observe that $z_4$ is the only free variable; hence a basis for the null space of
+  $A$ is given by
+
+  $$
+  \beta_{N(A)} = \left\{ \beta_1 \right\} = \left\{\begin{pmatrix*}[r]
+    -1 \\
+    -1 \\
+     1 \\
+     1
+  \end{pmatrix*}\right\}.
+  $$
+
+  To compute each point $x_i$ as the sum of vectors in the null and row spaces, we project each $x_i$ onto the 
+  null space basis vector and subtract out the result; what remains is the component of $x_i$ which resides in the row 
+  space. \footnote{
+    This is a result of the fact that the row space and null space are orthogonal complements of each other and, 
+    crucially, that the null space basis consists only of a single vector. If the null space consists of multiple 
+    vectors, a Gram-Schmidt process would be required to compute the rejection of $x_i$ from the 
+    null space.
+  } \footnote{
+    Computations are performed in \texttt{problem\_7i.py}.
+  }
+
+  For $x_1 = (1, 3, 1, 2)^T$, we have:
+
+  $$
+  p_1 = \text{proj}_{\beta_1} x_1 \cdot \beta_1 = -\frac{1}{4} \beta_1 = \begin{pmatrix*}[r]
+    \frac{1}{4} \\[6pt]
+    \frac{1}{4} \\[6pt]
+   -\frac{1}{4} \\[6pt]
+   -\frac{1}{4}
+  \end{pmatrix*}
+  $$
+
+  and hence
+
+  $$
+  q_1 = x_1 - p_1 
+      = \begin{pmatrix*}[r]
+        1 \\[6pt]
+        3 \\[6pt]
+        1 \\[6pt]
+        2
+      \end{pmatrix*}
+      - \begin{pmatrix*}[r]
+        \frac{1}{4} \\[6pt]
+        \frac{1}{4} \\[6pt]
+       -\frac{1}{4} \\[6pt]
+       -\frac{1}{4}
+      \end{pmatrix*}
+      = \begin{pmatrix*}[r]
+        \frac{3}{4} \\[6pt]
+        \frac{11}{4} \\[6pt]
+        \frac{5}{4} \\[6pt]
+        \frac{9}{4}
+      \end{pmatrix*}.
+  $$
+
+  Similarly, for $x_2 = (0, -2, -3, 4)^T$, we have:
+
+  $$
+  p_2 = \text{proj}_{\beta_1} x_2 \cdot \beta_1 = \frac{3}{4} \beta_1 = \begin{pmatrix*}[r]
+   -\frac{3}{4} \\[6pt]
+   -\frac{3}{4} \\[6pt]
+    \frac{3}{4} \\[6pt]
+    \frac{3}{4}
+  \end{pmatrix*}
+  $$
+
+  and so
+
+  $$
+  q_2 = x_2 - p_2 
+      = \begin{pmatrix*}[r]
+        0 \\[6pt]
+       -2 \\[6pt]
+       -3 \\[6pt]
+        4
+      \end{pmatrix*}
+      - \begin{pmatrix*}[r]
+       -\frac{3}{4} \\[6pt]
+       -\frac{3}{4} \\[6pt]
+        \frac{3}{4} \\[6pt]
+        \frac{3}{4}
+      \end{pmatrix*}
+      = \begin{pmatrix*}[r]
+        \frac{3}{4} \\[6pt]
+       -\frac{5}{4} \\[6pt]
+       -\frac{15}{4} \\[6pt]
+        \frac{13}{4}
+      \end{pmatrix*}.
+  $$
+
   \ \\
 \end{solution}

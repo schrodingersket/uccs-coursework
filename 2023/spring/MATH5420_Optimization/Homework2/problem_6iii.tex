@@ -1,5 +1,18 @@
 $x = (5, 0 , -6, -8, -3)^T$ and $p = (5, 0, 5, 1, 3)^T.$
 
 \begin{solution}
+  For each $a_i$, we have:
+
+  \begin{align*}
+    a_1^T p &= (9, 4, 1, 9, -7)^T (5, 0, 5, 1, 3) = 38 \\
+    a_2^T p &= (6, -7, 8, -4, -6)^T (5, 0, 5, 1, 3) = 48 \\
+    a_3^T p &= (1, 6, 3, -7, 6)^T (5, 0, 5, 1, 3) = 31.
+  \end{align*}
+
+  Hence no constraints can be used in the ratio test and so no feasible step size at $x$ in the direction of $p$ exists.
+  \footnote{
+    Numeric calculations are computed in \texttt{problem\_6iii.py}.
+  }
+
   \ \\
 \end{solution}

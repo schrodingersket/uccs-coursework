@@ -1,5 +1,22 @@
 $x = (7, -4, -3, -3, 3)^T$ and $p = (3, 2, 0, 1, -2)^T.$
 
 \begin{solution}
+  For each $a_i$, we have:
+
+  \begin{align*}
+    a_1^T p &= (9, 4, 1, 9, -7)^T (3, 2, 0, 1, -2) = 58 \\
+    a_2^T p &= (6, -7, 8, -4, -6)^T (3, 2, 0, 1, -2) = 12 \\
+    a_3^T p &= (1, 6, 3, -7, 6)^T (3, 2, 0, 1, -2) = -4
+  \end{align*}
+
+  and so $a_3^T p$ is the only constraint used in the ratio test, which yields:\footnote{
+    Numeric calculations are computed in \texttt{problem\_6ii.py}.
+  }
+
+  \begin{align*}
+    \bar{\alpha} &= \min \left\{ \frac{a_i^T x - b_i}{-a_i^Tp} \ \middle| \ a_i^T p < 0 \right\} \\
+                 &= \min \left\{ \frac{13 - (-20)}{4} \right\} \\
+                 &= \frac{33}{4}.
+  \end{align*}
   \ \\
 \end{solution}

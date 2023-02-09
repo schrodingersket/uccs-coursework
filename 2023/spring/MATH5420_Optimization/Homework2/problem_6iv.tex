@@ -1,5 +1,22 @@
 $x = (9, 1, -1, 6, 3)^T$ and $p = (-4, -2, 4, -2, 2)^T.$
 
 \begin{solution}
+  For each $a_i$, we have:
+
+  \begin{align*}
+    a_1^T p &= (9, 4, 1, 9, -7)^T (-4, -2, 4, -2, 2) = -72 \\
+    a_2^T p &= (6, -7, 8, -4, -6)^T (-4, -2, 4, -2, 2) = 18 \\
+    a_3^T p &= (1, 6, 3, -7, 6)^T (-4, -2, 4, -2, 2) = 22
+  \end{align*}
+
+  and so $a_1^T p$ is the only constraint used in the ratio test, which yields:\footnote{
+    Numeric calculations are computed in \texttt{problem\_6iv.py}.
+  }
+
+  \begin{align*}
+    \bar{\alpha} &= \min \left\{ \frac{a_i^T x - b_i}{-a_i^Tp} \ \middle| \ a_i^T p < 0 \right\} \\
+                 &= \min \left\{ \frac{117 - (-15)}{72} \right\} \\
+                 &= \frac{11}{6}.
+  \end{align*}
   \ \\
 \end{solution}

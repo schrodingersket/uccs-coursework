@@ -15,5 +15,80 @@ A = \begin{pmatrix}
 $$
 
 \begin{solution}
+  We first observe that $A$ is already in reduced-row echelon form; we set $A z = 0$ and observe that $z_2, z_3$, 
+  and $z_4$ are free variables with $z_1 = -z_2 - z_3 - z_4$. A basis for the null space of $A$ is therefore given by:
+
+  $$
+  \beta_{N(A)} = \left\{ \beta_1, \beta_2, \beta_3 \right\} = \left\{\begin{pmatrix*}[r]
+    -1 \\
+     1 \\
+     0 \\
+     0
+  \end{pmatrix*},\begin{pmatrix*}[r]
+    -1 \\
+     0\\
+     1 \\
+     0
+  \end{pmatrix*},\begin{pmatrix*}[r]
+    -1 \\
+     0\\
+     0 \\
+     1
+  \end{pmatrix*}
+  \right\}
+  $$
+
+  To decompose each ${x_i}$ into its null space and row space components, we follow a similar approach as in part (i) 
+  with a slight modification. We observe that the row space of $A$ has dimension 1, and so
+  $\gamma = \left\{ \gamma_1 \right\} = \left\{ (1, 1, 1, 1)^T \right\}$ is a basis for $R(A^T)$. As a result, we 
+  project each $x_i$ onto this \textit{row space} basis vector and subtract out the result to find the component of $x_i$ 
+  which resides in the null space of $A$.\footnote{
+    As before, computations are performed in \texttt{problem\_7ii.py}.
+  } For $x_1 = (-2, 4, 5, -2)^T$, we have:
+
+  $$
+  q_1 = \text{proj}_{\gamma_1} x_1 \cdot \gamma_1 = \frac{5}{4} \gamma_1 = \begin{pmatrix*}[r]
+    \frac{5}{4} \\[6pt]
+    \frac{5}{4} \\[6pt]
+    \frac{5}{4} \\[6pt]
+    \frac{5}{4}
+  \end{pmatrix*}
+  $$
+
+  and hence
+
+  $$
+  p_1 = x_1 - q_1 
+      = \begin{pmatrix*}[r]
+       -2 \\[6pt]
+        4 \\[6pt]
+        5 \\[6pt]
+       -2
+      \end{pmatrix*}
+      - \begin{pmatrix*}[r]
+        \frac{5}{4} \\[6pt]
+        \frac{5}{4} \\[6pt]
+        \frac{5}{4} \\[6pt]
+        \frac{5}{4}
+      \end{pmatrix*}
+      = \begin{pmatrix*}[r]
+       -\frac{13}{4} \\[6pt]
+        \frac{11}{4} \\[6pt]
+        \frac{15}{4} \\[6pt]
+       -\frac{13}{4}
+      \end{pmatrix*}.
+  $$
+
+  Similarly, for $x_2 = (7, 5, -13, 1)^T$, we have:
+
+  $$
+  q_2 = \text{proj}_{\gamma_1} x_2 \cdot \gamma_1 = 0 \cdot \gamma_1 = 0
+  $$
+
+  and so
+
+  $$
+  p_2 = x_2 - q_2 = x_2.
+  $$
   \ \\
 \end{solution}
