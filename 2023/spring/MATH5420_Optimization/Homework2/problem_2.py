@@ -14,15 +14,11 @@ dF = [
 
 print('{:2} | {:15} | {:15} | {:13}'.format('i', 'xk', 'f(xk)', '||f(xk)||'))
 print(''.ljust(51, '-'))
+
 newton_raphson(F, np.array((-3.,)).reshape(1,1), dF)
 print('')
 
-print('{:2} | {:15} | {:15} | {:13}'.format('i', 'xk', 'f(xk)', '||f(xk)||'))
-print(''.ljust(51, '-'))
 newton_raphson(F, np.array((1.,)).reshape(1,1), dF)
 print('')
 
-print('{:2} | {:15} | {:15} | {:13}'.format('i', 'xk', 'f(xk)', '||f(xk)||'))
-print(''.ljust(51, '-'))
 newton_raphson(F, np.array((8.,)).reshape(1,1), dF)
-print('')

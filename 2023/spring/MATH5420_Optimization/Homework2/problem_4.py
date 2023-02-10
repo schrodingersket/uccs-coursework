@@ -16,7 +16,7 @@ dF = [
     lambda x1, x2: -1
 ]
 
-print('{:2} | {:23} | {:23} | {:21}'.format('i', 'xk', 'f(xk)', '||f(xk)||'))
+print('{:2} | {:25} | {:25} | {:21}'.format('i', 'xk', 'f(xk)', '||f(xk)||'))
 print(''.ljust(71, '-'))
 
 newton_raphson(F, np.array((1., 1.)), dF)

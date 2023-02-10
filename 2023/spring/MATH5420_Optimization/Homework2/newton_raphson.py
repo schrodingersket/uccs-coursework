@@ -21,6 +21,8 @@ def newton_raphson(f, x0, jacobian, tol=1e-6, max_iter=100, suppress_output=Fals
                 print('Root identified at x = {}'.format(xk))
             return iter_results
 
+    if not suppress_output:
+        print('No root identified!')
     return iter_results
 
 
