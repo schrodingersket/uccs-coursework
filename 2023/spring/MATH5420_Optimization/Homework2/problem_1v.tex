@@ -4,5 +4,13 @@ $(x_k)_{k \in \mathbb{N}}$, where $x_k = \begin{cases}
 \end{cases}$
 
 \begin{solution}
+  Observe that the subsequences $(x_{2k})$ and $(x_{2k+1})$ both converge to 1 by (i) and (iii), respectively (since we
+  may subtract off 1 from each term in the sequence to obtain a sequence which converges to 0). Hence for any 
+  $\epsilon > 0$, there exist $N_1, N_2 \in \mathbb{N}$ such that $\left|x_{2k} - 1\right| < \epsilon$ for all $k > N_1$
+  and $\left|x_{2k+1} - 1\right| < \epsilon$ for all $k > N_2$. We choose $N = \max\{N_1, N_2\}$ and observe that 
+  $\left|x_k - 1 \right| < \epsilon$ whenever $k > N$; since $\epsilon$ was chosen to be arbitrary, $(x_k)$ therefore 
+  also converges to 1. By (i), $(x_{2k})$ converges linearly with rate constant $C_{2k} = \frac{1}{2}$ and by (iii), 
+  $(x_{2k+1})$ converges quadratically with rate constant $C_{2k+1} = 1$; since quadratic convergence is also linear 
+  with rate constant equal to zero, the sequence as a whole converges linearly.
   \ \\
 \end{solution}

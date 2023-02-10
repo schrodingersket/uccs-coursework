@@ -1,5 +1,18 @@
 $(x_k)_{k \in \mathbb{N}}$, where $x_k = 2^{-2^k}$.
 
 \begin{solution}
+  Observe that each $x_k$ is bounded below by 0 and that $\frac{1}{2^{2^k}} < \frac{1}{2^k}$ for all 
+  $k \in \mathbb{N}$. By (i), the right side of the inequality converges to 0, and so $x_k$ converges to 0 by the 
+  Squeeze Lemma. Hence $\Vert e_{k} \Vert = 2^{-2^k}$ and so we find
+
+  $$
+    \lim\limits_{k \to \infty} \frac{\Vert e_{k+1} \Vert}{\Vert e_k \Vert^2} 
+        = \lim\limits_{k \to \infty} \frac{2^{-2^{(k+1)}}}{\left(2^{-2^k}\right)^2} \\
+        = \lim\limits_{k \to \infty} \frac{2^{2 \cdot 2^k}}{2^{2^k 2^1}} \\
+        = 1.
+  $$
+
+  The rate of convergence of $(x_k)$ is therefore $r = 2$ with rate constant $C = 1$ and so the convergence
+  of $(x_k)$ is quadratic.
   \ \\
 \end{solution}
