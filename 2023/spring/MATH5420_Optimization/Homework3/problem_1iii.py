@@ -45,6 +45,13 @@ plt.plot(xx1[0, :], a3[0, :], label=r'$x_2 \le -x_1 + 8$')
 plt.plot(xx1[0, :], a1[0, :], 'k--', label=r'$x_2 \ge {}$'.format(x2_min))
 plt.axvline(x=x1_min, label=r'$x_1 \ge {}$'.format(x1_min), color='gray', linestyle='dashed')
 
+objective_fn = lambda z, x1: -z/2 + x1/2
+for i in np.arange(y_min, y_max, (y_max - y_min) / 4):
+    if i == y_min:
+        plt.plot(xx1[0, :], objective_fn(i, xx1[0, :]), 'k-.', alpha=0.1, label='Level Sets')
+    else:
+        plt.plot(xx1[0, :], objective_fn(i, xx1[0, :]), 'k-.', alpha=0.1)
+
 plt.legend()
 plt.xlim((x_min, x_max))
 plt.ylim((y_min, y_max))
