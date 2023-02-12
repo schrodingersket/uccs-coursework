@@ -19,26 +19,41 @@ def compute_basic_solutions(A, b, level=0, start=0, basis=None, var_names=None):
 
     # Recursively compute all permutations of basic solutions
     #
+    solutions = []
     for i in range(start, A_cols):
         basis[level] = i
         if level < A_rows - 1:
-            compute_basic_solutions(
+            solutions.extend(compute_basic_solutions(
                 A,
                 b,
                 level=level + 1,
                 start=(i + 1),
                 basis=basis,
                 var_names=var_names,
-            )
+            ))
         else:
             B = np.array([A[:, beta] for beta in basis]).T
-            print('Basis: {}'.format([var_names[var] for var in basis] if var_names else basis))
-            print('{}'.format(B))
+            # print('Basis: {}'.format([var_names[var] for var in basis] if var_names else basis))
+            # print('{}'.format(B))
             try:
-                print('Solution: {}'.format(np.linalg.solve(B, b)))
+                x = np.linalg.solve(B, b)
+                solutions.append({
+                    'basis': basis.copy(),
+                    'formatted_basis': [var_names[var] for var in basis] if var_names else basis,
+                    'solution': x,
+                })
+                # print('Solution: {}'.format(x))
+
             except np.linalg.LinAlgError:
-                print('Matrix is singular; two or more columns are linearly dependent.')
-            print('')
+                solutions.append({
+                    'basis': basis.copy(),
+                    'formatted_basis': [var_names[var] for var in basis] if var_names else basis,
+                    'solution': None,
+                })
+            #     print('Matrix is singular; two or more columns are linearly dependent.')
+            # print('')
+
+    return solutions
 
 
 if __name__ == '__main__':
@@ -49,6 +64,7 @@ if __name__ == '__main__':
         (-1, 1, 0, 1, 0),
         ( 1, 0, 0, 0, 1)
     ))
+    rows, cols = A.shape
 
     b = np.array((
         2,
@@ -56,4 +72,33 @@ if __name__ == '__main__':
         3
     ))
 
-    compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2', 's3'])
+    objective = lambda x1, x2, *_: -x1 - 2*x2
+
+    solns = compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2', 's3'])
+
+    minimum = None
+    for s in solns:
+        soln = s.get('solution')
+        pretty_basis = s.get('formatted_basis')
+        print('Basis: {}'.format(pretty_basis))
+
+        if soln is not None:
+            full_solution = [0] * cols
+            for i, beta in enumerate(s.get('basis')):
+                full_solution[beta] = soln[i]
+
+            feasible = all(i >= 0 for i in full_solution)
+            print('Solution ({}feasible): {}'.format('' if feasible else 'in', full_solution))
+            z = objective(*full_solution)
+            print('Objective: {}'.format(z))
+
+            if feasible and (minimum is None or z < minimum[2]):
+                minimum = (pretty_basis, full_solution, z)
+
+        print('')
+
+    print('Basic optimal feasible solution achieved at:')
+    beta, full_solution, z = minimum
+    print(beta)
+    print(full_solution)
+    print(z)
