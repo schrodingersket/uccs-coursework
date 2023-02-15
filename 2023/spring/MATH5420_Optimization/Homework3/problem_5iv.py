@@ -3,19 +3,20 @@ import numpy as np
 from basic_solutions import compute_basic_solutions
 
 A = np.array((
-    (2, 1, 1, 0, 0),
-    (1, 1, 0, 1, 0),
-    (1, 0, 0, 0, 1)
+    (-3, 2, 1, 0),
+    (-2, 1, 0, 1)
 ))
 
 b = np.array((
-    100,
-    80,
-    40
+    30,
+    12,
 ))
 
+objective = lambda x1, x2, *_: -5*x1 - 7*x2
+minimum = None
+
 rows, cols = A.shape
-solns = compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2', 's3'])
+solns = compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2'])
 
 for s in solns:
     soln = s.get('solution')
@@ -30,8 +31,23 @@ for s in solns:
 
         feasible = all(i >= 0 for i in full_solution)
         print('Solution ({}feasible): {}'.format('' if feasible else 'in', full_solution))
+        z = objective(*full_solution)
+        print('Objective: {}'.format(z))
+
+        if feasible and (minimum is None or z <= minimum[2]):
+            if minimum is not None and z == minimum[2]:
+                print('[Degenerate solution]')
+            else:
+                minimum = (pretty_basis, full_solution, z)
     else:
         print('No solution exists!')
 
     print('')
     input('Press [Enter] to see the next point:')
+    
+
+print('Basic optimal feasible solution achieved at:')
+beta, full_solution, z = minimum
+print(beta)
+print(full_solution)
+print(z)

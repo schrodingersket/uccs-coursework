@@ -2,20 +2,24 @@ import numpy as np
 
 from basic_solutions import compute_basic_solutions
 
+# Test against Griva, Nash, Sofer Example 4.3
+#
 A = np.array((
-    (2, 1, 1, 0, 0),
-    (1, 1, 0, 1, 0),
-    (1, 0, 0, 0, 1)
+    (2, 1, 1, 0, 0, 0),
+    (3, 1, 0, 1, 0, 0),
+    (4, 1, 0, 0, 1, 0),
+    (5, 1, 0, 0, 0, 1)
 ))
 
 b = np.array((
-    100,
-    80,
-    40
+    3,
+    4,
+    5,
+    6
 ))
 
 rows, cols = A.shape
-solns = compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2', 's3'])
+solns = compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2', 's3', 's4'])
 
 for s in solns:
     soln = s.get('solution')

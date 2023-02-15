@@ -64,7 +64,6 @@ if __name__ == '__main__':
         (-1, 1, 0, 1, 0),
         ( 1, 0, 0, 0, 1)
     ))
-    rows, cols = A.shape
 
     b = np.array((
         2,
@@ -73,10 +72,11 @@ if __name__ == '__main__':
     ))
 
     objective = lambda x1, x2, *_: -x1 - 2*x2
+    minimum = None
 
+    rows, cols = A.shape
     solns = compute_basic_solutions(A, b, var_names=['x1', 'x2', 's1', 's2', 's3'])
 
-    minimum = None
     for s in solns:
         soln = s.get('solution')
         pretty_basis = s.get('formatted_basis')
@@ -92,10 +92,17 @@ if __name__ == '__main__':
             z = objective(*full_solution)
             print('Objective: {}'.format(z))
 
-            if feasible and (minimum is None or z < minimum[2]):
-                minimum = (pretty_basis, full_solution, z)
+            if feasible and (minimum is None or z <= minimum[2]):
+                if z == minimum[2]:
+                    print('[Degenerate solution]')
+                else:
+                    minimum = (pretty_basis, full_solution, z)
+        else:
+            print('No solution exists!')
 
         print('')
+        input('Press [Enter] to see the next point:')
+        
 
     print('Basic optimal feasible solution achieved at:')
     beta, full_solution, z = minimum
