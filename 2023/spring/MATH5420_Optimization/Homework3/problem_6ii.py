@@ -2,8 +2,6 @@ import numpy as np
 
 from basic_solutions import compute_basic_solutions
 
-# Test against Griva, Nash, Sofer Example 4.3
-#
 A = np.array((
     (2, 1, 1, 0, 0, 0),
     (3, 1, 0, 1, 0, 0),
