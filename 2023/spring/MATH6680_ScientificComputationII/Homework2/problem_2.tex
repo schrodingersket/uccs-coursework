@@ -1,0 +1,31 @@
+\textbf{Trefethen 6.1}
+
+If $x_0, x_1, \ldots, x_N \in \mathbb{R}$ are distinct, then the \textit{cardinal function $p_j(x)$} defined by 
+
+$$
+p_j(x) = \frac{1}{a_j} \prod\limits_{\substack{k=0 \\ k \neq j}}^{N}(x - x_k), \quad a_j = \prod\limits_{\substack{k=0 \\ k \neq j}}^{N}(x_j - x_k)
+$$
+
+is the unique polynomial interpolant of degree $N$ to the values 1 at $x_j$ and 0 at $x_k$, $k \neq j$. Take the 
+logarithm and differentiate to obtain 
+
+$$
+p'_j(x) = p_j(x) \sum\limits_{\substack{k=0 \\ k \neq j}}^N \frac{1}{x - x_k},
+$$
+
+and from this derive the formulas
+
+$$
+D_{ij} = \frac{1}{a_j} \prod\limits_{\substack{k=0 \\ k \neq i,j}}^N (x_i - x_k) = \frac{a_i}{a_j(x_i - x_j)} \quad (i \neq j)
+$$
+
+and 
+
+$$
+D_{jj} = \sum\limits_{\substack{k=0 \\ k \neq j}}^N \frac{1}{x_j - x_k}.
+$$
+
+\begin{solution}
+  \ \\
+  \vfill
+\end{solution}
