@@ -5,6 +5,16 @@ Now try it on the computer for $N = 5$ and $N = 20$ and report the computed 2-no
 $\Vert (D_{20})^{21} \Vert_2$. Discuss.
 
 \begin{solution}
+  We derived the Chebyshev differentiation matrix by taking the derivative of $N^{th}$ degree Chebyshev interpolating 
+  polynomial so that $w_j = p'(x_j)$; as such, each application of the Chebyshev differentiation matrix to
+  the interpolating polynomial decreases the degree of the polynomial by one. As a result, the ${(N+1)}^{th}$ 
+  application of $D_N$ yields $w_j^{N} = p^{(N+1)}(x_j) = 0$ for each $j$ (since the ${(k + 1)^{th}}$ derivative of any
+  $k^{th}$ degree polynomial is zero). This must hold for every Chebyshev interpolation point $x_j$, and so 
+  $(D_N)^{N+1}$ must in turn be identically zero.
+
+  Computationally, we find that $\Vert (D_5)^{6} \Vert_2 \approx 1.0 \times 10^{-10}$ and 
+  $\Vert (D_{20})^{21} \Vert_2 \approx 6.6 \times 10^{22}$, respectively.
+
+  TODO: Explain this. Probably due to ill-conditioning of large Chebyshev differentiation matrices.
   \ \\
-  \vfill
 \end{solution}

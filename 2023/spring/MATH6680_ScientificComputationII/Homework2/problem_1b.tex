@@ -4,6 +4,16 @@ formula, the upper bound of (a), the error when $p(x)$ is obtained from interpol
 for equispaced points, all as a function of $N$ for $N = 1, 2, \ldots, 12$. Comment on the results.
 
 \begin{solution}
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{problem_1b.png}
+    \caption{}
+    \label{fig:interpolation_error_plots}
+  \end{figure}
+
+  By Figure \ref{fig:interpolation_error_plots}, we see that Chebyshev interpolation minimizes the error, as expected and in 
+  fact closely follows the known optimal minimax error. Equispaced interpolation, on the other hand, performs rather 
+  worse than Chebyshev interpolation and is bounded by the truncated Taylor series error (which is itself a polynomial 
+  interpolation).
   \ \\
-  \vfill
 \end{solution}
