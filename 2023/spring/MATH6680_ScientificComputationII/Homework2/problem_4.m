@@ -1,30 +1,37 @@
-u = @(x) exp(sin(x));
-uprime = @(x) cos(x) .* u(x);
+% p13.m - solve linear BVP u_xx = exp(4x), u(-1)=u(1)=0
+N = 64;
 
-[Nvec, Nerror, T] = fd_diff_matrix(u, uprime);
+[D,x] = cheb(N);
+D2 = D^2;
+D2 = D2(2:N,2:N); % boundary conditions
+f = exp(4*x(2:N));
+u = D2\f; % Poisson eq. solved here
+u = [0;u;0];
+clf
 
-clf;
-subplot('position', [.1 .4 .8 .5]);
+subplot(2, 1, 1)
+plot(x,u,'.','markersize',16)
 
-subplot(2, 1, 1);
-hold on;
-grid on;
+xx = -1:.01:1;
+uu = bary(x, u, xx); % interpolate grid data
+line(xx,uu,'linewidth',.8)
 
-loglog(Nvec, Nerror, '.', 'markersize', 15, 'DisplayName', 'Finite Difference Error')
-semilogy(Nvec, Nvec.^(-4), '--', 'DisplayName', 'N^{-4}')
+line(xx(2:end-1),uu(2:end-1), 'linewidth',.8)
+grid on
+exact = ( exp(4*xx) - sinh(4)*xx - cosh(4) )/16;
+title(['Poisson Equation max err = ' num2str(norm(uu(2:end-1)-exact(2:end-1),inf))],'fontsize',12)
 
-xlabel('N')
-ylabel('Error')
-title('Convergence of finite differences')
-legend('Location', 'southwest');
-
-% Plot partitions vs. computation time
-%
 subplot(2, 1, 2)
+ex51 = @(x) 1./(1+16*x.^2);
+u = ex51(x);
+uu = bary(x, u, xx); % interpolate grid data
 
-plot(Nvec, T)
+error = norm(uu-ex51(xx),inf);
 
-xlabel('N')
-ylabel('Time')
+plot(x,u,'.','markersize',16)
+line(xx(2:end-1),uu(2:end-1), 'linewidth',.8)
 
-print('-dpng', 'problem_1_fd')
+grid on
+title(['Exercise 5.1 max err = ' num2str(norm(uu(2:end-1)-ex51(xx)(2:end-1),inf))],'fontsize',12)
+
+print('problem_4', '-dpng')

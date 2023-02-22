@@ -13,8 +13,8 @@ $\Vert (D_{20})^{21} \Vert_2$. Discuss.
   $(D_N)^{N+1}$ must in turn be identically zero.
 
   Computationally, we find that $\Vert (D_5)^{6} \Vert_2 \approx 1.0 \times 10^{-10}$ and 
-  $\Vert (D_{20})^{21} \Vert_2 \approx 6.6 \times 10^{22}$, respectively.
-
-  TODO: Explain this. Probably due to ill-conditioning of large Chebyshev differentiation matrices.
+  $\Vert (D_{20})^{21} \Vert_2 \approx 6.6 \times 10^{22}$, respectively. Eigenvalues are exponentiated to the same 
+  degree as matrices themselves, and for large, ill-conditioned matrices, this causes rapid propagation of machine 
+  rounding errors as observed for $(D_{20})^{21}$.
   \ \\
 \end{solution}
