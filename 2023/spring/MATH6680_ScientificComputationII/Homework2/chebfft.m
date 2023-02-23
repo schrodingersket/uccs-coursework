@@ -1,13 +1,12 @@
 % CHEBFFT Chebyshev differentiation via FFT. Simple, not optimal.
 % If v is complex, delete "real" commands.
-function [x, v, w] = chebfft(v_fn, N)
-%   N = length(v)-1; 
+function [x, v, w] = chebfft(v)
+  N = length(v)-1; 
   if N==0
     x=0;
     w=0;
   return, end
   x = cos((0:N)'*pi/N);
-  v = v_fn(x);
   ii = 0:N-1;
   v = v(:); V = [v; flipud(v(2:N))]; % transform x -> theta
   U = real(fft(V));

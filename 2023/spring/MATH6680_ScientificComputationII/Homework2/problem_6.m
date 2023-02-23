@@ -3,20 +3,25 @@
 % Compute derivatives for various values of N:
 Nmax = 50; E = zeros(3,Nmax);
 for N = 1:Nmax;
+  chebx = cos((0:N)'*pi/N);
+
   v = @(x) abs(x).^3; 
-  [xx, vv, w] = chebfft(v, N);
+  [xx, vv, w] = chebfft(v(chebx));
   vprime = 3*xx.*abs(xx); % 3rd deriv in BV
   E(1,N) = norm(w-vprime,inf);
+  
   v = @(x) exp(-x.^(-2)); 
-  [xx, vv, w] = chebfft(v, N);
+  [xx, vv, w] = chebfft(v(chebx));
   vprime = 2.*vv./xx.^3; % C-infinity
   E(2,N) = norm(w-vprime,inf);
+  
   v = @(x) 1./(1+x.^2); 
-  [xx, vv, w] = chebfft(v, N);
+  [xx, vv, w] = chebfft(v(chebx));
   vprime = -2*xx.*vv.^2; % analytic in [-1,1]
   E(3,N) = norm(w-vprime,inf);
+
   v = @(x) x.^10; 
-  [xx, vv, w] = chebfft(v, N);
+  [xx, vv, w] = chebfft(v(chebx));
   vprime = 10*xx.^9; % polynomial
   E(4,N) = norm(w-vprime,inf);
 end
