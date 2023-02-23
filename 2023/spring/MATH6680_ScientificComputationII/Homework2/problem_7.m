@@ -9,11 +9,11 @@ for N = 1:Nmax;
   % v = @(x) abs(x).^3; % 3rd deriv in BV
   % [xx, vv, w2] = chebfft2(v(chebx));
   % E(1,N) = norm(w2 - D2 * v(chebx),inf);
-  
+
   % v = @(x) exp(-x.^(-2)); % C-infinity
   % [xx, vv, w2] = chebfft2(v(chebx));
   % E(2,N) = norm(w2 - D2 * v(chebx),inf);
-  
+
   % v = @(x) 1./(1+x.^2); % analytic in [-1,1]
   % [xx, vv, w2] = chebfft2(v(chebx));
   % E(3,N) = norm(w2 - D2 * v(chebx),inf);
@@ -22,8 +22,8 @@ for N = 1:Nmax;
   [xx, vv, w2] = chebfft2(v(chebx));
   vpp = 90*xx.^8; % polynomial
   % vpp = 10*xx.^9; % polynomial
-  E(2,N) = norm(w2(2:end-1) - (D2 * v(chebx))(2:end-1), inf);
-  E(3,N) = norm(w2(2:end-1) - vpp(2:end-1), inf);
+  E(2,N) = norm(w2 - (D2 * v(chebx)), inf);
+  E(3,N) = norm(w2 - vpp, inf);
   E(4,N) = norm(D2 * v(chebx) - vpp, inf);
 end
 

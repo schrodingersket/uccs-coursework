@@ -1,7 +1,7 @@
 % CHEBFFT Chebyshev differentiation via FFT. Simple, not optimal.
 % If v is complex, delete "real" commands.
 function [x, v, w] = chebfft2(v)
-  N = length(v)-1; 
+  N = length(v)-1;
   if N==0
     x=0;
     w=0;
@@ -22,7 +22,8 @@ function [x, v, w] = chebfft2(v)
 
   % End points (Trefethen 8.7)
   %
-  w(1) = (2/3) * sum((ii'.^2 + ii'.^4).*U(ii+1))/N + .5*N*U(N+1);
+  w(1) = (1/3) * sum((ii'.^4 - ii'.^2).*U(ii+1))/N + .5*(N.^3 - N)*U(N+1);
+  w(N+1) = (1/3) * sum((ii'.^4 - ii'.^2).*U(ii+1) .* (-1).^(ii)')/N + .5*(N.^3 - N)*U(N+1)*(-1)^(N);
 
-  w(N+1) = (2/3) * sum((-1).^(ii+1)'.*(ii'.^2 + ii'.^4).*U(ii+1))/N + .5*(-1)^(N+1)*N*U(N+1);
+##  w(N+1) = (1/3) * sum((-1).^(ii+1)'.*(ii'.^4 - ii'.^2).*U(ii+1))/N + .5*(-1)^(N+1)*(N.^3 - N)*U(N+1);
 end
