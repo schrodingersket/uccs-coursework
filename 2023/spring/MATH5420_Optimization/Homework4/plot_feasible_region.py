@@ -241,7 +241,24 @@ if __name__ == '__main__':
     b = [ -12
            -5
             3
-          -12 ]
+          -12 plot_2d_region(
+        np.array((
+            (-2, -1),
+            (-1, -1),
+            (-1, 3),
+            (-6, 1),
+        )),
+        np.array((
+            -12,
+            -5,
+            3,
+            -12,
+        )),
+        usetex=False,
+        legend=True,
+        active_point=(6, 0),
+        objective_fn=lambda z, x1: (1/2)*z - (1/2)*x1  # Solve z = x_1 + 2*x_2 for x_2
+    )]
           
     ...which is coded below. Note that because the optimization problem calls for maximization, 
     there is no solution to this problem, as the feasible region is unbounded. This function only
