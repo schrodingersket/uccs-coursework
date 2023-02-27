@@ -26,6 +26,27 @@ D_{jj} = \sum\limits_{\substack{k=0 \\ k \neq j}}^N \frac{1}{x_j - x_k}.
 $$
 
 \begin{solution}
-  \ \\
-  \vfill
+  We take the logarithm of $p_j(x)$ to find:
+
+  \begin{align*}
+    \ln{p_j(x)} &= \ln{\frac{1}{a_j} \prod\limits_{\substack{k=0 \\ k \neq j}}^{N} (x - x_k)} \\
+                &= \left( \sum\limits_{\substack{k=0 \\ k \neq j}}^{N} \ln{(x - x_k)} \right) - \ln{a_j} 
+  \end{align*}
+
+  \pagebreak
+  Taking the derivative yields:
+
+  \begin{align*}
+    \frac{p'_j(x)}{p_j(x)} &= \left[ \ln{p_j(x)} \right]_x  \\
+                           &= \left[ \left( \sum\limits_{\substack{k=0 \\ k \neq j}}^{N} \ln{(x - x_k)} \right) - \ln{a_j} \right]_x \\
+                           &= \sum\limits_{\substack{k=0 \\ k \neq j}}^{N} \frac{1}{(x - x_k)} \\
+  \end{align*}
+
+  and hence
+
+  $$
+    p'_j(x) = p_j(x) \sum\limits_{\substack{k=0 \\ k \neq j}}^N \frac{1}{x - x_k},
+  $$
+
+  as desired.
 \end{solution}
