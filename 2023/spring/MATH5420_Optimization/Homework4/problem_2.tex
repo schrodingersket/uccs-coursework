@@ -12,13 +12,116 @@ Consider the linear program
 Derive an expression for the set of optimal solutions to this problem, and show that this set is unbounded.
 
 \begin{solution}
-  \ \\
+  We represent this system in standard form as $Ax = b$, where
+
+  $$
+  A = \begin{pmatrix*}[r]
+    -1 &  1 & 1 & 0 \\
+     1 & -2 & 0 & 1 \\
+  \end{pmatrix*}, \quad b = \begin{pmatrix*}[r]
+    1 \\
+    2
+  \end{pmatrix*}, \quad x = \begin{pmatrix*}[r]
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    x_4
+  \end{pmatrix*}, \quad c = \begin{pmatrix*}[r]
+     1 \\
+    -1 \\
+     0 \\
+     0
+  \end{pmatrix*}.
+  $$
+
+  With $x_B = \{x_2, x_4\}$ and $x_N = \{x_1, x_3\}$, we have:\footnote{
+    We apply the simplex algorithm in \texttt{problem\_2.py} with the initial basis $x_B = \{x_3, x_4\}$ corresponding 
+    to our slack variables. This yields the optimal basis $x_B' = \{x_2, x_4\}$ after a single iteration, and so we 
+    start with that basis for this problem for simplicity.
+  }
+
+  $$
+    B = \begin{pmatrix*}[r]
+       1 & 0 \\
+      -2 & 1
+    \end{pmatrix*}, \quad B^{-1} = \begin{pmatrix*}[r]
+       1 & 0 \\
+       2 & 1
+    \end{pmatrix*}, \quad N = \begin{pmatrix*}[r]
+      -1 & 1 \\
+       1 & 0
+    \end{pmatrix*}, \quad c_B = \begin{pmatrix*}[r]
+      -1 \\
+       0
+    \end{pmatrix*}, \quad c_N = \begin{pmatrix*}[r]
+      1 \\
+      0
+    \end{pmatrix*}.
+  $$
+
+  Our reduced cost vector is given by:
+
+  $$
+  \hat{c}_N^T = c_N^T  - c_B^T B^{-1} N = \begin{pmatrix*}[r]
+    0 \\
+    1
+  \end{pmatrix*}
+  $$
+
+  The first entry of $\hat{c}_N^T$ corresponds to the amount by which the objective function changes when $x_1$ is
+  increased; since this value is 0, increasing $x_1$ has no effect on the objective value. We now consider how much 
+  $x_1$ may be increased without violating a nonnegativity constraint. The column of $A$ corresponding to $x_1$ is given
+  by $A_1^T = \begin{pmatrix*}[r]
+    -1 & 1
+  \end{pmatrix*}$, and so
+
+  $$ 
+    \hat{A}_1 = B^{-1}A_1 = \begin{pmatrix*}[r]
+      -1 \\
+      -1
+    \end{pmatrix*}.
+  $$ 
+
+  Since each entry in $\hat{A}_2$ is negative, we may increase $x_1$ by any amount without violating nonnegativity 
+  conditions of $x_B$; moreover, because varying $x_1$ has no effect on the objective function, the feasible region for 
+  this problem is unbounded above with respect to $x_1$. From the equation $x_B = B^{-1}b - \hat{A}_1 x_1$, we conclude
+  that all points of the form
+
+  $$
+    \begin{pmatrix*}[r]
+      x_1 \\
+      x_2 \\
+      x_3 \\
+      x_4
+    \end{pmatrix*} = \begin{pmatrix*}[r]
+      0 \\
+      1 \\
+      0 \\
+      4
+    \end{pmatrix*} + \begin{pmatrix*}[r]
+      1 \\
+      1 \\
+      0 \\
+      1
+    \end{pmatrix*} x_1
+  $$
+
+  are feasible solutions; from the above argument, we observe that variation in $x_1$ has no effect on the objective and
+  so the above set of points represents all optimal solutions to this program. In the two-variable formulation, the
+  above system becomes
+
+  $$
+  \left\{ (x_1, x_2) \mid x_2 = 1 + x_1, x_1 \ge 0 \right\}.
+  $$
+
+  which we also observe graphically in Figure \ref{fig:problem_2_feasible_region} below.
   \vfill
-  \pagebreak
-  \ \\
-  \vfill
-  \pagebreak
-  \ \\
-  \vfill
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{problem_2.png}
+    \caption{Feasible region and level sets}
+    \label{fig:problem_2_feasible_region}
+  \end{figure}
   \ \\
 \end{solution}

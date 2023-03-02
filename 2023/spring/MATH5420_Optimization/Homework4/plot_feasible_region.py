@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 def plot_2d_region(
         A,
         b,
-        objective_fn=None,
+        c=None,
         xlims=(-2, 10),
         ylims=(-2, 10),
         savefile=None,
@@ -27,6 +27,7 @@ def plot_2d_region(
     """
     Plots feasible regions for constraints of the form
 
+    minimize z = cx
     Ax <= b
     x1, x2 >= 0
 
@@ -36,9 +37,9 @@ def plot_2d_region(
 
     where the single apostrophe (') denotes the transpose of the row vector.
 
-    If `objective_fn` is provided, level sets will be included in the plot. It is expected that this
-    parameter be a two-argument callable function where the first argument is the value of the level
-    set and the second is the first spatial variable (e.g.: objective_fn=lambda(z, x1) z/2 - x1/2).
+    If `c` is provided, level sets will be included in the plot. It is expected that this
+    parameter be a non-zero two-tuple corresponding to the objective function coefficients
+    (e.g.: c=(-1, 2) corresponds to the objective function z = -x1 + 2*x2).
 
     The plot extents may be changed by modifying the `xlims` and `ylims` arguments,
     which are Python tuples each of length 2. These are both set to (-2, 10) by default.
@@ -173,12 +174,15 @@ def plot_2d_region(
 
     # Add objective function level sets
     #
-    if objective_fn:
-        for i in np.arange(0, 2000, (y_max - y_min) / 2):
-            if i == y_min:
-                plt.plot(xx1[0, :], objective_fn(i, xx1[0, :]), 'k-.', alpha=0.1, label='Level Sets')
+    if c is not None:
+        c1, c2 = c
+        for i in np.arange(min(y_min, -y_max), max(-y_min, y_max), (y_max - y_min)/10):
+            z_level = c2 * i
+            x2_level = (z_level * np.ones(xx1[0, :].shape) - c1 * xx1[0, :])/c2
+            if i == min(y_min, -y_max):
+                plt.plot(xx1[0, :], x2_level, 'k-.', alpha=0.1, label='Level Sets')
             else:
-                plt.plot(xx1[0, :], objective_fn(i, xx1[0, :]), 'k-.', alpha=0.1)
+                plt.plot(xx1[0, :], x2_level, 'k-.', alpha=0.1)
 
     # Add active feasible basic solution
     #
@@ -210,6 +214,7 @@ def plot_2d_region(
         plt.savefig(savefile, bbox_inches='tight', bbox_extra_artists=((lgd,) if legend else []))
     else:
         plt.show()
+    plt.clf()
 
 
 if __name__ == '__main__':
@@ -241,25 +246,11 @@ if __name__ == '__main__':
     b = [ -12
            -5
             3
-          -12 plot_2d_region(
-        np.array((
-            (-2, -1),
-            (-1, -1),
-            (-1, 3),
-            (-6, 1),
-        )),
-        np.array((
-            -12,
-            -5,
-            3,
-            -12,
-        )),
-        usetex=False,
-        legend=True,
-        active_point=(6, 0),
-        objective_fn=lambda z, x1: (1/2)*z - (1/2)*x1  # Solve z = x_1 + 2*x_2 for x_2
-    )]
+          -12 ]
           
+    c = [ 1
+          2 ]
+
     ...which is coded below. Note that because the optimization problem calls for maximization, 
     there is no solution to this problem, as the feasible region is unbounded. This function only
     plots level sets, so it is up to the individual utilizing this function to determine where the
@@ -279,8 +270,11 @@ if __name__ == '__main__':
             3,
             -12,
         )),
+        np.array((
+            1,
+            2,
+        )),
         usetex=False,
         legend=True,
         active_point=(6, 0),
-        objective_fn=lambda z, x1: (1/2)*z - (1/2)*x1  # Solve z = x_1 + 2*x_2 for x_2
     )

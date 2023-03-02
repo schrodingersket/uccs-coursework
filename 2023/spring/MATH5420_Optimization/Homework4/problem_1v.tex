@@ -8,19 +8,54 @@
 
 \begin{solution}
   \ \\
+
+  We represent this system in standard form as $Ax = b$, where
+
+  $$
+  A = \begin{pmatrix*}[r]
+     4 & 1 &  1 & 0 & 0 \\
+     1 & 1 &  0 & 1 & 0 \\
+     1 & 0 &  0 & 0 & 1 \\
+  \end{pmatrix*}, \quad b = \begin{pmatrix*}[r]
+    100 \\
+    80 \\
+    40
+  \end{pmatrix*}, \quad x = \begin{pmatrix*}[r]
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    x_4 \\
+    x_5
+  \end{pmatrix*}, \quad c = \begin{pmatrix*}[r]
+    -7 \\
+    -8 \\
+     0 \\
+     0 \\
+     0 
+  \end{pmatrix*}.
+  $$
+
+  We apply the simplex algorithm in \texttt{problem\_1v.py} with the initial basis \linebreak
+  $x_B = \{x_3, x_4, x_5\}$ corresponding to the slack variables introduced when converting to standard form. This 
+  corresponds to the point $(x_1, x_2) = (0, 0)$, plotted below:
+
   \begin{figure}[h]
     \centering
-    \includegraphics*[width=0.95\textwidth]{problem_1v.png}
-    \caption{Feasible Region}
+    \includegraphics*[width=0.8\textwidth]{problem_1v_1.png}
+    \caption{Feasible Region at $x_B = \{x_3, x_4, x_5 \}$}
+    \label{fig:problem_1v_iteration_1}
   \end{figure}
-  \pagebreak
-  \ \\
-  \vfill
-  \pagebreak
-  \ \\ 
-  \vfill
-  \pagebreak
-  \ \\ 
-  \vfill
+
+  TODO: Write output of \texttt{problem\_1v.py}
+
+  Our basis is now $x_B = \{x_3, x_2, x_5\}$ (plotted in Figure \ref{fig:problem_1v_iteration_2}):
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=0.8\textwidth]{problem_1v_2.png}
+    \caption{Feasible Region at $x_B = \{x_3, x_2, x_5 \}$}
+    \label{fig:problem_1v_iteration_2}
+  \end{figure}
+
   \ \\
 \end{solution}

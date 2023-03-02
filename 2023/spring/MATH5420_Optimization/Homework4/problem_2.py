@@ -1,31 +1,42 @@
 import numpy as np
 
+from plot_feasible_region import plot_2d_region
 from simplex import simplex_algorithm
 
-
 A = np.array((
-  (4, 5,  2, 1, 1, 0),
-  (3, 4, -1, 1, 0, 1),
+  (-1, 1, 1, 0),
+  (1, -2, 0, 1),
 ))
 
 b = np.array((
-  20,
-  30,
+  1,
+  2,
 ))
 
 c = np.array((
-  -5,
-  -3,
-  -2,
-   0,
-   0,
-   0,
+     1,
+    -1,
+     0,
+     0,
 ))
 
 init = np.array((
-  4, 
-  5,
+    2,
+    3,
 ))
+
+
+plot_2d_region(
+    A,
+    b,
+    c[0:2],
+    xlims=(-2, 10),
+    ylims=(-2, 10),
+    usetex=True,
+    legend=True,
+    savefile='problem_2.png',
+)
+
 
 optimal_basis = simplex_algorithm(A, b, c, init)
 

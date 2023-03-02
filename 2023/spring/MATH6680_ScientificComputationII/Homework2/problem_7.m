@@ -19,7 +19,7 @@ for n = 0:3*plotgap
     [xxx,yyy] = meshgrid(-1:1/16:1,-1:1/16:1);
     % vvv = interp2(xx,yy,vv,xxx,yyy,'cubic');
     % mesh(xxx,yyy,vvv), axis([-1 1 -1 1 -0.15 1])
-    colormap([0 0 0]), title(['t = ' num2str(t)]), drawnow
+    colormap(1e-6*[1 1 1]), title(['t = ' num2str(t)]), drawnow
   end
   % uxx = zeros(N+1,N+1); uyy = zeros(N+1,N+1);
   % ii = 2:N;
@@ -41,6 +41,6 @@ for n = 0:3*plotgap
   % end
 
   U=vv(:); RHS=L*U; RHS=reshape(RHS,N-1,N-1);
-  vvnew = 2*vv - vvold + dt^2*(uxx+uyy);
-  vvold = vv; vv = vvnew;
+  vvnew = 2*vv - vvold + dt^2*RHS;
+  vvold = vv;
 end
