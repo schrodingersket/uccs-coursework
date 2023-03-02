@@ -7,19 +7,19 @@
 \end{maxi*}
 
 \begin{solution}
-  \ \\
-
-  We represent this system in standard form as $Ax = b$, where
+  All computations for this problem are performed in \texttt{problem\_1v.py}; hence we only record the results of each
+  iteration step of the simplex algorithm. We begin by representing this system in standard form as $Ax = b$, wherein we
+  wish to minimize $\hat{z} = -z$ (so that the sign of $c$ changes):
 
   $$
   A = \begin{pmatrix*}[r]
-     4 & 1 &  1 & 0 & 0 \\
-     1 & 1 &  0 & 1 & 0 \\
-     1 & 0 &  0 & 0 & 1 \\
+    4 & 1 & 1 & 0 & 0 \\
+    1 & 1 & 0 & 1 & 0 \\
+    1 & 0 & 0 & 0 & 1 \\
   \end{pmatrix*}, \quad b = \begin{pmatrix*}[r]
     100 \\
-    80 \\
-    40
+     80 \\
+     40
   \end{pmatrix*}, \quad x = \begin{pmatrix*}[r]
     x_1 \\
     x_2 \\
@@ -27,35 +27,113 @@
     x_4 \\
     x_5
   \end{pmatrix*}, \quad c = \begin{pmatrix*}[r]
-    -7 \\
-    -8 \\
-     0 \\
-     0 \\
-     0 
+    -7  \\
+    -8  \\
+     0  \\
+     0  \\
+     0
   \end{pmatrix*}.
   $$
 
-  We apply the simplex algorithm in \texttt{problem\_1v.py} with the initial basis \linebreak
-  $x_B = \{x_3, x_4, x_5\}$ corresponding to the slack variables introduced when converting to standard form. This 
-  corresponds to the point $(x_1, x_2) = (0, 0)$, plotted below:
+  \subsubsection*{Iteration 1}
+  We begin by using the slack variables as our initial basis $x_B = \{x_3, x_4, x_5\}$ so that 
+  $x_N = \{x_1, x_2\}$ and
+
+  $$
+    B = \begin{pmatrix*}[r]
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{pmatrix*}, \quad N = \begin{pmatrix*}[r]
+      4 & 1 \\
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix*}, \quad c_B = \begin{pmatrix*}[r]
+      0 \\
+      0 \\
+      0
+    \end{pmatrix*}, \quad c_N = \begin{pmatrix*}[r]
+     -7 \\
+     -8
+    \end{pmatrix*}.
+  $$
+
+  For the two-dimensional problem, this basis corresponds to the point $(x_1, x_2) = (0, 0)$, plotted in 
+  Figure \ref{fig:problem_1v_iteration_1}. Our reduced cost vector is given by 
 
   \begin{figure}[h]
     \centering
-    \includegraphics*[width=0.8\textwidth]{problem_1v_1.png}
+    \includegraphics*[width=0.85\textwidth]{problem_1v_1.png}
     \caption{Feasible Region at $x_B = \{x_3, x_4, x_5 \}$}
     \label{fig:problem_1v_iteration_1}
   \end{figure}
 
-  TODO: Write output of \texttt{problem\_1v.py}
+  $$
+  \hat{c}_N^T = c_N^T - c_B^T B^{-1} N = \begin{pmatrix*}[r]
+    -7 & -8
+  \end{pmatrix*}
+  $$
 
-  Our basis is now $x_B = \{x_3, x_2, x_5\}$ (plotted in Figure \ref{fig:problem_1v_iteration_2}):
+  and so the second nonbasic variable $x_2$ enters the basis. Moreover, we have
+  
+  $$
+  \hat{A}_2 = B^{-1} A_2 = \begin{pmatrix*}[r]
+    1  \\
+    1  \\
+    0
+  \end{pmatrix*}, \quad \hat{b} = B^{-1} b = \begin{pmatrix*}[r]
+    100 \\
+     80 \\
+     40
+  \end{pmatrix*}.
+  $$
+
+  and since $\frac{\hat{b}_2}{\hat{a}_{2,2}} = 80$ is the minimum positive ratio, the second basic variable 
+  $x_4$ leaves the basis.
+
+  \pagebreak
+  \subsubsection*{Iteration 2}
+  At this iteration, $x_B = \{x_3, x_2, x_5\}$ and thus $x_N = \{x_1, x_4\}$. Our matrices for this iteration are
+
+  $$
+    B = \begin{pmatrix*}[r]
+      1 & 1 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{pmatrix*}, \quad N = \begin{pmatrix*}[r]
+      4 & 0 \\
+      1 & 1 \\
+      1 & 0
+    \end{pmatrix*}, \quad c_B = \begin{pmatrix*}[r]
+      0 \\
+     -8 \\
+      0
+    \end{pmatrix*}, \quad c_N = \begin{pmatrix*}[r]
+     -7  \\
+      0
+    \end{pmatrix*}.
+  $$
+
+  In the two-dimensional case, this basis corresponds to the point $(x_1, x_2) = (0, 80)$ (plotted in 
+  \ref{fig:problem_1v_iteration_2}). Our reduced cost vector is given by 
+
+  $$
+  \hat{c}_N^T = c_N^T - c_B^T B^{-1} N = \begin{pmatrix*}[r]
+     1 & 8
+  \end{pmatrix*}.
+  $$
 
   \begin{figure}[h]
     \centering
-    \includegraphics*[width=0.8\textwidth]{problem_1v_2.png}
+    \includegraphics*[width=0.85\textwidth]{problem_1v_2.png}
     \caption{Feasible Region at $x_B = \{x_3, x_2, x_5 \}$}
     \label{fig:problem_1v_iteration_2}
   \end{figure}
-
+ 
+  \pagebreak
+  Since every element of $\hat{c}_N^T$ is positive, this basis is optimal. Our optimal basic feasible solution is thus
+  $\bar{x} = \begin{pmatrix*}[r]
+    0 & 80 & 20 & 0 & 40
+  \end{pmatrix*}$ which yields an optimal value of $z = -\hat{z} = 640$.
   \ \\
 \end{solution}

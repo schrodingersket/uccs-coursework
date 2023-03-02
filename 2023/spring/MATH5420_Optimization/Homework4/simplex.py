@@ -25,12 +25,16 @@ def simplex_algorithm(A, b, c, x_b_idx, max_iters=10):
         entering_variable = x_n_idx[entering_variable_idx]
         entering_column = np.linalg.solve(B, A[:, entering_variable])
 
-        print('c_n_hat: {}'.format(c_n_hat))
-        print('tableau: {}'.format(tableau_body))
-        print('rhs: {}'.format(x_b))
-        print('z: {}'.format(z))
-        print('entering column: {}'.format(entering_column))
-        print('basis: {}'.format(x_b_idx + 1))
+        print('B: {}'.format(B))
+        print('N: {}'.format(N))
+        print('c_b: {}'.format(c_b))
+        print('c_n: {}'.format(c_n))
+        print('c_n_hat (reduced cost): {}'.format(c_n_hat))
+        # print('tableau: {}'.format(tableau_body))
+        print('rhs (b_hat): {}'.format(x_b))
+        # print('z: {}'.format(z))
+        print('entering column (A_{}): {}'.format(entering_variable + 1, entering_column))
+        # print('basis: {}'.format(x_b_idx + 1))
 
         if np.all(c_n_hat >= 0):
             optimal = True
