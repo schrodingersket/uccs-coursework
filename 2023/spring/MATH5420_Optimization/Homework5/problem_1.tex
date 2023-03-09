@@ -6,9 +6,32 @@ inequalities:
 \begin{align*}
   2x_1 - 3x_2 + 2x_3  & \ge 3 \\
   -x_1 +  x_2 +  x_3  & \ge 5 \\
-  x_1, x_2, x_3 & \ge 0.
+  x_i                 & \ge 0.
 \end{align*}
 
 \begin{solution}
-  \ \\
+  We begin by converting the problem to standard form by introducing excess variables $x_4$ and $x_5$:
+
+  \begin{align*}
+    2x_1 - 3x_2 + 2x_3 - x_4 & = 3 \\
+    -x_1 +  x_2 +  x_3 - x_5 & = 5 \\
+    x_i                      & \ge 0.
+  \end{align*}
+
+  To determine a basic feasible solution, we introduce artifical variables $a_1$ and $a_2$ and auxiliary objective 
+  function:
+
+  \begin{mini*}
+    {}{z' = a_1 + a_2}{}{}
+    \addConstraint{2x_1 - 3x_2 + 2x_3 - x_4 + a_1}{= 3}
+    \addConstraint{-x_1 + x_2 + x_3 - x_5 + a_2}{= 5}
+    \addConstraint{x_i, a_i}{\geq 0}.
+  \end{mini*}
+
+  Solving this via the simplex method yields our desired initial basis:\footnote{
+    Unless otherwise noted, all simplex method problems are solved with the code \texttt{simplex.py}.
+  }
+  
+  \textbf{TODO!}
+  \vfill
 \end{solution}

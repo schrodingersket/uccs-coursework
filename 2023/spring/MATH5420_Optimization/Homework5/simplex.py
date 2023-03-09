@@ -3,7 +3,7 @@ import numpy as np
 class MaxIterationError(Exception):
     pass
 
-def simplex_algorithm(A, b, c, x_b_idx, max_iters=10):
+def simplex_algorithm(A, b, c, x_b_idx, max_iters=20):
     optimal = False
     iters = 0
     while not optimal and iters < max_iters:
@@ -40,7 +40,7 @@ def simplex_algorithm(A, b, c, x_b_idx, max_iters=10):
             optimal = True
             return x_n_idx, x_b_idx, x_b, z
 
-        ratios = np.ma.array(x_b / entering_column, mask=(x_b / entering_column) <= 0)
+        ratios = np.ma.array(x_b / entering_column, mask=((x_b / entering_column) <= 0))
         leaving_variable_idx = np.argmin(ratios)
         leaving_variable = x_b_idx[leaving_variable_idx]
 

@@ -13,5 +13,16 @@ Find the dual of
 
 \begin{solution}
   \ \\
-  \vfill
+
+  The dual of this program is given by:
+
+  \begin{mini*}
+    {}{w = b^T y = 5y_1 + 7y_2 + 9y_3}{}{}
+    \addConstraint{9y_1 + 3y_2 + 7y_3}{\le -2}
+    \addConstraint{-2y_1 + 3y_2 - 5y_3}{\le  4}
+    \addConstraint{-8y_1 - 3y_2 + 2y_3}{\le -3}
+    \addConstraint{y_1, y_2, y_3}{\quad \text{unrestricted}}.
+  \end{mini*}
+
+  \textbf{TODO?}
 \end{solution}

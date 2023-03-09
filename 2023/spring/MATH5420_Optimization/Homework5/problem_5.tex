@@ -14,6 +14,16 @@ duality theorem hold. Verify that the optimal dual solution satisfies $y^T = c_B
 basis matrix.
 
 \begin{solution}
+  The dual of this program is given by:
+
+  \begin{mini*}
+    {}{w = b^T y = y_1 + 2y_2}{}{}
+    \addConstraint{ -y_1 + 2y_2}{\ge -1}
+    \addConstraint{  y_1 -  y_2}{\ge -1}
+    \addConstraint{y_1 \le 0, \,}{y_2 \ge 0}.
+  \end{mini*}
   \ \\
+
+  \textbf{TODO!}
   \vfill
 \end{solution}

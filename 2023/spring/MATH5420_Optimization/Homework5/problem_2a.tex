@@ -1,6 +1,27 @@
 via the two-phase method.
 
 \begin{solution}
-  \ \\
+  We begin by converting the problem to standard form by introducing the slack variable $x_4$:
+
+  \begin{mini*}
+    {}{z = -4x_1 - 2x_2 - 8x_3}{}{}
+    \addConstraint{2x_1 - x_2 + 3x_3 + x_4}{= 30}
+    \addConstraint{x_1 + 2x_2 + 4x_3}{= 40}
+    \addConstraint{x_1, x_2, x_3, x_4}{\geq 0}.
+  \end{mini*}
+
+  To find a basic feasible solution for this problem, we introduce artificial variables $a_1$ and $a_2$, which yields 
+  our first phase problem:
+
+  \begin{mini*}
+    {}{\hat{z} = a_1 + a_2}{}{}
+    \addConstraint{2x_1 - x_2 + 3x_3 + x_4 + a_1}{= 30}
+    \addConstraint{x_1 + 2x_2 + 4x_3 + a_2}{= 40}
+    \addConstraint{x_i, a_i}{\geq 0}.
+  \end{mini*}
+
+  Solving this via the simplex method yields our desired initial basis:
+  
+  \textbf{TODO!}
   \vfill
 \end{solution}

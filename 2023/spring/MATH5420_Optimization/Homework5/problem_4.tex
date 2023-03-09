@@ -7,13 +7,32 @@ Find the dual of
   \addConstraint{4x_1 + 3x_2 - 8x_3 + 7x_4}{= 11}
   \addConstraint{3x_1 + 2x_2 + 7x_3 + 6x_4}{\ge 23}
   \addConstraint{7x_1 + 4x_2 + 3x_3 + 2x_4}{\le 12}
-  \addConstraint{x_1, x_2}{\ge 0}
-  \addConstraint{(x_4\; \text{unrestricted}), x_3}{\le 0}
+  \addConstraint{x_1, x_2 \ge 0,\; x_3 \le 0, \,}{x_4 \; \text{unrestricted}}
 \end{maxi*}
 
 and verify that the dual of the dual is the primal.
 
 \begin{solution}
+  The dual of this program is given by:
+
+  \begin{mini*}
+    {}{w = b^T y = 11y_1 + 23y_2 + 12y_3}{}{}
+    \addConstraint{ 4y_1 + 3y_2 + 7y_3}{\ge 6}
+    \addConstraint{ 3y_1 + 2y_2 + 4y_3}{\ge  -3}
+    \addConstraint{-8y_1 + 7y_2 + 3y_3}{\le -2}
+    \addConstraint{ 7y_1 + 6y_2 + 2y_3}{= 5}
+    \addConstraint{y_2 \le 0, y_3 \ge 0, \,}{y_1 \; \text{unrestricted}}.
+  \end{mini*}
   \ \\
-  \vfill
+  The dual of the dual is given by:
+
+  \begin{maxi*}
+    {}{z = 6x_1 - 3x_2 - 2x_3 + 5x_4}{}{}
+    \addConstraint{4x_1 + 3x_2 - 8x_3 + 7x_4}{= 11}
+    \addConstraint{3x_1 + 2x_2 + 7x_3 + 6x_4}{\ge 23}
+    \addConstraint{7x_1 + 4x_2 + 3x_3 + 2x_4}{\le 12}
+    \addConstraint{x_1, x_2 \ge 0,\; x_3 \le 0, \,}{x_4 \; \text{unrestricted}}
+  \end{maxi*}
+
+  \textbf{TODO?}
 \end{solution}

@@ -1,40 +1,9 @@
-\textbf{Griva, Nash, Sofer 6.2.7}
+\textbf{Griva, Nash, Sofer 6.2.4}
 
-Consider a linear program with a single constraint
-
-\begin{mini*}
-  {}{z = \sum\limits_{i=1}^n{c_i x_i}}{}{}
-  \addConstraint{\sum\limits_{i=1}^n{a_i x_i}}{\le b}
-  \addConstraint{x_i}{\ge 0}.
-\end{mini*}
-
-Using duality, develop a simple rule to determine an optimal solution, if the latter exists.
+Prove that if $x$ is a feasible solution to the primal, $y$ is a feasible solution to the dual, and $c^Tx = b^Ty$, then
+$x$ and $y$ are optimal for their respective problems.
 
 \begin{solution}
-  We first observe that the primal problem is in canonical form, save for the direction of the inequality within the
-  single constraint. The dual problem will therefore be in canonical form for a maximization problem, with the exception
-  that the new variable $y_1$ is nonpositive. The dual problem is given by 
-  \begin{maxi*}
-    {}{w = b^T y = b y_1}{}{}
-    \addConstraint{a_i y_1}{\le c_i, \quad i = 1, \ldots, n}
-    \addConstraint{y_1}{\le 0}.
-  \end{maxi*}
-
-  To solve this problem, we first suppose $b \le 0$. In this case, our objective is maximized when $y_1$ is minimized,
-  and so we choose
-
-  $$
-  y_1 = \min\limits_{i = 1, ..., n}{\left\{ \frac{c_i}{a_i}  \biggm|  a_i y_1 \le c_i, \frac{c_i}{a_i} \le 0 \right\}}.
-  $$
-
-  Similarly, when $b \ge 0$, our objective function is maximized when $y_1$ is maximized. In this case, we let
-  
-  $$
-  y_1 = \max\limits_{i = 1, ..., n}{\left\{ \frac{c_i}{a_i}  \biggm|  a_i y_1 \le c_i, \frac{c_i}{a_i} \le 0 \right\}}.
-  $$
-
-  Assuming that such a $y_1$ exists, strong duality guarantees that the resulting optimal solution $w = b y_1$ to the
-  dual problem is also the optimal solution to the primal problem, i.e., $w = b y_1 = \sum\limits_{i=1}^n{c_i x_i} = z$.
   \ \\
   \vfill
 \end{solution}
