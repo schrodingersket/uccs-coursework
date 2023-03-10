@@ -10,13 +10,14 @@ via the two-phase method.
     \addConstraint{x_1, x_2, x_3, x_4}{\geq 0}.
   \end{mini*}
 
-  To find a basic feasible solution for this problem, we introduce artificial variables $a_1$ and $a_2$, which yields 
-  our first phase problem:
+  To find a basic feasible solution for this problem, first note that choosing $x_4$ as a basic variable yields the
+  feasible value $x_4 = 30$. Since our system only contains two constraints, we need only introduce a single artificial 
+  variables $a_1$ into our second constraint to construct a feasible basis for the auxiliary problem, which yields:
 
   \begin{mini*}
-    {}{\hat{z} = a_1 + a_2}{}{}
-    \addConstraint{2x_1 - x_2 + 3x_3 + x_4 + a_1}{= 30}
-    \addConstraint{x_1 + 2x_2 + 4x_3 + a_2}{= 40}
+    {}{\hat{z} = a_1}{}{}
+    \addConstraint{2x_1 - x_2 + 3x_3 + x_4}{= 30}
+    \addConstraint{x_1 + 2x_2 + 4x_3 + a_1}{= 40}
     \addConstraint{x_i, a_i}{\geq 0}.
   \end{mini*}
 
