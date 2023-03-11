@@ -27,7 +27,7 @@ init = np.array((
   3,
 ))
 
-feasible_basis = simplex_algorithm(A, b, c, init, artificial_variables=[4])
+feasible_basis = simplex_algorithm(A, b, c, init, verbose=True, artificial_variables=[4])
 
 if feasible_basis:
     xNi, xBi, xB, z = feasible_basis
@@ -60,7 +60,7 @@ if feasible_basis:
          0,
     ))
 
-    optimal_basis = simplex_algorithm(A, b, c, xBi, artificial_variables=[])
+    optimal_basis = simplex_algorithm(A, b, c, xBi, verbose=True, artificial_variables=[])
     xNi, xBi, xB, z = optimal_basis
     optimal_point = np.zeros(c.shape)
     optimal_point[xBi] = xB

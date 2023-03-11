@@ -29,7 +29,7 @@ init = np.array((
   6,
 ))
 
-feasible_basis = simplex_algorithm(A, b, c, init, artificial_variables=[4])
+feasible_basis = simplex_algorithm(A, b, c, init, artificial_variables=[4], verbose=True)
 
 if feasible_basis:
     xNi, xBi, xB, z = feasible_basis

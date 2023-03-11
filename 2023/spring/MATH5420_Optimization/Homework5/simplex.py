@@ -5,7 +5,16 @@ class MaxIterationError(Exception):
     pass
 
 
-def simplex_algorithm(A, b, c, x_b_idx, max_iters=20, artificial_variables=[]):
+def simplex_algorithm(
+        A,
+        b,
+        c,
+        x_b_idx,
+        max_iters=20,
+        verbose=False,
+        interactive=False,
+        artificial_variables=None,
+):
     optimal = False
     iters = 0
     while not optimal and iters < max_iters:
@@ -25,7 +34,7 @@ def simplex_algorithm(A, b, c, x_b_idx, max_iters=20, artificial_variables=[]):
 
         c_n_hat_mask = []
         for i, c_n_i in enumerate(c_n_hat):
-            if x_n_idx[i] in artificial_variables:
+            if artificial_variables and x_n_idx[i] in artificial_variables:
                 c_n_hat_mask.append(1)
             else:
                 c_n_hat_mask.append(0)
@@ -34,16 +43,17 @@ def simplex_algorithm(A, b, c, x_b_idx, max_iters=20, artificial_variables=[]):
         entering_variable = x_n_idx[entering_variable_idx]
         entering_column = np.linalg.solve(B, A[:, entering_variable])
 
-        print('B: {}'.format(B))
-        print('N: {}'.format(N))
-        print('c_b: {}'.format(c_b))
-        print('c_n: {}'.format(c_n))
-        print('c_n_hat (reduced cost): {}'.format(c_n_hat))
-        # print('tableau: {}'.format(tableau_body))
-        print('rhs (b_hat): {}'.format(x_b))
-        # print('z: {}'.format(z))
-        print('entering column (A_{}): {}'.format(entering_variable + 1, entering_column))
-        # print('basis: {}'.format(x_b_idx + 1))
+        if verbose:
+            print('\nB: {}'.format(B))
+            print('N: {}'.format(N))
+            print('c_b: {}'.format(c_b))
+            print('c_n: {}'.format(c_n))
+            print('c_n_hat (reduced cost): {}'.format(c_n_hat))
+            # print('tableau: {}'.format(tableau_body))
+            print('rhs (b_hat): {}'.format(x_b))
+            # print('z: {}'.format(z))
+            print('entering column (A_{}): {}'.format(entering_variable + 1, entering_column))
+            # print('basis: {}'.format(x_b_idx + 1))
 
         if np.all(c_n_hat >= 0):
             optimal = True
@@ -55,7 +65,7 @@ def simplex_algorithm(A, b, c, x_b_idx, max_iters=20, artificial_variables=[]):
         # Prefer to leave behind excess variables
         #
         for min_index in min_indices[0]:
-            if x_b_idx[min_index] in artificial_variables:
+            if artificial_variables and x_b_idx[min_index] in artificial_variables:
                 leaving_variable_idx = min_index
                 break
         else:
@@ -63,17 +73,18 @@ def simplex_algorithm(A, b, c, x_b_idx, max_iters=20, artificial_variables=[]):
 
         leaving_variable = x_b_idx[leaving_variable_idx]
 
-        print('x{} is entering and x{} is leaving at iteration {}'.format(
-            entering_variable + 1,
-            leaving_variable + 1,
-            iters + 1,
-        ))
+        if verbose:
+            print('x{} leaves and x{} enters at iteration {}'.format(
+                leaving_variable + 1,
+                entering_variable + 1,
+                iters + 1,
+            ))
 
         x_b_idx[leaving_variable_idx] = entering_variable
         iters += 1
         if iters == max_iters:
             raise MaxIterationError('Exceeded max simplex iteration count! Is your problem bounded?')
-        else:
+        elif interactive:
             input('\n\nPress [Enter] for the next iteration: ')
 
 

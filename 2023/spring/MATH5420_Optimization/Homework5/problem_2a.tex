@@ -10,19 +10,24 @@ via the two-phase method.
     \addConstraint{x_1, x_2, x_3, x_4}{\geq 0}.
   \end{mini*}
 
-  To find a basic feasible solution for this problem, first note that choosing $x_4$ as a basic variable yields the
+  To find a basic feasible solution for this problem, we first note that choosing $x_4$ as a basic variable yields a
   feasible value $x_4 = 30$. Since our system only contains two constraints, we need only introduce a single artificial 
-  variables $a_1$ into our second constraint to construct a feasible basis for the auxiliary problem, which yields:
+  variable $a_1$ into our second constraint in order to construct a feasible basis for the auxiliary problem. This 
+  yields our auxiliary (phase I) problem:
 
   \begin{mini*}
-    {}{\hat{z} = a_1}{}{}
+    {}{z' = a_1}{}{}
     \addConstraint{2x_1 - x_2 + 3x_3 + x_4}{= 30}
     \addConstraint{x_1 + 2x_2 + 4x_3 + a_1}{= 40}
     \addConstraint{x_i, a_i}{\geq 0}.
   \end{mini*}
 
-  Solving this via the simplex method yields our desired initial basis:
-  
-  \textbf{TODO!}
-  \vfill
+  We solve this auxiliary system via the simplex method in \texttt{problem\_2a.py} to find our desired basis 
+  $x_B = (x_3, x_4)^T$ which corresponds to the basic feasible solution $x = \left(0, 0, 10, 0, 0\right)^T$ (and yields 
+  $z' = 0$, as desired).
+ 
+  With $x_B$ as our initial basis for the original problem, the simplex algorithm yields the optimal solution 
+  $z = -160$ with $x_B = (x_1, x_4)$ at the point \linebreak
+  $x = (40, 0, 0, -50)^T$.
+  \ \\
 \end{solution}
