@@ -23,12 +23,14 @@ def plot_2d_region(
         usetex=False,
         legend=True,
         active_point=None,
+        latex_vars=('x_1', 'x_2'),
+        plaintext_vars=('x1', 'x2')
 ):
     """
     Plots feasible regions for constraints of the form
 
-    minimize z = cx
-    Ax <= b
+    minimize    z = cx
+    subject to Ax <= b
     x1, x2 >= 0
 
     or, more explicitly,
@@ -54,40 +56,40 @@ def plot_2d_region(
     of length 2 (e.g., active_point=(0, 6)).
     """
 
-    def _format_coefficient(value, i, tex):
+    def _format_coefficient(value, coefficient_index, tex):
         """
         Helper function to format coefficients in plot legend. Absolutely not necessary, but pretties things up a bit.
         """
         if value:
             if value < 0:
-                return '{}{}{}x_{}'.format(
-                    '-' if i == 1 else ' - ',
+                return '{}{}{}{}'.format(
+                    ' - ' if coefficient_index else '-',
                     '' if value == -1 else abs(value),
                     '' if (tex or value == -1) else '*',
-                    i,
+                    latex_vars[coefficient_index] if tex else plaintext_vars[coefficient_index],
                 )
             else:
-                return '{}{}{}x_{}'.format(
-                    '' if i == 1 else ' + ',
+                return '{}{}{}{}'.format(
+                    ' + ' if coefficient_index else '',
                     '' if value == 1 else abs(value),
                     '' if (tex or value == 1) else '*',
-                    i,
+                    latex_vars[coefficient_index] if tex else plaintext_vars[coefficient_index],
                 )
-        return '{}0{}x_{}'.format(
-            '' if i == 1 else ' + ',
+        return '{}0{}{}'.format(
+            ' + ' if coefficient_index else '',
             '' if (tex or value == 1) else '*',
-            i,
+            latex_vars[coefficient_index] if tex else plaintext_vars[coefficient_index],
         )
     plt.rcParams['text.usetex'] = usetex
 
     plt.title('Feasible Region')
 
     if usetex:
-        plt.xlabel('$x_1$')
-        plt.ylabel('$x_2$')
+        plt.xlabel(f'${latex_vars[0]}$')
+        plt.ylabel(f'${latex_vars[1]}$')
     else:
-        plt.xlabel('x1')
-        plt.ylabel('x2')
+        plt.xlabel(plaintext_vars[0])
+        plt.ylabel(plaintext_vars[1])
 
     x_min, x_max = xlims
     y_min, y_max = ylims
@@ -146,19 +148,21 @@ def plot_2d_region(
     for k, a_k in enumerate(aa):
         if a_k is not None:
             plt.plot(xx1[0, :], a_k[0, :], label=r'${}{} {} {}$'.format(
-                _format_coefficient(A[k][0], 1, usetex),
-                _format_coefficient(A[k][1], 2, usetex),
+                _format_coefficient(A[k][0], 0, usetex),
+                _format_coefficient(A[k][1], 1, usetex),
                 r'\le' if usetex else r'<=',
                 b[k],
             ))
         else:
             if usetex:
-                plt.axvline(x=b[k]/A[k][0], label=r'$x_1 {} {}$'.format(
+                plt.axvline(x=b[k]/A[k][0], label=r'${} {} {}$'.format(
+                    latex_vars[0],
                     r'\ge' if A[k][0] <= 0 else r'\le',
                     b[k]/A[k][0],
                 ), linestyle='dashed')
             else:
-                plt.axvline(x=b[k]/A[k][0], label=r'x1 {} {}'.format(
+                plt.axvline(x=b[k]/A[k][0], label=r'{} {} {}'.format(
+                    plaintext_vars[0],
                     '>=' if A[k][0] <= 0 else '<=',
                     b[k]/A[k][0],
                 ), linestyle='dashed')
@@ -166,11 +170,23 @@ def plot_2d_region(
     # Plot x1, x2 > 0 lines
     #
     if usetex:
-        plt.plot(xx1[0, :], a1[0, :], 'k--', label=r'$x_2 \ge {}$'.format(x2_min))
-        plt.axvline(x=x1_min, label=r'$x_1 \ge {}$'.format(x1_min), color='gray', linestyle='dashed')
+        plt.plot(xx1[0, :], a1[0, :], 'k--', label=r'${} \ge {}$'.format(
+            latex_vars[1],
+            x2_min,
+        ))
+        plt.axvline(x=x1_min, label=r'${} \ge {}$'.format(
+            latex_vars[0],
+            x1_min,
+        ), color='gray', linestyle='dashed')
     else:
-        plt.plot(xx1[0, :], a1[0, :], 'k--', label=r'x2 >= {}'.format(x2_min))
-        plt.axvline(x=x1_min, label=r'x1 >= {}'.format(x1_min), color='gray', linestyle='dashed')
+        plt.plot(xx1[0, :], a1[0, :], 'k--', label=r'{} >= {}'.format(
+            plaintext_vars[1],
+            x2_min,
+        ))
+        plt.axvline(x=x1_min, label=r'{} >= {}'.format(
+            plaintext_vars[0],
+            x1_min,
+        ), color='gray', linestyle='dashed')
 
     # Add objective function level sets
     #

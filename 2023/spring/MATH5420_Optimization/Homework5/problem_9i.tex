@@ -1,6 +1,45 @@
 By how much can the right-hand side of the first constraint change before the current basis ceases to be optimal?
 
 \begin{solution}
+  From Example 6.14, we have:
+
+  $$
+  B = \begin{pmatrix*}[r]
+    1 & -2 & 1 \\
+    2 & -1 & 0 \\
+    0 &  1 & 0
+  \end{pmatrix*}, \qquad B^{-1} = \begin{pmatrix*}[r]
+    1 &  \sfrac{1}{2} & \sfrac{1}{2} \\
+    0 &             0 &            1 \\
+    1 & -\sfrac{1}{2} & \sfrac{3}{2} \\
+  \end{pmatrix*}, \qquad b = \begin{pmatrix*}[r]
+    2 \\
+    7 \\
+    3
+  \end{pmatrix*}, \qquad B^{-1} b = \begin{pmatrix*}[r]
+    5 \\
+    3 \\
+    3
+  \end{pmatrix*}
+  $$
+
+  with optimal basis $x_B = \left( x_2, x_1, x_3 \right)^T$. Since modifying the problem's constraints has no effect on
+  the optimality condition, we need only consider the perturbative effects on the feasibility of the optimal basis. The
+  current basis will remain optimal so long as $B^{-1}b \ge 0$; hence we define $\bar{b} = b + \Delta b$ where 
+  $\Delta b = (\delta, 0, 0)^T$ and observe that
+  
+  $$
+  B^{-1}\bar{b} = B^{-1} \left( b + \Delta b \right) = B^{-1}b + B^{-1}\Delta b = \begin{pmatrix*}[r]
+    5 \\
+    3 \\
+    3 
+  \end{pmatrix*} + \begin{pmatrix*}[r]
+    0 \\
+    0 \\
+    \delta
+  \end{pmatrix*}.
+  $$
+
+  Since $B^{-1}\bar{b} \ge 0$ so long as $\delta \ge -3$, the current basis remains feasible so long as $b_1 \ge -1$.
   \ \\
-  \vfill
 \end{solution}
