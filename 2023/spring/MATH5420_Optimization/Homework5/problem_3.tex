@@ -14,15 +14,19 @@ Find the dual of
 \begin{solution}
   \ \\
 
-  The dual of this program is given by:
+  Since the primal problem is a minimization problem, the dual is a maximization problem. Moreover, since all
+  constraints are equalities in the primal, each $y_i$ in the dual is unrestricted. Lastly, since each $x_i$ is 
+  consistent with the canonical form of the primal problem, all inequality constraints in the agree with the canonical 
+  dual problem.
 
-  \begin{mini*}
+  More concretely, the dual of this program is given by:
+
+  \begin{maxi*}
     {}{w = b^T y = 5y_1 + 7y_2 + 9y_3}{}{}
-    \addConstraint{9y_1 + 3y_2 + 7y_3}{\le -2}
-    \addConstraint{-2y_1 + 3y_2 - 5y_3}{\le  4}
-    \addConstraint{-8y_1 - 3y_2 + 2y_3}{\le -3}
+    \addConstraint{A_1^T y = 9y_1 + 3y_2 + 7y_3}{\le -2 = c_1}
+    \addConstraint{A_2^T y = -2y_1 + 3y_2 - 5y_3}{\le  4 = c_2}
+    \addConstraint{A_3^T y = -8y_1 + 3y_2 + 2y_3}{\le -3 = c_3}
     \addConstraint{y_1, y_2, y_3}{\quad \text{unrestricted}}.
-  \end{mini*}
-
-  \textbf{TODO?}
+  \end{maxi*}
+  \ \\
 \end{solution}

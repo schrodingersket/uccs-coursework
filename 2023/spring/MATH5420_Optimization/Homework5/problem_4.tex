@@ -13,26 +13,48 @@ Find the dual of
 and verify that the dual of the dual is the primal.
 
 \begin{solution}
-  The dual of this program is given by:
+  Since the primal problem is a maximization problem, the dual is a minimization problem. The first constraint in the 
+  primal is an equality constraint, and so $y_1$ in the dual is unrestricted. The second constraint is reversed with 
+  respect to the canonical form of maximization problems, and so $y_2$ must be nonpositive. The third constraint is 
+  consistent with canonical form, and hence $y_3$ is nonnegative.
+
+  The variables $x_1$ and $x_2$ in the primal are consistent with canonical form, and so the first two constraints in
+  dual must also be consistent with canonical form for the dual minimization problem. The third variable $x_3$ is 
+  nonpositive and so the third constraint in the dual must be reversed. The fourth variable $x_4$ is unrestricted which
+  yields an equality constraint for the final constraint in the dual.
+
+  The dual of this program is therefore given by:
 
   \begin{mini*}
     {}{w = b^T y = 11y_1 + 23y_2 + 12y_3}{}{}
-    \addConstraint{ 4y_1 + 3y_2 + 7y_3}{\ge 6}
-    \addConstraint{ 3y_1 + 2y_2 + 4y_3}{\ge  -3}
-    \addConstraint{-8y_1 + 7y_2 + 3y_3}{\le -2}
-    \addConstraint{ 7y_1 + 6y_2 + 2y_3}{= 5}
-    \addConstraint{y_2 \le 0, y_3 \ge 0, \,}{y_1 \; \text{unrestricted}}.
+    \addConstraint{A_1^T y =  4y_1 + 3y_2 + 7y_3}{\ge 6 = c_1}
+    \addConstraint{A_2^T y =  3y_1 + 2y_2 + 4y_3}{\ge -3 = c_2}
+    \addConstraint{A_3^T y = -8y_1 + 7y_2 + 3y_3}{\le -2 = c_3}
+    \addConstraint{A_4^T y =  7y_1 + 6y_2 + 2y_3}{= 5 = c_4}
+    \addConstraint{y_1 \; \text{unrestricted}, \; y_2 \le 0, \;}{y_3 \ge 0}.
   \end{mini*}
   \ \\
-  The dual of the dual is given by:
+
+  Because the dual is a minimization problem, the dual of the dual is a maximization problem. Since $y_1$ is 
+  unrestricted, the first constraint in the dual of the dual is an equality constraint. The second variable $y_2$ in the
+  dual is nonpositive, and so the second constraint in the dual of the dual is reversed from canonical form. The third 
+  variable $y_3$ in the dual is nonnegative, and hence the final constraint in the dual of the dual is consistent with
+  canonical form.
+
+  The first two constraints of the dual are consistent with canonical form, and so the first two variables $x'_1$ and 
+  $x'_2$ in the dual of the dual are nonnegative. Conversely, the third constraint of the dual is opposite canonical
+  and so $x'_3$ in the dual of the dual is nonpositive. Since the fourth constraint in the dual is an equality 
+  constraint, $x'_4$ is unrestricted. Putting this all together, taking the transpose of the coefficients, and swapping
+  the roles of $b$ and $c$ yields:
 
   \begin{maxi*}
-    {}{z = 6x_1 - 3x_2 - 2x_3 + 5x_4}{}{}
-    \addConstraint{4x_1 + 3x_2 - 8x_3 + 7x_4}{= 11}
-    \addConstraint{3x_1 + 2x_2 + 7x_3 + 6x_4}{\ge 23}
-    \addConstraint{7x_1 + 4x_2 + 3x_3 + 2x_4}{\le 12}
-    \addConstraint{x_1, x_2 \ge 0,\; x_3 \le 0, \,}{x_4 \; \text{unrestricted}}
+    {}{z = 6x'_1 - 3x'_2 - 2x'_3 + 5x'_4}{}{}
+    \addConstraint{4x'_1 + 3x'_2 - 8x'_3 + 7x'_4}{= 11}
+    \addConstraint{3x'_1 + 2x'_2 + 7x'_3 + 6x'_4}{\ge 23}
+    \addConstraint{7x'_1 + 4x'_2 + 3x'_3 + 2x'_4}{\le 12}
+    \addConstraint{x'_1, x'_2 \ge 0,\; x_3 \le 0, \,}{x'_4 \; \text{unrestricted}}
   \end{maxi*}
 
-  \textbf{TODO?}
+  which is precisely the primal problem.
+  \ \\
 \end{solution}

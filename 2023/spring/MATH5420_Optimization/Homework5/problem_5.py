@@ -35,6 +35,8 @@ init = np.array((
 feasible_basis = simplex_algorithm(A, b, c, init, artificial_variables=[4])
 if feasible_basis:
     xNi, xBi, xB, z = feasible_basis
+    print('\n\n[PRIMAL Phase I] Initial basic feasible solution:')
+    print('z = {}'.format(z))
     print('Entering basis is xb = {}'.format(xBi + 1))
 else:
     raise Exception('Problem is infeasible!')
@@ -64,21 +66,21 @@ plot_2d_region(
     A,
     b,
     c[0:2],
-    xlims=(-2, 10),
-    ylims=(-2, 10),
+    xlims=(-2, 5),
+    ylims=(-2, 5),
     usetex=True,
     legend=True,
     savefile='problem_5_primal.png',
 )
 
-optimal_basis = simplex_algorithm(A, b, c, init)
+optimal_basis = simplex_algorithm(A, b, c, init, verbose=True)
 
 if optimal_basis:
     xNi, xBi, xB, z = optimal_basis
     optimal_point = np.zeros(c.shape)
     optimal_point[xBi] = xB
 
-    print('\n\n[PRIMAL] Optimal basic feasible solution:')
+    print('\n\n[PRIMAL Phase II] Optimal basic feasible solution:')
     print('xb = {}'.format(xBi + 1))
     print('xn = {}'.format(xNi + 1))
     print('optimal point = {}'.format(optimal_point))
@@ -115,8 +117,8 @@ plot_2d_region(
     A,
     b,
     c[0:2],
-    xlims=(-2, 10),
-    ylims=(-2, 10),
+    xlims=(-2, 5),
+    ylims=(-2, 5),
     usetex=True,
     legend=True,
     savefile='problem_5_dual.png',
