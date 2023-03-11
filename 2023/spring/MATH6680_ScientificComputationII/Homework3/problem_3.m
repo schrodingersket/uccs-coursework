@@ -1,43 +1,59 @@
-% p.19.m - 2nd-order wave eq. on Chebyshev grid (compare p6.m)
+% p19.m - 2nd-order wave eq. on Chebyshev grid (compare p6.m)
+clear all
+close all
 
-% Time-stepping leap by leap frog formula:
-N = 80
-x = cos(pi*(0:N)/N);
+% Time-stepping by leap frog formula:
+N = 80; 
+[D, xp] = cheb(N);
+D2 = D^2;
+
+% Neumann condition u_x(-1, t) = 0
+%
+D2(N+1, :) = D(N+1, :);
+
+x = xp';
 dt = 8/N^2;
-v = exp(-200*x.^2);
-vold = exp(-200*(x-dt).^2);
-tmax = 4;
-tplot = 0.075;
-plotgap = round(tplot/dt);
+v = 0 * ones(size(x));
+vold = 0 * ones(size(x - dt));
+tmax = 5;
+tplot = .025;
+plotgap = round(tplot/dt); 
 dt = tplot/plotgap;
 nplots = round(tmax/tplot);
-plotdata = [v; zeros(nplots, N + 1)];
+plotdata = [v; zeros(nplots,N+1)]; 
 tdata = 0;
 clf
 drawnow
-h = waitbar(0, 'please wait...');
-
+h = waitbar(0,'please wait...');
+set(gcf,'renderer','zbuffer')
 for i = 1:nplots, waitbar(i/nplots)
     for n = 1:plotgap
-        w = chebfft(chebfft(v))';
+        w = (D2 * v')';
         w(1) = 0;
         w(N+1) = 0;
         vnew = 2*v - vold + dt^2*w;
         vold = v;
         v = vnew;
+
+        % Dirichlet condition
+        %
+        t = dt*i*plotgap;
+        v(1) = sin(10*t);
     end
-    plotdata(i+1, :) = v;
+    plotdata(i+1,:) = v;
     tdata = [tdata; dt*i*plotgap];
 end
 
 % Plot results:
-clf, drawnow, waterfall(x, tdata, plotdata)
-axis([-1 1 0 tmax -2 2])
+clf
+drawnow
+waterfall(x,tdata,plotdata)
+axis([-1 1 0 tmax -3 3])
 view(10, 70)
 grid off
-colormap([0 0 0])
+colormap(1e-6*[1 1 1]); 
 ylabel t
 zlabel u
 close(h)
 
-print('problem_3', '-dpng')
+print('-dpng', 'problem_3.png')
