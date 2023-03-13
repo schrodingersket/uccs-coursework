@@ -24,9 +24,7 @@ plotdata = [v; zeros(nplots,N+1)];
 tdata = 0;
 clf
 drawnow
-h = waitbar(0,'please wait...');
-set(gcf,'renderer','zbuffer')
-for i = 1:nplots, waitbar(i/nplots)
+for i = 1:nplots
     for n = 1:plotgap
         w = (D2 * v')';
         w(1) = 0;
@@ -54,6 +52,5 @@ grid off
 colormap(1e-6*[1 1 1]); 
 ylabel t
 zlabel u
-close(h)
 
 print('-dpng', 'problem_3.png')

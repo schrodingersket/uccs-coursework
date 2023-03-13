@@ -48,5 +48,27 @@ $$
     p'_j(x) = p_j(x) \sum\limits_{\substack{k=0 \\ k \neq j}}^N \frac{1}{x - x_k},
   $$
 
+  as desired. To derive the desired formulas for $D_{ij}$, we evaluate $p'_j(x)$ at $x = x_i$ where $i \neq j$:
+
+  $$
+    p'_j(x_i) = \frac{1}{a_j} \prod\limits_{\substack{k=0 \\ k \neq j}}^{N}(x_i - x_k) \sum\limits_{\substack{m=0 \\ m \neq j}}^N \frac{1}{x_i - x_m} \\
+  $$
+
+  We note that product contains a zero term when $k = i$, and so each sum term with $m \neq i$ is zero. When 
+  $m = k = i$, $x_i - x_k$ and $(x_i - x_m)^{-1}$ cancel and we obtain
+
+  $$
+    p'_j(x_i) = \frac{1}{a_j} \prod\limits_{\substack{k=0 \\ k \neq i,j}}^{N}(x_i - x_k).
+  $$
+
+  Similarly, we evaluate $p'(x_j)$ to find:
+
+  $$
+    p'_j(x_j) = \frac{1}{a_j} \prod\limits_{\substack{k=0 \\ k \neq j}}^{N}(x_j - x_k) \sum\limits_{\substack{m=0 \\ m \neq j}}^N \frac{1}{x_j - x_m} \\
+              = \frac{1}{a_j} a_j \sum\limits_{\substack{m=0 \\ m \neq j}}^N \frac{1}{x_j - x_m} \\
+              = \sum\limits_{\substack{m=0 \\ m \neq j}}^N \frac{1}{x_j - x_m}
+  $$
+
   as desired.
+
 \end{solution}
