@@ -1,0 +1,45 @@
+Prove that there exists a $K \in \mathbb{N}$ such that
+
+$$
+\left\lVert x_{k+1} - x_* \right\rVert \le 
+    L \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert \left\lVert x_k - x_* \right\rVert^2
+$$
+
+whenever $k > K$ and therefore that Newton's method converges quadratically.
+
+\begin{solution}
+    Since $\nabla^2 f(x_*)$ is positive definite, its inverse $\nabla^2 f(x_*)^{-1}$ exists and is also positive 
+    definite (since its spectrum is strictly positive, zero is not an eigenvalue and the reciprocals of all eigenvalues
+    are also strictly positive). By part (ii), we need only show
+    $$
+        \frac{1}{2} \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert \le \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert
+    $$
+
+    in order to prove our claim. By the Triangle Inequality, we observe:
+
+    \begin{align*}
+    \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert &= \left\lVert \nabla^2 f(x_k)^{-1} - \nabla^2 f(x_*)^{-1} + \nabla^2 f(x_*)^{-1} \right\rVert \\
+                                                  &\le \left\lVert \nabla^2 f(x_k)^{-1} - \nabla^2 f(x_*)^{-1} \right\rVert + \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert 
+    \end{align*}
+
+    Moreover, since the operator norm of matrix is equal to its largest eigenvalue, we have 
+    $\left\lVert \nabla^2 f(x_*)^{-1} \right\rVert > 0$. Since $\nabla^2 f:\mathbb{R}^n \to \mathbb{R}^n$ is continuous 
+    and invertible near $x_*$, $\nabla^2 f^{-1}$ is also continuous near $x_*$ and so we we may choose 
+    $K \in \mathbb{N}$ sufficiently large so that 
+    $\left\lVert \nabla^2 f(x_k)^{-1} - \nabla^2 f(x_*)^{-1} \right\rVert < \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert$
+    whenever $k > K$. We therefore see that 
+
+    \begin{align*}
+        \frac{1}{2} \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert &\le \frac{1}{2} \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert + \frac{1}{2} \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert \\
+                                                                  &\le \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert
+    \end{align*}
+
+    and hence
+
+    \begin{align*}
+        \left\lVert x_{k+1} - x_* \right\rVert &\le \frac{L}{2} \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert \left\lVert x_k - x_* \right\rVert^2 \\
+                                               &\le L \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert \left\lVert x_k - x_* \right\rVert^2.
+    \end{align*}
+
+    \ \\
+\end{solution}
