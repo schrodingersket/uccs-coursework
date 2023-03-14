@@ -44,10 +44,10 @@ print('-dpng', 'problem_5_eigenvalues.png')
 %
 figure
 disp(eigenvalues(1:M))
-xx = linspace(-1, 1);
+xx = linspace(-2, 2);
 for i = 1:M
     subplot(2, 3, i)
-    plot(xx, interp1(x, [0; eigenvectors(:, i); 0], xx), 'linewidth', 2)
+    plot(xx, interp1(2*x, [0; eigenvectors(:, i); 0], xx), 'linewidth', 2)
     grid on
     axis square
     title(['\lambda = ' num2str(eigenvalues(i), '%15.11f')]);
