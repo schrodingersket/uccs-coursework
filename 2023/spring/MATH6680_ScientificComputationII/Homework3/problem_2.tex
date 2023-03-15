@@ -1,8 +1,36 @@
 \textbf{Trefethen 12.7}
 
 Use the FFT in $N$ points to calculate the first 20 Taylor series coefficients of 
-$f(z) = \log{\left(1 + \frac{1}{2}z\right)}$. What is the asymptotic convergence factor as $N \to \infty$? Can you
-explain this number?
-
+$f(z) = \log{\left(1 + \frac{z}{2}\right)}$. What is the asymptotic convergence factor as $N \to \infty$? Explain.
 \begin{solution}
+    The first 20 Taylor series coefficients of $f(z) = \log{\left(1 + \frac{z}{2}\right)}$ are given by the output of
+    \texttt{problem\_2.m} in Figure \ref{fig:problem_2} for $N = 40$.
+
+    \begin{figure}[h]
+        \begin{verbatim}
+            a_0:     -1.33227e-17     a_10:    -9.76563e-05 
+            a_1:     0.5              a_11:    4.43892e-05 
+            a_2:     -0.125           a_12:    -2.03451e-05  
+            a_3:     0.0416667        a_13:    9.39002e-06 
+            a_4:     -0.015625        a_14:    -4.35965e-06 
+            a_5:     0.00625          a_15:    2.03451e-06 
+            a_6:     -0.00260417      a_16:    -9.53674e-07 
+            a_7:     0.00111607       a_17:    4.48788e-07 
+            a_8:     -0.000488281     a_18:    -2.11928e-07 
+            a_9:     0.000217014      a_19:    1.00387e-07
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_2.m}}
+        \label{fig:problem_2}
+    \end{figure}
+
+    In Figure \ref{fig:problem_2_convergence}, we observe spectral convergence of $a_1$ (since $f(z)$ is analytic) 
+    with asymptotic convergence factor $\frac{1}{2}$ as $N \to \infty$ (see \texttt{problem\_2.m} for details). From
+    numerical experiments, this term arises from the factor of 2 by which we divide $z$ in $f(z)$.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=0.7\textwidth]{problem_2.png}
+        \caption{Spectral convergence of Taylor coefficient $a_1$.}
+        \label{fig:problem_2_convergence}
+    \end{figure}
 \end{solution}

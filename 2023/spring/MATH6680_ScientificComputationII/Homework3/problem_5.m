@@ -29,28 +29,27 @@ B = (1/2)^2 * D2;
 ii = ii(1:M);
 eigenvectors = real(V(:, ii));
 
+for k=1:M
+    fprintf('lambda_%d: \t %3.11f \n', k, eigenvalues(k))
+end
+
 % Plot eigenvalues
 %
+subplot(2, 3, 1)
 semilogy(1:M, eigenvalues(1:M), '.', 'markersize', 12)
 grid on
-
 axis square
-title(['N = ' int2str(N) ', \lambda_{max} = ' num2str(max(real(eigenvalues(1:M))), '%15.11f')]);
-drawnow
-
-print('-dpng', 'problem_5_eigenvalues.png')
+title(['N = ' int2str(N) ', \lambda_{max} = ' num2str(max(real(eigenvalues(1:M))), '%15.3f')]);
 
 % Plot eigenvectors
 %
-figure
-disp(eigenvalues(1:M))
 xx = linspace(-2, 2);
 for i = 1:M
-    subplot(2, 3, i)
+    subplot(2, 3, i+1)
     plot(xx, interp1(2*x, [0; eigenvectors(:, i); 0], xx), 'linewidth', 2)
     grid on
     axis square
-    title(['\lambda = ' num2str(eigenvalues(i), '%15.11f')]);
+    title(['\lambda = ' num2str(eigenvalues(i), '%15.3f')]);
 end
 
-print('-dpng', 'problem_5_eigenvectors.png')
+print('-dpng', 'problem_5.png')

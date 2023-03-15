@@ -5,4 +5,34 @@ with an arbitrary set of distinct points $x_0, \ldots, x_N$. Combine it with \te
 computes the matrix $D_N$ associated with Legendre points in $(-1, 1)$. Print results for $N = 1, 2, 3, 4$.
 
 \begin{solution}
+    The differentiation matrix $D_N$ for associated with Legendre points in $(-1, 1)$ is given by the output of
+    \texttt{problem\_1.m} in Figure \ref{fig:problem_1}.
+
+    \begin{figure}[h]
+        \begin{verbatim}
+        Differentiation matrix for N = 1 Legendre points: 
+           0
+        
+        
+        Differentiation matrix for N = 2 Legendre points: 
+          -0.8660   0.8660
+          -0.8660   0.8660
+        
+        
+        Differentiation matrix for N = 3 Legendre points: 
+          -1.9365e+00   2.5820e+00  -6.4550e-01
+          -6.4550e-01  -2.2204e-16   6.4550e-01
+           6.4550e-01  -2.5820e+00   1.9365e+00
+        
+        
+        Differentiation matrix for N = 4 Legendre points: 
+          -3.3320   4.8602  -2.1088   0.5806
+          -0.7576  -0.3844   1.4707  -0.3287
+           0.3287  -1.4707   0.3844   0.7576
+          -0.5806   2.1088  -4.8602   3.3320 
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_1.m}}
+        \label{fig:problem_1}
+    \end{figure}
+    \ \\
 \end{solution}

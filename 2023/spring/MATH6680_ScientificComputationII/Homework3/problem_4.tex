@@ -5,4 +5,33 @@ discretization theoretically and, if you like, numerically, and decide: Is this 
 precise stability limit on $\Delta t$?
 
 \begin{solution}
+    We perturb $\Delta t$ by letting $\Delta \tilde{t} = \frac{5 + \epsilon}{\left( N_x + N_y^2 \right)}$ to 
+    numerically determine a more precise stability limit. With $\epsilon = 10$, we find that that solution instability
+    is introduced at $t = 2$. We also find that heavy instabilities are introduced by setting the exponent of $N_y$ to 1
+    in the denominator. These results are plotted in Figure \ref{fig:problem_4}.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=.95\textwidth]{problem_4.png}
+        \caption{Stability of various time steps for the wave equation.}
+        \label{fig:problem_4}
+    \end{figure}
+
+    From Chapter 10, we recall that the Rule of Thumb\footnote{
+        That is, that the eigenvalues of the linearized spatial discretization operator scaled by $\Delta t$ must lie in
+        the stability region of the time-discretization operator.
+    } for stability with Chebyshev points is $\frac{8}{N^2}$; hence we
+    expect that the stability limit is at least $\Delta t = \frac{8}{N_y^2}$. Similarly, our Rule of Thumb indicates 
+    that appropriate time steps for Fourier points in the leap frog discretization are at least 
+    $\Delta t = \frac{6}{N_x}$. Combining these, we expect that a more precise stability limit for this problem is 
+
+    $$
+        \Delta t \le \min{\left\{ \frac{6}{N_x}, \frac{8}{N_y^2} \right\}}
+    $$
+
+    and so we let 
+
+    $$
+        \Delta t < \frac{6}{N_x + N_y^2}.
+    $$
 \end{solution}
