@@ -24,8 +24,8 @@ whenever $k > K$ and therefore that Newton's method converges quadratically.
 
     Moreover, since the operator norm of matrix is equal to its largest eigenvalue, we have 
     $\left\lVert \nabla^2 f(x_*)^{-1} \right\rVert > 0$. Since $\nabla^2 f:\mathbb{R}^n \to \mathbb{R}^n$ is continuous 
-    and invertible near $x_*$, $\nabla^2 f^{-1}$ is also continuous near $x_*$ and so we we may choose 
-    $K \in \mathbb{N}$ sufficiently large so that 
+    and invertible near $x_*$, $\nabla^2 f^{-1}$ is also continuous near $x_*$ (by invariance of domain) and so we we 
+    may choose $K \in \mathbb{N}$ sufficiently large so that 
     $\left\lVert \nabla^2 f(x_k)^{-1} - \nabla^2 f(x_*)^{-1} \right\rVert < \left\lVert \nabla^2 f(x_*)^{-1} \right\rVert$
     whenever $k > K$. We therefore see that 
 
