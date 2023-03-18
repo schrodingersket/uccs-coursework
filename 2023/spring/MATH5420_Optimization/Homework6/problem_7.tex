@@ -11,6 +11,63 @@ $$
 for all $x$ which satisfy $\lVert x - \bar{x} \rVert \le \epsilon$.
 
 \begin{solution}
+    We begin by expanding $\nabla f(x)$ about $\bar{x}$ to find:
+
+    $$
+    \nabla f(x) = \nabla f(\bar{x}) + \nabla^2 f(\xi)(x - \bar{x})
+    $$
+
+    where $\xi = \bar{x} + \alpha (x - \bar{x})$ for some $\alpha \in (0, 1)$.
+
+    Hence we have 
+
+    $$
+    \nabla f(x) - \nabla f(\bar{x}) = \nabla^2 f(\xi)(x - \bar{x})
+    $$
+
+    and taking the norm of both sides yields:
+
+    \begin{align*}
+        \lVert \nabla f(x) - \nabla f(\bar{x}) \rVert &= \lVert \nabla^2 f(\xi)(x - \bar{x}) \rVert \\
+                                                      &\le \lVert \nabla^2 f(\xi) \rVert \lVert x - \bar{x} \rVert.
+    \end{align*}
+
+    Since $\nabla^2 f(\bar{x})$ is nonsingular, it is nonzero. Moreover, since $\nabla^2 f(x)$ is continuous, we may 
+    choose $x$ sufficiently close to $\bar{x}$ so that $\nabla^2 f(\xi)$ is also nonzero and hence \linebreak
+    $\lVert \nabla^2 f(\xi) \rVert > 0$. We define $\beta = \lVert \nabla^2 f(\xi) \rVert > 0$ to obtain
+
+    $$
+    \lVert \nabla f(x) - \nabla f(\bar{x}) \rVert \le \beta \lVert x - \bar{x} \rVert.
+    $$
+
+    To obtain the second inequality, we utilize the same expansion as before; since $\nabla^2 f(\bar{x})$ is nonsingular
+    and $\nabla^2 f$ is continuous, we may choose $x$ sufficiently close to $\bar{x}$ so that $\nabla^2 f(\xi)$ is also
+    nonsingular (and hence nonzero). From this, we obtain
+
+    $$
+    \nabla^2 f(\xi)^{-1} \left[\nabla f(x) - \nabla f(\bar{x}) \right] = (x - \bar{x})
+    $$
+
+    and by taking the norm of both sides, we find:
+
+    \begin{align*}
+         \lVert x - \bar{x} \rVert &= \lVert \nabla^2 f(\xi)^{-1} \left[\nabla f(x) - \nabla f(\bar{x})\right] \rVert \\
+                                   &\le \lVert \nabla^2 f(\xi)^{-1} \rVert \lVert \nabla f(x) - \nabla f(\bar{x}) \rVert.
+    \end{align*}
+
+    \pagebreak
+    We define $\alpha = \lVert \nabla^2 f(\xi)^{-1} \rVert > 0$ to obtain:
+
+    $$
+    \alpha \lVert x - \bar{x} \rVert \le \lVert \nabla f(x) - \nabla f(\bar{x}) \rVert
+    $$
+
+    so that 
+
+    $$
+    \alpha \lVert x - \bar{x} \rVert \le \lVert \nabla f(x) - \nabla f(\bar{x}) \rVert \le \beta \lVert x - \bar{x} \rVert 
+    $$
+
+    as desired.
     \ \\
-    \vfill
 \end{solution}

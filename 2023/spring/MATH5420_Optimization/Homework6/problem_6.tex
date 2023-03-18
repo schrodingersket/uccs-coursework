@@ -7,6 +7,28 @@ $$
 $$
 
 \begin{solution}
+    Since $\{x_k\}$ converges superlinearly to $x_*$, we have:
+
+    $$
+    \lim\limits_{k \to \infty}{\frac{\lVert x_{k+1} - x_* \rVert}{ \lVert x_k - x_* \rVert}} = 0
+    $$
+
+    and hence for any fixed $\epsilon > 0$, there exists $K$ such that:
+
+    $$
+    \frac{\lVert x_{k+1} - x_* \rVert}{\lVert x_k - x_* \rVert} - 0 < \epsilon
+    $$
+
+    whenever $k > K$. By the Reverse Triangle Inequality, we have: 
+
+    \begin{align*}
+    \epsilon &> \frac{\lVert x_{k+1} - x_* \rVert}{\lVert x_k - x_* \rVert} - 0 \\
+             &\ge \left\lvert \frac{\lVert x_{k+1} - x_k \rVert - \lVert x_* - x_k \rVert}{\lVert x_k - x_* \rVert} \right\rvert \\
+             &\ge \left\lvert \frac{\lVert x_{k+1} - x_k \rVert}{\lVert x_k - x_* \rVert} - \frac{\lVert x_* - x_k \rVert}{\lVert x_k - x_* \rVert} \right\rvert \\
+             &\ge \left\lvert \frac{\lVert x_{k+1} - x_k \rVert}{\lVert x_k - x_* \rVert} - 1 \right\rvert
+    \end{align*}
+
+    and since $\epsilon$ was chosen to be arbitrary, 
+    $\lim\limits_{k \to \infty} \frac{\lVert x_{k+1} - x_k \rVert}{\lVert x_k - x_* \rVert} = 1$, as desired.
     \ \\
-    \vfill
 \end{solution}

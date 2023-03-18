@@ -1,6 +1,22 @@
 Write the first-order necessary condition. When does a stationary point exist?
 
 \begin{solution}
+    The first-order necessary condition for a stationary point of $f$ to exist requires that $\nabla f(x) = 0$ for some
+    $x$. For a quadratic function, the gradient is given by
+
+    $$
+    \nabla f(x) = \frac{1}{2}\left(Q + Q^T\right)x + c^T.
+    $$
+
+    A stationary point therefore exists whenever the system
+
+    $$
+    \frac{1}{2}\left(Q + Q^T\right)x = -c^T.
+    $$
+
+    has a solution.\footnote{
+        In the case that we require a unique stationary point, we further require that $Q + Q^T$ be nonsingular 
+        (and therefore full rank).
+    }
     \ \\
-    \vfill
 \end{solution}

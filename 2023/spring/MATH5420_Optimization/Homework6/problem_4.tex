@@ -9,6 +9,63 @@ $$
 with initial guess $(1, 1)^T$.
 
 \begin{solution}
+    We utilize Newton's method with initial guess $x_0 = (1, 1)^T$ to find a zero of the gradient of $f$, which is given by:
+
+    $$
+    \nabla f = \begin{pmatrix*}[r]
+        20 x_1^3 - 12 x_1 + 2 x_2 + 15 \\
+        24 x_2^3 + 2 x_1 + 10 x_2 - 7
+    \end{pmatrix*}.
+    $$
+
+    We implement this algorithm in \texttt{newton\_raphson.py} (which is called by 
+    \texttt{problem\_4.py}) to obtain the root $x_0 = \begin{pmatrix} -1.1420549 & 0.5433724 \end{pmatrix}$ after 29 
+    iterations. We show abbreviated output of this script in Figure \ref{fig:problem_4}:
     \ \\
-    \vfill
+
+    \begin{figure}[h]
+        \centering
+        \begin{verbatim}
+     i | xk                        | f(xk)                     | ||f(xk)||            
+    -----------------------------------------------------------------------
+     0 | [ 1.00000000  1.00000000] | [ 25.00000000  29.0000000] | 38.28837944
+     1 | [ 0.59479251  0.65622457] | [ 13.38343070  7.53400133] | 15.35830047
+     2 | [-0.02122721  0.50253846] | [ 16.25961211  1.02885492] | 16.29213088
+       .
+       .
+       .
+    20 | [-1.24515143  0.55036339] | [-7.56716325   0.01425085] | 7.56717667
+    21 | [-1.16368542  0.54479314] | [-1.46260126   0.00122536] | 1.46260177
+    22 | [-1.14565488  0.54360452] | [-0.23894817   0.00005538] | 0.23894817
+    23 | [-1.14261569  0.54340841] | [-0.03710458   0.00000151] | 0.03710458
+    24 | [-1.14214125  0.54337801] | [-0.00570878   0.00000004] | 0.00570878
+    25 | [-1.14206819  0.54337333] | [-0.00087705   0.00000000] | 0.00087705
+    26 | [-1.14205697  0.54337261] | [-0.00013471   0.00000000] | 0.00013471
+    27 | [-1.14205524  0.54337250] | [-0.00002069   0.00000000] | 0.00002069
+    28 | [-1.14205498  0.54337248] | [-0.00000318   0.00000000] | 0.00000318
+    29 | [-1.14205494  0.54337248] | [-0.00000049  -0.00000000] | 0.00000049
+    
+    Root identified at x = [-1.14205493  0.54337248]
+    Minimum value at root is f = -6.496118935491069
+    Gradient at root is given by [-7.496882403759e-08, 1.77635683940025e-15]
+    Hessian at root is given by [78.25736772011318, 2, 2, 31.258263045505608]
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_4.py}}
+        \label{fig:problem_4}
+    \end{figure}
+
+    \pagebreak
+    The Hessian of $f$ is given by:
+
+    $$
+    \nabla^2 f = \begin{pmatrix*}[r]
+        60 x_1^2 - 12 & 2 \\
+        2             & 72 x_2^2 + 10
+    \end{pmatrix*}
+    $$
+
+    which is strictly diagonally dominant at the root (from the above program output). The Hessian is therefore positive
+    definite at $x_0$, and so $x_0$ is a local minimizer of $f$; this minimum value of $f$ is given by 
+    $f(x_0) \approx -6.4961$.
+    \ \\
 \end{solution}
