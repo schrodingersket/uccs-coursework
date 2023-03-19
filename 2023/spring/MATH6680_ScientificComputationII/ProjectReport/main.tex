@@ -1,0 +1,102 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[bottom]{footmisc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{upref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+\usepackage{subcaption}
+
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-1in}
+\addtolength{\headheight}{0.0675in}
+\setlength{\oddsidemargin}{0.2in}
+\setlength{\evensidemargin}{0.2in}
+
+\begin{document}
+
+    \title{%
+        1D Shallow-Water Wave Equation with Variable Bathymetry\\
+        \large A Discontinuous Galerkin Approach
+    }
+    \author{%
+        Thompson, J.
+    }
+    \date{\today}
+    \maketitle
+
+    \begin{abstract}
+        In this project, we examine a Discontinuous Galkerin (DG) approach to solving a 1D system of shallow-water
+        equations with variable bathymetry. We begin by stating the system of equations and from there, we derive the 
+        discrete system of equations and discuss the numerical methods used to solve the system. We then present the 
+        results of our numerical experiments, which include a comparison of the numerical solutions for a variety of
+        boundary conditions and bathymetry functions.
+    \end{abstract}
+
+    \section{Background}\label{sec:background}
+
+    We first present the 1-D shallow-water equations for flood waves with variable bathymetry\cite{whitham1999_ch3}:
+
+    \begin{align*}
+        h_t + (h v)_x &= 0 \\
+        (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x &= g h \sin{(\alpha)} - C_f v^2
+    \end{align*}
+
+    where $v$ represents the average wave velocity, $h$ is the water depth, and $C_f$ is a friction
+    coefficient. Of these, $v$ and $h$ vary in time and space and while $C_f$ may, in general, vary with space we assume
+    it to be constant in this project. We expand the left-hand side of the second equation via the Chain Rule and 
+    substitute $h_t = -h_x v - h v_x$ from the first equation to find: 
+    
+    \begin{align*}
+        (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x 
+            &= \left( h_t v + h v_t \right) + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+            &= -h_x v^2 - h v v_x + h v_t + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+            &=  h v v_x + h v_t + \frac{h}{h} \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+            &=  \frac{1}{h} \left[ v v_x + v_t + \frac{1}{3} \left[g h^3 \cos{(\alpha)} \right]_x + \frac{1}{6} g h^3 [\cos{(\alpha)}]_x \right] \\
+            &=  \frac{1}{h} \left[ v_t + \left[ \frac{v^2}{2} + \frac{1}{3} g h^3 \cos{(\alpha)} \right]_x + \frac{1}{6} g h^3 [\cos{(\alpha)}]_x \right].
+    \end{align*}
+
+    \pagebreak
+    We may therefore express our system in conservation form
+
+    $$
+        \textbf{u}_t + \left[ F(\textbf{u}) \right]_x = S(\textbf{u})
+    $$
+
+    where
+
+    $$
+    \textbf{u} = \begin{pmatrix}
+        h \\
+        v
+    \end{pmatrix}, \quad F(\textbf{u}) = \begin{pmatrix}
+        hv \\
+        \frac{v^2}{2} + \frac{1}{3} g h^3 \cos{(\alpha)}
+    \end{pmatrix}, \quad S(\textbf{u}) = \begin{pmatrix}
+        0 \\
+        g h \sin{(\alpha)} - C_f \frac{v^2}{h} - \frac{1}{6} g h^3 \sin{(\alpha)} \alpha_x
+    \end{pmatrix}
+    $$
+
+    \section{Methodology}\label{sec:proposed-methodology}
+    \subsection{Method of Characteristics}\label{subset:moc-methodology}
+
+    \subsection{Physics-Informed Neural Networks}\label{subsec:pinn-methodology}
+
+    \section{Comparison}\label{sec:comparison}
+
+    \section{Conclusions and Future Work}\label{sec:conclusion}
+
+    \pagebreak
+
+    \bibliographystyle{plain}
+    \bibliography{refs}
+
+
+\end{document}
