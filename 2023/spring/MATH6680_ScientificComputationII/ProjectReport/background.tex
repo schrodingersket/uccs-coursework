@@ -1,0 +1,79 @@
+We first present the 1-D shallow-water equations for flood waves with variable bathymetry\cite{whitham1999_ch3}:
+
+\begin{align*}
+    h_t + (h v)_x &= 0 \\
+    (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x &= g h \sin{(\alpha)} - C_f v^2
+\end{align*}
+
+where $v$ represents the average wave velocity, $h$ is the water depth, and $C_f$ is a friction
+coefficient. Of these, $v$ and $h$ vary in time and space and while $C_f$ may, in general, vary with space we assume
+it to be constant in this project. We expand the left-hand side of the second equation via the Chain Rule and 
+substitute $h_t = -h_x v - h v_x$ from the first equation to find: 
+
+\begin{align*}
+    (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x 
+        &= \left( h_t v + h v_t \right) + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+        &= -h_x v^2 - h v v_x + h v_t + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+        &=  h v v_x + h v_t + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+        &=  h \left( v v_x + v_t + g h_x \cos{(\alpha)} + \frac{1}{2} g h [\cos{(\alpha)}]_x \right) \\
+        &=  h \left( v v_x + v_t + g h_x \cos{(\alpha)} + g h [\cos{(\alpha)}]_x - \frac{1}{2} g h [\cos{(\alpha)}]_x \right) \\
+        &=  h \left( v_t + \left[ \frac{v^2}{2} + g h \cos{(\alpha)} \right]_x - \frac{1}{2} g h [\cos{(\alpha)}]_x \right).
+\end{align*}
+
+\pagebreak
+We may express our system in conservation form as
+
+$$
+    \textbf{u}_t + \left[ F(\textbf{u}) \right]_x = S(\textbf{u})
+$$
+
+where (after dividing through by $h$)
+
+$$
+\textbf{u} = \begin{pmatrix}
+    h \\
+    v
+\end{pmatrix}, \quad F(\textbf{u}) = \begin{pmatrix}
+    hv \\
+    \frac{v^2}{2} + g h \cos{(\alpha)}
+\end{pmatrix}, \quad S(\textbf{u}) = \begin{pmatrix}
+    0 \\
+    g \sin{(\alpha)} - C_f \frac{v^2}{h} + \frac{1}{2} g h [\cos{(\alpha)}]_x
+\end{pmatrix}.
+$$
+
+We expand $[F(\textbf{u})]_x$ to find:
+
+$$
+[F(\textbf{u})]_x = \begin{pmatrix}
+    h v_x + h_x v \\
+    v v_x + g h_x \cos{(\alpha)} + g h [\cos{(\alpha)}]_x
+\end{pmatrix} = \begin{pmatrix}
+    v                & h \\
+    g \cos{(\alpha)} & v
+\end{pmatrix} \begin{pmatrix}
+    h \\
+    v
+\end{pmatrix}_x + \begin{pmatrix}
+    0 \\
+    g h [\cos{(\alpha)}]_x
+\end{pmatrix}
+$$
+
+and so our system becomes
+
+$$
+\textbf{u}_t + A(\textbf{u}) \textbf{u}_x = \tilde{S}(\textbf{u})
+$$
+
+where 
+
+$$
+A = \begin{pmatrix}
+    v                & h \\
+    g \cos{(\alpha)} & v
+\end{pmatrix}, \quad \tilde{S} = \begin{pmatrix}
+    0 \\
+    g h \sin{(\alpha)} (1 - \alpha_x) - C_f \frac{v^2}{h}
+\end{pmatrix}.
+$$
