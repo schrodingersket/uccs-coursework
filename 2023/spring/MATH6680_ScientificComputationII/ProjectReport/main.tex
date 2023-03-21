@@ -14,6 +14,7 @@
 \usepackage{xfrac}
 \usepackage{bm}
 \usepackage{mathtools}
+\usepackage{ifthen}
 
 \setlength{\textwidth}{6.4in}
 \setlength{\textheight}{9.5in}
@@ -21,6 +22,9 @@
 \addtolength{\headheight}{0.0675in}
 \setlength{\oddsidemargin}{0.2in}
 \setlength{\evensidemargin}{0.2in}
+
+\let\oldcite=\cite
+\renewcommand\cite[1]{\ifthenelse{\equal{#1}{NEEDED}}{[citation~needed]}{\oldcite{#1}}}
 
 \begin{document}
 
@@ -63,5 +67,8 @@
     \bibliographystyle{plain}
     \bibliography{refs}
 
+    \pagebreak
+    \appendix
+    \input{appendix_a.tex}
 
 \end{document}

@@ -1,0 +1,46 @@
+\section{Gauss-Legendre-Lobatto Quadrature}\label{appendix:gll}
+
+In this section, we formulate an efficient method for computing Gauss-Legendre-Lobatto (GLL) quadrature points and 
+weights via the Newton-Raphson method. We begin by defining the Legendre polynomial $P_n(x)$ of degree $n$ in terms of
+solutions to Legendre's differential \linebreak
+equation:\cite{NEEDED}
+
+$$
+(1 - x^2) L_n''(x) - 2 x L_n'(x) = -n (n + 1) L_n(x).
+$$
+
+\ \\
+\noindent Bonnet's recursion formula is given by:\cite{NEEDED}
+
+$$
+\frac{x^2 - 1}{n} L_n'(x) = x L_n(x) - L_{n - 1}(x).
+$$
+
+Gauss-Legendre-Lobatto quadrature points are given by finding the roots of\linebreak
+$(1 - x^2) L_n'(x)$ and since this expression is a polynomial, Newton-Raphson iteration is well-suited for this 
+computation.\cite{Quarteroni2014} We therefore utilize the following recurrence relation to compute these roots:
+
+\begin{equation}\label{eq:newton_raphson_gll}
+x_{k+1} = x_k - \left[ \frac{d}{dx} \left[ (1 - x^2) L_n'(x) \right]\bigg\vert_{x_k} \right]^{-1} (1 - x_k^2)L_n'(x_k)
+\end{equation}
+
+where the denominator of the Newton step becomes (upon substitution of Legendre's differential equation)
+
+\begin{align*}
+\frac{d}{dx} \left[ (1 - x^2) L_n'(x) \right] &= (1 - x^2) L_n''(x) - 2 x L_n'(x) \\
+                                              &= -n(n + 1) L_n(x).
+\end{align*}
+
+and the numerator of the Newton step is determined by Bonnet's recursion formula:
+
+$$
+(1 - x^2) L_n'(x) = n L_{n - 1}(x) - x n L_n(x).
+$$
+
+We substitute these expressions into (\ref{eq:newton_raphson_gll}) to obtain our iterative method for constructing the
+desired GLL quadrature:
+
+\begin{align*}
+x_{k+1} &= x_k - \frac{n L_{n - 1}(x_k) - x_k n L_n(x_k)}{-n(n + 1) L_n(x_k)} \\
+        &= x_k + \frac{L_{n - 1}(x_k) - x_k L_n(x_k)}{(n + 1) L_n(x_k)}.
+\end{align*}
