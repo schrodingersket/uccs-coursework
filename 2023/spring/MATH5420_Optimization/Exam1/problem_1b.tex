@@ -1,0 +1,92 @@
+Find the optimal basic feasible solution via the simplex method using the origin as the initial guess. \footnote{
+  All matrix computations for the simplex method are performed in \texttt{problem\_1.py}.
+}
+
+\begin{solution}
+  Since the origin is our initial guess, our initial basis is comprised of the slack variables so that 
+  $x_B = \{ x_4, x_5 \}$ and $x_N = \{ x_1, x_2, x_3 \}$. Our quantities of interest at the initial iteration are:
+
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      0 & 0
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      0 & 0
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      48 & 60
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      -6 & -14 & -13
+    \end{pmatrix}^T, \quad z = 0.
+  \end{align*}
+
+  A change in $x_2$ represents the greatest change in the objective function (since -14 is the most negative value of
+  the reduced cost variable), we choose $x_2$ to enter the basis. Our ratio test vector 
+  is $\begin{pmatrix} 12 & 30 \end{pmatrix}$; hence $x_4$ represents our least nonnegativity constraint and therefore 
+  leaves the basis. Our new basis is $x_B = \{ x_2, x_5 \}$ and $x_N = \{ x_1, x_3, x_4 \}$. Our quantities of interest 
+  at the second iteration are:
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      4 & 0 \\
+      2 & 1
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      -\sfrac{7}{2} & 0
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      -14 & 0
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      12 & 36
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      -\sfrac{5}{2} & -6 & \sfrac{7}{2}
+    \end{pmatrix}^T, \quad z = -168.
+  \end{align*}
+
+  Our new entering variable is $x_3$ since -6 is the most negative value of the reduced cost vector. Our ratio test 
+  vector is given by $\begin{pmatrix} 24 & 12 \end{pmatrix}$ and hence $x_5$ leaves the basis so that 
+  $x_B = \{ x_2, x_3 \}$ and $x_N = \{ x_1, x_4, x_5 \}$. Upon completion of the third iteration, our quantities of 
+  interest are:
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      4 & 2 \\
+      2 & 4
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      -\sfrac{5}{2} & -2
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      -14 & -13
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      6 & 12
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      -\sfrac{3}{2} & \sfrac{5}{2} & 2
+    \end{pmatrix}^T, \quad z = -240.
+  \end{align*}
+
+  Our new entering variable is $x_1$ since -\sfrac{3}{2} is the most negative value of the reduced cost vector. Our
+  ratio test vector is given by $\begin{pmatrix} 36 & 72 \end{pmatrix}$ so that $x_2$ leaves the basis. Our final
+  simplex iteration yields
+
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      1 & 2 \\
+      1 & 4
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      -\sfrac{11}{2} & -\sfrac{1}{2}
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      -6 & -13
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      36 & 6
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      9 & \sfrac{11}{2} & \sfrac{1}{2}
+    \end{pmatrix}^T, \quad z = -294.
+  \end{align*}
+
+  And hence our optimal basic feasible solution is given by $x = \begin{pmatrix} 36 & 0 & 6 & 0 & 0 \end{pmatrix}^T$.
+  which yields an optimal value of $z = -294$.
+\end{solution}

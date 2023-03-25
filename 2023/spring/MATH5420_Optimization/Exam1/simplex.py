@@ -45,20 +45,22 @@ def simplex_algorithm(
 
         if verbose:
             print('\nB: {}'.format(B))
-            print('N: {}'.format(N))
+            print('y: {}'.format(np.matmul(c_b.T, np.linalg.inv(B)).T))
+            # print('N: {}'.format(N))
             print('c_b: {}'.format(c_b))
-            print('c_n: {}'.format(c_n))
+            # print('c_n: {}'.format(c_n))
+            print('rhs (b_hat): {}'.format(x_b))
             print('c_n_hat (reduced cost): {}'.format(c_n_hat))
             # print('tableau: {}'.format(tableau_body))
-            print('rhs (b_hat): {}'.format(x_b))
-            # print('z: {}'.format(z))
-            print('entering column (A_{}): {}'.format(entering_variable + 1, entering_column))
-            # print('basis: {}'.format(x_b_idx + 1))
+            print('z: {}'.format(z))
+            # print('entering column (A_{}): {}'.format(entering_variable + 1, entering_column))
+            print('basis: {}'.format(x_b_idx + 1))
 
         if np.all(c_n_hat >= 0):
             optimal = True
             return x_n_idx, x_b_idx, x_b, z
 
+        # ratios = np.ma.array(x_b / entering_column, mask=((x_b / entering_column) < 0))
         ratios = np.ma.array(x_b / entering_column, mask=((x_b / entering_column) <= 0))
         min_indices = np.where(ratios == ratios.min())
 
@@ -74,6 +76,7 @@ def simplex_algorithm(
         leaving_variable = x_b_idx[leaving_variable_idx]
 
         if verbose:
+            print('ratios: {}'.format(ratios))
             print('x{} leaves and x{} enters at iteration {}'.format(
                 leaving_variable + 1,
                 entering_variable + 1,
