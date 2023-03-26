@@ -24,10 +24,10 @@ Find the optimal basic feasible solution via the simplex method using the origin
   \end{align*}
 
   A change in $x_2$ represents the greatest change in the objective function (since -14 is the most negative value of
-  the reduced cost variable), we choose $x_2$ to enter the basis. Our ratio test vector 
-  is $\begin{pmatrix} 12 & 30 \end{pmatrix}$; hence $x_4$ represents our least nonnegativity constraint and therefore 
-  leaves the basis. Our new basis is $x_B = \{ x_2, x_5 \}$ and $x_N = \{ x_1, x_3, x_4 \}$. Our quantities of interest 
-  at the second iteration are:
+  the reduced cost variable) and so we choose $x_2$ to enter the basis. Our ratio test vector is 
+  $\begin{pmatrix} 12 & 30 \end{pmatrix}$; hence $x_4$ represents our most constrained variable and therefore leaves 
+  the basis. Our new basis is $x_B = \{ x_2, x_5 \}$ and $x_N = \{ x_1, x_3, x_4 \}$. Our quantities of interest at the
+  second iteration are:
 
   \begin{align*}
     B &= \begin{pmatrix}
@@ -88,5 +88,5 @@ Find the optimal basic feasible solution via the simplex method using the origin
   \end{align*}
 
   And hence our optimal basic feasible solution is given by $x = \begin{pmatrix} 36 & 0 & 6 & 0 & 0 \end{pmatrix}^T$.
-  which yields an optimal value of $z = -294$.
+  from which we obtain an optimal value of $z = -294$.
 \end{solution}

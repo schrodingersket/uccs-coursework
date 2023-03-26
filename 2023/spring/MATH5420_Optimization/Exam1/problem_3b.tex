@@ -1,0 +1,77 @@
+Find the optimal basic feasible solution. How many of each bike maximizes revenue? What is the maximum revenue?
+
+\begin{solution}
+  We begin by adding slack variables $x_3$ and $x_4$ to express our system in standard form:
+
+  \begin{mini*}
+    {}{z' = -z = -100 x_1 - 200 x_2}{}{}
+    \addConstraint{2 x_1 + 3 x_2 + x_3}{= 11}
+    \addConstraint{50 x_1 + 150 x_2 + x_4}{= 500}
+  \end{mini*}
+
+  With $x_B = \{x_3, x_4\}$ as our initial basis, we utilize the simplex method to find our desired basic optimal 
+  feasible solution. At our first iteration, the quantities of interest are
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      1 & 0 \\
+      0 & 1
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      0 & 0
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      0 & 0
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      11 & 500
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      -100 & -200 
+    \end{pmatrix}^T, \quad z' = 0.
+  \end{align*}
+
+  A change in $x_2$ represents the greatest change in the objective function (since -200 is the most negative value of
+  the reduced cost variable) and so we choose $x_2$ to enter the basis. Our ratio test vector is 
+  $\begin{pmatrix} \sfrac{11}{3} & \sfrac{10}{3} \end{pmatrix}$; hence $x_4$ represents our most constrained variable
+  and therefore leaves the basis. Our new basis becomes $x_B = \{ x_3, x_2 \}$ and $x_N = \{ x_1, x_4 \}$.  Our 
+  quantities of interest at the second iteration are:
+
+  \begin{align*}
+    B &= \begin{pmatrix}
+      1 & 3 \\
+      0 & 150
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      0 & -\sfrac{4}{3}
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      0 & -200
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      1 & \sfrac{10}{3}
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      \sfrac{-100}{3} & \sfrac{4}{3}
+    \end{pmatrix}^T, \quad z' \approx 666.67.
+  \end{align*}
+
+  Our new entering variable is $x_1$ since $-\sfrac{100}{3}$ is only negative value of the reduced cost vector. Our 
+  ratio test vector is given by $\begin{pmatrix} 1 & 10 \end{pmatrix}$ and hence $x_3$ leaves the basis so that 
+  $x_B = \{ x_1, x_2 \}$ and $x_N = \{ x_3, x_4 \}$. Our next iteration yields:
+  \begin{align*}
+    B &= \begin{pmatrix}
+      2  & 3 \\
+      50 & 150
+    \end{pmatrix}, \quad y = \begin{pmatrix}
+      -\sfrac{100}{3} & -\sfrac{2}{3}
+    \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+      -100 & -200
+    \end{pmatrix}^T \\
+    \hat{b} &= \begin{pmatrix}
+      1 & 3
+    \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+      \sfrac{100}{3} & \sfrac{2}{3}
+    \end{pmatrix}^T, \quad z = -700.
+  \end{align*}
+
+  Since no elements of $\hat{c}_N$ are negative, we have found our optimal basic feasible solution
+  $x = \begin{pmatrix} 1 & 3 & 0 & 0 \end{pmatrix}^T$. From this, we obtain the optimal value of $z = -z' = 700$.
+  The bike shop's revenue is therefore maximized when one basic and three deluxe bikes are assembled per week. This
+  yields a weekly revenue of \$700. The weekly cost of assembling these bikes is $C = \$50 + 3(\$150) = \$500$, and so
+  the bike shop makes \$200 of profit per week.
+\end{solution}

@@ -1,0 +1,68 @@
+Would adding an additional hour of available labor increase profit? If so, what is the new maximal profit? Justify these
+conclusions with a sensitivity analysis.
+
+\begin{solution}
+  We consider the effect of perturbing the right-hand side of our constraint equations by $\Delta b = (1, 0)$ so that
+  our new constraints are 
+
+  $$
+  \bar{b} = b + \Delta b = \begin{pmatrix} 12 & 500 \end{pmatrix}
+  $$
+
+  Since modifying the problem's constraints has no effect on whether a particular feasible basis stays optimal, we need
+  only consider the effect of perturbation on the feasibility of the basis. The optimal basis compute in part (b) will
+  stay optimal for some new $\bar{b}$ so long as $B^{-1} \bar{b} \ge 0$. This quantity is computed in 
+  \texttt{problem\_3.py} and is given by:
+
+  $$
+  B^{-1} \bar{b} = \begin{pmatrix} 
+    2  & 3    \\
+    50 & 150
+  \end{pmatrix}^{-1} \begin{pmatrix} 
+    12  \\
+    500 
+  \end{pmatrix} = \begin{pmatrix} 
+    2  \\
+    \frac{8}{3}
+  \end{pmatrix} \ge 0
+  $$
+
+  and hence $x_B = \{ x_1, x_2 \}$ remains the optimal basis. To determine the new revenue amount, we first compute
+
+  $$
+  y^T = c_B^T B^{-1} = \begin{pmatrix*}[r]
+    -100 & -200
+  \end{pmatrix*} \begin{pmatrix}
+    2  & 3    \\
+    50 & 150
+  \end{pmatrix}^{-1} = \begin{pmatrix}
+    \sfrac{-100}{3} & \sfrac{-2}{3}
+  \end{pmatrix}
+  $$
+
+  so that our new optimal value $\bar{z}$ becomes: 
+  
+  \begin{align*}
+    \bar{z'} &= c_B^T B^{-1} \bar{b} \\
+             &= y^T \left(b + \Delta b \right) \\
+             &=\begin{pmatrix}
+                 \sfrac{-100}{3} & \sfrac{-2}{3}
+               \end{pmatrix} \begin{pmatrix}
+                 12  \\
+                 500
+               \end{pmatrix} \\
+             &\approx -733.33.
+  \end{align*}
+
+  Assuming the bike shop is willing to partake in partial assembly, the new maximal revenue is 
+  $\bar{z} = -\bar{z}' = 733.33$. Adding an extra hour of available labor therefore increases the total revenue by 
+  $33.33$. Assuming we may split parts costs in the same way as bike assembly, the new profit is 
+  $\bar{z} - 2(\$50) - 2.67(\$150) = \$733.33 - \$500 = \$233.33$.\footnote{
+    If we instead choose to optimize for profit directly with the additional constraints $x_1, x_2 \ge 1$ (since at 
+    least one of each bike must be make) and objective function $p = (100 - 50)x_1 + (200 - 150)x_2$. The simplex 
+    algorithm for this system yields the optimal basis $x_B = \{ x_1, x_4 \}$; in this case, four basic bikes and one 
+    deluxe bike should be assembled for a maximum profit of \$250.00. The simplex method for this problem is implemented
+    in \texttt{problem\_3\_aux.py}.
+  }
+
+\end{solution}

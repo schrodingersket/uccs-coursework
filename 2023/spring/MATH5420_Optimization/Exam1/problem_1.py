@@ -1,6 +1,5 @@
 import numpy as np
 
-from basic_solutions import compute_basic_solutions
 from simplex import simplex_algorithm
 
 A = np.array((
@@ -41,6 +40,7 @@ if feasible_basis:
     print('feasible point = {}'.format(optimal_point))
     print('z = {}'.format(z))
 
+# from basic_solutions import compute_basic_solutions
 # print('\n\nBrute-forcing solutions...')
 
 
