@@ -1,0 +1,26 @@
+Write down the dual problem.
+
+\begin{solution}
+  We write the dual of the transformed system. Recall from (a) that the transformed system is given by
+
+  \begin{mini*}
+      {}{\tilde{z} = x_1' - x_2'}{}{}
+      \addConstraint{x_1' + x_2'}{\le 2}
+      \addConstraint{x_1', x_2'}{\ge 0}.
+  \end{mini*}
+
+  The first (and only) constraint in the primal problem is opposite canonical form for a minimization problem; hence the
+  dual variable $y_1$ is nonpositive. All variable constraints in the primal are consistent with canonical form, so the
+  constraints in the dual will be consistent as well. We may therefore write the dual problem as
+
+  \begin{maxi*}
+    {}{w = b^T y = 2 y_1}{}{}
+    \addConstraint{ y_1 }{\le -1}
+    \addConstraint{ y_1 }{\le 1}
+    \addConstraint{y_1}{\le 0}.
+  \end{maxi*}
+
+  where the constraints adhere to $A^T y \le c^T$ where $A$ represents the constraint matrix of the primal and $c$ the
+  cost vector.
+
+\end{solution}

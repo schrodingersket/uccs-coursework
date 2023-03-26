@@ -1,0 +1,64 @@
+Use the phase-I method to obtain a basic feasible solution.
+
+\begin{solution}
+
+    We begin by converting our system from (a) into standard form by introducing the slack variable $x_3'$:
+
+    \begin{mini*}
+        {}{\tilde{z} = x_1' - x_2'}{}{}
+        \addConstraint{x_1' + x_2' + x_3'}{= 2}
+        \addConstraint{x_1', x_2', x_3'}{\ge 0}.
+    \end{mini*}
+
+    To use the phase-I method to obtain a basic feasible solution, we add a new artificial variable $a_4 \ge 0$ along 
+    with a new objective function to obtain the auxiliary system:\footnote{
+        Since we introduced a single slack variable to our single-constraint system, we could of course simply choose 
+        an initial basis $x_B = \{ x_3' \}$ and call it a day.
+    }
+
+    \begin{mini*}
+        {}{\tilde{z}' = a_4}{}{}
+        \addConstraint{x_1' + x_2' + x_3' + a_4}{= 2}
+        \addConstraint{x_1', x_2', x_3', a_4}{\ge 0}.
+    \end{mini*}
+
+    We solve this system via the simplex method in \texttt{problem\_5b.py} with initial basis $x_B = \{ a_4 \}$. At the
+    first iteration, our simplex quantities of interest are given by
+
+    \begin{align*}
+      B &= \begin{pmatrix}
+        1  \\
+      \end{pmatrix}, \quad y = \begin{pmatrix}
+        1 
+      \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+        1
+      \end{pmatrix}^T \\
+      \hat{b} &= \begin{pmatrix}
+        2
+      \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+        -1 & -1 & -1
+      \end{pmatrix}^T, \quad \tilde{z}' = 2.
+    \end{align*}
+
+    Since all our reduced cost variables are negative and identical, we arbitrarily choose the basic variable $x_1$ as
+    our new entering variable. Since our constraint ratio vector is simply the scalar 2, we choose $a_4$ as the leaving 
+    variable so that our next simplex iteration yields:
+
+    \begin{align*}
+      B &= \begin{pmatrix}
+        1  \\
+      \end{pmatrix}, \quad y = \begin{pmatrix}
+        0 
+      \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+        0
+      \end{pmatrix}^T \\
+      \hat{b} &= \begin{pmatrix}
+        2
+      \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+        0 & 0 & 1
+      \end{pmatrix}^T, \quad \tilde{z}' = 0.
+    \end{align*}
+
+    Our initial feasible basis for the primal is therefore $x_B = \{ x_1 \}$.
+
+\end{solution}
