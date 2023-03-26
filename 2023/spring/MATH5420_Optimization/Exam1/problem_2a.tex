@@ -1,13 +1,25 @@
-Consider the residual function $r: \mathbb{R}^n \to \mathbb{R}$ given by the 2-norm of the difference between $Ax$ and 
-$b$:
+Consider the residual function $r: \mathbb{R}^n \to \mathbb{R}$ given by
 
 $$
-r(x) = \lVert Ax - b \rVert_2
+r(x) = \lVert Ax - b \rVert
 $$
 
-Express the square of the residual as the objective function of an unconstrained optimization problem.
+where $\Vert \cdot \Vert = \Vert \cdot \Vert_2$ denotes the the 2-norm over $\mathbb{R}^n$. Express the square of the residual as the 
+objective function of an unconstrained optimization problem.
 
 \begin{solution}
+  We observe that the square of the residual function is a nonnegative real-valued function of $x$. Moreover, we have 
+
+  $$
+  r^2 = \lVert Ax - b \rVert^2 = \sum\limits_{i=1}^m\left[ \sum\limits_{j=1}^n A_{ij} x_j - b_i \right]^2   
+                               = (Ax - b)^T (Ax - b)
+  $$
+
+  Thus, to find the best approximation of the linear system $Ax = b$, we seek to solve the problem
+
+  \begin{mini*}
+    {x \in \mathbb{R}^n}{r^2 = (Ax - b)^T (Ax - b)}{}{}.
+  \end{mini*}
+  
   \ \\
-  \vfill
 \end{solution}
