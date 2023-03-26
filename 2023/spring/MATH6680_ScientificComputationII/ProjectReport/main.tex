@@ -41,9 +41,11 @@
     \begin{abstract}
         In this project, we examine a Discontinuous Galkerin (DG) approach to solving a 1D system of shallow-water
         equations with variable bathymetry. We begin by stating the system of equations and from there, we derive the 
-        discrete system of equations and discuss the numerical methods used to solve the system. We then present the 
-        results of our numerical experiments, which include a comparison of the numerical solutions for a variety of
-        boundary conditions and bathymetry functions.
+        discrete system of equations and discuss the numerical methods used to solve the system. We then use the results
+        of this computation as sample training data to train a Physics-Informed Neural Network (PINN) to infer the
+        underlying system bathymetry from training data and conservation equations. We then present the results of our 
+        numerical experiments, which include a comparison of the numerical solutions for a variety of boundary 
+        conditions and bathymetry functions.
     \end{abstract}
 
     \section{Background}\label{sec:background}
