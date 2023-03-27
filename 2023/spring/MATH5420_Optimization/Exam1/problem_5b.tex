@@ -12,8 +12,9 @@ Use the phase-I method to obtain a basic feasible solution.
 
     To use the phase-I method to obtain a basic feasible solution, we add a new artificial variable $a_4 \ge 0$ along 
     with a new objective function to obtain the auxiliary system:\footnote{
-        Since we introduced a single slack variable to our single-constraint system, we could of course simply choose 
-        an initial basis $x_B = \{ x_3' \}$ and call it a day.
+        Since we already introduced a single slack variable to our single-constraint system, we could have simply chosen
+        $x_B = \{ x_3' \}$ as our initial basis and called it a day. Such a choice does, however, obviate the need for
+        the two-phase method and is simply not as much fun.
     }
 
     \begin{mini*}

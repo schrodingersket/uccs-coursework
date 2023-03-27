@@ -9,9 +9,10 @@ Prove that Newton's Method finds the minimum of $f$ in a single iteration regard
   $$
 
   We therefore apply Newton's method to find a zero of $\nabla f$. Since $f$ is a quadratic function, its gradient and 
-  Hessian are given by $\nabla f = Q x - c$ and $\nabla^2 f = Q$, respectively. Moreover, since $Q$ is positive
-  definite, it is invertible and so $\left[\nabla^2 f(x_0) \right]^{-1}$ exists at every $x$. Our first Newton iteration
-  therefore yields:
+  Hessian are given by $\nabla f = Q x - c$ and $\nabla^2 f = Q$, respectively.\footnote{
+    We assume without loss of generality that $Q$ is symmetric. 
+  } Moreover, since $Q$ is positive definite, it is invertible and so $\left[\nabla^2 f(x_0) \right]^{-1}$ exists at 
+  every $x$. Our first Newton iteration yields:
 
   \begin{align*}
     x_1 &= x_0 - \left[\nabla^2 f(x_0) \right]^{-1} \nabla f(x_0) \\

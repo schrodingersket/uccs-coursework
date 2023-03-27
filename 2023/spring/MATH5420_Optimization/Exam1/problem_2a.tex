@@ -8,18 +8,23 @@ where $\Vert \cdot \Vert = \Vert \cdot \Vert_2$ denotes the the 2-norm over $\ma
 objective function of an unconstrained optimization problem.
 
 \begin{solution}
-  We observe that the square of the residual function is a nonnegative real-valued function of $x$. Moreover, we have 
+  Let $f = r^2$. We observe that the square of the residual function is a nonnegative real-valued function of $x$. 
+  Moreover, we have 
 
   $$
-  r^2 = \lVert Ax - b \rVert^2 = \sum\limits_{i=1}^m\left[ \sum\limits_{j=1}^n A_{ij} x_j - b_i \right]^2   
-                               = (Ax - b)^T (Ax - b)
+  f = r^2 
+    = \lVert Ax - b \rVert^2 
+    = \sum\limits_{i=1}^m\left[ \sum\limits_{j=1}^n A_{ij} x_j - b_i \right]^2   
+    = (Ax - b)^T (Ax - b)
   $$
 
-  Thus, to find the best approximation of the linear system $Ax = b$, we seek to solve the problem
+  To find the best linear approximation $Ax$ of some given data $b$, we seek to solve the problem
 
   \begin{mini*}
-    {x \in \mathbb{R}^n}{r^2 = (Ax - b)^T (Ax - b)}{}{}.
+    {x \in \mathbb{R}^n}{f(x)}{}{}
   \end{mini*}
+
+  where $f(x) = r^2 = (Ax - b)^T (Ax - b)$.
   
   \ \\
 \end{solution}

@@ -62,9 +62,9 @@ to part (a).
     \end{pmatrix}
     $$
 
-    which indicates that $x_1$ is a stationary point. Since the Hession has a mix of positive and negative eigenvalues
-    at every point $x$, it is indefinite and so $x_1$ represents a saddle point of $f$ and evaluates to 
-    $f(x_1) = -0.3$. This point is not a minimizer for $f$, since evaluating $f$ at the point 
+    which indicates that $x_1$ is a stationary point. Since the Hessian has a mix of positive and negative eigenvalues
+    at every point $x$, it is indefinite and so $x_1$ represents a saddle point of $f$ which evaluates to 
+    $f(x_1) = -0.3$. This point is not a minimizer for $f$, since evaluating $f$ at the nearby point 
     $x^* = (1.2, -0.8, -0.8 )^T$ yields 
     
     $$
@@ -73,7 +73,7 @@ to part (a).
 
     In part (a), we showed that if $Q$ is invertible, Newton's method finds a stationary point in a single iteration. By
     dropping the assumption that $Q$ be positive definite, we lose the ability to guarantee that the first Newton
-    iterate minimizes $f$ (which is consistent with the results of this exercise, since $x_1$ is a saddle point).
-
-
+    iterate minimizes $f$ (which is consistent with the results of this exercise, since $x_1$ is a saddle point) but 
+    retain the result that a stationary point is found in a single iteration.
+    \ \\
 \end{solution}

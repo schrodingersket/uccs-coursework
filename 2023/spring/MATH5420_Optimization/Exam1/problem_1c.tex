@@ -16,8 +16,8 @@ Find the optimal basic feasible solution using a tableau with the origin as the 
   Since $c_N^T$ contains negative entries, this feasible solution is not optimal, and we choose $x_2$ (the most negative
   entry of $c_N^T$) as our entering variable. We compute the ratios of the RHS column to the column of $A$ corresponding
   to $x_2$, select the basic variable with the smallest positive ratio as our exiting variable ($x_4$ in this 
-  iteration), and denote the resulting entering and exiting variables in bold in the "Basic" row and column, 
-  respectively as above. We pivot on the $x_2$ column by applying the following sequential row operations:
+  iteration), and denote these entering and exiting variables in bold above in the "Basic" row and column, 
+  respectively. We pivot on the $x_2$ column by applying the following sequential row operations:
 
   $$
   -\frac{1}{2} R_{x_4} + R_{x_5}  \longrightarrow \frac{7}{2} R_{x_4} + R_{-z} \longrightarrow \frac{1}{4} R_{x_4}
@@ -74,7 +74,7 @@ Find the optimal basic feasible solution using a tableau with the origin as the 
 
   Since all elements of $c_N$ are positive, we have arrived at our optimal basic feasible solution, which corresponds to
   the basis $x_B = \{x_1, x_3\}$. This point lies at \linebreak
-  $\bar{x} = \begin{pmatrix} 36 &  0  &  6  &  0  &  0 \end{pmatrix}^T$, and yields an optimal value of $z = -294$ which
+  $\bar{x} = \begin{pmatrix} 36 &  0  &  6  &  0  &  0 \end{pmatrix}^T$ and yields an optimal value of $z = -294$ which
   agrees with the results of part (b).
   \ \\
 \end{solution}

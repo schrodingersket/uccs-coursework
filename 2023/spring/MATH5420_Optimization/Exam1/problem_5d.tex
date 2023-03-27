@@ -11,7 +11,7 @@ Write down the dual problem.
 
   The first (and only) constraint in the primal problem is opposite canonical form for a minimization problem; hence the
   dual variable $y_1$ is nonpositive. All variable constraints in the primal are consistent with canonical form, so the
-  constraints in the dual will be consistent as well. We may therefore write the dual problem as
+  constraints in the dual will also be consistent with canonical form. The dual problem is therefore:
 
   \begin{maxi*}
     {}{w = b^T y = 2 y_1}{}{}
@@ -20,7 +20,7 @@ Write down the dual problem.
     \addConstraint{y_1}{\le 0}.
   \end{maxi*}
 
-  where the constraints adhere to $A^T y \le c^T$ where $A$ represents the constraint matrix of the primal and $c$ the
-  cost vector.
+  The constraints adhere to $A^T y \le c^T$ where $A$ represents the constraint matrix of the primal problem and $c$ the
+  primal cost vector.
 
 \end{solution}

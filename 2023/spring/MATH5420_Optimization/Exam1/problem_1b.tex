@@ -3,7 +3,7 @@ Find the optimal basic feasible solution via the simplex method using the origin
 }
 
 \begin{solution}
-  Since the origin is our initial guess, our initial basis is comprised of the slack variables so that 
+  Since the origin is our initial guess, our initial basis is comprised of slack variables so that 
   $x_B = \{ x_4, x_5 \}$ and $x_N = \{ x_1, x_2, x_3 \}$. Our quantities of interest at the initial iteration are:
 
 
@@ -23,8 +23,8 @@ Find the optimal basic feasible solution via the simplex method using the origin
     \end{pmatrix}^T, \quad z = 0.
   \end{align*}
 
-  A change in $x_2$ represents the greatest change in the objective function (since -14 is the most negative value of
-  the reduced cost variable) and so we choose $x_2$ to enter the basis. Our ratio test vector is 
+  A change in $x_2$ represents the greatest change in the objective function (since $-14$ is the most negative element of
+  the reduced cost vector) and so we choose $x_2$ to enter the basis. Our ratio test vector is 
   $\begin{pmatrix} 12 & 30 \end{pmatrix}$; hence $x_4$ represents our most constrained variable and therefore leaves 
   the basis. Our new basis is $x_B = \{ x_2, x_5 \}$ and $x_N = \{ x_1, x_3, x_4 \}$. Our quantities of interest at the
   second iteration are:
@@ -45,7 +45,7 @@ Find the optimal basic feasible solution via the simplex method using the origin
     \end{pmatrix}^T, \quad z = -168.
   \end{align*}
 
-  Our new entering variable is $x_3$ since -6 is the most negative value of the reduced cost vector. Our ratio test 
+  Our new entering variable is $x_3$ since $-6$ is the most negative element of the reduced cost vector. Our ratio test 
   vector is given by $\begin{pmatrix} 24 & 12 \end{pmatrix}$ and hence $x_5$ leaves the basis so that 
   $x_B = \{ x_2, x_3 \}$ and $x_N = \{ x_1, x_4, x_5 \}$. Upon completion of the third iteration, our quantities of 
   interest are:
@@ -66,8 +66,8 @@ Find the optimal basic feasible solution via the simplex method using the origin
     \end{pmatrix}^T, \quad z = -240.
   \end{align*}
 
-  Our new entering variable is $x_1$ since -\sfrac{3}{2} is the most negative value of the reduced cost vector. Our
-  ratio test vector is given by $\begin{pmatrix} 36 & 72 \end{pmatrix}$ so that $x_2$ leaves the basis. Our final
+  Our new entering variable is $x_1$ since $\sfrac{-3}{2}$ is the most negative element of the reduced cost vector. Our
+  ratio test vector is $\begin{pmatrix} 36 & 72 \end{pmatrix}$ and so $x_2$ leaves the basis. Our final
   simplex iteration yields
 
 

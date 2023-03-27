@@ -1,20 +1,20 @@
 Determine the stationary point, denoted $x_*$. What is the value of the objective function at the stationary point?
 
 \begin{solution}
-  Our stationary point is achieved when $\nabla f = 0$. From (b), we have
+  The point $x_*$ is a stationary point when when $\nabla f(x_*) = 0$. From (b), we have
 
   $$
   0 = \nabla f = 2A^T (Ax - b)
   $$
 
-  and hence our stationary point is the solution to 
+  and hence any $x_*$ which satisfies
 
   $$
-  A^T A x_* = A^T b.
+  A^T A x_* = A^T b
   $$
 
-  Moreover, when $A^T A$ is nonsingular, $x_*$ is uniquely determined by $x_* = (A^T A)^{-1} A^T b$.
-  At this stationary point, the objective function $f$ takes the value
+  is a stationary point. Furthermore, when $A^T A$ is nonsingular, $x_*$ is uniquely determined by 
+  $x_* = (A^T A)^{-1} A^T b$. At this stationary point, the objective function $f$ takes the value
 
   $$
   f(x_*) = \lVert Ax - b \rVert^2 = \lVert A \left( A^T A \right)^{-1} A^T b - b\rVert^2.
