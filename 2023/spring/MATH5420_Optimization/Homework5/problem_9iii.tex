@@ -7,7 +7,7 @@ What would the new solution be if the coefficient of $x_1$ in the objective were
   B^{-1} N = \begin{pmatrix*}[r]
      \sfrac{1}{2} & \sfrac{1}{2} \\
                 0 &            1 \\
-    -\sfrac{1}{2} & \sfrac{3}{2}
+     \sfrac{-1}{2} & \sfrac{3}{2}
   \end{pmatrix*}, \quad c_B = \begin{pmatrix*}
     -2 \\
     -1 \\
@@ -26,13 +26,13 @@ What would the new solution be if the coefficient of $x_1$ in the objective were
     c_N^T - \bar{c}_B^T B^{-1} N &= (0, 0)^T - (c_B + \Delta c_B) B^{-1} N \\
                                  &= -c_B^T B^{-1} N - \Delta c_B^T B^{-1} N \\
                                  &= (2, 1, 0) \begin{pmatrix*}[r]
-                                        \sfrac{1}{2} & \sfrac{1}{2} \\
-                                                   0 &            1 \\
-                                       -\sfrac{1}{2} & \sfrac{3}{2}
+                                        \sfrac{1}{2}  & \sfrac{1}{2} \\
+                                                   0  &            1 \\
+                                        \sfrac{-1}{2} & \sfrac{3}{2}
                                     \end{pmatrix*} + (0, \delta, 0) \begin{pmatrix*}[r]
-                                        \sfrac{1}{2} & \sfrac{1}{2} \\
-                                                   0 &            1 \\
-                                       -\sfrac{1}{2} & \sfrac{3}{2}
+                                        \sfrac{1}{2}  & \sfrac{1}{2} \\
+                                                   0  &            1 \\
+                                        \sfrac{-1}{2} & \sfrac{3}{2}
                                     \end{pmatrix*} \\
                                  &= \begin{pmatrix*}
                                       1 \\
