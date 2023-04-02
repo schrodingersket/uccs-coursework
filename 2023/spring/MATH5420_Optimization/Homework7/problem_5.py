@@ -54,4 +54,8 @@ for i, r in enumerate(results):
         rate_constant_bound,
     )) for i, (xk, fk, gradient_norm, rate_constant) in enumerated_results[:10]]
 
+    if len(r) > 10:
+        print(' ...({} more iterations)'.format(len(r) - 10))
+    print(' Solution f(x) = {} identified at x = {}'.format(r[-1][1], r[-1][0]))
+
     print('')
