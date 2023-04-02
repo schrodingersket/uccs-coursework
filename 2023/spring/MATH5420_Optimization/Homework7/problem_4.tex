@@ -8,10 +8,55 @@ Use the steepest-descent method to solve
 
 starting from the point $(2, 2)^T$.
 
-\textbf{Note:} This problem and the next may be done either by hand with three iterations or by code to within a 
-$10^{-10}$ tolerance.
-
 \begin{solution}
-    \ \\
-    \vfill
+  We observe that $f$ is a quadratic function, since
+
+  $$
+  f(x_1, x_2) = 4 x_1^2 + 2 x_2^2 + 4 x_1 x_2 - 3 x_1 = \frac{1}{2} x^T Q x - c^T x,
+            %   &= \frac{1}{2} \begin{pmatrix} x_1 & x_2 \end{pmatrix} \begin{pmatrix}
+            %      8 & 4 \\ 
+            %      4 & 4
+            %      \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} 
+            %      - \begin{pmatrix} 3 & 0 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+  $$
+
+  where
+
+  $$
+  Q = \begin{pmatrix}
+     8 & 4 \\ 4 & 4 
+  \end{pmatrix}, \quad \text{and} \quad 
+  c = \begin{pmatrix} 3 \\ 0 \end{pmatrix}.
+  $$
+
+  For quadratic functions, an exact line search yields
+
+  $$
+  \alpha_k = \frac{\nabla f(x_k)^T p_k}{p_k^T Q p_k}, \quad p_k = -\nabla f(x_k) = -(Q x_k - c)
+  $$
+
+  We implement gradient descent with this step size in \texttt{problem\_4.py} which converges in 15 iterations to the 
+  minimum value $f(x_*) = -1.125$ at $x_*^T = (0.75, -0.75)$.
+
+  \begin{figure}[h]
+    \centering
+    \begin{verbatim}
+         i | x_i                   | f(x_i)    | ||grad f(x_i)||
+         -------------------------------------------------------
+         0 | [ 2.000000  2.000000] | 34.000000 |  26.400758
+         1 | [-0.021685  0.459669] |  0.449655 |  2.202494
+         2 | [ 0.806038 -0.626717] | -1.054408 |  1.183547
+         3 | [ 0.715405 -0.695771] | -1.121835 |  0.098738
+         4 | [ 0.752512 -0.744473] | -1.124858 |  0.053058
+         5 | [ 0.748449 -0.747569] | -1.124994 |  0.004426
+         6 | [ 0.750113 -0.749752] | -1.125000 |  0.002379
+         7 | [ 0.749930 -0.749891] | -1.125000 |  0.000198
+         8 | [ 0.750005 -0.749989] | -1.125000 |  0.000107
+         9 | [ 0.749997 -0.749995] | -1.125000 |  0.000009
+        10 | [ 0.750000 -0.750000] | -1.125000 |  0.000005
+             ...  
+        15 | [ 0.750000 -0.750000] | -1.125000 |  0.000000
+    \end{verbatim}
+    \caption{Steepest descent method for $f(x_1, x_2)$}
+  \end{figure}
 \end{solution}

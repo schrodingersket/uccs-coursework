@@ -1,6 +1,6 @@
 import numpy as np
 
-def quadratic_descent(Q, c, x0, tol=1e-10, max_iter=10**5, suppress_output=False):
+def quadratic_descent(Q, c, x0, tol=1e-10, max_iter=10**5, suppress_output=False, x_star=None):
     xk = x0
     iter_results = []
 
@@ -22,20 +22,43 @@ def quadratic_descent(Q, c, x0, tol=1e-10, max_iter=10**5, suppress_output=False
 
         # Step size (exact line search for quadratic functions)
         #
-        step_length = -np.dot(pk, jk) / np.dot(pk, np.matmul(Q, pk))
+        step_numerator = np.dot(pk, jk)
 
-        error = np.linalg.norm(jk)
+        if step_numerator:
+            step_length = -step_numerator / np.dot(pk, np.matmul(Q, pk))
+        else:
+            step_length = 0.
+
+        gradient_norm = np.linalg.norm(jk)
+
+        # Newton step (x_{k+1})
+        #
+        xk_next = xk + step_length * pk
+
+        # Compute observe rate constant when solution is known
+        #
+        if x_star is not None:
+            fx_star = f(x_star)
+            rate_constant_obs = np.abs(np.divide(f(xk_next) - fx_star, fk - fx_star))
+        else:
+            rate_constant_obs = None
 
         if not suppress_output:
-            print('{:2} | {} | {} | {:.8f}'.format(i, xk, fk, error))
+            print('{:2} | {} | {:.6f} | {:.6f} | {:.6f}'.format(
+                i, 
+                xk, 
+                fk, 
+                gradient_norm, 
+                rate_constant_obs or 0.,
+            ))
 
-        xk += step_length * pk
+        xk = xk_next
 
-        iter_results.append((xk, fk, error))
+        iter_results.append((xk_next, fk, gradient_norm, rate_constant_obs))
 
-        if error < tol:
+        if gradient_norm < tol:
             if not suppress_output:
-                print('Solution identified at x = {}'.format(xk))
+                print('Solution f(x) = {} identified at x = {}'.format(f(xk), xk))
             return iter_results
 
     if not suppress_output:
