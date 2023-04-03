@@ -15,6 +15,7 @@
 \usepackage{bm}
 \usepackage{mathtools}
 \usepackage{ifthen}
+\usepackage{optidef}
 
 \setlength{\textwidth}{6.4in}
 \setlength{\textheight}{9.5in}
@@ -29,23 +30,25 @@
 \begin{document}
 
     \title{%
-        1D Shallow-Water Wave Equation with Variable Bathymetry\\
-        \large A Discontinuous Galerkin Approach
+        1D Shallow-Water Wave Equation with Inferred Bathymetry\\
+        \large A Physics-Informed Neural Network Approach
     }
     \author{%
-        Thompson, J.
+        Nameika, Michael \\
+        Thompson, Jonathan
     }
     \date{\today}
     \maketitle
 
     \begin{abstract}
-        In this project, we examine a Discontinuous Galkerin (DG) approach to solving a 1D system of shallow-water
-        equations with variable bathymetry. We begin by stating the system of equations and from there, we derive the 
-        discrete system of equations and discuss the numerical methods used to solve the system. We then use the results
-        of this computation as sample training data to train a Physics-Informed Neural Network (PINN) to infer the
-        underlying system bathymetry from training data and conservation equations. We then present the results of our 
-        numerical experiments, which include a comparison of the numerical solutions for a variety of boundary 
-        conditions and bathymetry functions.
+        In this project, we examine a Physics-Informed Neural Network (PINN) approach to solving a 1D system of 
+        shallow-water equations with variable bathymetry. We begin by stating the system of equations with variable
+        bathymetry and from there derive the system of equations corresponding to a constant bathymetry with negligible
+        frictional forces. From there, we solve the resulting system via pseudospectral methods for various boundary
+        and initial conditions. We then use the results of this computation as sampled data with which to train a 
+        Physics-Informed Neural Network (PINN); in this scheme, we treat the bathymetry as an unknown and allow the 
+        neural network to infer the solution and bathymetry simultaneously. Lastly, we compare the results of the PINN
+        approach to the results of the pseudospectral approach and discuss the advantages and disadvantages of each.
     \end{abstract}
 
     \section{Background}\label{sec:background}
@@ -54,15 +57,29 @@
 
     \section{Methodology}\label{sec:proposed-methodology}
 
-    \subsection{Method of Characteristics}\label{subset:moc-methodology}
+    % \subsection{Method of Characteristics}\label{subset:moc-methodology}
 
-    \input{moc.tex}
+    % \input{moc.tex}
 
     \subsection{Physics-Informed Neural Networks}\label{subsec:pinn-methodology}
 
-    \section{Comparison}\label{sec:comparison}
+    \input{pinn.tex}
 
-    \section{Conclusions and Future Work}\label{sec:conclusion}
+    % \section{Comparison}\label{sec:comparison}
+    
+    \section{Stretch Goals}\label{sec:stretch-goals}
+
+    If time allows, we plan to explore any of the following stretch goals:
+
+    \begin{enumerate}
+        \item Introduce frictional forces into the system and solve the resulting system via pseudospectral methods. In
+              this paradigm, the friction coefficient will be treated as a parameter to be learned by the neural 
+              network.
+        \item Allow the bathymetry to vary in space and solve the resulting system via Discontinuous Galerkin methods.
+        \item Extend this problem to the two-dimensional case.
+    \end{enumerate}
+
+    % \section{Conclusions and Future Work}\label{sec:conclusion}
 
     \pagebreak
 

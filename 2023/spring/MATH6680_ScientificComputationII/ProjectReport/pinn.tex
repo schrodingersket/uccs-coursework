@@ -1,0 +1,49 @@
+In the Physics-Informed Neural Network approach, we adopt the approach taken by Raissi et. al. 
+\cite{raissi_physics-informed_2019} and approximate the solution to the system of equations by a neural 
+network. In particular, we seek neural network solution surrogates to (possibly nonlinear) partial differential 
+equations of the form 
+
+$$
+u_t + \mathcal{N}[u; \lambda] = 0, \quad x \in \Omega, \quad t \in [0, T]
+$$
+
+where $\mathcal{N}$ is a (possibly nonlinear) parameterized spatial differentiation operator and $\Omega$ is a subset of 
+$\mathbb{R}^n$.\footnote{
+    Note the change in notation for $\lambda$ from the previous section; here, $\lambda$ represents the parameters of
+    PDE, and not the eigenvalues of the flux matrix. This notation is kept in order to remain consistent with current 
+    literature.
+} In the case of the shallow water wave equations developed above, we have:
+
+$$
+N[u; \lambda] = [F(u; \lambda)]_x - S(u; \lambda), \quad u = \begin{pmatrix}
+    h \\
+    v
+\end{pmatrix}, \quad \text{and} \quad \lambda = \begin{pmatrix} C_f \\ \alpha \end{pmatrix}.
+$$
+
+We approximate the solution to the PDE by a neural network $U(x, t; \theta)$, where $\theta$ represents the parameters
+of the neural network which is trained by minimizing the PDE residual. We define the residual 
+$f \coloneqq u_t + \mathcal{N}[u]$ and, for given collocation points $\{x_i, t_i\}$, define the (mean-squared) loss 
+function for the neural network in terms of $f$:
+
+$$
+MSE_f = \frac{1}{N_f} \sum_{i=1}^{N_f} |f(x_i, t_i)|^2
+$$
+
+Furthermore, when sampled data for the solution is available, we enforce consistency of the neural network consistency 
+with measured data by introducing a second loss function for the sampled data:
+
+$$
+MSE_u = \frac{1}{N_u} \sum_{i=1}^{N_u} |U(x_i, t_i; \theta) - u(x_i, t_i)|^2
+$$
+
+where $u(x_i, t_i)$ is the sampled data. We may therefore view the process of finding a neural network which satisfies 
+the PDE as an unconstrained optimization problem:
+
+\begin{mini*}
+    {\theta}{MSE_f + MSE_u}{}{}
+\end{mini*}
+
+For this project, we generate an artifical data set for the $MSE_u$ term by first solving the PDE via pseudospectral 
+methods and sampling the numerical solution at various temporospatial points. We train the neural network using DeepXDE
+\cite{lu_deepxde_2021}, a Python library based on Tensorflow and PyTorch which facilitates solving PDEs via PINNs. 

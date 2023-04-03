@@ -7,20 +7,20 @@ We first present the 1-D shallow-water equations for flood waves with variable b
 
 where $v$ represents the average wave velocity, $h$ is the water depth, and $C_f$ is a friction
 coefficient. Of these, $v$ and $h$ vary in time and space and while $C_f$ may, in general, vary with space we assume
-it to be constant in this project. We expand the left-hand side of the second equation via the Chain Rule and 
+it to be constant in this project. We expand the left-hand side of the second equation via the chain rule and 
 substitute $h_t = -h_x v - h v_x$ from the first equation to find: 
 
 \begin{align*}
     (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x 
-        &= \left( h_t v + h v_t \right) + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
-        &= -h_x v^2 - h v v_x + h v_t + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
-        &=  h v v_x + h v_t + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
-        &=  h \left( v v_x + v_t + g h_x \cos{(\alpha)} + \frac{1}{2} g h [\cos{(\alpha)}]_x \right) \\
-        &=  h \left( v v_x + v_t + g h_x \cos{(\alpha)} + g h [\cos{(\alpha)}]_x - \frac{1}{2} g h [\cos{(\alpha)}]_x \right) \\
+        % &= \left( h_t v + h v_t \right) + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+        % &= -h_x v^2 - h v v_x + h v_t + h_x v^2 + 2 h v v_x + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+        % &=  h v v_x + h v_t + \left[ \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x \\
+        % &=  h \left( v v_x + v_t + g h_x \cos{(\alpha)} + \frac{1}{2} g h [\cos{(\alpha)}]_x \right) \\
+        % &=  h \left( v v_x + v_t + g h_x \cos{(\alpha)} + g h [\cos{(\alpha)}]_x - \frac{1}{2} g h [\cos{(\alpha)}]_x \right) \\
         &=  h \left( v_t + \left[ \frac{v^2}{2} + g h \cos{(\alpha)} \right]_x - \frac{1}{2} g h [\cos{(\alpha)}]_x \right).
 \end{align*}
 
-\pagebreak
+% \pagebreak
 We may express our system in conservation form as
 
 $$
@@ -42,6 +42,7 @@ $$
 \end{pmatrix}.
 $$
 
+\pagebreak
 We expand $[F(\textbf{u})]_x$ to find:
 
 $$
