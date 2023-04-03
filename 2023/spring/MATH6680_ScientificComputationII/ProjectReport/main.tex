@@ -57,29 +57,27 @@
 
     \section{Methodology}\label{sec:proposed-methodology}
 
-    % \subsection{Method of Characteristics}\label{subset:moc-methodology}
+    \subsection{Method of Characteristics}\label{subset:moc-methodology}
 
-    % \input{moc.tex}
+    \input{moc.tex}
 
     \subsection{Physics-Informed Neural Networks}\label{subsec:pinn-methodology}
 
     \input{pinn.tex}
 
-    % \section{Comparison}\label{sec:comparison}
+    \section{Comparison}\label{sec:comparison}
     
-    \section{Stretch Goals}\label{sec:stretch-goals}
+    \section{Conclusions and Future Work}\label{sec:conclusion}
 
-    If time allows, we plan to explore any of the following stretch goals:
+    The following is a list of possible future directions for this work:
 
     \begin{enumerate}
+        \item Allow the bathymetry to vary in space and solve the resulting system via Discontinuous Galerkin methods.
         \item Introduce frictional forces into the system and solve the resulting system via pseudospectral methods. In
               this paradigm, the friction coefficient will be treated as a parameter to be learned by the neural 
               network.
-        \item Allow the bathymetry to vary in space and solve the resulting system via Discontinuous Galerkin methods.
         \item Extend this problem to the two-dimensional case.
     \end{enumerate}
-
-    % \section{Conclusions and Future Work}\label{sec:conclusion}
 
     \pagebreak
 
