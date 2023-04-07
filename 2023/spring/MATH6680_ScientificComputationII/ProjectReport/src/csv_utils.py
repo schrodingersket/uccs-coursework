@@ -18,7 +18,8 @@ def load_data(sample_size=None):
         sample['t'], 
         sample['h'], 
         sample['v'], 
-    ))  # [(x, t, h, v)]
+        sample['alpha'], 
+    ))  # [(x, t, h, v, alpha)]
 
 def plot_point_cloud(points):
     """
@@ -30,7 +31,7 @@ def plot_point_cloud(points):
     ax.scatter(
         samples[:, 0:1], 
         samples[:, 1:2], 
-        samples[:, 2:3],
+        samples[:, 4:5],
         marker='o',
     )
 
