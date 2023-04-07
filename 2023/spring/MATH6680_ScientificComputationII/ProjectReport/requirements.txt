@@ -1,0 +1,4 @@
+numpy == 1.21.5
+matplotlib==3.5.1
+DeepXDE==1.7.1
+tensorflow-gpu==2.10.0
