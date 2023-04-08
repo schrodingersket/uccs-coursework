@@ -240,4 +240,4 @@ if __name__ == '__main__':
             bc_h_obs, 
             bc_v_obs, 
             # bc_alpha_obs, 
-        ], samples=load_data(1000), iterations=5000)
+        ], samples=load_data(1000), iterations=50000)

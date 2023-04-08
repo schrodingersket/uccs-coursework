@@ -20,6 +20,44 @@ $$
 $$
 
 \begin{solution}
+    If $\alpha$ is a minimizer for $f(x + \alpha p)$, it must satisfy the first-order condition for stationary points,
+    that is, the derivative of $f(x + \alpha p)$ with respect to $\alpha$ must be zero. We begin by expanding 
+    $f(x + \alpha p)$ to obtain:
+
+    \begin{align*}
+        f(x + \alpha p) &= \frac{1}{2} (x + \alpha p)^T Q (x + \alpha p) - c^T (x + \alpha p) \\
+                        &= \frac{1}{2} (x^T Q x + \alpha p^T Q x + \alpha x^T Q p + \alpha^2 p^T Q p) - c^T x - \alpha c^T p.
+    \end{align*}
+
+    We observe that $x^T Q x$, $p^T Q x$, $x^T Q p$, and $p^T Q p$ are all scalars. Taking the derivative of 
+    $f(x + \alpha p)$ therefore yields
+
+    \begin{align*}
+        f'(x + \alpha p) &= \frac{1}{2} p^T Q x + \frac{1}{2} x^T Q p + \alpha p^T Q p - c^T p \\
+                         &= \frac{1}{2} p^T Q x + \frac{1}{2} (p^T Q^T x)^T + \alpha p^T Q p - c^T p \\
+    \end{align*}
+
+    Without loss of generality, we assume that $Q$ is symmetric so that $Q^T = Q$. Moreover, since $p^T Q^T x$ is a 
+    scalar, we have $(p^T Q^T x)^T = p^T Q x$. Our stationary point is therefore given by
+
+    \begin{align*}
+    0 &= \frac{1}{2} p^T Q x + \frac{1}{2} (p^T Q^T x)^T + \alpha p^T Q p - c^T p \\
+      &= p^T Q x + \alpha p^T Q p - c^T p
+    \end{align*}
+
+    so that with the observation that $\nabla f(x) = Q x - c$ for quadratic functions, we have
+
+    $$
+    \alpha = -\frac{p^T Q x - c^T p}{p^T Q p} = -\frac{p^T \nabla f(x)}{p^T Q p}.
+    $$
+
+    Lastly, we compute the second derivative of $f(x + \alpha p)$ with respect to $\alpha$ to find
+
+    $$
+    f''(x + \alpha p) = p^T Q p
+    $$
+
+    and since $Q$ is positive definite, we have $f''(x + \alpha p) > 0$ so that $\alpha$ is a minimizer of 
+    $f(x + \alpha p)$ by the second derivative test, as desired.
     \ \\
-    \vfill
 \end{solution}
