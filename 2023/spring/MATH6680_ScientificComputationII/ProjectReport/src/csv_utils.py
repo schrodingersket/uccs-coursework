@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 from mpl_toolkits.mplot3d import Axes3D
 
-DATA_FILE = '../data/homSWESin.csv'
+DATA_FILE = 'data/homSWESin.csv'
 
 def load_data(sample_size=None):
     data = np.genfromtxt(DATA_FILE, dtype=float, delimiter=',', names=True)
