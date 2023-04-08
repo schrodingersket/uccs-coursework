@@ -131,7 +131,7 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
         y_pred = model.predict(samples[:, 0:2])
         print('L2 relative error:', dde.metrics.l2_relative_error(samples[:, 2:5], y_pred))
 
-    return
+    return model
 
     # Plots
     #  
@@ -160,7 +160,7 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
 
 
 if __name__ == '__main__':
-    from csv_utils import load_data
+    from csv_utils import load_data, plot_point_cloud, PhysicalQuantity
 
     # Set random seed to 0 to allow for reproducable randomness in results
     #
@@ -217,6 +217,15 @@ if __name__ == '__main__':
         component=1,
     )
 
+    # Plot reference pseudospectral solution
+    #
+    print('Reference wave height:')
+    plot_point_cloud(load_data(), quantity=PhysicalQuantity.HEIGHT)
+    print('Reference velocity:')
+    plot_point_cloud(load_data(), quantity=PhysicalQuantity.VELOCITY)
+    print('Reference bathymetry:')
+    plot_point_cloud(load_data(), quantity=PhysicalQuantity.BATHYMETRY)
+
     # Solve system
     #
     swe_1d(
@@ -226,9 +235,9 @@ if __name__ == '__main__':
         ], [
             bc_h,
             bc_v, 
-            bc_h_obs, 
-            bc_v_obs, 
-            bc_alpha_obs, 
             bc_h_x, 
             bc_v_x,
-        ], samples=load_data(1000))
+            bc_h_obs, 
+            bc_v_obs, 
+            # bc_alpha_obs, 
+        ], samples=load_data(1000), iterations=5000)
