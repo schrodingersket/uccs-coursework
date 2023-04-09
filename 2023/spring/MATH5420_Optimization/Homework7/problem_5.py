@@ -1,6 +1,6 @@
 import numpy as np
 
-from gradient_descent import quadratic_descent
+from quasi_newton import quadratic_gradient_descent
 
 np.set_printoptions(precision=6, suppress=True, sign=' ', floatmode='fixed')
 
@@ -26,7 +26,7 @@ c = np.array((
     1
 ))
 
-results = [quadratic_descent(
+results = [quadratic_gradient_descent(
     Q(g), 
     c, 
     np.array((1.1, 0.5, 0.05)),
