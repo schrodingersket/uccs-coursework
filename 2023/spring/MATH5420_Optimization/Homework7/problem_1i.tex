@@ -7,13 +7,13 @@ Newton equations.}
     method therefore takes the from
     
     $$
-    x_{k+1} = x_{k} - \nabla \left( \nabla f(x_k)^{-1} \right) \nabla f(x_k)
+    x_{k+1} = x_{k} - \left[ \nabla^2 f(x_k) \right]^{-1} \nabla f(x_k)
     $$
 
-    and hence our search direction $p_k$ is given by
+    and hence our Newton search direction $p_k$ is given by
 
     $$
-    p_k = - \nabla^2 f(x_k)^{-1} \nabla f(x_k).
+    p_k = - \left[ \nabla^2 f(x_k) \right]^{-1} \nabla f(x_k).
     $$
 
     The gradient and Hessian of $f$ are given by

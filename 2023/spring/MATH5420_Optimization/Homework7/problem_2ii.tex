@@ -3,6 +3,57 @@ line search is used to find the optimal step length $\alpha$. Does $\alpha = 1$ 
 condition for $\mu = 0.5$? For what values of $\mu$ does $\alpha = 1$ satisfy the sufficient decrease condition?
 
 \begin{solution}
+    We first observe that
+
+    $$
+    F(\alpha) = f(x_0 + \alpha p_0) = f(0, -2 + \alpha) = (-2 + \alpha)^2.
+    $$
+
+    so that the first and second derivatives with respect to $\alpha$ are given by
+
+    $$
+    F'(\alpha) = 2(-2 + \alpha), \quad F''(\alpha) = 2,
+    $$
+
+    respectively. Setting $F'(\alpha) = 0$ yields the stationary point $\alpha = 2$; in particular, since 
+    $F''(\alpha) = 2 > 0 $ for all $\alpha \in \mathbb{R}$, we have that $\alpha = 2$ is a local minimum of $F(\alpha)$.
+    With the observation that $F(\alpha)$ is a quadratic function (and therefore convex over $\mathbb{R})$, we have 
+    that $\alpha = 2$ is the global minimum of $F(\alpha)$ with minimum value $F(2) = 0$.
+
+    To satisfy the sufficient decrease condition for $\mu = 0.5$, the trial step $\alpha = 1$ must satisfy the Armijo 
+    condition:
+
+    $$
+    f(x + \alpha p) \le f(x) + \mu \alpha p^T \nabla f(x)
+    $$
+
+    The gradient of $f$ is given by:
+
+    $$
+    \nabla f = \begin{pmatrix*}[r]
+         4 x_1 - 2 x_2 + 6 x_1^2 + 4 x_1^3  \\
+         2 x_2 - 2 x_1
+    \end{pmatrix*}
+    $$
+
+    For $\mu = 0.5$, we have:
+    
+    $$
+    f(x) + \mu \alpha p^T \nabla f(x) = f(0, -2) + \mu \cdot \begin{pmatrix*}[r] 0 & 1 \end{pmatrix*} \begin{pmatrix*}[r] 4 \\ -4 \end{pmatrix*} = 4 - 4 \mu = 2
+    $$
+
+    and since $f(x + \alpha p) = F(\alpha) = f(x + p) = (-2 + 1)^2 = 1$, we find that $\alpha = 1$ satisfies the 
+    sufficient decrease condition. To determine all values of $\mu$ for which $\alpha = 1$ satisfies the sufficient 
+    decrease condition, we solve the Armijo condition for $\mu$:
+
+    $$
+    1 \le 4 - 4 \mu
+    $$
+
+    from which we obtain the condition
+
+    $$
+    0 < \mu \le \frac{3}{4}.
+    $$
     \ \\
-    \vfill
 \end{solution}
