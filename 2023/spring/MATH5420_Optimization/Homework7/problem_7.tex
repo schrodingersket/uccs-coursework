@@ -23,6 +23,137 @@ $$
 Initialize the method with $x_0 = (0, 0, 0)^T$ and $B_0 = I$. Use an exact line search.
 
 \begin{solution}
+    At the initial point $x_0$, the gradient and its norm are given by
+
+    $$
+    \nabla f(x_0) = \begin{pmatrix*}[r]
+         9 \\
+         0 \\
+         8
+    \end{pmatrix*} \quad \text{and} \quad \| \nabla f(x_0) \| = 12.0416, 
+    $$
+
+    respectively, and so this point is not optimal. The first search direction $p_0$ is given by the solution to 
+    $B_0 p_0 = -\nabla f(x_0)$, where $B_0 = I$ is the initial approximation to the inverse Hessian. Solving for $p_0$ 
+    yields:\footnote{
+        See \texttt{problem\_6.py} for the code used to solve this problem.
+    }
+
+    $$
+    p_0 = \begin{pmatrix*}[r]
+        -9 \\
+         0 \\
+        -8
+    \end{pmatrix*}
+    $$
+
+    and corresponding step length $\alpha_0 = 0.1289$ from the exact line search formula afor a quadratic function.
+    The new estimate of the solution, update vectors, and Hessian approximation are 
+
+    $$
+    x_1 = \begin{pmatrix*}[r]
+        -1.1600 \\
+         0.0000 \\
+        -1.0311
+    \end{pmatrix*}, \quad \nabla f(x_1) = \begin{pmatrix*}[r]
+         2.1689 \\
+        -5.4133 \\
+         2.4400
+    \end{pmatrix*}, \quad s_0 = \begin{pmatrix*}[r]
+        -1.1600 \\
+         0.0000 \\
+        -1.0311
+    \end{pmatrix*}, \quad y_0 = \begin{pmatrix*}[r]
+        -6.8311 \\
+        -5.4133 \\
+        -10.4400
+    \end{pmatrix*}
+    $$
+
+    and 
+
+    $$
+    B_1 = B_0 + \frac{(B_0 s_0)(B_0 s_0)^T}{s_0^T B_0 s_0} + \frac{y_0 y_0^T}{y_0^T s_0} = \begin{pmatrix*}[r]
+        2.9383 &  1.9787 &  3.3194 \\
+        1.9787 &  2.5680 &  3.0240 \\
+        3.3194 &  3.0240 &  6.3906
+    \end{pmatrix*}.
+    $$
+
+    At the next iteration, the gradient norm is given by $\| \nabla f(x_1) \| = 6.3215$ and so this point is not 
+    optimal. Our next search direction $p_1$ is the solution to $B_1 p_1 = -\nabla f(x_1)$, which yields:
+
+    $$
+    p_1 = \begin{pmatrix*}[r]
+        -4.6493 \\
+         5.4133 \\
+         0.2352
+    \end{pmatrix*}
+    $$
+
+    with corresponding step length $\alpha_1 = 0.1829$. The new estimates of the solution, update vectors, and Hessian 
+    are
+
+    $$
+    x_2 = \begin{pmatrix*}[r]
+        -2.0104 \\
+         0.9901 \\
+        -0.9981
+    \end{pmatrix*}, \quad \nabla f(x_2) = \begin{pmatrix*}[r]
+        -0.0597 \\
+        -0.0542 \\
+         0.0672
+    \end{pmatrix*}, \quad s_1 = \begin{pmatrix*}[r]
+        -0.8504 \\
+         0.9901 \\
+         0.0430
+    \end{pmatrix*}, \quad y_1 = \begin{pmatrix*}[r]
+        -2.2286 \\
+         5.3591 \\
+         2.5072
+    \end{pmatrix*}
+    $$
+
+    and 
+
+    $$
+    B_2 = \begin{pmatrix*}[r]
+        3.5001 & 0.6385 & 2.6874 \\
+        0.6385 & 5.7641 & 4.5318 \\
+        2.6874 & 4.5318 & 7.1016
+    \end{pmatrix*}.
+    $$
+
+    At the next iterate, the gradient nrom takes the value $\nabla f(x_2) = 0.1049$, and so $x_2$ is not optimal. The
+    next search direction $p_2$ is given by the solution to $B_2 p_2 = -\nabla f(x_2)$, which yields:
+
+    $$
+    p_2 = \begin{pmatrix*}[r]
+         0.0584 \\
+         0.0557 \\
+        -0.0671
+    \end{pmatrix*}
+    $$
+
+    with corresponding step length $\alpha_2 = 0.1775$ and from which we obtain the new point and corresponding gradient
+
+    $$
+    x_3 = \begin{pmatrix*}[r]
+        -2.0000 \\
+         1.0000 \\
+        -1.0000
+    \end{pmatrix*} \quad \nabla f(x_3) = \begin{pmatrix*}[r]
+        0.0000 \\
+        0.0000 \\
+        0.0000
+    \end{pmatrix*}.
+    $$
+
+    Since $\nabla f(x_3) = 0$, we have found the optimal solution to the problem at \linebreak
+    $x^T = (-2, 1, -1)$, which yields the optimal value
+
+    $$
+    f(x_3) = -13.
+    $$
     \ \\
-    \vfill
 \end{solution}

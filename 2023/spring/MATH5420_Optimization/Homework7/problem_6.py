@@ -1,6 +1,9 @@
 import numpy as np
+import array_to_latex as a2l
 
 from quasi_newton import quadratic_sr1
+
+to_ltx = lambda arr: a2l.to_ltx(arr, frmt = '{:6.5f}', arraytype = 'bmatrix', print_out=False)
 
 np.set_printoptions(precision=6, suppress=True, sign=' ', floatmode='fixed')
 
@@ -27,3 +30,21 @@ res = quadratic_sr1(
     tol=10e-10, 
     suppress_output=False,
 )
+
+for i, (xk_next, fk, gradient_norm, jk, jk_next, sk, yk, Bk, pk, step_length) in enumerate(res):
+    print('Iteration {}:'.format(i))
+    print('div(f)_{}: {}'.format(i, to_ltx(jk)))
+    print('||div(f)_{}||: {}'.format(i, np.linalg.norm(jk)))
+    print('p_{}: {}'.format(i, to_ltx(pk)))
+    print('alpha_{}: {}'.format(i, step_length))
+
+    print('')
+    print('x_{}: {}'.format(i+1, to_ltx(xk_next)))
+    print('div(f)_{}: {}'.format(i+1, to_ltx(jk_next)))
+    print('s_{}: {}'.format(i, to_ltx(sk)))
+    print('y_{}: {}'.format(i, to_ltx(yk)))
+
+    print('Bk_{}: {}'.format(i+1, to_ltx(Bk)))
+    print('')
+    print('')
+

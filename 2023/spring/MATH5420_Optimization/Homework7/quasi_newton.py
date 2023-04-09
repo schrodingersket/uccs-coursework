@@ -83,7 +83,10 @@ def quadratic_sr1(Q, c, x0, B0, tol=1e-10, max_iter=10**5, suppress_output=False
     f = lambda x: 0.5 * np.dot(x, np.matmul(Q, x)) - np.dot(c, x)
     jacobian = lambda x: np.matmul(Q, x) - c
 
-    iter_results = [(x0, f(x0), np.linalg.norm(jacobian(x0)), jacobian(x0), None, None, B0)]
+    iter_results = []
+
+    if not suppress_output:
+        print(' i |                 xk              |    fk     | grad_norm')
 
     for i in range(max_iter):
         # Iterate value
@@ -134,7 +137,7 @@ def quadratic_sr1(Q, c, x0, B0, tol=1e-10, max_iter=10**5, suppress_output=False
 
         xk = xk_next
 
-        iter_results.append((xk_next, fk, gradient_norm, jk, sk, yk, Bk))
+        iter_results.append((xk_next, fk, gradient_norm, jk, jacobian(xk), sk, yk, Bk, pk, step_length))
 
     if not suppress_output:
         print('No root identified!')
@@ -154,7 +157,10 @@ def quadratic_bfgs(Q, c, x0, B0, tol=1e-10, max_iter=10**5, suppress_output=Fals
     f = lambda x: 0.5 * np.dot(x, np.matmul(Q, x)) - np.dot(c, x)
     jacobian = lambda x: np.matmul(Q, x) - c
 
-    iter_results = [(x0, f(x0), np.linalg.norm(jacobian(x0)), jacobian(x0), None, None, B0)]
+    iter_results = []
+
+    if not suppress_output:
+        print(' i |                 xk              |    fk     | grad_norm')
 
     for i in range(max_iter):
         # Iterate value
@@ -204,7 +210,7 @@ def quadratic_bfgs(Q, c, x0, B0, tol=1e-10, max_iter=10**5, suppress_output=Fals
 
         xk = xk_next
 
-        iter_results.append((xk_next, fk, gradient_norm, jk, sk, yk, Bk))
+        iter_results.append((xk_next, fk, gradient_norm, jk, jacobian(xk), sk, yk, Bk, pk, step_length))
 
     if not suppress_output:
         print('No root identified!')

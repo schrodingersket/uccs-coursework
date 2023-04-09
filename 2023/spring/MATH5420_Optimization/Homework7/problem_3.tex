@@ -29,8 +29,8 @@ $$
                         &= \frac{1}{2} (x^T Q x + \alpha p^T Q x + \alpha x^T Q p + \alpha^2 p^T Q p) - c^T x - \alpha c^T p.
     \end{align*}
 
-    We observe that $x^T Q x$, $p^T Q x$, $x^T Q p$, and $p^T Q p$ are all scalars. Taking the derivative of 
-    $f(x + \alpha p)$ therefore yields
+    We observe that $x^T Q x$, $p^T Q x$, $x^T Q p$, and $p^T Q p$ are all scalars which do not depend on $\alpha$. 
+    Taking the derivative of $f(x + \alpha p)$ with respect to $\alpha$ therefore yields
 
     \begin{align*}
         f'(x + \alpha p) &= \frac{1}{2} p^T Q x + \frac{1}{2} x^T Q p + \alpha p^T Q p - c^T p \\
