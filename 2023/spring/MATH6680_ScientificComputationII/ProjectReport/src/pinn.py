@@ -26,7 +26,7 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
         #
         return [
             (h_t + (h * v_x + h_x * v)) + 0,
-            (v_t + (v * v_x + g * h_x * tf.sin(alpha + np.pi/2))) - (g * h * tf.sin(alpha) * (1 - alpha_x) - C_f * v * v / h),
+            (v_t + (v * v_x + g * h_x * tf.sin((np.pi/180)*(alpha + 90)))) - (g * h * tf.sin((np.pi/180)*alpha) * (1 - (np.pi/180)*alpha_x) - C_f * v * v / h),
         ]
 
     def _modify_network_output(input, *args, **kwargs):

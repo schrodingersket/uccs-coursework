@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 
 from mpl_toolkits.mplot3d import Axes3D
 
-DATA_FILE = 'data/homSWESin.csv'
+DATA_FILE = 'data/linearBsineSWE.csv'
 
 class PhysicalQuantity(Enum):
     HEIGHT = 1
     VELOCITY = 2
     BATHYMETRY = 3
 
-def load_data(sample_size=None):
-    data = np.genfromtxt(DATA_FILE, dtype=float, delimiter=',', names=True)
+def load_data(sample_size=None, file=DATA_FILE):
+    data = np.genfromtxt(file, dtype=float, delimiter=',', names=True)
 
     if sample_size:
         sample = np.random.choice(data, sample_size)
