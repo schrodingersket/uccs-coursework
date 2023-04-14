@@ -1,10 +1,9 @@
 import deepxde as dde
 import numpy as np
-import matplotlib.pyplot as plt
 
 from deepxde.backend import tf
 
-def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=10e-3):
+def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=10e-3, horizontal=False):
     def _pde(x, y):
         """
         Encodes the SWE residual in terms of output neurons (i.e., the neurons in the final network layer which 
@@ -26,7 +25,7 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
         #
         return [
             (h_t + (h * v_x + h_x * v)) + 0,
-            (v_t + (v * v_x + g * h_x * tf.sin((np.pi/180)*(alpha + 90)))) - (g * h * tf.sin((np.pi/180)*alpha) * (1 - (np.pi/180)*alpha_x) - C_f * v * v / h),
+            (v_t + (v * v_x + g * h_x * tf.sin(alpha + np.pi/2))) - (g * tf.sin(alpha) * (1 + .5 * h * alpha_x) - C_f * v * v / h),
         ]
 
     def _modify_network_output(input, *args, **kwargs):
@@ -65,14 +64,14 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
         alpha_layer_size = 20
     
         alpha = tf.layers.dense(x, alpha_layer_size, tf.nn.tanh)
-        alpha = tf.layers.dense(x, alpha_layer_size, tf.nn.tanh)
-        alpha = tf.layers.dense(x, alpha_layer_size, tf.nn.tanh)
+        alpha = tf.layers.dense(alpha, alpha_layer_size, tf.nn.tanh)
+        alpha = tf.layers.dense(alpha, alpha_layer_size, tf.nn.tanh)
         alpha_output = tf.layers.dense(alpha, 1, None)
     
         final_output = tf.concat([
             h_output, 
             v_output, 
-            alpha_output, # change to x*0 when using constant bathymetry
+            x*0 if horizontal else alpha_output,
         ], axis=1)
     
         return final_output
@@ -127,41 +126,18 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
     # Compute L2 error
     #  
     if samples is not None and len(samples):
-        y_true = samples[:, 2:4]
+        y_true = samples[:, 2:5]
         y_pred = model.predict(samples[:, 0:2])
-        print('L2 relative error:', dde.metrics.l2_relative_error(samples[:, 2:5], y_pred))
+        print('L2 relative error:', dde.metrics.l2_relative_error(y_true, y_pred))
 
     return model
 
-    # Plots
-    #  
-    pred_tmin = 0
-    pred_tmax = 1.1
-    for time_near in np.arange(pred_tmin, pred_tmax, 0.25):
-        predicted_time = np.array(time_near)
-    
-        for t in sorted(X[:, 1]):
-            if time_near >= t:
-                predicted_time = t
-    
-        print('Computing solution at t={}'.format(predicted_time))
-        x_pred, t_pred = X[:, 0:1], X[:, 1:2]
-        u_pred = y_pred[:, 0:1][t_pred == predicted_time.item()]
-        u_obs = y_true[t_pred == predicted_time.item()]
-        x_obs = X[:, 0:1][t_pred == predicted_time.item()]
-    
-        plt.plot(x_obs, u_pred, color='black', label='u-PINN', linewidth=1)
-        plt.scatter(x_obs[::4], u_obs[::4], color='red', label='u-obs', marker='x')
-        plt.title('u-PINN Predicted IC vs u-Reference IC [t={:0.2f}]'.format(predicted_time.item()), fontsize=9.5)
-        plt.legend(loc='lower right')
-        plt.xlim(x_min, x_max)
-        plt.ylim(-2, 2)
-        plt.show()
-
-
+# Example usage: solves the 1D SWE with horizontal bathymetry, periodic boundary conditions, and initial conditions:
+#
+# u(x, 0) = 2 + sin(pi*x/100)
+# v(x, 0) = 0.
+#
 if __name__ == '__main__':
-    from csv_utils import load_data, plot_point_cloud, PhysicalQuantity
-
     # Set random seed to 0 to allow for reproducable randomness in results
     #
     dde.config.set_random_seed(0)
@@ -180,14 +156,10 @@ if __name__ == '__main__':
     timedomain = dde.geometry.TimeDomain(t_min, t_max)
     geomtime = dde.geometry.GeometryXTime(geom, timedomain)
 
-    # Point-set boundary condition for physical quantities of interest. In a real-world application, this might 
-    # correspond to measured data at specific collocation points.
+    # "Measured" bathymetry for random domain points
     #
-    observed_measurement_data = load_data(100)  # Load 100 random "measurements"
-
-    bc_h_obs = dde.icbc.PointSetBC(observed_measurement_data[:, 0:2], observed_measurement_data[:, 2:3], component=0)
-    bc_v_obs = dde.icbc.PointSetBC(observed_measurement_data[:, 0:2], observed_measurement_data[:, 3:4], component=1)
-    bc_alpha_obs = dde.icbc.PointSetBC(observed_measurement_data[:, 0:2], observed_measurement_data[:, 4:5], component=2)
+    sampled_alpha = geomtime.random_points(100)
+    bc_alpha = dde.icbc.PointSetBC(geomtime.random_points(100), sampled_alpha[:, 0:1] * 0, component=2)
 
     # Periodic boundary conditions for height and velocity, respectively
     #
@@ -217,27 +189,20 @@ if __name__ == '__main__':
         component=1,
     )
 
-    # Plot reference pseudospectral solution
-    #
-    print('Reference wave height:')
-    plot_point_cloud(load_data(), quantity=PhysicalQuantity.HEIGHT)
-    print('Reference velocity:')
-    plot_point_cloud(load_data(), quantity=PhysicalQuantity.VELOCITY)
-    print('Reference bathymetry:')
-    plot_point_cloud(load_data(), quantity=PhysicalQuantity.BATHYMETRY)
-
     # Solve system
     #
     swe_1d(
-        geomtime, [
+        geomtime, 
+        [
             ic_h, 
             ic_v
-        ], [
+        ], 
+        [
+            bc_alpha,
             bc_h,
             bc_v, 
             bc_h_x, 
             bc_v_x,
-            bc_h_obs, 
-            bc_v_obs, 
-            # bc_alpha_obs, 
-        ], samples=load_data(1000), iterations=50000)
+        ], 
+        iterations=50000,
+    )

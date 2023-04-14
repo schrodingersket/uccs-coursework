@@ -4,7 +4,7 @@ $$
 u_t = \epsilon u_{xx} + u u_x
 $$
 
-with periodic boundary conditions on the interval $\Omega = [-\pi, \pi] \times [0, 1]$ and initial condition
+with periodic boundary conditions on the interval $\Omega = [-\pi, \pi]$ from $T = [0, 1]$ and initial condition
 
 $$
 u(x, 0) = e^{-10 \sin^2{\left( \frac{x}{2} \right)}}
@@ -13,6 +13,8 @@ $$
 with $\epsilon = 0.03$.
 
 \begin{solution}
+  Since we impose periodic boundary conditions on our spatial domain, we perform Fourier spectral differentiation in 
+  space.
   \ \\
   \vfill
 \end{solution}
