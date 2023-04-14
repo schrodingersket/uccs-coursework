@@ -156,11 +156,6 @@ if __name__ == '__main__':
     timedomain = dde.geometry.TimeDomain(t_min, t_max)
     geomtime = dde.geometry.GeometryXTime(geom, timedomain)
 
-    # "Measured" bathymetry for random domain points
-    #
-    sampled_alpha = geomtime.random_points(100)
-    bc_alpha = dde.icbc.PointSetBC(geomtime.random_points(100), sampled_alpha[:, 0:1] * 0, component=2)
-
     # Periodic boundary conditions for height and velocity, respectively
     #
     bc_h = dde.icbc.PeriodicBC(geomtime, 0, lambda _, on_boundary: on_boundary, component=0, derivative_order=0)
@@ -198,11 +193,11 @@ if __name__ == '__main__':
             ic_v
         ], 
         [
-            bc_alpha,
             bc_h,
             bc_v, 
             bc_h_x, 
             bc_v_x,
         ], 
-        iterations=50000,
+        iterations=20000,
+        horizontal=True,
     )
