@@ -14,7 +14,44 @@ with $\epsilon = 0.03$.
 
 \begin{solution}
   Since we impose periodic boundary conditions on our spatial domain, we perform Fourier spectral differentiation in 
-  space.
+  space and integrate in time via a fourth-order Runge-Kutta method. We first rewrite our PDE as follows:
+
+  $$
+  u_t - \epsilon u_{xx} - \left(\frac{1}{2} u^2 \right)_x = 0
+  $$
+
+  which upon Fourier transformation becomes
+
+  $$
+  \hat{u}_t + \epsilon k^2 \hat{u} - \frac{ik}{2} \widehat{u^2} = 0.
+  $$
+
+  We define $\widehat{V} \coloneqq e^{\epsilon k^2 t} \hat{u}$ (so that $\widehat{u} = e^{-\epsilon k^2 t} \widehat{V}$ 
+  and $\widehat{V}_t \coloneqq e^{\epsilon k^2 t} \hat{u}_t + \epsilon k^2 e^{\epsilon k^2 t} \hat{u}$) and multiply 
+  the previous equation through by our integrating factor $e^{\epsilon k^2 t}$ to obtain
+
+  \begin{align*}
+    0 &= e^{\epsilon k^2 t} \hat{u}_t + \epsilon k^2 e^{\epsilon k^2 t} \hat{u} - \frac{ik}{2} e^{\epsilon k^2 t} \widehat{u^2} \\
+      &= \widehat{V}_t - \epsilon k^2 e^{\epsilon k^2 t} \hat{u} + \epsilon k^2 e^{\epsilon k^2 t} \hat{u} - \frac{ik}{2} e^{\epsilon k^2 t} \widehat{u^2} \\
+      &= \widehat{V}_t - \frac{ik}{2} e^{\epsilon k^2 t} \widehat{u^2}.
+  \end{align*}
+
+  Moreover, since $\hat{u} = e^{-\epsilon k^2 t} \widehat{V}$, we have 
+  $u = \mathcal{F}^{-1}\left( e^{-\epsilon k^2 t} \widehat{V} \right)$ and hence
+
+  $$
+  \widehat{V}_t = \frac{ik}{2} e^{\epsilon k^2 t} \mathcal{F} \left[ \mathcal{F}^{-1}\left( e^{-\epsilon k^2 t} \widehat{V} \right)^2 \right].
+  $$
+
+  Lastly, at $t = 0$ we have $\widehat{V} = \hat{u}$ so that our initial condition in $\widehat{V}$ is simply
+
+  $$
+  \widehat{V}_0 = \mathcal{F}(u(x, 0)) = \mathcal{F}\left( e^{-10 \sin^2{\left( \frac{x}{2} \right)}} \right).
+  $$
+
+  We integrate this system in time via a fourth-order Runge-Kutta method in \texttt{problem\_1.m} and show the results
+  below.
+
   \ \\
   \vfill
 \end{solution}
