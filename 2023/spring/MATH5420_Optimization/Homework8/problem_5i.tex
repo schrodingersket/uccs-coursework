@@ -1,6 +1,22 @@
 Write the first- and second-order necessary conditions for a local solution.
 
 \begin{solution}
+    The gradient and Hessian of $f$ are given by:
+
+    $$
+    \nabla f(x) = c, \quad \nabla^2 f = 0.
+    $$
+
+    The first-order condition for a local minimizer $x_*$ requires that there exists a vector $\lambda_*$ of Lagrange 
+    multipliers such that 
+
+    $$
+    A^T \lambda_* = \nabla f(x_*) = c.
+    $$
+    
+    where $\lambda_* \ge 0$ and $\lambda_*^T (A x_* - b) = 0$. The second-order necessary condition for a local 
+    minimizer requires that $Z^T \nabla^2 f(x_*) Z$ be positive semidefinite, where $Z$ is a null-space matrix for the 
+    matrix of active constraints at $x_*$. In particular, because $\nabla^2 f = 0$, the second-order necessary condition
+    is trivially true at all points $x$ since $x^T Z^T \nabla^2 f(x_*) Z x = 0 \ge 0$.
     \ \\
-    \vfill
 \end{solution}

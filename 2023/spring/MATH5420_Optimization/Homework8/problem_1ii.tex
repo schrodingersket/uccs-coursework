@@ -1,6 +1,40 @@
 Determine whether each stationary point is a local minimizer, a local maximizer, or a saddle point.
 
 \begin{solution}
+    The Hessian of $f$ is given by 
+
+    $$
+    \nabla^2 f = \begin{pmatrix*}
+        2 + 2 x_3^2 & 2        & 4 x_1 x_3 \\
+        2           & 12 x_2^2 & 0 \\
+        4 x_1 x_3   & 0        & 2 x_1^2
+    \end{pmatrix*}
+    $$
+
+    and hence the reduced Hessian at the stationary point $x_* = (1, 0, 1)^T$ is
+
+    $$
+    Z^T \nabla^2 f(x_*) Z = \begin{pmatrix*}
+        -2 & 1 & -1 \\
+        -1 & 0 &  2
+    \end{pmatrix*} \begin{pmatrix*}
+        4 & 2 & 4 \\
+        2 & 0 & 0 \\
+        4 & 0 & 2
+    \end{pmatrix*} \begin{pmatrix*}
+        -2 & -1 \\
+         1 & 0  \\
+        -1 & 2
+    \end{pmatrix*} = \begin{pmatrix*}
+        26 & -10 \\
+       -10 & -4
+    \end{pmatrix*}.
+    $$
+
+    with eigenvalues $\lambda \approx \{29.02776, -7.02776\}$. Since the reduced Hessian has a mix of strictly positive 
+    and strictly negative eigenvalues, it is indefinite and hence $x_*$ is a saddle point.\footnote{
+        In particular, $x_*$ maximizes $f$ in the direction of any eigenvector corresponding to the negative eigenvalue
+        and minimizes $f$ in the direction of any eigenvector corresponding to the positive eigenvalue.
+    }
     \ \\
-    \vfill
 \end{solution}
