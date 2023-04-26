@@ -6,7 +6,20 @@ Find all stationary points of the problem
 \end{maxi*}
 
 \begin{solution}
-    \bf{TODO.}
+    Since we have only a single equality constraint, our vector of Lagrange multipliers reduces to a scalar value 
+    $\lambda$. The Lagrangian for this problem is thus given by
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda g(x) = x^T Q x - \lambda (x^T x - 1).
+    $$
+
+    Since $Q$ is symmetric, our first-order necessary condition for optimality occurs whenever
+
+    $$
+    \nabla_x \mathcal{L} = \nabla f - \lambda \nabla g = 2 Q x - 2 \lambda x = 2(Q - \lambda I) x = 0
+    $$
+
+    which is precisely the eigenvalue problem. Hence our stationary points $x$ are simply the eigenvectors of $Q$ 
+    associated with the eigenvalues of $Q$.
     \ \\
-    \vfill
 \end{solution}

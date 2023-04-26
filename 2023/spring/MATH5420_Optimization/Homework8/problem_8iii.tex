@@ -1,4 +1,4 @@
-How the results from (i) change if the constraint is replaced by
+How do the results from (i) change if the constraint is replaced by
 
 $$
 x^T A x \le 1,
@@ -7,7 +7,33 @@ $$
 where $A$ is positive definite?
 
 \begin{solution}
-    \bf{TODO.}
+    We begin by converting our constraint to "$\ge$" form so that our constraint $g(x)$ is given by:
+
+    $$
+    g(x) = 1 - x^T A x \ge 0.
+    $$
+
+    The associated Lagrangian is then:
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda g(x) = x^T Q x - \lambda (1 - x^T A x).
+    $$
+
+    and hence stationary points occur when\footnote{
+        Without loss of generality (from lecture), we assume that since $A$ is positive definite, it is also symmetric. 
+    }
+    
+    $$
+    \nabla_x \mathcal{L} = Q x + \lambda A x = 0.
+    $$
+
+    and hence $Qx = -A (\lambda x)$. Since $A$ is positive definite, it is also invertible, and hence we have
+
+    $$
+    -A^{-1} Q x = \lambda x
+    $$
+
+    so that our new stationary points are precisely the eigenvectors of $-A^{-1} Q$.
     \ \\
     \vfill
 \end{solution}

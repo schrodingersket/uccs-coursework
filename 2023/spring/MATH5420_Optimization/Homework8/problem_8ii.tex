@@ -1,7 +1,15 @@
 Determine which of the stationary points are global maximizers.
 
 \begin{solution}
-    \bf{TODO.}
+    Since stationary points are the eigenvectors of $Q$, our objective function is
+
+    \begin{align*}
+        f(x) &= x^T Q x \\
+             &= x^T \lambda x \\
+             &= \lambda x^T x \\
+             &= \lambda
+    \end{align*}
+
+    and hence $f(x)$ is maximized for any eigenvector corresponding to the greatest eigenvalue of $Q$.
     \ \\
-    \vfill
 \end{solution}
