@@ -1,0 +1,20 @@
+\textbf{Linear Equality Constraints}
+
+Suppose we wish to find the minimum distance from a point $r$ to a set $S = \left\{x \mid a^T x = b \right\}$ where 
+$a^T$ is a row vector. This problem can be formulated as the quadratic program
+
+\begin{mini*}
+    {}{f(x)  = \frac{1}{2}(x - r)^T (x - r)}{}{}
+    \addConstraint{a^T x}{= b.}
+\end{mini*}
+
+\begin{enumerate}
+    \item \input{problem_3a.tex}
+    \pagebreak
+    \item \input{problem_3b.tex}
+    \pagebreak
+    \item \input{problem_3c.tex}
+    \pagebreak
+    \item \input{problem_3d.tex}
+    \pagebreak
+\end{enumerate}
