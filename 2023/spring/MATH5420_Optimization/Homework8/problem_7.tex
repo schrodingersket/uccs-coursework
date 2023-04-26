@@ -31,7 +31,7 @@ Solve the problem
     From the first equality, we find (after multiplying through by $x_1$) that $\lambda = x_1$; from the second, we 
     obtain $x_2 = 4 \lambda$. We observe that if $\lambda = 0$, then $x_1 = x_2 = 0$, which does not represent a 
     feasible point. Hence by the complementary slackness condition, we must have $\lambda > 0$ and
-    $\ln{x_1} + 4 \ln{x_2} = 1$ from which we obtain $\ln{x_1 x_2^4} = 1$ and thus
+    $\ln{x_1} + 4 \ln{x_2} = 1$. From this, we have $\ln{x_1 x_2^4} = 1$ and hence
 
     \begin{align*}
         e &= x_1 x_2^4 \\
@@ -39,8 +39,8 @@ Solve the problem
           &= 256 \lambda^5
     \end{align*}
 
-    so that $\lambda = \sqrt[5]{\frac{e}{256}} = x_1$ and $x_2 = 4 \lambda = \sqrt[5]{\frac{e}{4}}$ which yields the 
-    optimal point
+    so that $\lambda = \sqrt[5]{\frac{e}{256}} = x_1$ and $x_2 = 4 \lambda = \sqrt[5]{\frac{e}{4}}$. Our optimal point
+    is therefore
 
     $$
     x_* = (x_1, x_2)^T = \left( \sqrt[5]{\frac{e}{256}}, \sqrt[5]{\frac{e}{4}} \right) > 0.
@@ -49,14 +49,14 @@ Solve the problem
     Lastly, we note that the Hessian of the Lagrangian with respect to $x$ is given by
 
     $$
-    \nabla_{xx} \mathcal{L} = \begin{pmatrix*}
+    \nabla^2_{xx} \mathcal{L} = \begin{pmatrix*}
         \sfrac{\lambda}{x_1^2} & 0 \\
         0                      & \sfrac{4 \lambda}{x_2^2}
     \end{pmatrix*}
     $$
 
     which (as a diagonal matrix) has positive eigenvalues (and is therefore positive definite) whenever $\lambda > 0$. 
-    Since $\lambda > 0$ at $x_*$, we conclude that $\nabla_{xx} \mathcal{L}$ is also positive definite over the null 
+    Since $\lambda > 0$ at $x_*$, we conclude that $\nabla^2_{xx} \mathcal{L}$ is also positive definite over the null 
     space of the Jacobian of our constraints at $x_*$ and hence $x_*$ is a strict local minimizer.
     \ \\
 \end{solution}

@@ -23,7 +23,7 @@ $$
     \nabla_x \mathcal{L} = \begin{pmatrix*}
         a + 2 - \lambda a \left(1 + e^{x_1} \right) \\
         -2 - \lambda b \left(1 + e^{x_2} \right)
-    \end{pmatrix*}, \qquad \nabla_{xx} \mathcal{L} = \begin{pmatrix*}
+    \end{pmatrix*}, \qquad \nabla^2_{xx} \mathcal{L} = \begin{pmatrix*}
         -\lambda a e^{x_1} & 0 \\
         0                  & -\lambda b e^{x_2}
     \end{pmatrix*},
@@ -80,7 +80,7 @@ $$
     so that a null space matrix for $\nabla g(x_*)$ is given by $Z = (1, 2)^T$ and the reduced Hessian becomes
 
     $$
-    Z^T \nabla_{xx} \mathcal{L}(x_*) Z = \begin{pmatrix*}
+    Z^T \nabla^2_{xx} \mathcal{L}(x_*) Z = \begin{pmatrix*}
         1 & 2
     \end{pmatrix*} \begin{pmatrix*}
         -2 & 0 \\
@@ -103,7 +103,7 @@ $$
     so that a null space matrix for $\nabla g(x_*)$ is given by $Z = (2, 1)^T$ and the reduced Hessian becomes
 
     $$
-    Z^T \nabla_{xx} \mathcal{L}(x_*) Z = \begin{pmatrix*}
+    Z^T \nabla^2_{xx} \mathcal{L}(x_*) Z = \begin{pmatrix*}
         2 & 1
     \end{pmatrix*} \begin{pmatrix*}
         \sfrac{-1}{2} & 0 \\

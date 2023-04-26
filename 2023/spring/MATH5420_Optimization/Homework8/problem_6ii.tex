@@ -2,7 +2,77 @@ Is it true that any local minimum to the problem is also a global minimum?
 
 
 \begin{solution}
-    \bf{TODO.}
+    Nay! Consider the following counterexample:
+
+    Let $Q = \begin{pmatrix*}[r]
+         1 & 0 \\
+         0 & -1 
+    \end{pmatrix*}$ and $c = 0$. Our problem then becomes
+
+    \begin{mini*}
+        {}{f(x) = x_1^2 - x_2^2}{}{}
+        \addConstraint{ x_2}{\ge -1}
+        \addConstraint{-x_2}{\ge -2}
+    \end{mini*}
+
+    where the constraint functions are enumerated in the natural way. The \newline
+    Lagrangian is given by
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda_1 g_1 - \lambda_2 g_2 = x_1^2 - x_2^2 - \lambda_1 (x_2 + 1) - \lambda_2 (2 - x_2)
+    $$
+
+    so that stationary points are obtained whenever
+
+    $$
+    \nabla_x \mathcal{L} = \begin{pmatrix*}
+         2 x_1 \\
+        -2 x_2 - \lambda_1 + \lambda_2
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}.
+    $$
+
+    When $\lambda_2 = g_1 = 0$, we have $x_1 = 0$, $x_2 = -1$, and hence $\lambda_1 = 2 > 0$. Similarly, when 
+    $\lambda_1 = g_2 = 0$, we have $x_1 = 0$, $x_2 = 2$, and hence $\lambda_2 = 4 > 0$. The Jacobian of the constraint
+    matrix (at every point) is given by
+    
+    $$
+    \nabla g = \begin{pmatrix*}[r]
+         0 &  1 \\
+         0 & -1
+    \end{pmatrix*}
+    $$
+
+    from which we obtain a null space matrix $Z = \begin{pmatrix*}
+        1 \\
+        0
+    \end{pmatrix*}$. Moreover, the Hessian of the Lagrangian with respect to $x$ is given by
+    
+    $$
+    \nabla^2_{xx} \mathcal{L} = \begin{pmatrix*}[r]
+        2 & 0 \\
+        0 & -2
+    \end{pmatrix*}
+    $$
+
+    so that
+
+    $$
+    Z^T \nabla^2_{xx} \mathcal{L} Z = \begin{pmatrix*}
+        1 & 0
+    \end{pmatrix*} \begin{pmatrix*}[r]
+        2 & 0 \\
+        0 & -2
+    \end{pmatrix*} \begin{pmatrix*}
+        1 \\
+        0
+    \end{pmatrix*} = 2 > 0.
+    $$
+
+    and hence $\nabla^2_{xx} \mathcal{L}$ is positive definite with respect to the null space of $\nabla g$. The points
+    $(0, -1)$ and $(0, 2)$ therefore both satisfy sufficiency conditions for local minimizers. 
+    However, $f(0, 2) = -4 < -1 = f(0, -1)$ and hence $(0, -1)$ is not a global minimizer for the problem.
     \ \\
-    \vfill
 \end{solution}
