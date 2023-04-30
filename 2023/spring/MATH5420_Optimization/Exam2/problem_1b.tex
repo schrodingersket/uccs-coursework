@@ -1,6 +1,18 @@
 For which value of $\epsilon$ does $p$ satisfy the sufficient descent criteria?
 
 \begin{solution}
+    The sufficient descent criteria is satisfied for some direction $p$ at $x$ when $p^T \nabla f(x) < 0$ and
+
+    $$
+    -\frac{p^T \nabla f(x)}{\lVert p \rVert \lVert \nabla f(x) \rVert} \ge \epsilon > 0
+    $$
+
+    At $x_0$ and $p = (1, 1)^T$ this becomes:
+
+    $$
+    -\frac{p^T \nabla f(x)}{\lVert p \rVert \lVert \nabla f(x) \rVert} = -\frac{-44}{\sqrt{2} \left(\frac{201}{5}\right)} \approx 0.7739
+    $$
+
+    so that $p$ satisfies the sufficient descent criterion for $\epsilon \ge 0.7739$.
     \ \\
-    \vfill
 \end{solution}

@@ -1,6 +1,38 @@
 For what range of $\alpha$ does this update step satisfy the Armijo condition when $\mu = \frac{2}{44}$?
 
 \begin{solution}
+    The Armijo condition is satisfied for some $p$ and $\alpha$ at $x$ whenever
+
+    $$
+    f(x + \alpha p) \le f(x) + \mu \alpha p^T \nabla f(x).
+    $$
+
+    We observe that $x_0 + \alpha p$ = $(\alpha, \alpha)^T$ and hence
+
+    \begin{align*}
+    f(x_0 + \alpha p) &\le 2(\alpha - 1)^2 + 10(\alpha - 2)^2 \\
+                      &= 2 \alpha^2 - 4 \alpha + 2 + 10 \alpha^2 - 40 \alpha + 40 \\
+                      &= 12 \alpha^2 - 44 \alpha + 42.
+    \end{align*}
+
+    For $\mu = -\frac{2}{44}$, the right-hand side becomes
+
+    $$
+    f(x_0) + \mu \alpha p^T \nabla f(x_0) = 42 - \frac{2}{44} \alpha \left( -44 \right) = 42 - 2 \alpha.
+    $$
+
+    Combining these results yields:
+
+    $$
+    12 \alpha^2 - 44 \alpha + 42 \le 42 - 2 \alpha
+    $$
+
+    from which we obtain the inequality
+
+    $$
+    6 \alpha (2 \alpha - 7) \le 0
+    $$
+
+    which is satisfied precisely when $\alpha \in \left[0, \frac{7}{2}\right]$.
     \ \\
-    \vfill
 \end{solution}

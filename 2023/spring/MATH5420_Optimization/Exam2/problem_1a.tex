@@ -1,6 +1,25 @@
 Show that $p$ is a descent direction.
 
 \begin{solution}
+    The gradient of $f$ is given by
+
+    $$
+    \nabla f = \begin{pmatrix*}
+        4 x_1 - 4 \\
+        20 x_2 - 40
+    \end{pmatrix*}
+    $$
+    A direction $p$ is a descent direction at $x$ when $p^T \nabla f(x) < 0$. For $p = (1, 1)^T$, we have at $x_0$ that
+
+    $$
+    p^T \nabla f(x_0) = \begin{pmatrix*}[r]
+        1 & 1
+    \end{pmatrix*} \begin{pmatrix*}
+        -4 \\
+        -40
+    \end{pmatrix*} = -44 < 0
+    $$
+
+    and hence $p$ is a descent direction.
     \ \\
-    \vfill
 \end{solution}

@@ -1,6 +1,37 @@
 For what range of $\alpha$ does this update step satisfy the Wolfe condition when $\eta = \frac{40}{44}$?
 
 \begin{solution}
+    The Wolfe condition is satisfied for some $p$ and $\eta$ at $x$ whenever
+
+    $$
+    \lvert p^T \nabla f(x + \alpha p) \rvert \le \eta \lvert p^T \nabla f(x) \rvert.
+    $$
+
+    For the left-hand side at $x_0$, we have
+
+    $$
+    p^T \nabla f(x_0 + \alpha p) = \begin{pmatrix*}
+        1 & 1
+    \end{pmatrix*} \begin{pmatrix*}
+        4 \alpha - 4 \\
+        20 \alpha - 40
+    \end{pmatrix*} = 24 \alpha - 44.
+    $$
+
+    From (a), the right-hand side becomes:
+
+    $$
+    \eta \lvert p^T \nabla f(x_0) \rvert = \frac{40}{44} \lvert -44 \rvert = 40
+    $$
+
+    so that upon substitution into the Wolfe condition, we obtain
+
+    $$
+    \lvert 24 \alpha - 44 \rvert \le 40,
+    $$
+
+    which is satisfied precisely when $\alpha \in \left[ \frac{1}{6}, \frac{7}{2} \right]$.
+
     \ \\
     \vfill
 \end{solution}
