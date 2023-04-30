@@ -2,6 +2,23 @@ Prove that when the steepest-descent direction is used, the step length which mi
 $\alpha_0 = \lambda^{-1}$.
 
 \begin{solution}
+    Since our objective function is quadratic, the steepest-descent direction at $x$ is given by
+
+    $$
+    p = - \nabla f(x) = - \lambda v.
+    $$
+
+    We use an exact line search to find the step length $\alpha_0$ which minimizes $f$ in this direction. For a quadratic
+    objective function, this step length is given by
+
+    \begin{align*}
+        \alpha_0 &= -\frac{\nabla f(x_0)^T p_0}{p_0^T Q p_0} \\
+                 &= -\frac{\lambda v^T \left( -\lambda v \right)}{-\lambda v^T Q (-\lambda v)} \\
+                 &= \frac{\lambda^2 \lVert v \rVert}{\lambda^2 v^T Q v} \\
+                 &= \frac{\lVert v \rVert}{\lambda v^T v} \\
+                 &= \frac{1}{\lambda}
+    \end{align*}
+
+    as desired.
     \ \\
-    \vfill
 \end{solution}

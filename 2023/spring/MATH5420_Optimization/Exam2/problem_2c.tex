@@ -2,6 +2,16 @@ Prove that the steepest-descent direction with optimal step length will lead to 
 iteration.
 
 \begin{solution}
+    Our first iteration value $x_1 = x_0 + \alpha_0 p_0$ is given by
+
+    \begin{align*}
+        x_1 &= x_0 + \alpha p_0 \\
+            &= x_* + v + \lambda^{-1} \left( -\lambda v \right) \\
+            &= x_* + v - v \\
+            &= x_*.
+    \end{align*}
+
+    and hence the steepest-descent direction with optimal step length yields the minimum of $f$ after a single 
+    iteration.
     \ \\
-    \vfill
 \end{solution}
