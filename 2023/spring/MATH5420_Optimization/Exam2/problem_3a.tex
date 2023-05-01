@@ -5,6 +5,34 @@ x_* = r + \frac{b - a^T r}{a^T a} a.
 $$
 
 \begin{solution}
+    We begin by constructing the Lagrangian for this problem, which is given by
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda g(x) = \frac{1}{2} (x - r)^T I (x - r) - \lambda (a^T x - b)
+    $$
+
+    where $\lambda$ is a scalar since our system only contains a single constraint. We note that the Lagrangian is a 
+    quadratic form where $I$ is symmetric and positive definite. We compute corresponding stationary points by setting 
+    the gradient of the Lagrangian (with respect to $x$) to zero, which yields
+
+    $$
+    \nabla_x \mathcal{L} = (x - r) - \lambda a = 0
+    $$
+
+    so that $x_* = r + \lambda a$. We substitute this expression into our equality constraint to find
+
+    $$
+    b = a^T x_* = a^T (r + \lambda) a = a^T r + \lambda a^T a
+    $$
+
+    to find that $\lambda = \frac{b - a^T r}{a^T a}$ (where we have used the fact that $a^T a$ is a scalar value). Our 
+    stationary point is thus
+
+    $$
+    x_* = r + \lambda a = r + \frac{b - a^T r}{a^T a} a
+    $$
+
+    as desired. Finally, since our Lagrangian is a quadratic form with positive definite matrix $I$, we know that $x_*$
+    is the unique global minimizer of $f$.
     \ \\
-    \vfill
 \end{solution}

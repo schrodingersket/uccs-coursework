@@ -1,6 +1,50 @@
 Find the optimal solution and show that all optimality conditions are satisfied.
 
 \begin{solution}
+    We construct the Lagrangian function as follows:
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda g(x) = c^T x - \lambda (-x^T Q x + 1)
+    $$
+
+    where $\lambda$ is a scalar value since our system has only a single constraint. The gradient and Hessian with 
+    respect to $x$ are
+
+    $$
+    \nabla_x \mathcal{L} = c + 2 \lambda Q x, \quad \nabla^2_{xx} \mathcal{L} = 2 \lambda Q,
+    $$
+
+    respectively. When $\lambda = 0$, no stationary points for $c \neq 0$ exist since $\nabla_x \mathcal{L} = c$ is 
+    nonzero everywhere. We therefore consider the remaining case that the constraint is active; setting the gradient 
+    equal to zero, we find that 
+
+    $$
+    x_* = -\frac{1}{2 \lambda} Q^{-1} c.
+    $$
+
+    Substituting this into our active constraint $g(x) = 0$ yields
+
+    \begin{align*}
+        0 &= x_*^T Q x_* - 1\\
+          &= \left(-\frac{1}{2 \lambda} Q^{-1} c \right)^T Q \left( -\frac{1}{2 \lambda} Q^{-1} c \right) - 1 \\
+          &= \frac{1}{4 \lambda^2} c^T Q^{-T} Q Q^{-1} c - 1 \\
+          &= \frac{1}{4 \lambda^2} c^T Q^{-T} c - 1 \\
+          &= \frac{1}{4 \lambda^2} c^T Q^{-1} c - 1
+    \end{align*}
+
+    where we have used the fact that if $Q$ is symmetric and invertible, $Q^{-1}$ is also symmetric.\footnote{
+        Since $I = I^T = \left(Q Q^{-1} \right)^T = Q^{-T} Q^T = Q^{-T} Q$; multiplying the first and last terms by 
+        $Q^{-1}$ gives the desired result.
+    } Hence $\lambda^2 = \frac{1}{4} c^T Q^{-1} c$; taking the positive square root (since we require $\lambda \ge 0$) 
+    yields
+
+    $$
+    x_* = -\frac{1}{2 \left(\frac{1}{2} \sqrt{c^T Q^{-1} c} \right)} Q^{-1} c = -\left( c^T Q^{-1} c \right)^{-\frac{1}{2}} Q^{-1} c.
+    $$
+
+    Lastly, since the Hessian of the Lagrangian is $\nabla^2_{xx} = 2 \lambda Q$ where $Q$ is positive definite and 
+    $\lambda > 0$, we have that $\nabla^2_{xx}$ is positive definite everywhere (and therefore also over the null space 
+    of the Jacobian matrix of the nondegenerate constraints) so that $x_*$ is a strict local minimizer of $f$ (and also 
+    a global minimizer, since the Lagrangian is quadratic and $Q$ is positive definite).
     \ \\
-    \vfill
 \end{solution}

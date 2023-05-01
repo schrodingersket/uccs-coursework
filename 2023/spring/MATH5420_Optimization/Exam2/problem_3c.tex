@@ -1,6 +1,35 @@
 Use part (a) to find the point on the line $x_2 = 1 + x_1$ which is closest to the point $r = (-1, 1)^T$.
 
 \begin{solution}
+    Since $-x_1 + x_2 = 1$, we have that 
+
+    $$
+    a = \begin{pmatrix*}[r]
+        -1 \\
+        1
+    \end{pmatrix*}, \quad b = 1, \quad \text{and} \quad r = \begin{pmatrix*}[r]
+        -1 \\
+        1
+    \end{pmatrix*}.
+    $$
+
+     By part (a), we have that the point on the line $x_2 = 1 + x_1$ which is closest to $r$ (that is, which minimizes
+     the square of the distance between $x$ and $r$) is given by
+
+     \begin{align*}
+        x_* &= r + \frac{b - a^T r}{a^T a} a \\
+            &= \begin{pmatrix*}[r]
+                 -1 \\
+                  1
+               \end{pmatrix*} + \frac{1 - 2}{2} \begin{pmatrix*}[r]
+                 -1 \\
+                  1
+               \end{pmatrix*} \\
+            &= \begin{pmatrix*}[r]
+                 -\sfrac{1}{2} \\
+                  \sfrac{1}{2}
+               \end{pmatrix*}.
+     \end{align*}
+
     \ \\
-    \vfill
 \end{solution}
