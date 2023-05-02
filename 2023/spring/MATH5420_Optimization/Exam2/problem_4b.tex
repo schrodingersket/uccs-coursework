@@ -1,6 +1,268 @@
 Find and classify all minimizers, maximizers, and saddle points.
 
 \begin{solution}
+    For convenience, we enumerate our constraints as follows:
+
+    $$
+    g_1(x) = -x_1^2 - x_2^2 + 1 \ge 0, \quad g_2(x) = x_1 + x_2 \ge 0.
+    $$
+
+    so that the gradients of our constraints are
+
+    $$
+    \nabla g_1 = \begin{pmatrix*}
+        -2 x_1 \\
+        -2 x_2
+    \end{pmatrix*}, \quad \nabla g_2 = \begin{pmatrix*}
+        1 \\
+        1
+    \end{pmatrix*}
+    $$
+
+    Since we have two constraints, we have two Lagrange multipliers and our Lagrangian is therefore
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda_1 g_1 - \lambda_2 g_2 
+                            = x_1^2 - x_2^2 - \lambda_1 \left[ -x_1^2 - x_2^2 + 1 \right] - \lambda_2 \left[ x_1 + x_2 \right]
+    $$
+
+    where the gradient of the Lagrangian with respect to $x$ is 
+
+    $$
+    \nabla_x \mathcal{L} = \nabla f(x) - \lambda_1 \nabla g_1 - \lambda_2 \nabla g_2 = \begin{pmatrix*}[r]
+        2 x_1 \\
+       -2 x_2
+    \end{pmatrix*} - \lambda_1 \begin{pmatrix*}
+       -2 x_1 \\
+       -2 x_2
+    \end{pmatrix*} - \lambda_2 \begin{pmatrix*}
+        1 \\
+        1
+    \end{pmatrix*}
+    $$
+
+    with corresponding Hessian
+
+    $$
+    \nabla^2_{xx} \mathcal{L} = 2 \begin{pmatrix*}
+        1 + \lambda_1 & 0 \\
+                      0 & -1 + \lambda_1
+    \end{pmatrix*}
+    $$
+    
+    so that feasible stationary points are minimizers whenever $\lambda_1 \in (1, \infty)$, maximizers whenever 
+    $\lambda_1 \in (-\infty, -1)$, saddle points when $\lambda \in (-1, 1)$, and degenerate when $\lambda = \pm 1$. We 
+    now proceed to compute stationary points by enforcing our first-order necessary condition that 
+    $\nabla_x \mathcal{L} = 0$ along with strict complementarity by cases.
+
+    \paragraph{Case I:} $g_1 = g_2 = 0.$ \ \\
+    When both constraints are active, we obtain the system of equations
+
+    $$
+    \begin{pmatrix*}[r]
+        x_1 + x_2 \\
+        -x_1^2 - x_2^2 + 1
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}
+    $$
+
+    From the first equation, we find $x_1 = -x_2$; substituting this into the second equation yields
+
+    $$
+    -x_1^2 - (-x_1)^2 + 1 = -2 x_1^2 + 1 = 0
+    $$
+
+    from which we obtain $x_1 = \pm \frac{1}{\sqrt{2}}$. For 
+    $x_* = \left( \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}} \right)$, we compute $\lambda_1$ and $\lambda_2$ from the 
+    system
+
+    $$
+    \begin{pmatrix*}
+        \sqrt{2} + \sqrt{2} \lambda_1 - \lambda_2 \\
+        \sqrt{2} - \sqrt{2} \lambda_1 - \lambda_2
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}
+    $$
+
+    which yields $\lambda_1 = 0$ and $\lambda_2 = \sqrt{2}$. At $x_*$, the Jacobian of the active constraint matrix is
+
+    $$
+    \nabla g(x_*) = \begin{pmatrix*}
+        \vline        & \vline \\
+        \nabla g_1(x) & \nabla g_2(x) \\
+        \vline        & \vline
+    \end{pmatrix*}^T \Bigg|_{x = x_*} = \begin{pmatrix*}
+        -\sqrt{2} & \sqrt{2} \\
+        1         & 1
+    \end{pmatrix*}
+    $$
+   
+    which has full rank and therefore a trivial null space. The point 
+    $\left( \frac{1}{\sqrt{2}}, -\frac{1}{\sqrt{2}} \right)$ is therefore a local minimizer with objective value 
+    $f(x) = 0$. Conversely, when $x_* = \left( -\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} \right)$, our first-order 
+    necessary condition yields
+
+    $$
+    \begin{pmatrix*}
+        -\sqrt{2} - \sqrt{2} \lambda_1 - \lambda_2 \\
+        -\sqrt{2} + \sqrt{2} \lambda_1 - \lambda_2
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}
+    $$
+
+    from which we obtain $\lambda_1 = 0$ and $\lambda_2 = -\sqrt{2}$. The Jacobian of the active constraints $g_1$ 
+    and $g_2$ at this point is 
+
+    $$
+    \nabla g(x_*) = \begin{pmatrix*}
+        -\sqrt{2} & -\sqrt{2} \\
+        1         & 1
+    \end{pmatrix*}
+    $$
+
+    which is also full rank; since $\lambda_2 < 0$, the point $\left( -\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} \right)$
+    is a local maximizer with objective value $f(x) = 0$.
+    
+    \paragraph{Case II:} $\lambda_1 = g_2 = 0.$ \ \\
+
+    When $g_2$ is active, we have $x_1 = -x_2$; since $\lambda_1 = 0$, our first-order necessary condition becomes
+
+    $$
+    \nabla_x \mathcal{L} = \nabla f(x) - \lambda_2 \nabla g_2 = \begin{pmatrix*}[r]
+        2 x_1 \\
+       -2 x_2
+    \end{pmatrix*} - \lambda_2 \begin{pmatrix*}
+        1 \\
+        1
+    \end{pmatrix*} = \begin{pmatrix*}
+        2 x_1 \\
+        2 x_1
+    \end{pmatrix*} - \lambda_2 \begin{pmatrix*}
+        1 \\
+        1
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}
+    $$
+
+    so that $\lambda_2 = 2 x_1 = -2 x_2$. We choose $x_1$ to be the free variable; upon substituting $x_2 = -x_1$ into 
+    our inactive constraint $g_1 \ge 0$, we find that $-2 x_1^2 + 1 \ge 0$ so that the first-order necessary condition 
+    is satisfied along the line $x_2 = -x_1$ for all $x_1 \in \left[ -\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} \right]$.
+
+    The Jacobian of the active constraint $g_2$ is
+
+    $$
+    \nabla g_2 = \begin{pmatrix*}
+        1 \\
+        1
+    \end{pmatrix*}
+    $$
+
+    which admits a null space matrix
+
+    $$
+    Z = \begin{pmatrix*}
+         1 \\
+        -1
+    \end{pmatrix*}
+    $$
+
+    so that 
+
+    $$
+    Z^T \nabla_{xx}^2 \mathcal{L} Z = \begin{pmatrix*}
+        1 & -1
+    \end{pmatrix*} \begin{pmatrix*}[r]
+        2 & 0 \\
+        0 & -2
+    \end{pmatrix*} \begin{pmatrix*}[r]
+        1 \\
+        -1
+    \end{pmatrix*} = 0
+    $$
+
+    from which we obtain no further information beyond the fact that $x_1 = -x_2$ is a level curve of $f$. When 
+    $x_1 > 0$, we have $\lambda_2 > 0$ so that the necessary (but not sufficient) conditions for a minimizer are 
+    satisfied for $x_1 \in \mathopen( 0, \frac{1}{\sqrt{2}}\mathclose ]$. Similarly, the necessary conditions for a 
+    maximizer are satisfied for $x_1 \in \mathopen[ -\frac{1}{\sqrt{2}}, 0 \mathclose)$ and at $x_1 = 0$, we simply have
+    $x_1 = x_2 = \lambda_1 = \lambda_2 = f(x) = 0$. These results are confirmed graphically in Figure 
+    \ref{fig:problem_4b}.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=0.75\textwidth]{problem_4b.png}
+        \caption{3d plot of $f(x)$ and constraints.}
+        \label{fig:problem_4b}
+    \end{figure}
+
+    \pagebreak
+    \paragraph{Case III:} $\lambda_2 = g_1 = 0.$ \ \\
+    When $\lambda_2 = 0$, our first-order necessary condition becomes
+
+    $$
+    \nabla_x \mathcal{L} = \nabla f(x) - \lambda_1 \nabla g_1 = \begin{pmatrix*}[r]
+        2 x_1 \\
+       -2 x_2
+    \end{pmatrix*} - \lambda_1 \begin{pmatrix*}[r]
+        -2 \lambda_1 x_1 \\
+        -2 \lambda_1 x_2
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}
+    $$
+
+    so that $2 x_1 (1 + \lambda_1) = 0$ and $2 x_2 (\lambda_1 - 1) = 0$. When $x_1 = 0$, our active constraint $g_1 = 0$
+    requires that $x_2 = 1$ and we find $\lambda_1 = 1$. Similarly, when $x_2 = 0$, our constraints require $x_1 = 1$ and
+    $\lambda_1 = -1$. For each stationary point, we have
+
+    $$
+    \nabla g \Big|_{(0, 1)} = \begin{pmatrix*}[r]
+        0 & -2 \\
+        1 &  1
+    \end{pmatrix*} \quad \text{and} \quad \nabla g \Big|_{(1, 0)} = \begin{pmatrix*}[r]
+       -2 &  0 \\
+        1 &  1
+    \end{pmatrix*}.
+    $$
+    
+    Since both of these matrices are full rank, the reduced Hessian condition is trivially satisfied for minimizers and
+    maximizers; for $x_* = (0, 1)$, we have $\lambda_1 > 0$ and hence $(0, 1)$ is a local minimizer with $f(x) = -1$. 
+    Similarly, when $x_* = (1, 0)$, we have $\lambda_1 < 0$ and so $(1, 0)$ is a local maximizer where $f(x) = 1$.
+
+    \paragraph{Case IV:} $\lambda_1 = \lambda_2 = 0.$ \ \\
+    When all Lagrange multipliers are zero, our first-order necessary condition becomes
+
+    $$
+    \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*} = \nabla_x \mathcal{L} = \begin{pmatrix*}[r]
+        2 x_1 \\
+       -2 x_2
+    \end{pmatrix*}
+    $$
+
+    from which we obtain $x_* = (0, 0)$ (and $f(x) = 0$) which addressed in \textbf{Case II}.
+
+    \ \\\\
+    Our optimal points therefore arise from \textbf{Case III}, whereby $(1, 0)$ maximizes the objective function with 
+
+    $$
+    f(1, 0) = 1^2 - 0 = 1
+    $$
+
+    and $(0, 1)$ minimizes the objective function with 
+    
+    $$
+    f(0, 1) = 0 - 1^2 = -1.
+    $$
     \ \\
-    \vfill
 \end{solution}
