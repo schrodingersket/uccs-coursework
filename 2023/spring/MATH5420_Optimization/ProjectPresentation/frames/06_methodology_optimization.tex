@@ -1,0 +1,20 @@
+\begin{frame}
+    \frametitle{Methodology: Optimization}
+
+    We find the best approximation to the true solution by solving the non-linear unconstrained minimization problem:
+
+    $$
+    \min_{\mathcal{N}} {\lVert R_{mass} \rVert + \lVert R_{momentum} \rVert}.
+    $$
+
+    \bigskip
+    \pause
+
+    At this point, we have a well-defined optimization problem, but we still need to decide what our approximation 
+    function $\mathcal{N}$ "looks like". 
+
+    \bigskip
+    \pause
+
+    Ideally, we'd like a function which can modified to minimize the PDE residual via existing optimization algorithms.
+\end{frame}

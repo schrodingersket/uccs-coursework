@@ -1,0 +1,32 @@
+\begin{frame}
+    \frametitle{Methodology: Residual}
+
+    We are almost ready to frame this as an unconstrained optimization problem. To do so, we substitute our approximation 
+    function into the SWE system. 
+
+    \bigskip
+    \pause
+
+    Since we're only approximating the solution, we expect there to be some amount "left over", which we call the 
+    \textit{residual} and denote $R$. 
+    
+    \bigskip
+    \pause
+
+    The first equation in the system 
+    
+    $$
+    h_t + (hv)_t = 0
+    $$
+    
+    yields the residual term associated with conservation of mass:
+
+    $$
+    \left( \mathcal{N}_h \right)_t + \left( \mathcal{N}_h \mathcal{N}_v \right)_x = R_{mass}(x, t).
+    $$
+
+    \bigskip
+    \pause
+
+    The residual term associated with the momentum is obtained similarly, which we denote $R_{momentum}$.
+\end{frame}

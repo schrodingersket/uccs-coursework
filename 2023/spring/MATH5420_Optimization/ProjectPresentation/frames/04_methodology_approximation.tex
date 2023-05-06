@@ -1,0 +1,26 @@
+\begin{frame}
+    \frametitle{Methodology: Approximation}
+
+    Given some initial state (boundary conditions and initial conditions) of the system, we'd like to find out how
+    $h(x, t)$, $v(x, t)$, and $\beta(x)$ evolve over space and, where applicable, time.
+
+    \bigskip
+    \pause
+    Systems like this are rarely solveable analytically, so we utilize a numerical approach. 
+
+    \bigskip
+    \pause
+    One such approach is to create an analytic approximation function $\mathcal{N}: \mathbb{R}^2 \to \mathbb{R}^3$ to the true solution so that:
+
+    $$
+    \mathcal{N}(x, t) = \begin{pmatrix*}
+        \mathcal{N}_h \\
+        \mathcal{N}_v \\
+        \mathcal{N}_\beta 
+    \end{pmatrix*} \approx \begin{pmatrix*}
+        h \\
+        v \\
+        \beta
+    \end{pmatrix*}.
+    $$
+\end{frame}
