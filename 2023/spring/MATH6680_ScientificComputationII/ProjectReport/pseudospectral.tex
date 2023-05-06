@@ -1,0 +1,79 @@
+For this project, we utilized a Fourier collocation method along with a fourth-order Runge-Kutta time stepping. 
+Recall the definition of the Fourier Transform of a differentiable function $f$:
+\[\mathcal{F}(f(x)) \equiv \int_{-\infty}^{\infty}f(x)e^{-ikx}dx\]
+where $\mathcal{F}(f(x)) = \hat{f}(k)$ is a function in $k$. From this, we also have the inverse Fourier transform:
+\[f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{f}(k)e^{ikx}dk\]
+Differentiating both sides of the above equation yields
+\[\frac{df}{dx} = ik\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(x)e^{ikx}dx\]
+and so
+\[\hat{f'}(k) = ik\hat{f}(k)\]
+Taking the inverse Fourier transform of the above equation yields the general form for the derivative of a function with respect to its Fourier transform:
+\[f'(x) = \mathcal{F}^{-1}(ik\mathcal{F}(f(x)))\]
+Generalizing for the $n^{\text{th}}$ derivative, we find
+\[f^{(n)} = \mathcal{F}^{-1}(i^nk^n\mathcal{F}(f(x)))\]
+We can now apply this to a PDE with periodic boundary conditions. For the SWE, our PDE takes the following form:
+
+\begin{align*}
+    \begin{bmatrix}
+        h\\
+        uh
+    \end{bmatrix}_t
+    + 
+    \begin{bmatrix}
+        uh\\
+        hu^2 + \frac{gh^2}{2}
+    \end{bmatrix}_x
+    =
+    \begin{bmatrix}
+        0\\
+        -ghB_x
+    \end{bmatrix}
+\end{align*}    
+Using the Fourier transform, the above system becomes
+\begin{align*}
+    \begin{bmatrix}
+        h\\
+        uh
+    \end{bmatrix}_t
+    + 
+    \mathcal{F}^{-1}\left(ik\mathcal{F}\left(\begin{bmatrix}
+        uh\\
+        hu^2 + \frac{gh^2}{2}
+    \end{bmatrix} \right)\right)
+    = 
+    \begin{bmatrix}
+        0\\
+        -ghB_x
+    \end{bmatrix}
+\end{align*}
+For generating training data for the PINN, we utilized the fast Fourier transform (FFT) along with a fourth order Runge-Kutta for time stepping with various initial conditions. We also implemented linear bathymetry (i.e. $B_x = \text{constant}$).
+\newline\newline
+
+For the time stepping, we used a fourth order Runge-Kutta time stepping scheme. Notice the PDE above takes the time derivative of $u$ and $uh$. Rewriting the PDE as functions of $u$ and $uh$, we have
+\[\begin{bmatrix}
+    h\\
+    uh
+\end{bmatrix}_t = -\begin{bmatrix}
+    \mathcal{F}^{-1}(ik\mathcal{F}(uh))\\
+    ghB_x + \mathcal{F}^{-1}(ik\mathcal{F}((uh)^2/h + gh^2/2)) 
+\end{bmatrix} = \begin{bmatrix}
+    F_1(u,uh)\\
+    F_2(u,uh)
+\end{bmatrix}\]
+Then given $h_n$, our update step is given by
+\begin{align*}
+    k_{1,h} &= dt\frac{L}{2\pi}F_1(h_n, uh_n)\\
+    k_{2,h} &= dt\frac{L}{2\pi}F_1(h_n + k_{1,h}/2, uh_n)\\
+    k_{3,h} &= dt\frac{L}{2\pi}F_1(h_n + k_{2,h}/2, uh_n)\\
+    k_{4,h} &= dt\frac{L}{2\pi}F_1(h_n + k_{3,h}, uh_n)\\
+    h_{n+1} &= h_n + \frac{1}{6}(k_{1,h} + 2k_{2,h} + 2k_{3,h} + k_{4,h})
+\end{align*}
+And for the update for $uh_n$,
+\begin{align*}
+    k_{1,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n)\\
+    k_{2,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n + k_{1,uh}/2)\\
+    k_{3,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n + k_{2,uh}/2)\\
+    k_{4,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n + k_{3,uh})\\
+    uh_{n+1} &= \frac{1}{6}(k_{1,uh} + 2k_{2,uh} + 2k_{3,uh} + k_{4,uh})
+\end{align*}
+Where $dt$ is the time step, and $\frac{L}{2\pi}$ is the domain scaling factor.
