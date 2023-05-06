@@ -1,0 +1,53 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{subcaption}
+
+
+\lstdefinestyle{saneCode}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    frame=none,
+    numbers=none,
+    basicstyle=\tiny\ttfamily,
+    % keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    % identifierstyle=\color{blue},
+    backgroundcolor=\color{gray!10!white},
+    keepspaces,
+    upquote=true,
+    showstringspaces=false,
+}
+
+\usetheme{Singapore}
+\usecolortheme{default}
+
+\title{Seeing the Unseen with Machine Learning}
+\subtitle{A Physics-Informed Neural Network Approach to Inverse Problems}
+\author[Thompson, Nameika]{
+  Nameika, Michael \\
+  \and
+  Thompson, Jonathan
+}
+
+\institute[UCCS]{University of Colorado at Colorado Springs}
+
+\date[UCCS 2023]
+{May 08, 2023}
+
+% \logo{\includegraphics[height=1cm]{overleaf-logo}}
+
+\begin{document}
+\beamertemplatenavigationsymbolsempty
+
+% Title Page
+\frame{\titlepage}
+
+% Presentation Content
+\include{frames/01_the_problem.tex}
+\include{frames/02_background.tex}
+\include{frames/03_the_equations.tex}
+
+
+\end{document}
