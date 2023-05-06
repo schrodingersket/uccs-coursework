@@ -16,6 +16,8 @@
 \usepackage{mathtools}
 \usepackage{ifthen}
 \usepackage{optidef}
+\usepackage{float}
+\usepackage{dirtytalk}
 
 \setlength{\textwidth}{6.4in}
 \setlength{\textheight}{9.5in}
@@ -52,18 +54,21 @@
     \end{abstract}
 
     \section{Background}\label{sec:background}
-
-    \input{background.tex}
+        \input{background.tex}
 
     \section{Methodology}\label{sec:proposed-methodology}
 
     \subsection{Pseudospectral Methods}\label{subsec:pseudospectral-methodology}
-     
-    \input{pseudospectral.tex}
+        \input{pseudospectral.tex}
 
     \subsection{Physics-Informed Neural Networks}\label{subsec:pinn-methodology}
-
-    \input{pinn.tex}
+        \input{pinn.tex}
+            
+    \subsection{Optimization Algorithms}
+        \subsubsection{L-BFGS}
+            \input{l-bfgs.tex}
+        \subsubsection{Adam}
+            \input{adam.tex}
 
     \section{Comparison}\label{sec:comparison}
     
