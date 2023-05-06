@@ -14,7 +14,7 @@ xzero = [x y];
 N = length(t); %total number of points in the point cloud
 
 plot(x, y, 'k.')
-% axis equal
+axis equal
 
 xzero = [xzero(end, :); xzero; xzero(1, :)];
 
@@ -35,7 +35,7 @@ plot(xzero(:, 1), xzero(:,2), 'ro', 'DisplayName', 'x_j')
 hold on
 plot(xplus(:,1), xplus(:, 2), 'b*', 'DisplayName', 'x_j^+')
 plot(xminus(:,1), xminus(:, 2), 'gd', 'DisplayName', 'x_j^-')
-% legend()
+legend()
 
 axis([-2 2 -2 2])
 print('problem_1i.png', '-dpng')
@@ -46,7 +46,7 @@ hold on
 plot3(xplus(:, 1), xplus(:, 2), alpha*ones(N, 1), 'b*', 'DisplayName', 'x_j^+')
 plot3(xminus(:, 1), xminus(:, 2), -alpha*ones(N, 1), 'gd', 'DisplayName', 'x_j^-')
 axis([-2 2 -2 2 -3*alpha 3*alpha])
-% legend()
+legend()
 grid on
 hold on
 
@@ -95,5 +95,5 @@ axis([-2 2 -2 2])
 v = [-alpha, 0, alpha];
 v = [0, 0.001];
 contour(Xplot, Yplot, Zplot, v, 'DisplayName', 'RBF Interpolant')
-% legend()
+legend()
 print('problem_1iii.png', '-dpng')
