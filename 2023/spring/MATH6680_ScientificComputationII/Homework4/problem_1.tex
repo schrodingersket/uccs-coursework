@@ -7,16 +7,79 @@ $$
 given by a particular parameterization $x = x(t)$, $y = y(t)$, where $t \in [0, L]$. For a choice of parameter values
 $\{t_j\} = \{t_1, \dots, t_N\}$, consider the point cloud 
 $\{ \bm{x}_j = \left( x_j, y_j \right) = \left( x_j(t), y_j(t) \right) \}$. Suppose we wish to reconstruct the implicit 
-function from the given point cloud.
+function from the given point cloud. Follow the following steps to interpolant the point cloud with a derivative-aware 
+RBF:
 
 
 \begin{enumerate}[(i)]
-  \item \input{problem_1i.tex}
-  \pagebreak
-  \item \input{problem_1ii.tex}
-  \pagebreak
-  \item \input{problem_1iii.tex}
-  \pagebreak
-  \item \input{problem_1iv.tex}
-  \pagebreak
+  \item Find an (outer) normal direction $\bm{n}_j$ to the curve at each point $\bm{x}_j$.
+  \item Fix $\alpha > 0$ and compute the inner and outer points
+        $$
+          \bm{x}_j^- = \bm{x}_j - \alpha \bm{n}_j, \quad \bm{x}_j^+ = \bm{x}_j + \alpha \bm{n}_j.
+        $$
+  \item Interpolate the $3N$ data $\left( (\bm{x}_j^-, -\alpha), (\bm{x}_j, 0), (\bm{x}_j^+, \alpha) \right)$ using RBF interpolants, i.e., find a function $F: \mathbb{R}^2 \to \mathbb{R}$
+        $$
+          F(\bm{x}) = \sum\limits_{j=1}^{N} c_j \phi \left( \lVert \bm{x} - \bm{x}_j \rVert \right)
+        $$
+
+        such that $F(\bm{x}_j) = 0$, $F(\bm{x}_j^-) = -\alpha$, and $F(\bm{x}_j^+) = \alpha$.
+  \item Restrict $F$ to the level set $F(x, y) = 0$ to obtain the RBF interpolation for the implicit curve $f(x, y) = 0$.
 \end{enumerate}
+
+\begin{solution}
+  We consider the Fernandez-Guasti equation
+
+  $$
+  s^2 x^2 y^2 - \left( x^2 + y^2 \right) + 1 = 0,
+  $$
+
+  with squareness parameter $s$. When $s = 0$, the above equation represents a circle of radius 1; when $s = 1$, the 
+  equation corresponds to a square of side length 2. When $0 < s < 1$, we obtain what is colloquially known as a 
+  squircle. With an Elliptic Grid mapping, this becomes the system of parametric equations:\footnote{
+    See \href{https://arxiv.org/vc/arxiv/papers/1604/1604.02174v1.pdf}{https://arxiv.org/vc/arxiv/papers/1604/1604.02174v1.pdf} 
+    for details.
+  }
+
+  $$
+  f(x, y) = \begin{cases}
+    x(t) = \frac{1}{2} \left(2 + 2 \sqrt{2} \cos{t} + \cos{2t}\right)^{\frac{1}{2}} - \frac{1}{2} \left(2 - 2 \sqrt{2} \cos{t} + \cos{2t}\right)^{\frac{1}{2}}\\
+    y(t) = \frac{1}{2} \left(2 + 2 \sqrt{2} \sin{t} - \cos{2t}\right)^{\frac{1}{2}} - \frac{1}{2} \left(2 - 2 \sqrt{2} \sin{t} - \cos{2t}\right)^{\frac{1}{2}}.
+  \end{cases}
+  $$
+
+  \pagebreak
+  We generate a point cloud with $s=0.95$ and random noise in the $x$ direction and compute normal directions $\bm{n}_j$ 
+  at each point to obtain $\bm{x}^-_j$ and $\bm{x}^+_j$. We plot these points For $L = 2 \pi$ in Figure 
+  \ref{fig:problem_1i}.
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=\textwidth]{problem_1i.png}
+    \caption{Squircle point cloud}
+    \label{fig:problem_1i}
+  \end{figure}
+
+  \pagebreak
+  In Figure \ref{fig:problem_1ii}, we project the point cloud onto the $xyz$-plane and plot the RBF interpolant of the
+  now-3D point cloud. We see that the RBF interpolant correctly captures the squircular point cloud shape.
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=\textwidth]{problem_1ii.png}
+    \caption{3D RBF interpolant}
+    \label{fig:problem_1ii}
+  \end{figure}
+
+  \pagebreak
+  Lastly, we project the RBF interpolant onto the $xy$-plane to find our interpolant for $f(x, y)$, in Figure 
+  \ref{fig:problem_1iii}:
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=\textwidth]{problem_1iii.png}
+    \caption{2D Squircular RBF Interpolant}
+    \label{fig:problem_1iii}
+  \end{figure}
+
+  All calculations and plots are computed in \texttt{problem\_1.m}.
+\end{solution}
