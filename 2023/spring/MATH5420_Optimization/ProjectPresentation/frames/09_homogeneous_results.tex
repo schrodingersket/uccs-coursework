@@ -1,0 +1,23 @@
+\begin{frame}
+    \frametitle{Results: Homogeneous System}
+
+    We apply this methodology to the homogenous system, where friction is negligible and our bathymetry function 
+    $\beta(x)$ is zero so that fluid flows over a flat surface.  We impose periodic boundary conditions, no initial 
+    velocity, and the following sinusoidal initial condition
+
+    $$
+    h(x, 0) = 2 + \sin{\left( \frac{\pi x}{100} \right)}
+    $$
+
+    where $x \in [0, 200]$ and $t \in [0, 15]$.
+
+    \bigskip
+    \pause
+
+    After 50000 iterations with Adam and 12000 of L-BFGS, we obtain a mean PDE residual (over a randomly sampled 
+    subset $\Omega$ of our domain) of 
+    
+    $$
+    \lVert R(\Omega) \rVert_2 = 0.006090.
+    $$
+\end{frame}
