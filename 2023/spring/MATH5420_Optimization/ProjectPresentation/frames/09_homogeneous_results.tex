@@ -1,7 +1,7 @@
 \begin{frame}
     \frametitle{Results: Homogeneous System}
 
-    We apply this methodology to the homogenous system, where friction is negligible and our bathymetry function 
+    We apply this methodology to the homogeneous system, where friction is negligible and our bathymetry function 
     $\beta(x)$ is zero so that fluid flows over a flat surface.  We impose periodic boundary conditions, no initial 
     velocity, and the following sinusoidal initial condition
 
@@ -11,13 +11,15 @@
 
     where $x \in [0, 200]$ and $t \in [0, 15]$.
 
-    \bigskip
+    \medskip
     \pause
 
-    After 50000 iterations with Adam and 12000 of L-BFGS, we obtain a mean PDE residual (over a randomly sampled 
+    After 50,000 Adam iterations and 12,000 L-BFGS iterations, we obtain a mean PDE residual (over a randomly sampled 
     subset $\Omega$ of our domain) of 
     
     $$
     \lVert R(\Omega) \rVert_2 = 0.006090.
     $$
+
+    We call the resulting neural network solution a \textit{physics-informed neural network} (PINN).
 \end{frame}

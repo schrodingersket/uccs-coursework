@@ -1,0 +1,20 @@
+\begin{frame}
+    \frametitle{Methodology: Inference}
+
+    To account for the new experimental data, we'll also add a new residual term $R_{data}$ to ensure that our neural
+    network is consistent with these measurements:
+
+    $$
+    R_{data} = \frac{1}{N} \sum\limits_{i=1}^N \left( \mathcal{N}_h (x_i, t_i) - h_i \right)^2 
+                                             + \left( \mathcal{N}_v (x_i, t_i) - v_i \right)^2.
+    $$
+
+    \bigskip
+    \pause
+    Our new optimization problem then becomes
+
+    $$
+    \min_{\mathcal{N}} {\lVert R_{mass} \rVert + \lVert R_{momentum} \rVert + \lVert R_{data} \rVert}.
+    $$
+
+\end{frame}
