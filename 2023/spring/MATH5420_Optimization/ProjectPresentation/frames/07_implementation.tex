@@ -1,0 +1,22 @@
+\begin{frame}
+    \frametitle{Implementation}
+
+    Neural networks fit the bill! What are they?
+
+    \medskip
+    \pause
+
+    A (feedforward) neural network is an affine composition (e.g., $f(g(x)) = m g(x) + b$) of multivariate ``squashing''
+    functions, such as the sigmoid or hyperbolic tangent functions. 
+   
+    \bigskip
+    \pause More importantly, for particular choices of ``squashing" functions, neural networks are:
+    \bigskip
+
+    \begin{itemize}
+        \setlength\itemsep{1.5em}
+        \item Universal function approximators (for Borel-measurable functions over compact domains).
+        \item Infinitely differentiable (analytic).
+        \item Trainable via gradient descent (by modifying the coefficients $m$ and $b$ of the affine maps).
+    \end{itemize}
+\end{frame}
