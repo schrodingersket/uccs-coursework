@@ -1,0 +1,18 @@
+\begin{frame}
+    \frametitle{Optimization Algorithms}
+    \textbf{Adaptive Moment Estimation (Adam)}
+    
+    \bigskip
+    Adam SGD approximates the full gradient of the objective function over the computational domain by numerically computing the gradient over a random subset. An update has the form
+    \[x_{k+1} = x_k - \alpha_i \nabla f_i(x_k)\]
+    where $f_i$ is the objective function sampled at the $i^{\text{th}}$ domain point and $\alpha_i$ is a variable learning rate based on the computed gradient
+    from previous iterations.
+
+    \pause
+    \bigskip
+
+    \textbf{Limited-Memory BFGS (L-BFGS)}
+    
+    \bigskip
+    L-BFGS approximates the inverse Hessian of the objective function by a recursive algorithm that utilizes at most $m$ past updates of the gradient and data values.
+\end{frame}
