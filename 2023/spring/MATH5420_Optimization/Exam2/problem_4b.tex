@@ -190,9 +190,34 @@ Find and classify all minimizers, maximizers, and saddle points.
 
     from which we obtain no further information beyond the fact that $x_1 = -x_2$ is a level curve of $f$. When 
     $x_1 > 0$, we have $\lambda_2 > 0$ so that the necessary (but not sufficient) conditions for a minimizer are 
-    satisfied for $x_1 \in \mathopen( 0, \frac{1}{\sqrt{2}}\mathclose ]$. Similarly, the necessary conditions for a 
-    maximizer are satisfied for $x_1 \in \mathopen[ -\frac{1}{\sqrt{2}}, 0 \mathclose)$ and at $x_1 = 0$, we simply have
-    $x_1 = x_2 = \lambda_1 = \lambda_2 = f(x) = 0$. These results are confirmed graphically in Figure 
+    satisfied for $x_1 \in \mathopen( 0, \frac{1}{\sqrt{2}}\mathclose ]$. In particular, for the feasible direction 
+    $p = (1, 1)^T$ and any $\epsilon > 0$ along $x_1 = -x_2$ (so that $f(x_1, x_2) = 0$), we have
+
+    \begin{align*}
+        f(x + \epsilon p) &= f(x_1 + \epsilon, x_2 + \epsilon) \\
+                          &= x_1^2 + 2x_1 \epsilon + \epsilon^2 - (x_2^2 + 2x_2 \epsilon + \epsilon^2) \\
+                          &= f(x_1, x_2) + 2 \epsilon (x_1 - x_2) \\
+                          &= 2 \epsilon (x_1 - x_2).
+    \end{align*}
+
+    Hence $f(x + \epsilon p) > f(x)$ whenever $x_1 > x_2$ and $f(x + \epsilon p) < f(x)$ whenever $x_1 < x_2$. Since
+    $x_1 \ge x_2$ along $x_1 = -x_2$ when $x_1 > 0$, we have conclude that this segment of our active constraint is a
+    local minimizer. A similar argument in the other direction shows that $x_1 = -x_2$ is a local maximizer for 
+    $x_1 < 0$.
+
+    At $x_1 = 0$, we simply have $x_1 = x_2 = \lambda_1 = \lambda_2 = f(x) = 0$. For feasible direction $p_1 = e_1$, we
+    have
+
+
+    \begin{align*}
+        f(x + \epsilon p_1) &= f(x_1 + \epsilon, x_2) \\
+                            &= x_1^2 + 2x_1 \epsilon + \epsilon^2 - x_2^2 \\
+                            &= \epsilon^2 \\
+    \end{align*}
+
+    so that $f(x + \epsilon p_1) > f(x)$ for all $\epsilon > 0$. A similar argument for $p_2 = e_2$ shows that 
+    $f(x + \epsilon p_2) = -\epsilon^2$ and hence $f(x + \epsilon p_2) < f(x)$ for all $\epsilon < 0$. The stationary 
+    point $(0, 0)^T$ is therefore a saddle point. These results are confirmed graphically in Figure 
     \ref{fig:problem_4b}.
 
     \begin{figure}[h]
