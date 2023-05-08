@@ -1,14 +1,23 @@
-We first present the 1-D shallow-water equations for flood waves with variable bathymetry\cite{whitham1999_ch3}:
+We first present the 1-D shallow-water equations (SWE) for flood waves with variable bathymetry\cite{whitham1999_ch3}:
 
 \begin{align*}
     h_t + (h v)_x &= 0 \\
     (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x &= g h \sin{(\alpha)} - C_f v^2
 \end{align*}
 
-where $v$ represents the average wave velocity, $h$ is the water depth, and $C_f$ is a friction
-coefficient. Of these, $v$ and $h$ vary in time and space and while $C_f$ may, in general, vary with space we assume
-it to be constant in this project. We expand the left-hand side of the second equation via the chain rule and 
-substitute $h_t = -h_x v - h v_x$ from the first equation to find: 
+where $v$ represents the average wave velocity, $h$ is the water depth, $C_f$ is a friction coefficient. Of these, $v$ 
+and $h$ vary in time and space and $C_f$ and $\alpha$ may, in general, vary in space. For the scope of this project, we 
+assume negligible friction so that $C_f$ is zero throughout. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/swe_diagram.png}
+    \caption{Shallow water scheme}
+\end{figure}
+
+\pagebreak
+We expand the left-hand side of the second equation via the
+chain rule and substitute $h_t = -h_x v - h v_x$ from the first equation to find: 
 
 \begin{align*}
     (h v)_t + \left[ hv^2 + \frac{1}{2} g h^2 \cos{(\alpha)} \right]_x 
@@ -29,34 +38,34 @@ $$
 where (after dividing through by $h$)
 
 $$
-\textbf{u} = \begin{pmatrix}
+\textbf{u} = \begin{bmatrix}
     h \\
     v
-\end{pmatrix}, \quad F(\textbf{u}) = \begin{pmatrix}
+\end{bmatrix}, \quad F(\textbf{u}) = \begin{bmatrix}
     hv \\
     \frac{v^2}{2} + g h \cos{(\alpha)}
-\end{pmatrix}, \quad S(\textbf{u}) = \begin{pmatrix}
+\end{bmatrix}, \quad S(\textbf{u}) = \begin{bmatrix}
     0 \\
     g \sin{(\alpha)} - C_f \frac{v^2}{h} + \frac{1}{2} g h [\cos{(\alpha)}]_x
-\end{pmatrix}.
+\end{bmatrix}.
 $$
 
 We expand $[F(\textbf{u})]_x$ to find:
 
 $$
-[F(\textbf{u})]_x = \begin{pmatrix}
+[F(\textbf{u})]_x = \begin{bmatrix}
     h v_x + h_x v \\
     v v_x + g h_x \cos{(\alpha)} + g h [\cos{(\alpha)}]_x
-\end{pmatrix} = \begin{pmatrix}
+\end{bmatrix} = \begin{bmatrix}
     v                & h \\
     g \cos{(\alpha)} & v
-\end{pmatrix} \begin{pmatrix}
+\end{bmatrix} \begin{bmatrix}
     h \\
     v
-\end{pmatrix}_x + \begin{pmatrix}
+\end{bmatrix}_x + \begin{bmatrix}
     0 \\
     g h [\cos{(\alpha)}]_x
-\end{pmatrix}
+\end{bmatrix}
 $$
 
 and so our system becomes
@@ -68,23 +77,23 @@ $$
 where 
 
 $$
-A = \begin{pmatrix}
+A = \begin{bmatrix}
     v                & h \\
     g \cos{(\alpha)} & v
-\end{pmatrix}, \quad \tilde{S} = \begin{pmatrix}
+\end{bmatrix}, \quad \tilde{S} = \begin{bmatrix}
     0 \\
     g \sin{(\alpha)} \left(1 + \frac{1}{2} h \alpha_x \right) - C_f \frac{v^2}{h}
-\end{pmatrix}.
+\end{bmatrix}.
 $$
 
-When $\alpha = 0$ and frictional forces are negligible (i.e., $C_f = 0$), we recover the homogenous system:
+When $\alpha = 0$ and frictional forces are negligible (i.e., $C_f = 0$), we recover the homogeneous system:
 
 $$
-A = \begin{pmatrix}
+A = \begin{bmatrix}
     v  & h \\
     g  & v
-\end{pmatrix}, \quad \tilde{S} = \begin{pmatrix}
+\end{bmatrix}, \quad \tilde{S} = \begin{bmatrix}
     0 \\
     0
-\end{pmatrix}.
+\end{bmatrix}.
 $$

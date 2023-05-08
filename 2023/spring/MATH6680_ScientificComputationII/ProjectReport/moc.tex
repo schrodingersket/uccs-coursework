@@ -1,13 +1,13 @@
-We begin by solving the homogenous system (i.e., we set $\tilde{S}(\textbf{u}) = 0$). The eigenvalues of $A$ are given by
+We begin by solving the homogeneous system (i.e., we set $\tilde{S}(\textbf{u}) = 0$). The eigenvalues of $A$ are given by
 
 \[\renewcommand\arraystretch{1.5}
-\lambda = \begin{pmatrix}
+\lambda = \begin{bmatrix}
     \lambda_1 \\
     \lambda_2
-\end{pmatrix} = \begin{pmatrix}
+\end{bmatrix} = \begin{bmatrix}
     v + \sqrt{g h \cos{(\alpha)}} \\
     v - \sqrt{g h \cos{(\alpha)}}
-\end{pmatrix}
+\end{bmatrix}
 \]
 
 \noindent with corresponding right eigenvectors\footnote{
@@ -16,22 +16,22 @@ We begin by solving the homogenous system (i.e., we set $\tilde{S}(\textbf{u}) =
 }
 
 \[\renewcommand\arraystretch{1.5}
-r_1 = \begin{pmatrix}
+r_1 = \begin{bmatrix}
     \sqrt\frac{h}{g \cos{(\alpha)}} \\
     -1 \\
-\end{pmatrix}, \quad r_2 = \begin{pmatrix}
+\end{bmatrix}, \quad r_2 = \begin{bmatrix}
     1 \\
     \sqrt\frac{h}{g \cos{(\alpha)}}
-\end{pmatrix}.
+\end{bmatrix}.
 \]
 
 \noindent In the $x-t$ plane, our characteristic curves are defined by
 
 \[\renewcommand\arraystretch{1.5}
-\frac{d\textbf{x}}{dt} = \textbf{\lambda} (\textbf{u}(x(t), t)) = \begin{pmatrix}
+\frac{d\textbf{x}}{dt} = \textbf{\lambda} (\textbf{u}(x(t), t)) = \begin{bmatrix}
     v + \sqrt{g h \cos{(\alpha)}} \\
     v - \sqrt{g h \cos{(\alpha)}}
-\end{pmatrix}
+\end{bmatrix}
 \]
 
 \noindent To determine our Riemann invariants, we seek out (currently unknown) quantitities $W_i$ which are conserved 
@@ -67,11 +67,11 @@ $$
 The vector $-\nabla W_i (\textbf{u})$ is therefore a right eigenvector of $A(\textbf{u})^T$, and so the matrix
 
 $$
-\begin{pmatrix}
+\begin{bmatrix}
     \vert                   & \cdots & \vert \\
     -\nabla W_1(\textbf{u}) & \cdots & -\nabla W_n(\textbf{u})  \\
     \vert                   & \cdots & \vert
-\end{pmatrix} = -\textbf{J}(W)^T
+\end{bmatrix} = -\textbf{J}(W)^T
 $$
 
 \noindent diagonalizes $A(\textbf{u})^T$, where $\textbf{J}(W)$ is the Jacobian of $W$. We define $L = -\textbf{J}(W)^T$
@@ -87,23 +87,23 @@ and write $A(\textbf{u})^T = L \Lambda L^{-1}$. Taking the transpose of both sid
 right eigenvectors of $A(\textbf{u})$ are given by:
 
 $$
-r_1 = \begin{pmatrix}
+r_1 = \begin{bmatrix}
     \sqrt\frac{h}{g \cos{(\alpha)}} \\
     -1 \\
-\end{pmatrix}, \quad r_2 = \begin{pmatrix}
+\end{bmatrix}, \quad r_2 = \begin{bmatrix}
     \sqrt\frac{h}{g \cos{(\alpha)}} \\
     1
-\end{pmatrix}.
+\end{bmatrix}.
 $$
 
 \noindent and hence the matrix 
 
 $$
-R = \begin{pmatrix}
+R = \begin{bmatrix}
     \vert & \cdots & \vert \\
     r_1   & \cdots & r_n   \\
     \vert & \cdots & \vert
-\end{pmatrix}
+\end{bmatrix}
 $$
 
 \ \\
@@ -111,13 +111,13 @@ $$
 we obtain $L^T = R^{-1}$ and so:
 
 \[\renewcommand\arraystretch{2}
--\textbf{J}(W) = L^T = R^{-1} = \begin{pmatrix}
+-\textbf{J}(W) = L^T = R^{-1} = \begin{bmatrix}
     \sqrt{\frac{h}{g \cos{(\alpha)}}} & 1 \\
     -1                                & \sqrt{\frac{h}{g \cos{(\alpha)}}}
-\end{pmatrix}^{-1} = \begin{pmatrix*}[r]
+\end{bmatrix}^{-1} = \begin{bmatrix*}[r]
     \sqrt{\frac{g \cos{(\alpha)}}{4h}} & -\frac{1}{2} \\
     \sqrt{\frac{g \cos{(\alpha)}}{4h}} &  \frac{1}{2} \\
-\end{pmatrix*}
+\end{bmatrix*}
 \]
 
 \noindent which at last allows us to explicitly compute the Riemann invariants, which we use to compute upwinded 
@@ -128,8 +128,8 @@ numerical flux at cell boundaries in the Discontinuous Galerken method: \footnot
 }
 
 \[\renewcommand\arraystretch{2}
-W = \begin{pmatrix}
+W = \begin{bmatrix}
     \frac{v}{2} - \sqrt{g h \cos{(\alpha)}} \\ 
     \frac{v}{2} + \sqrt{g h \cos{(\alpha)}} 
-\end{pmatrix}.
+\end{bmatrix}.
 \]

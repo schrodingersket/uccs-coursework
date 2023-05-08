@@ -21,7 +21,7 @@ def swe_1d(domain, ics, bcs, g=9.81, C_f=0, samples=None, iterations=50000, lr=1
     
         alpha_x = dde.grad.jacobian(y, x, i=2, j=0)
     
-        # Inhomogenous system with variable bathymetry (alpha)
+        # Inhomogeneous system with variable bathymetry (alpha)
         #
         return [
             (h_t + (h * v_x + h_x * v)) + 0,
