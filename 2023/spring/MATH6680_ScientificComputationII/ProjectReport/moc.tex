@@ -34,7 +34,7 @@ r_1 = \begin{bmatrix}
 \end{bmatrix}
 \]
 
-\noindent To determine our Riemann invariants, we seek out (currently unknown) quantitities $W_i$ which are conserved 
+\noindent To determine our Riemann invariants, we seek out (currently unknown) quantities $W_i$ which are conserved 
 (i.e., constant) along some curve $\mathcal{C}$. In particular, we wish to find $\textbf{W}$ along our
 characteristic curves, so that:
 
@@ -120,10 +120,10 @@ we obtain $L^T = R^{-1}$ and so:
 \end{bmatrix*}
 \]
 
-\noindent which at last allows us to explicitly compute the Riemann invariants, which we use to compute upwinded 
-numerical flux at cell boundaries in the Discontinuous Galerken method: \footnote{
+\noindent which at last allows us to explicitly compute the Riemann invariants, which we use to compute upwind 
+numerical flux at cell boundaries in the Discontinuous Galerkin method: \footnote{
     We note that multiplying eigenvectors by a scalar value along the way has the effect of scaling the corresponding 
-    Riemman invariants. Our Riemann invariants may therefore be equivalently be expressed \linebreak
+    Riemman invariants. Our Riemann invariants may therefore be equivalently expressed \linebreak
     $W = (v - 2 \sqrt{gh \cos{\alpha}}, v + 2 \sqrt{gh \cos{\alpha}})^T$.
 }
 

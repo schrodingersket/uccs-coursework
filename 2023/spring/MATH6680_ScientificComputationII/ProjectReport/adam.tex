@@ -1,9 +1,8 @@
 Stochastic Gradient Descent (SGD) is used ubiquitously for minimizing neural network loss functions. SGD is an iterative 
-method which is a stochastic approximation of typical gradient descent. SGD tends to achieve faster computation time of 
-iterations at the expense of a slower convergence rate. In typical gradient descent, the gradient of the objective 
-function is computed over the entire domain  of data points, whereas SGD takes sampled subsets of the domain and 
-approximates the gradient over this random sample. That is, in typical gradient descent for machine learning, our 
-problem may look like
+method which is a stochastic approximation of standard gradient descent. SGD tends to achieve faster computation time of 
+iterations at the expense of a slower convergence rate. In the standard gradient descent algorithm, the gradient of the
+objective function is computed over the entire domain  of data points, whereas SGD approximates the gradient by computing
+the gradient over a randomly sampled subset of the domain. With standard gradient descent, our problem may look like
 
 \begin{align*}
     \text{minimize} \hspace{1em} f(x) = \frac{1}{2}\sum_{i \in D} \|N(x) - y_i \|^2
@@ -24,7 +23,7 @@ $$
 \noindent where $\nabla f_i(x)$ is the estimated gradient of $f$ over a domain sample.
 
 We utilize the Adam SGD algorithm to narrow our initial search for a minimizer. Adam (Adaptive Moment Estimation) is a 
-varation of traditional SGD which runs averages with exponential \say{forgetting} of both gradients and second moments
+variation of traditional SGD which runs averages with exponential \say{forgetting} of both gradients and second moments
 of gradients. Given parameters $w^{(t)}$ and a loss function $L^{(t)}$ with $t$ indexing the current training iteration 
 starting from 0, the Adam parameter update is given in Figure \ref{fig:adam_algorithm},
 

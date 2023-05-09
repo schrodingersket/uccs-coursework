@@ -1,8 +1,8 @@
-We outline two approaches for solving this system of equations. In the titular scheme, we create a neural network which 
+We outline two approaches for solving this system of equations. In the titular scheme, we create a neural network that 
 serves as an approximation to the true solution of the system. By minimizing the PDE residual, we train the neural 
 network to satisfy the SWE system and call the resulting neural network a \textit{physics-informed neural network} 
 (PINN). The auxiliary approach we use is a classical Fourier pseudospectral method; because 
-stability and convergence properties for these methods are well understood, pseudospectral solutions are dual-purpose.
-Firstly, the pseudospectral solution serves as a reference with which to compare results obtained in the PINN scheme. 
-The second and equally important purpose for pseudospectral solutions is to simulate experimental observations for 
-wave height and velocity from which to infer bathymetry via a PINN. 
+stability and convergence properties for these methods are well understood, pseudospectral solutions serve two important
+purposes in this project. Firstly, the pseudospectral solution serves as a reference with which to compare results
+obtained in the PINN scheme. The second role of our pseudospectral solutions is to simulate experimental observations 
+for wave height and velocity from which to infer bathymetry via a PINN. 

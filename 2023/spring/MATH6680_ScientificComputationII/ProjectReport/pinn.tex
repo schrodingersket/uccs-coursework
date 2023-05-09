@@ -1,14 +1,13 @@
-In the Physics-Informed Neural Network approach, we adopt the approach taken by Raissi et. al. 
-\cite{raissi_physics-informed_2019} and approximate the solution to the system of equations with a neural 
-network. In particular, we seek neural network solution surrogates to (possibly nonlinear) partial differential 
-equations of the form 
+In the Physics-Informed Neural Network approach, we build upon the methodology developed by Raissi et. al. 
+\cite{raissi_physics-informed_2019} and approximate the solution to a system of partial differential equations with a
+neural network. In particular, we seek neural network solution surrogates to (possibly nonlinear) equations of the form 
 
 $$
 u_t + \mathcal{N}[u; \lambda] = 0, \quad x \in \Omega, \quad t \in [0, T]
 $$
 
-where $\mathcal{N}$ is a (possibly nonlinear) parameterized spatial differentiation operator and $\Omega$ is a subset of 
-$\mathbb{R}^n$. In the case of the shallow water equations, we have:
+where $\mathcal{N}$ is a parameterized spatial differentiation operator and $\Omega$ is a subset of $\mathbb{R}^n$. In 
+the case of the shallow water equations, we have:
 
 $$
 \mathcal{N}[u; \lambda] = [F(u; \lambda)]_x - S(u; \lambda), \quad u = \begin{bmatrix}
@@ -34,13 +33,14 @@ $$
 MSE_u = \frac{1}{N_u} \sum_{i=1}^{N_u} |U(x_i, t_i; \theta) - u(x_i, t_i)|^2
 $$
 
-where $u(x_i, t_i)$ is the sampled data. We may therefore view the process of finding a neural network which satisfies 
-the PDE as an unconstrained optimization problem:
+where $u(x_i, t_i)$ represents a particular data sample and $U(x_i, t_i; \theta)$ the neural network prediction at that
+sample point. We may therefore view the process of finding a neural network that satisfies the PDE as the unconstrained 
+optimization problem:
 
 \begin{mini*}
     {\theta}{MSE_f + MSE_u}{}{}
 \end{mini*}
 
-For this project, we generate an artifical data set for the $MSE_u$ term by first solving the PDE via pseudospectral 
+For this project, we generate an artificial data set for the $MSE_u$ term by first solving the PDE via pseudospectral 
 methods and sampling the numerical solution at various temporospatial points. We train the neural network using DeepXDE
-\cite{lu_deepxde_2021}, a Python library based on Tensorflow and PyTorch which facilitates solving PDEs via PINNs. 
+\cite{lu_deepxde_2021}, a Python library based on Tensorflow and PyTorch for solving PDEs via PINNs. 

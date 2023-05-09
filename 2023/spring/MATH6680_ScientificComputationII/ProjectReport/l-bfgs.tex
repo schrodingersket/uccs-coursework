@@ -1,7 +1,8 @@
 
 The limited memory BFGS algorithm (L-BFGS) approximates the inverse Hessian (denoted by $H$) using $m$ past updates of 
 the position and the gradient at the position. These updates are used to implicitly approximate the inverse Hessian. In 
-contrast to inverse Hessian approximated in the BFGS algorithm, the L-BFGS algorithm approximates the Hessian itself.
+contrast to the BFGS algorithm (which stores a dense approximation to the inverse of the Hessian), the L-BFGS algorithm 
+stores an implicit and lightweight approximation to the inverse Hessian.
 
 
 In a manner similar to the BFGS algorithm, we define

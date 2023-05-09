@@ -1,4 +1,4 @@
-To simulate experimental observations and generate a reference solution, we utilize a Fourier collocation method along 
+To simulate experimental observations and generate a reference solution, we adopt the approach used by Fabien \cite{fabien2014spectral} and utilize a Fourier collocation method along 
 with fourth-order Runge-Kutta time stepping. Recall the definition of the Fourier Transform of a differentiable function 
 $f$:
 
@@ -76,7 +76,7 @@ $\mathcal{F}^{-1}$ to the resulting expression. Upon doing so, our system become
     \end{bmatrix}.
 \end{align*}
 
-We approximate the time derivative with a fourth order Runge-Kutta time stepping scheme. This system is expressed in 
+We approximate the time derivative with a fourth-order Runge-Kutta time-stepping scheme. This system is expressed in 
 terms of the time derivatives of $u$ and $uh$; we therefore rewrite the second equation in the system in 
 terms of $u$ and $uh$ to find:
 
@@ -116,7 +116,7 @@ $$
 
 where $dt$ is the time step and $\frac{L}{2\pi}$ the domain scaling factor. To simulate our desired experimental 
 measurement data, we solve the SWE system subject to various (sinusoidal) initial conditions and bathymetry functions. 
-In the homogeneous scheme, we impose a bathymetry function which is identically zero; for the inhomogeneous system, we
+In the homogeneous scheme, we impose a bathymetry function that is identically zero; for the inhomogeneous system, we
 impose a sinusoidal bathymetry. The exact functions used for these computations are described in Section 
 \ref{sec:results} and results of these computations for the homogenous system are shown in Figures 
 \ref{fig:homogeneous_pseudospectral_swe_height} and \ref{fig:homogeneous_pseudospectral_swe_velocity}; inhomogeneous 
