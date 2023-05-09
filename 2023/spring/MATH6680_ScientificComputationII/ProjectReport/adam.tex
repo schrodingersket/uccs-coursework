@@ -26,12 +26,13 @@ $$
 We utilize the Adam SGD algorithm to narrow our initial search for a minimizer. Adam (Adaptive Moment Estimation) is a 
 varation of traditional SGD which runs averages with exponential \say{forgetting} of both gradients and second moments
 of gradients. Given parameters $w^{(t)}$ and a loss function $L^{(t)}$ with $t$ indexing the current training iteration 
-starting from 0, the Adam parameter update is given by
+starting from 0, the Adam parameter update is given in Figure \ref{fig:adam_algorithm},
 
 \begin{figure}[H]
-    \includegraphics[width=0.6\textwidth]{images/adam.png}
+    \includegraphics[width=0.40\textwidth]{images/adam.png}
     \centering
     \caption{Outline of the Adam stochastic gradient descent algorithm. Taken from Wikipedia.}
+    \label{fig:adam_algorithm}
 \end{figure}
 
 where $\epsilon$ is small ($\sim10^{-8})$ and $\beta_1$ ($\sim0.9$) and $\beta_2$ ($\sim0.999$) are called the forgetting factors for the gradients and second moments of the gradients. The square root and squaring operations are done elementwise. 

@@ -1,7 +1,7 @@
 
 The limited memory BFGS algorithm (L-BFGS) approximates the inverse Hessian (denoted by $H$) using $m$ past updates of 
 the position and the gradient at the position. These updates are used to implicitly approximate the inverse Hessian. In 
-contrast to the BFGS algorithm, BFGS approximates the Hessian matrix, as opposed to the inverse Hessian.
+contrast to inverse Hessian approximated in the BFGS algorithm, the L-BFGS algorithm approximates the Hessian itself.
 
 
 In a manner similar to the BFGS algorithm, we define
@@ -11,10 +11,10 @@ In a manner similar to the BFGS algorithm, we define
     y_k &= \nabla f(x_{k+1}) - \nabla f(x_k).
 \end{align*}
 
-We also define $\rho = \frac{1}{y_k^Ts_k}$. The update for the inverse Hessian is given as
+\noindent For convenience, we also define $\rho = \frac{1}{y_k^Ts_k}$. The update for the inverse Hessian is given by
 
 $$
-    H_{k+1} = (I - \rho_ks_ky_k^T)H_k(I - \rho_ky_ks_k^T) + \rho_ks_ks_k^T
+    H_{k+1} = (I - \rho_ks_ky_k^T)H_k(I - \rho_ky_ks_k^T) + \rho_ks_ks_k^T.
 $$
 
 For the low-storage aspect, we define a sequence of vectors $q_{k-m}, \dots, q_k$ at a fixed $k$ to be 
@@ -22,13 +22,11 @@ $q_k = \nabla f(x_k)$ and $q_i = (I - \rho_iy_is_i^T)q_{i+1}$. Define another se
 as $z_i = H_iq_i$. The value of $z_k$ is said to be an ascent direction. The L-BFGS algorithm is given in Figure 
 \ref{fig:L-BFGS-Algorithm},
 
-\pagebreak
-
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\textwidth]{images/L-BFGS-Algorithm.png}
+    \includegraphics[width=0.40\textwidth]{images/L-BFGS-Algorithm.png}
     \caption{Outline of the L-BFGS algorithm. Taken from Wikipedia.}
     \label{fig:L-BFGS-Algorithm}
 \end{figure}
 
-where $g_k = \nabla f(x_k)$. This gives a search direction for the minimization problem.
+\noindent where $g_k = \nabla f(x_k)$. From this, we obtain our desired search direction for the minimization problem.
