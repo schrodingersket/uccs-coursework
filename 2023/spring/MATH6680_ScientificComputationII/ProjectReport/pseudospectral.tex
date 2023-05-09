@@ -1,7 +1,7 @@
-We utilize a Fourier collocation method along with a fourth-order Runge-Kutta time stepping. 
+To produce training data, we utilize a Fourier collocation method along with a fourth-order Runge-Kutta time stepping. 
 Recall the definition of the Fourier Transform of a differentiable function $f$:
 \[\mathcal{F}(f(x)) \equiv \int_{-\infty}^{\infty}f(x)e^{-ikx}dx\]
-where $\mathcal{F}(f(x)) = \hat{f}(k)$ is a function in $k$. From this, we also have the inverse Fourier transform:
+where $\hat{f}(k) \equiv \mathcal{F}(f(x))$ is a function in $k$. From this, we also have the inverse Fourier transform:
 \[f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{f}(k)e^{ikx}dk\]
 Differentiating both sides of the above equation yields
 \[\frac{df}{dx} = ik\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(x)e^{ikx}dx\]
@@ -10,7 +10,7 @@ and so
 Taking the inverse Fourier transform of the above equation yields the general form for the derivative of a function with respect to its Fourier transform:
 \[f'(x) = \mathcal{F}^{-1}(ik\mathcal{F}(f(x)))\]
 Generalizing for the $n^{\text{th}}$ derivative, we find
-\[f^{(n)} = \mathcal{F}^{-1}(i^nk^n\mathcal{F}(f(x)))\]
+\[f^{(n)}(x) = \mathcal{F}^{-1}((ik)^n\mathcal{F}(f(x)))\]
 We can now apply this to a PDE with periodic boundary conditions. For the SWE, our PDE takes the following form:
 
 \begin{align*}
@@ -46,7 +46,7 @@ Using the Fourier transform, the above system becomes
         -ghB_x
     \end{bmatrix}
 \end{align*}
-For generating training data for the PINN, we utilized the fast Fourier transform (FFT) along with a fourth order Runge-Kutta for time stepping with various initial conditions. We also implemented linear bathymetry (i.e. $B_x = \text{constant}$).
+For generating training data for the PINN, we utilized the fast Fourier transform (FFT) along with a fourth order Runge-Kutta for time stepping with various initial conditions. We also implemented linear bathymetry (i.e. $B_x = \text{constant}$) and periodic bathymetry (i.e. $B(x + L) = B(x)$).
 \newline\newline
 
 For the time stepping, we used a fourth order Runge-Kutta time stepping scheme. Notice the PDE above takes the time derivative of $u$ and $uh$. Rewriting the PDE as functions of $u$ and $uh$, we have
