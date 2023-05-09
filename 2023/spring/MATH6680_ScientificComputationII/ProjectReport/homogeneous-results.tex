@@ -18,11 +18,11 @@ h(x, 0) = 2 + \sin{\left( \frac{\pi x}{100} \right)}, \quad v(x, 0) = 0
 $$
 
 \noindent where $x \in [0, 200]$ and $t \in [0, 15]$. We use a neural network with three hidden layers with 20 neurons 
-each and Glorot weight initialization \cite{glorot2010understanding}. After training the network with a learning rate of $0.001$
-over 50000 Adam iterations and 12000 L-BFGS iterations, we obtain a mean residual value
+each and Glorot weight initialization \cite{glorot2010understanding}. After training the network with a learning rate
+$\alpha = 0.001$ over 50000 Adam iterations and 12000 L-BFGS iterations, we obtain a mean residual value
 
 $$
-\lVert R(\Omega) \rVert_2 = 0.006090
+R(\Omega) = MSE_f = 0.006090
 $$
 
 \pagebreak
