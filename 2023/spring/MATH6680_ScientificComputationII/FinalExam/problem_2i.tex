@@ -1,0 +1,8 @@
+Modify the RBF interpolation to include a polynomial correction. In 2D, this amounts to searching for an interpolant of
+the form
+
+$$
+F(\bm{x}) = \sum\limits_{j=1}^N c_j \phi\left( \lVert \bm{x} - \bm{x}_j \rVert \right) + p(\bm{x})
+$$
+
+where $p(\bm{x}) = p(x, y) = \gamma_1 + \gamma_2 x + \gamma_3 y$.

@@ -16,19 +16,19 @@ $$
 
 As before, we use a neural network for the wave height and velocity with three hidden layers with 20 neurons each, along
 with a second identical network (with only a single output neuron) which represents the inferred bathymetry. After 
-training the network with 1000 randomly sampled height and velocity measurements over 100000 Adam iterations and 18000 
-L-BFGS iterations with a learning rate $\alpha = 0.001$, we obtain a mean residual value
+training the network with 1000 randomly sampled height and velocity measurements over 100000 Adam iterations followed by
+18000 L-BFGS iterations with a learning rate $\alpha = 0.001$, we obtain a mean residual value
 
 $$
 R(\Omega) = MSE_u + MSE_f = 0.004952.
 $$
 
-\noindent again over a randomly sampled subset $\Omega$ of the computational domain. We find generally good agreement 
-between the PINN and reference pseudospectral velocity (as shown in Figure \ref*{fig:inhomogeneous_swe_velocity}); the
-PINN correctly captures the shape and scale of the velocity and bathymetry functions. In the velocity plot, we observe
-that the PINN solution is less sharp than the reference solution near the peaks, which we attribute to the fact that 
-smooth hyperbolic tangent functions comprise the PINN. Furthermore, our reference solution is near a shock; 
-more research is required to characterize PINN behavior in such cases.
+\noindent over the computational domain. We find generally good agreement between the PINN and reference pseudospectral 
+velocity (as shown in Figure \ref*{fig:inhomogeneous_swe_velocity}); the PINN correctly captures the shape and scale of 
+the velocity and bathymetry functions. In the velocity plot, we observe that the PINN solution is less sharp than the 
+reference solution near the peaks, which we attribute to the fact that smooth hyperbolic tangent functions comprise the 
+PINN. Furthermore, our reference solution is near a shock; more research is required to characterize PINN behavior in 
+such cases.
 
 
 \begin{figure}[h]

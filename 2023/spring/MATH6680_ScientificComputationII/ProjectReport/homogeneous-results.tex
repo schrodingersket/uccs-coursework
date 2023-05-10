@@ -19,13 +19,13 @@ $$
 
 \noindent where $x \in [0, 200]$ and $t \in [0, 15]$. We use a neural network with three hidden layers with 20 neurons 
 each and Glorot weight initialization \cite{glorot2010understanding}. After training the network with a learning rate
-$\alpha = 0.001$ over 50000 Adam iterations and 12000 L-BFGS iterations, we obtain a mean residual value
+$\alpha = 0.001$ over 50000 Adam iterations followed by 12000 L-BFGS iterations, we obtain a mean residual value
 
 $$
 R(\Omega) = MSE_f = 0.006090
 $$
 
-\noindent over a randomly sampled subset $\Omega$ of the computational domain. The results of this computation are shown 
+\noindent over the computational domain $\Omega$. The results of this computation are shown 
 in Figure \ref{fig:homogeneous_swe_solution}.
 
 \begin{figure}[h]
