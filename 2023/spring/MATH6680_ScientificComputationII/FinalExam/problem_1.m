@@ -1,4 +1,6 @@
-figure(1), clf
+clf;
+clear all;
+rng(0);  % fix random number generator to zero
 t = (0:0.1:2*pi)';
 noiselevel = 0.1;
 
@@ -19,11 +21,39 @@ axis equal
 xzero = [xzero(end, :); xzero; xzero(1, :)];
 
 normal = zeros(N, 2);
+% 
+% for j=2:N+1
+%     data = xzero(j-1:j+1,:);
+%     normal(j-1,:) = bestfitnormal(data);
+% end
 
-for j=2:N+1
-    data = xzero(j-1:j+1,:);
+% radius used to collect points for normal calculation
+%
+normal_radius = 0.2;
+max_min_radius = 0;
+for j=2:size(normal, 1)+1
+    data = xzero(j-1, :);
+    min_radius = 3;
+    for k = 1:size(xzero, 1)
+        d = norm(xzero(j-1, :) - xzero(k, :));
+
+        if d ~= 0 && d < min_radius
+            min_radius = d;
+        end
+
+        if (0 < d) && (d < normal_radius)
+            data = [data; xzero(k, :)];
+        end
+    end
+
+    if min_radius > max_min_radius
+        max_min_radius = min_radius;
+    end
+
     normal(j-1,:) = bestfitnormal(data);
 end
+
+max_min_radius
 
 xzero([1, N + 2], :)=[];
 alpha=0.4;
@@ -73,7 +103,6 @@ C = A\RHS;
 [Xplot, Yplot] = meshgrid(-4:0.05:4, -4:0.05:4);
 
 Zplot = zeros(size(Xplot));
-Dist = zeros(M, 1);
 
 rbf = @(Xin) C' * phi(sqrt(sum((Xbig - repmat(Xin, size(Xbig, 1), 1)).^2, 2)));
 

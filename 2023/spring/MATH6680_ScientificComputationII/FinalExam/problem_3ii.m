@@ -30,7 +30,7 @@ L(b,b) = eye(4*N);
 
 % Forcing function for Poisson equation
 %
-f = -exp(-(yy.^2 + xx.^2));
+f = sin(-(yy.^2 + xx.^2)*5*pi^2/4);
 f(b) = zeros(4*N,1);
 
 % Solve for u and reshape single vector to 2D grid
@@ -48,3 +48,7 @@ surf(xxx,yyy,uuu)
 xlabel('x')
 ylabel('y')
 zlabel('u')
+
+print('problem_3ii_poisson_3d', '-dpng')
+view([0 90])
+print('problem_3ii_poisson_2d', '-dpng')
