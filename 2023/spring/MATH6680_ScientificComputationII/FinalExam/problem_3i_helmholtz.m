@@ -1,24 +1,12 @@
 clf;
 clear all;
 
+% Gaussian RBF
+%
 rbf = @(e, r) exp(-(e*r).^2);
 d2rbf = @(e, r) 2 * e^2 * (2 * (e*r).^2 - 1) .* rbf(e, r);
 
-% Thermal diffusivity
-%
-c = 1/2;
-
-% Initial condition amplitude
-%
-T = 1;
-
-% Max time
-%
-tmax = 1;
-
-% Time plot interval
-%
-tplot = 0.1;
+exact_eigenvalues = @(j) (pi^2 * j.^2) ./ 4;
 
 % Eigenvalues to compute
 %
@@ -38,7 +26,7 @@ ii = ii(1:M);
 eigenvectors = real(V(:, ii));
 
 for k=1:M
-    fprintf('lambda_%d: \t %3.11f \n', k, eigenvalues(k))
+    fprintf('lambda_%d: \t %14.11f \t %14.11f \n', k, eigenvalues(k), norm(eigenvalues(k) - exact_eigenvalues(k)))
 end
 
 % Plot eigenvalues

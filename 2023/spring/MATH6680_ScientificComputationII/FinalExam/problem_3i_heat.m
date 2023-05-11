@@ -1,6 +1,8 @@
 clf;
 clear all;
 
+% Gaussian RBF
+%
 rbf = @(e, r) exp(-(e*r).^2);
 d2rbf = @(e, r) 2 * e^2 * (2 * (e*r).^2 - 1) .* rbf(e, r);
 
@@ -61,7 +63,6 @@ end
 surf(xx, tdata, plotdata);
 view(-35, 55);
 colormap('default');
-% axis([-1 1 0 tmax -1 2]);
 xlabel('x')
 ylabel('t');
 zlabel('u');

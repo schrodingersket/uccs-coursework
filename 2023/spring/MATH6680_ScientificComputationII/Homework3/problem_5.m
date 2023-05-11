@@ -1,4 +1,4 @@
-% problem_5.m - eignmodes of u_xxxx + u_xxx = lambda u_xx on \omega=[-2, 2] with
+% problem_5.m - eigenmodes of u_xxxx + u_xxx = lambda u_xx on \omega=[-2, 2] with
 %               u(+/- 2) = u_x(+/- 2) = 0
 %
 clear all
@@ -24,10 +24,10 @@ D4 = D4(2:N, 2:N);
 %  (1/2)^4 u_tttt + (1/2)^3 u_ttt = lambda (1/2)^2 u_tt on \omega'=[-1, 1] with
 %   u(+/- 1) = u_t(+/- 1) = 0
 %
-A = D2;
-% B = (1/2)^2 * D2;
+A = (1/2)^4 * D4 + (1/2)^3 * D3;
+B = (1/2)^2 * D2;
 
-[V, lam] = eig(A);
+[V, lam] = eig(A, B);
 [eigenvalues, ii] = sort(diag(lam), 'descend');
 ii = ii(1:M);
 eigenvectors = real(V(:, ii));
