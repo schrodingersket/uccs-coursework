@@ -9,22 +9,25 @@ M = 5; % number of eigenvalues to compute
 [D, x] = cheb(N);
 
 
-D2 = (D^2)(2:N, 2:N);
+D2 = (D^2);
+D2 = D2(2:N, 2:N);
 
 S = diag([0; 1 ./ (1 - x(2:N).^2); 0]);
 
-D3 = ((diag(1 - x.^2) * D^3 - 6 * diag(x) * D^2 - 6 * D)*S)(2:N, 2:N);
-D4 = ((diag(1 - x.^2) * D^4 - 8 * diag(x) * D^3 - 12 * D^2)*S)(2:N, 2:N);
+D3 = ((diag(1 - x.^2) * D^3 - 6 * diag(x) * D^2 - 6 * D)*S);
+D3 = D3(2:N, 2:N);
+D4 = ((diag(1 - x.^2) * D^4 - 8 * diag(x) * D^3 - 12 * D^2)*S);
+D4 = D4(2:N, 2:N);
 
 % With our variable transformation x = 2t, our system (in t) becomes:
 %
 %  (1/2)^4 u_tttt + (1/2)^3 u_ttt = lambda (1/2)^2 u_tt on \omega'=[-1, 1] with
 %   u(+/- 1) = u_t(+/- 1) = 0
 %
-A = (1/2)^4 * D4 + (1/2)^3 * D3;
-B = (1/2)^2 * D2;
+A = D2;
+% B = (1/2)^2 * D2;
 
-[V, lam] = eig(A, B);
+[V, lam] = eig(A);
 [eigenvalues, ii] = sort(diag(lam), 'descend');
 ii = ii(1:M);
 eigenvectors = real(V(:, ii));
