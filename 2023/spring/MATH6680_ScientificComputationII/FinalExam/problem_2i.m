@@ -102,11 +102,13 @@ B = [ones(M, 1) Xbig(:, 1) Xbig(:, 2)];
 Q = [A B; B' zeros(3)];
 C = Q\RHS;
 
+gamma = C(end-2:end)
+
 [Xplot, Yplot] = meshgrid(-4:0.05:4, -4:0.05:4);
 
 Zplot = zeros(size(Xplot));
 
-rbf = @(Xin) C(1:end-3)' * phi(sqrt(sum((Xbig - repmat(Xin, size(Xbig, 1), 1)).^2, 2))) + C(end-2) + C(end-1)*Xin(1) + C(end)*Xin(2);
+rbf = @(Xin) C(1:end-3)' * phi(sqrt(sum((Xbig - repmat(Xin, size(Xbig, 1), 1)).^2, 2))) + gamma(1) + gamma(2)*Xin(1) + gamma(3)*Xin(2);
 
 for j = 1:size(Xplot, 1)
     for k = 1:size(Yplot, 1)

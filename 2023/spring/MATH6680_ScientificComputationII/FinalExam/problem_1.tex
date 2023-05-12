@@ -36,8 +36,7 @@ RBF:
   with squareness parameter $s$. When $s = 0$, the above equation represents a circle of radius 1; when $s = 1$, the 
   equation corresponds to a square of side length 2. When $0 < s < 1$, we obtain what is colloquially known as a 
   squircle. With an Elliptic Grid mapping, this becomes the system of parametric equations:\footnote{
-    See \href{https://arxiv.org/vc/arxiv/papers/1604/1604.02174v1.pdf}{https://arxiv.org/vc/arxiv/papers/1604/1604.02174v1.pdf} 
-    for details.
+    See \href{https://arxiv.org/pdf/1604.02174.pdf}{https://arxiv.org/pdf/1604.02174.pdf} for details.
   }
 
   $$
@@ -60,7 +59,34 @@ RBF:
   \end{figure}
 
   \pagebreak
-  We utilize a multiquadric interpolant of the from
+  To determine our RBF interpolation coefficients, we construct the matrix $A$ where each element is given by
+
+  $$
+  (A)_{ij} = \phi \left( \lVert \bm{x}_i - \bm{x}_j \rVert \right).
+  $$
+
+  where our coefficients $c_i$ are computed by solving the linear system
+
+  $$
+  \begin{pmatrix}
+    \phi (\lVert \bm{x}_1 - \bm{x}_1 \lVert) & \phi(\lVert \bm{x}_1 - \bm{x}_2 \lVert) & \dots & \phi(\lVert \bm{x}_1 - \bm{x}_n \lVert) \\
+    \phi (\lVert \bm{x}_2 - \bm{x}_1 \lVert) & \phi(\lVert \bm{x}_2 - \bm{x}_2 \lVert) & \dots & \phi(\lVert \bm{x}_2 - \bm{x}_n \lVert) \\
+    \vdots                                   & \vdots                                  & \vdots                                          \\
+    \phi (\lVert \bm{x}_n - \bm{x}_1 \lVert) & \phi(\lVert \bm{x}_n - \bm{x}_2 \lVert) & \dots & \phi(\lVert \bm{x}_n - \bm{x}_n \lVert) \\
+  \end{pmatrix} \begin{pmatrix}
+    c_1 \\
+    c_2 \\
+    \vdots \\
+    c_n
+  \end{pmatrix} = \begin{pmatrix}
+    f_1 \\
+    f_2 \\
+    \vdots \\
+    f_n
+  \end{pmatrix}
+  $$
+
+  which we abbreviate $A c = f$. For this problem, we utilize a multiquadric interpolant of the form
 
   $$
   \phi(r) = \sqrt{1 + (\epsilon r)^2}
@@ -71,7 +97,7 @@ RBF:
 
   \begin{figure}[h]
     \centering
-    \includegraphics*[width=\textwidth]{problem_1ii.png}
+    \includegraphics*[width=0.7\textwidth]{problem_1ii.png}
     \caption{3D RBF interpolant}
     \label{fig:problem_1ii}
   \end{figure}
