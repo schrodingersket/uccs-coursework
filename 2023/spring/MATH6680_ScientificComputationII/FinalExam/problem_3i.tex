@@ -31,7 +31,13 @@ Laplacian) in 1D.
     We utilize a Gaussian RBF so that
 
     $$
-    (A_{\mathcal{L}})_{ij} = 2 \epsilon^2 \left(2 \epsilon^2 r_{i,j}^2 - 1 \right) e^{-(\epsilon r_{i,j})^2}, \quad r_{i,j} = \lVert \bm{x}_i - \bm{x}_j \rVert.
+    (A)_{ij} = e^{-(\epsilon r_{i,j})^2}, \quad r_{i,j} = \lVert \bm{x}_i - \bm{x}_j \rVert
+    $$
+
+    and
+
+    $$
+    (A_{\mathcal{L}})_{ij} = 2 \epsilon^2 \left(2 \epsilon^2 r_{i,j}^2 - 1 \right) e^{-(\epsilon r_{i,j})^2}.
     $$
 
     We now apply this matrix to the 1D heat equation with Dirichlet boundary conditions and sinusoidal initial 
@@ -68,13 +74,13 @@ Laplacian) in 1D.
     $\Omega = [-1, 1]$:
 
     $$
-    u_{xx} = k^2 u \quad \text{and} \quad u(-1, t) = u(1, t) = 0. 
+    u_{xx} = -k^2 u \quad \text{and} \quad u(-1, t) = u(1, t) = 0. 
     $$
 
     We move everything to the left hand side to find the associated eigenvalue problem:
 
     $$
-    \left( \mathcal{L} - \lambda I \right) u = 0.
+    \left( \mathcal{L} - (-\lambda) I \right) u = 0.
     $$
 
     where we let $\lambda = k^2$ for convenience. The solution to this system is therefore given by the eigenvectors of 
