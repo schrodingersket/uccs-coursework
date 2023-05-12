@@ -2,7 +2,7 @@ Apply the RBF-PS method to solve the heat equation and Helmholtz equation (i.e.,
 Laplacian) in 1D.
 
 \begin{solution}
-    We apply the RBF-PS method to solve PDEs by searching for an approximate solution of the form
+    We apply the RBF pseudospectral method to solve PDEs by searching for an approximate solution of the form
 
     \begin{equation}\label{eq:rbf-approximation}
         U(x) = \sum\limits_{j=1}^N c_j \phi(\lVert \bm{x} - \bm{x}_j \rVert)
@@ -79,18 +79,25 @@ Laplacian) in 1D.
 
     where we let $\lambda = k^2$ for convenience. The solution to this system is therefore given by the eigenvectors of 
     $\mathcal{L}$; in the RBF-PS case, this reduces to computing the eigenvalues and eigenvectors of the (second-order) 
-    differentiation matrix $A_{\mathcal{L}}$. We compute the eigenvalues and plot corresponding eigenvectors in 
-    \texttt{problem\_3i\_helmholtz.m}. The exact eigenvalues are given by 
+    differentiation matrix $A_{\mathcal{L}}$. We compute the first five eigenvalues and plot corresponding eigenvectors 
+    in \texttt{problem\_3i\_helmholtz.m}. The exact eigenvalues are given by 
     
     $$
     \lambda_j = \frac{j^2 \pi^2}{L^2}
     $$
     
-    where $L = 2$ is the length of the domain. The output of \texttt{problem\_3i\_helmholtz.m} is given below:
+    where $L = 2$ is the length of the domain. The output of \texttt{problem\_3i\_helmholtz.m} is given in Figure 
+    \ref{fig:problem_3i_helmholtz_output}, where the \texttt{lambda\_U} column represents the first five eigenvalues of 
+    $A_{\mathcal{L}}$ and the last column is the difference between the exact and computed eigenvalues.
 
     \begin{figure}[h]
         \begin{verbatim}
-            
+                j                lambda_U         ||lambda_U - lambda_j||
+            lambda_1:         2.46740109988           0.00000000039 
+            lambda_2:         9.86960440013           0.00000000096 
+            lambda_3:        22.20660990275           0.00000000029 
+            lambda_4:        39.47841759857           0.00000000579 
+            lambda_5:        61.68502753523           0.00000002843
         \end{verbatim}
         \caption{Output of \texttt{problem\_3i\_helmholtz.m}.}
         \label{fig:problem_3i_helmholtz_output}
@@ -101,7 +108,7 @@ Laplacian) in 1D.
 
     \begin{figure}[h]
         \centering
-        \includegraphics*[width=\textwidth]{problem_3i_helmholtz.png}
+        \includegraphics*[width=0.9\textwidth]{problem_3i_helmholtz.png}
         \caption{Eigenvalues and eigenvectors of second derivative RBF matrix.}
         \label{fig:problem_3i_helmholtz_eig}
     \end{figure}
