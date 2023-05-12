@@ -67,8 +67,8 @@ xlabel('x')
 ylabel('t');
 zlabel('u');
 
-print('problem_3i_helmholtz_3d', '-dpng')
+print('problem_3i_heat_3d', '-dpng')
 
 view(0, 90)
 
-print('problem_3i_helmholtz_2d', '-dpng')
+print('problem_3i_heat_2d', '-dpng')
