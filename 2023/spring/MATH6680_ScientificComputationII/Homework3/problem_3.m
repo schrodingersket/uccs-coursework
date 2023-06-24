@@ -37,6 +37,10 @@ for i = 1:nplots
         %
         t = dt*i*plotgap;
         v(1) = sin(10*t);
+
+        % Neumann condition
+        %
+        v(N+1) = -1 / D(N+1, N+1) * (D(N+1, 1:N) * v(1:N)');
     end
     plotdata(i+1,:) = v;
     tdata = [tdata; dt*i*plotgap];
@@ -54,3 +58,4 @@ ylabel t
 zlabel u
 
 print('-dpng', 'problem_3.png')
+pause
