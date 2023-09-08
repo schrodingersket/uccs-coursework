@@ -1,0 +1,74 @@
+Determine which of the following points are stationary points:
+
+\begin{enumerate}
+    \item $(0, 0, 2)^T$
+    \item $(0, 0, 3)^T$
+    \item $(1, 0, 1)^T$
+\end{enumerate}
+
+\begin{solution}
+    We begin by computing the gradient of $f$:
+
+    $$
+    \nabla f = \begin{pmatrix*}
+        2 x_1 + 2 x_1 x_3^2 + 2 x_2 \\
+        2 x_1 + 4 x_2^3 + 8 \\
+        2x_1^2 x_3
+    \end{pmatrix*}.
+    $$
+
+    Our constraint matrix $A$ is given by $A = \begin{pmatrix*}2 &  5 & 1\end{pmatrix*}$ and hence the null space of $A$ 
+    is given by all vectors which satisfy $2 x_1 + 5 x_2 + x_3 = 0$. From this, we obtain a null space matrix $Z$ 
+    whose columns are the basis of the null space of $A$:
+
+    $$
+    Z = \begin{pmatrix*}[r]
+        -2 & -1 \\
+         1 & 0  \\
+        -1 & 2
+    \end{pmatrix*}.
+    $$
+
+    Stationary points must satisfy $Z^T \nabla(x_*) = 0$. We now check each of the given points. The point $(0, 0, 2)^T$
+    is infeasible, though we still verify that it does not satisfy the stationary condition; the point $(0, 0, 3)^T$ is 
+    feasible but not stationary, and the point $(1, 0, 1)$ is both feasible and stationary:\footnote{
+        Matrix computations and gradient evalutations are performed in \texttt{problem\_1i.py}.
+    }
+
+    \begin{align*}
+        Z^T \nabla f(0, 0, 2) &= \begin{pmatrix*}[r]
+            -2 &  1 & -1 \\
+            -1 &  0 &  2
+        \end{pmatrix*} \begin{pmatrix*}[r]
+            0 \\
+            8 \\
+            0
+        \end{pmatrix*} = \begin{pmatrix*}[r]
+            8 \\
+            0
+        \end{pmatrix*} > 0 \\
+        Z^T \nabla f(0, 0, 3) &= \begin{pmatrix*}[r]
+            -2 &  1 & -1 \\
+            -1 &  0 &  2
+        \end{pmatrix*} \begin{pmatrix*}[r]
+            0 \\
+            8 \\
+            0
+        \end{pmatrix*} = \begin{pmatrix*}[r]
+            8 \\
+            0
+        \end{pmatrix*} > 0 \\
+        Z^T \nabla f(1, 0, 1) &= \begin{pmatrix*}[r]
+            -2 &  1 & -1 \\
+            -1 &  0 &  2
+        \end{pmatrix*} \begin{pmatrix*}
+            4  \\
+            10 \\
+            2   
+        \end{pmatrix*} = \begin{pmatrix*}[r]
+            0 \\
+            0
+        \end{pmatrix*} = 0.
+    \end{align*}
+    \ \\
+\end{solution}
