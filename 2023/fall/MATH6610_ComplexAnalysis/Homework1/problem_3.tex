@@ -1,0 +1,31 @@
+\textbf{Stein, Shakarchi 1.4}
+
+Show that it is impossible to define a total ordering on $\mathbb{C}$, i.e., no relation $\succ$ exists so that
+
+\begin{enumerate}[(i)]
+    \item For any two complex numbers $z, w$, exactly one of the following holds: $z \succ w$, $w \succ z$, or $z = w$.
+
+    \item For all $z_1, z_2, z_3 \in \mathbb{C}$, the relation $z_1 \succ z_2$ implies $z_1 + z_3 \succ z_2 + z_3$.
+    
+    \item For all $z_1, z_2, z_3 \in \mathbb{C}$ with $z_3 \succ 0$, the relation $z_1 \succ z_2$ implies $z_1 z_3 \succ z_2 z_3$.
+\end{enumerate}
+
+
+\begin{solution}
+    By (i), either $i \succ 0$, $0 \succ i$, or $i = 0$. Since $0$ is the unique additive identity for $\mathbb{C}$, 
+    either $i \succ 0$ or $0 \succ i$. 
+    
+    Suppose $i \succ 0$. By (iii) (with $z_3 = z_1 = i$ and $z_2 = 0$), we see that 
+    $i \succ 0$ implies $i \cdot i \succ 0 \cdot i$ so that $-1 \succ 0$. By (ii) (with $z_1 = -1$, $z_2 = 0$, and 
+    $z_3 = 1$), we find that $-1 + 1 \succ 0 + 1$ so that $0 \succ 1$.
+    
+    To obtain the desired contradiction, we apply (iii) once more with $z_3 = z_1 = -1$ and $z_2 = 0$ to find that 
+    $1 \succ 0$; since the additive and multiplicative identities in a non-empty field cannot be equal, we conclude by 
+    (i) that $i \succ 0$ does not hold.
+
+    To complete the proof, we suppose that $0 \succ i$. We multiply both sides by $-1$ to obtain $-i \succ 0$; by (iii)
+    (with $z_3 = z_1 = -i$ and $z_2 = 0$), we find that $-i \succ 0$ implies $-i \cdot -i \succ 0 \cdot -i$ so that 
+    $-1 \succ 0$. From here, the proof proceeds as in the previous case (where $i \succ 0$). Hence $0 \succ i$ does not 
+    hold, and we have the desired result.
+    \ \\
+\end{solution}
