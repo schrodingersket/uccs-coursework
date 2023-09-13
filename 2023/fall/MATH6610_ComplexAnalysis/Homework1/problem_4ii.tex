@@ -1,5 +1,39 @@
 Prove that if $\Omega$ is open and connected, it is also path connected.
 
 \begin{solution}
+    Suppose that $\Omega$ is open and connected. Consider an arbitrary (fixed) point $w \in \Omega$, and let $\Omega_1$
+    be the set of all points in $\Omega$ which may be connected by a path to $w$ and $\Omega_2$ all the points in 
+    $\Omega$ which cannot. By construction, $\Omega = \Omega_1 \cup \Omega_2$ and $\Omega_1 \cap \Omega_2 = \emptyset$.
+    
+    We now show that $\Omega_1$ is open. Let $u \in \Omega_1$ be an arbitrary point in 
+    $\Omega_1$. Since $\Omega$ is open, there exists an open neighborhood $B_{\epsilon}(u)$ contained in $\Omega$ 
+    centered about $u$. For any point $v \in B_{\epsilon}(u)$, we may construct a path (in particular, a line segment) 
+    between $u$ and $v$ given by
+
+    $$
+        \gamma(t) = (1-t)u + tv, \quad t \in [0,1].
+    $$  
+
+    and hence every point in $B_{\epsilon}(u)$ is path-connected by way of $u$ (since we may, if needed, construct a 
+    polygonal curve between any two points in $B_{\epsilon}(u)$ by way of $u$). Since there exists a path between $w$ 
+    and $u$ (by definition of $\Omega_1$), we may therefore construct a path between $w$ and every point 
+    $v \in B_{\epsilon}(u)$ (by way of $u$, if needed) and hence $B_{\epsilon}(u) \subseteq \Omega_1$. Since $u$ was 
+    chosen to be an arbitrary point in $\Omega_1$, there exists an open neighborhood about every point in $\Omega_1$
+    which is contained in $\Omega_1$ and so $\Omega_1$ is open.
+
+    The of all points in $\Omega$ which cannot be connected by a path to $w$ is also open by a similar argument; we
+    consider and arbitrary point $u \in \Omega_2$ and observe that there exists an open ball $B_{\epsilon}(u)$ centered
+    about $u$. If any point $v \in B_{\epsilon}(u)$ could be connected to $w$ by a path, then by similar logic as 
+    before, we could construct a path between $v$ and $u$ and hence $u$ would be in $\Omega_1$. Since $u$ was chosen to
+    be arbitrary, we conclude that $B_{\epsilon}(u) \subseteq \Omega_2$ and hence $\Omega_2$ is open.
+
+    Lastly, $\Omega_1$ is non-empty, for the constant function
+    
+    $$
+        \gamma(t) = w, \quad t \in [0,1].
+    $$
+
+    defines a path between $w$ and itself. Since $\Omega$ is conncted, there exist no disconnections, and hence we have
+    that $\Omega_1 = \Omega$, so that $\Omega$ is path connected, as desired.
     \ \\
 \end{solution}
