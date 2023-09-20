@@ -1,0 +1,15 @@
+The series $\sum\limits_{n=0}^{\infty}{\frac{z^n}{n^2}}$ converges on $S \coloneqq \left\{ z \colon |z| = 1 \right\}$.
+
+\begin{solution}
+    Let $|z| = 1$. We utilize the ratio test for series and compare successive terms, which yields
+
+    $$
+    \left| \frac{a_{n+1}}{a_n} \right| = \left| \frac{z^{n+1}}{n^2 + 2n + 1} \cdot \frac{n^2}{z^n} \right|
+                                       = \frac{n^2}{n^2 + 2n + 1} \cdot \left| z \right|
+                                       = \frac{n^2}{n^2 + 2n + 1}
+                                       < 1
+    $$
+
+    for all $n \in \mathbb{N}$. Hence the series converges on every point on the unit circle as desired.
+    \ \\
+\end{solution}

@@ -1,0 +1,24 @@
+The Bessel function of order $r$:
+
+$$
+J_r(z) = \left(\frac{z}{2}\right)^2 \sum\limits_{n=0}^{\infty}{\frac{(-1)^n}{n! (n + r)!}\left(\frac{z}{2}\right)^{2n}}
+$$
+
+\begin{solution}
+    We utilize the ratio test for series to determine the disc of convergence for $J_r(z)$:
+
+    \begin{align*}
+        \left| \frac{a_{n+1}}{a_n} \right| &= \left| \frac{(-1)^{n+1}}{(n+1)! (n + r + 1)!} \left( \frac{z}{2} \right)^{2n + 2} \cdot \frac{n!(n + r)!}{(-1)^r} \left( \frac{z}{2} \right)^{-2n} \right| \\
+                                           &= \left| \frac{1}{(n + 1)(n + r + 1)} \cdot \left( \frac{z}{2} \right)^{2} \right| \\
+                                           &= \left| \frac{1}{(n + 1)(n + r + 1)} \right| \cdot \left| \frac{z}{2} \right|^{2}
+    \end{align*}
+
+    For any fixed $z \in \mathbb{C}$, we may choose $n \in \mathbb{N}$ sufficiently large so that
+
+    $$
+    \left| \frac{1}{(n + 1)(n + r + 1)} \right| \cdot \left| \frac{z}{2} \right|^{2} < 1
+    $$
+
+    and hence the Bessel function of order $r$ converges absolutely for all $z \in \mathbb{C}$.
+    \ \\
+\end{solution}

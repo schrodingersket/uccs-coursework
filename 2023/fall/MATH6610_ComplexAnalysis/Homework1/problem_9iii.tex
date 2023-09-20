@@ -1,0 +1,18 @@
+The series $\sum\limits_{n=0}^{\infty}{\frac{z^n}{n}}$ converges at every point of the unit circle except $z = 1$.
+
+\begin{solution}
+    When $z = 1$, the series becomes the harmonic series, which diverges. When $z \neq 1$ (but $|z| = 1$, so that 
+    $z = e^{2 \pi i t}$ for $t \in (0, 1)$), we observe that the sequence of partial sums $\{s_n\}$ is bounded:
+
+    $$
+    |s_n| = \left| \sum\limits_{k=0}^n z^k \right|
+          = \left| \frac{1 - z^{n+1}}{1 - z} \right|
+          = \left| \frac{1 - e^{2 (n+1) \pi i t}}{1 - e^{2 \pi i t}} \right|
+          \le \left| \frac{2}{1 - e^{2 \pi i t}} \right|
+          = M.
+    $$
+
+    Moreover, the sequence $\{a_n\}$ defined by $a_n = \frac{1}{n}$ is a positive decreasing sequence which converges to 
+    zero. Hence by the Dirichlet test, the series converges at every point on the unit circle except $z = 1$.
+    \ \\
+\end{solution}
