@@ -13,5 +13,95 @@ $$
 $$
 
 \begin{solution}
+    We begin with the following observations:
+
+    $$
+        \frac{z}{1 - z} - \frac{z^2}{1 - z^2} = \frac{z - z^2}{(1 - z)(1 - z^2)} = \frac{z}{1 - z^2}
+    $$
+
+    and similarly
+
+    $$
+        \frac{z^2}{1 - z^2} - \frac{z^4}{1 - z^4} = \frac{z^2 - z^4}{(1 - z^2)(1 - z^4)} = \frac{z^2}{1 - z^4}
+    $$
+
+    so that by induction we have
+
+    $$
+        \frac{z^{2^k}}{1 - z^{2^k}} - \frac{z^{2^{k+1}}}{1 - z^{2^{k+1}}} = \frac{z^{2^k}}{1 - z^{2^{k+1}}}
+    $$
+
+    We sum the above equations from $k = 0$ to $k = n \in \mathbb{N}$ to obtain the following telescoping expression:
+
+    \begin{align*}
+        \sum\limits_{k=0}^{n} \frac{z^{2k}}{1 - z^{2^{n+1}}} &= \sum\limits_{k=0}^{n} \frac{z^{2^k}}{1 - z^{2^k}} - \frac{z^{2^{k+1}}}{1 - z^{2^{n+1}}} \\
+                                                             &= \frac{z}{1 - z} - \frac{z^{2^{n+1}}}{1 - z^{2^{n+1}}}
+    \end{align*}
+
+    We define the sequence of partial sums by $s_n \coloneqq \sum\limits_{k=0}^{n} \frac{z^{2k}}{1 - z^{2^{k+1}}}$ and 
+    observe that since $|z| < 1$, the sequence $\left\{ z^{2^n} \right\}_{n=0}^{\infty}$ converges to $0$ so that the 
+    sequence of partial sums becomes
+
+    $$
+    \lim\limits_{n \to \infty} s_n = \lim\limits_{n \to \infty} \frac{z}{1 - z} - \frac{z^{2^{n+1}}}{1 - z^{2^{n+1}}} = \frac{z}{1 - z} - \frac{0}{1 - 0} = \frac{z}{1 - z}
+    $$
+
+    and hence $\sum\limits_{k=0}^{\infty} \frac{z^{2k}}{1 - z^{2^{k+1}}} = \frac{z}{1 - z}$ as desired.
+
+    \pagebreak
+
+    We now prove the second equality in a similar fashion. We begin with the observation that  
+
+    $$
+        \frac{z}{1 - z} - \frac{2 z^2}{1 - z^2} = \frac{z (1 - z)^2}{(1 - z)(1 - z^2)} = \frac{z}{1 + z}
+    $$
+
+    and similarly
+
+    $$
+        \frac{2 z^2}{1 - z^2} - \frac{2^2 z^4}{1 - z^4} = \frac{2z^2 (1 - z^2)^2}{(1 - z^2)(1 - z^4)} = \frac{2 z^2}{1 + z^2}
+    $$
+
+    so that by induction we have
+
+    $$
+        \frac{2^k z^{2^k}}{1 - z^{2^k}} - \frac{2^{k+1} z^{2^{k+1}}}{1 - z^{2^{k+1}}} = \frac{2^k z^{2^k}}{1 + z^{2^k}}
+    $$
+
+    As before, we sum these equalities to obtain a telescoping sum:
+
+    \begin{align*}
+        \sum\limits_{k=0}^{n} \frac{2^k z^{2^k}}{1 + z^{2^k}} &= \sum\limits_{k=0}^{n} \frac{2^k z^{2^k}}{1 - z^{2^k}} - \frac{2^{k+1} z^{2^{k+1}}}{1 - z^{2^{k+1}}} \\
+                                                              &= \frac{z}{1 - z} - \frac{2^{n+1} z^{2^{n+1}}}{1 - z^{2^{n+1}}}
+    \end{align*}
+
+    By way of the same partial sum argument as before, it remains only to show that
+
+    $$
+        \lim\limits_{n \to \infty} \frac{2^{n+1} z^{2^{n+1}}}{1 - z^{2^{n+1}}} = 0.
+    $$
+
+    We observe that the numerator is simply a subsequence $a_{n_k}$ of $a_n = n z^n$ (with $n_k = 2^{k+1}$). The 
+    sequence $\{ a_n \}$ converges to zero by the ratio test for sequences, since
+
+    $$
+    \lim\limits_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim\limits_{n \to \infty} \left| \frac{(n+1) z^{n+1}}{n z^n} \right| = \lim\limits_{n \to \infty} \left| \frac{n+1}{n} \right| |z| = |z| < 1.
+    $$
+
+    Moreover, because all subsequences of a convergent sequence converge to the same limit, we have 
+
+    $$
+        \lim\limits_{n \to \infty} 2^{n+1} z^{2^{n+1}} = 0
+    $$
+
+    so that 
+
+    $$
+        \sum\limits_{k=0}^{\infty} \frac{2^k z^{2^k}}{1 + z^{2^k}} = \lim\limits_{n \to \infty} \sum\limits_{k=0}^{n} \frac{2^k z^{2^k}}{1 - z^{2^k}} - \frac{2^{k+1} z^{2^{k+1}}}{1 - z^{2^{k+1}}} 
+                                                                   = \frac{z}{1 - z} - \lim\limits_{n \to \infty} \frac{2^{n+1} z^{2^{n+1}}}{1 - z^{2^{n+1}}}
+                                                                   = \frac{z}{1 - z}
+    $$
+
+    as desired.
     \ \\
 \end{solution}

@@ -1,12 +1,44 @@
 Evaluate the integrals
 
 $$
-\int_{\gamma} z^n \; dz
+\int_{\gamma} z^n dz
 $$
 
-for $n \in \mathbb{Z}$, where $\gamma$ is any circle with the positive orientation which does \textbf{not} contain the 
-origin.
+for $n \in \mathbb{Z}$, where $\gamma$ is a circle with radius $r$ with the positive orientation which does \textbf{not} 
+contain the origin.
 
 \begin{solution}
+    We consider two distinct cases. First, suppose that $n = -1$. We parametrize $\gamma$ by $z(t) = r_0 + r e^{it}$ 
+    where $|r_0| > r$ so that $z'(t) = i r e^{it}$. In particular, since $|r| < |r_0|$, we have that 
+    $\left| \frac{r e^{it}}{r_0} \right| < 1$ and hence 
+    $\frac{1}{1 - \left( -\frac{r}{r_0} \right) e^{i t}} = \sum\limits_{k=0}^{\infty} \left( -\frac{r}{r_0} e^{i t} \right)^k$.
+    Moreover, because geometric series converge uniformly, we may interchange the order of integration and summation.
+    With these facts in mind, our integral becomes:
+
+    \begin{align*}
+        \int_{\gamma} z^{-1} \; dz &= \int_{0}^{2 \pi} \frac{i r e^{it}}{r_0 + r e^{i t}} \; dt \\
+                                   &= \frac{ir}{r_0} \int_{0}^{2 \pi} \frac{e^{it}}{1 - \left( -\frac{r}{r_0} \right) e^{i t}} \; dt \\
+                                   &= \frac{ir}{r_0} \int_{0}^{2 \pi} \sum\limits_{k=0}^{\infty} e^{it} \left( -\frac{r}{r_0} e^{i t} \right)^k \; dt \\
+                                   &= \frac{ir}{r_0} \sum\limits_{k=0}^{\infty} \int_{0}^{2 \pi} e^{it} \left( -\frac{r}{r_0} e^{i t} \right)^k \; dt \\
+                                   &= \frac{ir}{r_0} \sum\limits_{k=0}^{\infty} \left( -\frac{r}{r_0} \right)^k \int_{0}^{2 \pi} e^{i(k + 1)t} \; dt \\
+                                   &= 0.
+    \end{align*}
+
+    On the other hand, when $n \neq -1$, the function 
+
+    $$
+    F(z) = \frac{z^{n + 1}}{n + 1}
+    $$
+
+    is a primitive of $f(z) = z^n$ over the open disc described by the interior of the closed curve 
+    $z(t) = r_0 + r e^{it}$. Since $f$ is continuous over the same disc, we have: 
+
+    \begin{align*}
+        \int_{\gamma} z^n \; dz &= F(z(0)) - F(z(2 \pi)) \\
+                                &= (r + r_0) - (r + r_0) \\
+                                &= 0
+    \end{align*}
+
+    so that $\int_{\gamma} z^n \; dz = 0$ for all $n \in \mathbb{Z}$.
     \ \\
 \end{solution}
