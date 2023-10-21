@@ -2,11 +2,52 @@ Deduce from this result, and from Exercise 11, the Poisson integral representati
 formula: If $u$ is harmonic in the unit disc and continuous on its closure, then if $z = re^{i \theta}$, we have
 
 $$
-u(z) = \frac{1}{2 \pi} \int_{0}^{2 \pi} P_r (\theta - \varphi) u(e^{i \varphi}) \; d\varphi
+u(z) = \frac{1}{2 \pi} \int_{0}^{2 \pi} P_r (\theta - \varphi; 1) u(e^{i \varphi}) \; d\varphi
 $$
 
-where $P_r(\gamma)$ is the Poisson kernel for the unit disc and is given by
+where $P_r(\gamma; 1)$ is the Poisson kernel for the unit disc with $P_r(\gamma; R)$ given by
 
 $$
-P_r(\gamma) = \frac{1 - r^2}{1 - 2r \cos \gamma + r^2}.
+P_r(\gamma; R) = \frac{R^2 - r^2}{R^2 - 2 R r \cos \gamma + r^2}.
 $$
+
+\begin{solution}
+    Since $u$ is harmonic in the unit disc, we apply (a) to find a holomorphic function $f:\mathbb{D} \to \mathbb{C}$
+    such that $\text{Re}(f) = u$. We choose $r, R \in \mathbb{R}$ such that $r < R < 1$ and let $z = r e^{i \theta}$ for
+    some angle $\theta$. We first note that $P_r(\gamma; R) = P_r(-\gamma; R)$ since cosine is an even function. We apply this
+    observation along with the results from 11(a) and 11(b) to obtain
+
+    \begin{align*}
+    f(z) &= \frac{1}{2 \pi} \int_0^{2 \pi} f(R e^{i \varphi}) \text{Re} \left( \frac{R e^{i \varphi} + z}{R e^{i \varphi} - z} \right) \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(R e^{i \varphi}) \text{Re} \left( \frac{R e^{i \varphi} + r e^{i \theta}}{R e^{i \varphi} - r e^{i \theta}} \right) \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(R e^{i \varphi}) \text{Re} \left( \frac{R e^{i (\varphi - \theta)} + r}{R e^{i (\varphi - \theta)} - r} \right) \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(R e^{i \varphi}) \frac{R^2 - r^2}{R^2 - 2 R r \cos(\varphi - \theta) + r^2} \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(R e^{i \varphi}) P_r(\theta - \varphi; R) \; d\varphi.
+    \end{align*}
+
+    We note that $P_r(\theta - \varphi; R)$ is real, and hence the integrand becomes
+
+    \begin{align*}
+     &\frac{1}{2 \pi} \int_0^{2 \pi} \left[ \text{Re}\left(f(R e^{i \varphi})\right) + \text{Im}\left(f(R e^{i \varphi})\right) \right] P_r(\theta - \varphi; R) \; d\varphi \\
+    = &\frac{1}{2 \pi} \int_0^{2 \pi} \text{Re}\left(f(R e^{i \varphi})\right) P_r(\theta - \varphi; R) \; d\varphi + \frac{1}{2 \pi} \int_0^{2 \pi} \text{Im}\left(f(R e^{i \varphi})\right) P_r(\theta - \varphi; R) \; d\varphi \\
+    = &\frac{1}{2 \pi} \int_0^{2 \pi} u(R e^{i \varphi}) P_r(\theta - \varphi; R) \; d\varphi + \frac{1}{2 \pi} \int_0^{2 \pi} \text{Im}\left(f(R e^{i \varphi})\right) P_r(\theta - \varphi; R) \; d\varphi.
+    \end{align*}
+
+    Upon taking the real parts of our expression for $f(z)$, we obtain
+
+    $$
+    \text{Re}(f(z)) = u(z) = \frac{1}{2 \pi} \int_0^{2 \pi} u(R e^{i \varphi}) P_r(\theta - \varphi; R) \; d\varphi.
+    $$
+
+    Moreover, we observe that $R^2  - 2 R r \cos{(\varphi - \theta)} + r^2 \ge R^2 - R r - r^2 = (R - r)^2$, and hence
+    $P_r(\theta - \varphi; R)$ is bounded independently of $\varphi$. Since $u$ is continuous on $\closeD$, we apply the
+    Dominated Convergence Theorem to obtain
+
+    \begin{align*}
+      \lim_{R \to 1} \frac{1}{2 \pi} \int_0^{2 \pi} u(R e^{i \varphi}) P_r(\theta - \varphi; R) \; d\varphi 
+      &= \frac{1}{2 \pi} \int_0^{2 \pi} \lim_{R \to 1} u(R e^{i \varphi}) P_r(\theta - \varphi; R) \; d\varphi \\
+      & = \frac{1}{2 \pi} \int_0^{2 \pi} u(e^{i \varphi}) P_r(\theta - \varphi; 1) \; d\varphi
+    \end{align*}
+
+    as was to be shown.
+\end{solution}
