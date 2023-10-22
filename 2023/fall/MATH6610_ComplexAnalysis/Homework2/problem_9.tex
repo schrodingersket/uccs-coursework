@@ -1,10 +1,79 @@
 \textbf{Stein, Shakarchi 2.9}
 
 Let $\Omega$ be a bounded open subset of $\mathbb{C}$, and $\varphi: \Omega \to \Omega$ a holomorphic function. Prove 
-that if there exists a fixed point $z_0 \in \Omega$ such that 
+that if there exists a fixed point $z_0 \in \Omega$ of $\varphi$ such that $\varphi'(z_0) = 1$, then $\varphi$ is 
+linear.
 
-$$
-\varphi'(z_0) = 1
-$$
+\begin{solution}
+    Without loss of generality (by shifting our domain to $\Omega - \{z_0\}$ and $\varphi(z)$ to $\varphi(z - z_0)$, if 
+    necessary), we may assume $z_0 = 0$. For the sake of contradiction, we suppose that $\varphi$ is not linear, so that
+    there exists some non-zero $a_n$ in the power series expansion of $\varphi(z)$ about zero for some $n \ge 2$.
+    
+    We first prove by induction that the $k^{th}$ composition $\varphi_k$ of 
+    $\varphi$ is given by \footnote{
+        We use the notation $f(z) = O(z^n)$ to mean that there exists a constant $C > 0$ such that $|f(z)| \le C |z|^n$ 
+        for all $z$ in some neighborhood of zero.
+    } $\varphi(z) = z + k a_n z^n + O(z^{n+1})$, where $n \ge 2$ is the smallest $n \in \mathbb{N}$ 
+    so that $a_n$ represents the first non-zero coefficient in the power series expansion of $\varphi(z)$ about zero. 
+    The base case ($k = 1$) is a direct result of the power series expansion of $\varphi$ about $z_0 = 0$:
 
-then $\varphi$ is linear.
+    $$
+    \varphi_1(z) = \varphi(z) = \varphi(0) + \varphi'(0) z + \sum_{j=2}^{\infty} a_j z^j = z + a_n z^n + O\left(z^{n+1}\right).
+    $$
+
+    We now assume that $\varphi_k(z) = z + k a_n z^n + O(z^{n+1})$, and consider the power series expansion of 
+    $\varphi_k$ in an open ball $B_r(0)$ centered at the origin of radius $r$ small enough so that 
+    $B_r(0) \subset \Omega$ and so that each $w \in B_r(0)$ remains within the radius of convergence of $\varphi_k$ 
+    (which exists since $\varphi$ is holomorphic and $\varphi_k$ is the composition of holomorphic functions). We obtain
+
+    \begin{align*}
+        \varphi(\varphi_k(z)) &= \varphi\left(z + k a_n z^n + O\left(z^{n+1}\right)\right) \\
+                              &= \left(z + k a_n z^n + O\left(z^{n+1}\right)\right) 
+                               + a_n \left(z + k a_n z^n + O\left(z^{n+1}\right)\right)^n \\
+                              & + O\left[\left(z + k a_n z^n + O\left(z^{n+1}\right)\right)^{n+1}\right].
+    \end{align*}
+
+    We first note that the lowest-order $z$ term in the third summand is $z^{n+1}$. Expanding the polynomial terms in
+    the second summand yields a single term of order $z^n$ (namely, $a_n z^n$), and all other terms are or order $n+1$
+    or greater. We absorb all terms of order $n+1$ or greater into $O(z^{n+1})$, which yields:
+
+    \begin{align*}
+        \varphi_{k+1}(z) &= \varphi(\varphi_k(z)) \\
+                         &= z + k a_n z^n + a_n z^n + O\left(z^{n+1}\right) \\
+                         &= z + (k+1) a_n z^n + O\left(z^{n+1}\right)
+    \end{align*}
+
+    and which completes the induction. With this result in hand, we consider the $n^{th}$ derivative of $\varphi_k$ 
+    (with $n$ defined as above). 
+    
+    Differentiating the power series term-by-term and evaluating at $z = 0$ yields
+
+    $$
+    \varphi_k^{(n)}(0) = \frac{d^n}{dz^n}\left(z + k a_n z^n + O\left(z^{n+1}\right)\right) \vert_{z=0} = n! k a_n + O\left(z\right) \vert_{z=0} = n! k a_n.
+    $$
+
+    Moreover, in the open ball $B_r(0)$ defined above, the Cauchy integral inequalities for derivatives yield the
+    following bound on $\varphi_k^{(n)}(0)$:
+
+    $$
+    \left|\varphi_k^{(n)}(0)\right| \le \frac{n! \lVert \varphi_k \rVert_C}{r^n}
+    $$
+
+    so that together with the differentiated power series expansion of $\varphi_k$, we find
+
+    $$
+    k |a_n| \le \frac{\lVert \varphi_k \rVert_C}{r^n}.
+    $$
+
+    To conclude the proof, we note that the domain $\Omega$ is bounded. Since the domain and codomain of $\varphi$ are
+    both $\Omega$, we see that $\varphi_k$ must also be bounded by $\Omega$ for all $k \in \mathbb{N}$ so that 
+    $\varphi_k$ is uniformly bounded above by $M = \sup\limits_{z \in \Omega} |z|$. Hence we have
+
+    $$
+    |a_n| \le \frac{M}{k r^n}
+    $$
+
+    from which we conclude (letting $k \to \infty$) that $a_n = 0$, which yields the desired contradiction.
+
+
+\end{solution}
