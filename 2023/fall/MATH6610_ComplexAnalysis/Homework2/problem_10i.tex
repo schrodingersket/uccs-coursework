@@ -3,3 +3,49 @@ Prove that whenever $0 < R < R_0$ and $|z| < R$, we have
 $$
 f(z) = \frac{1}{2 \pi} \int_{0}^{2 \pi} f(Re^{i \varphi}) \text{Re} \left( \frac{Re^{i \varphi} + z}{Re^{i \varphi} - z} \right) \; d\varphi.
 $$
+
+\textbf{Lemma.} For any $z \in \mathbb{C}$ and $\varphi \in \mathbb{R}$, we have
+
+\begin{align*}
+    \frac{R^2 - |z|^2}{\left(R e^{i \varphi} - z\right)\left(R e^{-i \varphi} - \conj{z}\right)}
+    &= \frac{1}{2} \left[ \frac{2R^2 - 2|z|^2}{\left(R e^{i \varphi} - z\right)\left(R e^{-i \varphi} - \conj{z}\right)} \right] \\
+    &= \frac{1}{2} \left( \frac{R e^{i \varphi} + z}{R e^{i \varphi} - z} + \frac{R e^{-i\varphi} + \conj{z}}{R e^{-i \varphi} - \conj{z}} \right) \\
+    &= \text{Re} \left( \frac{R e^{i \varphi} + z}{R e^{i \varphi} - z} \right).
+\end{align*}
+
+\begin{solution}
+  Let $C_R$ be the circle of radius $R < R_0$ centered at the origin, and let $w = \sfrac{R^2}{\conj{z}}$, where 
+  $|z| < R$. We note that $|w| = \left| \sfrac{R^2}{\conj{z}} \right| = R \cdot \frac{R}{|z|} > R$, and hence $w$ lies 
+  outside $C_R$. Since $f$ is holomorphic on the open disc $D_{R_0}$, we may apply Cauchy's integral formula to obtain
+  
+  $$
+  0 = f(w) = \frac{1}{2 \pi i} \int_{C_R} \frac{f(\zeta)}{\zeta - w} \; d\zeta.
+  $$
+  
+  Parameterizing $\zeta$ by $\zeta = R e^{i \varphi}$ yields:
+  
+  \begin{align*}
+    f(z) &= f(z) - f(w) \\
+         &= \frac{1}{2 \pi i} \int_0^{2 \pi} f(Re^{i \varphi}) \frac{iRe^{i\varphi}}{Re^{i \varphi} - z} \; d\varphi - \frac{1}{2 \pi i} \int_0^{2 \pi} f(R e^{i \varphi}) \frac{iRe^{i\varphi}}{Re^{i \varphi} - w} \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(Re^{i \varphi}) Re^{i\varphi} \left( 
+              \frac{1}{Re^{i \varphi} - z} - \frac{1}{Re^{i\varphi} - \sfrac{R^2}{\conj{z}}} 
+            \right) \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(Re^{i \varphi}) \left( 
+              \frac{1}{1 - (\sfrac{z}{R}) e^{-i\varphi}} - \frac{1}{1 - (\sfrac{R}{\conj{z}})Re^{-i\varphi}} 
+            \right) \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(Re^{i \varphi}) \cdot
+              \frac{(\sfrac{z}{R}) e^{-i\varphi} - (\sfrac{R}{\conj{z}})e^{-i\varphi}}
+              {1 - (\sfrac{z}{R}) e^{-i\varphi} - (\sfrac{R}{\conj{z}}) e^{-i\varphi} + (\sfrac{z}{\conj{z}}) e^{-2i\varphi}} 
+            \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(Re^{i \varphi}) \cdot
+              \frac{R^2 - |z|^2}
+              {R \conj{z} e^{i\varphi} - |z|^2 - R^2 + R z e^{-i\varphi}}
+            \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(Re^{i \varphi}) \cdot
+              \frac{R^2 - |z|^2}
+              {\left( Re^{i\varphi} - z \right)\left(R e^{-i\varphi} - \conj{z} \right)}
+            \; d\varphi \\
+         &= \frac{1}{2 \pi} \int_0^{2 \pi} f(Re^{i \varphi}) 
+            \text{Re} \left( \frac{Re^{i \varphi} + z}{Re^{i \varphi} - z} \right) \; d\varphi.
+  \end{align*}
+\end{solution}

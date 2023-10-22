@@ -3,3 +3,16 @@ Show that
 $$
 \text{Re} \left( \frac{Re^{i \gamma} + r}{Re^{i \gamma} - r} \right) = \frac{R^2 - r^2}{R^2 - 2 R r \cos{\gamma} + r^2}.
 $$
+
+\begin{solution}
+    From the lemma in (a) (with $z = r \in \mathbb{R}$ and $\varphi = \gamma \in \mathbb{R}$), we have
+
+    \begin{align*}
+        \text{Re} \left( \frac{Re^{i \gamma} + r}{Re^{i \gamma} - r} \right)
+        &= \frac{R^2 - |r|^2}{\left(Re^{i \gamma} - r\right)\left(Re^{-i \gamma} - \conj{r}\right)} \\
+        &= \frac{R^2 - r^2}{\left(Re^{i \gamma} - r\right)\left(Re^{-i \gamma} - r\right)} \\
+        &= \frac{R^2 - r^2}{R^2 - Rre^{-i\gamma} - Rr e^{i \gamma} + r^2} \\
+        &= \frac{R^2 - r^2}{R^2 - Rr\left(e^{-i\gamma} + e^{i \gamma}\right) + r^2} \\
+        &= \frac{R^2 - r^2}{R^2 - 2Rr\cos{\gamma} + r^2}.
+    \end{align*}
+\end{solution}
