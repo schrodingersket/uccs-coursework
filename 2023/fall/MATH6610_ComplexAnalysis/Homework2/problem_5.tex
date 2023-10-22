@@ -7,6 +7,32 @@ $$
 \int_T f(z) \; dz = 0.
 $$
 
+\textbf{Theorem (Green)}
+
+If $(F, G)$ is a continuously differentiable vector field, then
+
+$$
+\int_{T} F \; dx + \int_{T} G \; dy = \int_{T_{int}} \left(G_x - F_y\right) \; dx dy.
+$$
+
 \begin{solution}
+    Since $f$ is continuously complex differentiable on $\Omega$, the partial derivatives $u_x$, $u_y$, $v_x$, and $v_y$
+    of $f = u + iv$ all exist and are continuous. Moreover, they also satisfy the Cauchy-Riemann equations. Letting 
+    $z = x + iy$ (and hence $dz = dx + i dy$), we have
+
+    \begin{align*}
+        \int_T f(z) \; dz = \int_T (u + iv)(dx + i dy) = \int_T (u + iv) \; dx  + \int_T (i u - v) \; dy
+    \end{align*}
+
+    Applying Green's Theorem with $F = u + iv$ and $G = iu - v$ yields
+
+    \begin{align*}
+        \int_T (u + iv) \; dx  + \int_T (i u - v) \; dy &= \int_{T_{int}} ( i u_x - v_x) - (u_y + iv_y) \; dx dy \\
+                                                        &= \int_{T_{int}} (- v_x - u_y) + i(u_x - v_y) \; dx dy \\
+                                                        &= \int_{T_{int}} (- v_x + v_x) + i(u_x - u_x) \; dx dy \\
+                                                        &= 0
+    \end{align*}
+
+    where we have used the fact that $-u_y = v_x$ and $v_y = u_x$ by the Cauchy Riemann equations.
     \ \\
 \end{solution}
