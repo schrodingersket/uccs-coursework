@@ -41,7 +41,9 @@ $$
 
     Moreover, we observe that $R^2  - 2 R r \cos{(\varphi - \theta)} + r^2 \ge R^2 - R r - r^2 = (R - r)^2$, and hence
     $P_r(\theta - \varphi; R)$ is bounded independently of $\varphi$. Since $u$ is continuous on $\closeD$, we apply the
-    Dominated Convergence Theorem to obtain
+    Dominated Convergence Theorem\footnote{
+      \textbf{TODO: Do we need such a high-powered theorem for this?}
+    } to obtain
 
     \begin{align*}
       \lim_{R \to 1} \frac{1}{2 \pi} \int_0^{2 \pi} u(R e^{i \varphi}) P_r(\theta - \varphi; R) \; d\varphi 
