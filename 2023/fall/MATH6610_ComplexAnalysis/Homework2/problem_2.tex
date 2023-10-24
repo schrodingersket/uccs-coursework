@@ -34,13 +34,12 @@ Show that $ \int_{0}^{\infty}{\frac{\sin x}{x} \; dx} = \frac{\pi}{2}.$
       = \int_{\gamma_{\epsilon}} {f \; dz } 
       = \int_{\pi}^{0} {\frac{e^{i \epsilon e^{i \varphi}}}{\epsilon e^{i \varphi}} i \epsilon e^{i \varphi} \; d\varphi }
       = i \int_{\pi}^{0} {e^{i \epsilon e^{i \varphi}} \; d\varphi }
-      = -i \int_{0}^{\pi} {e^{i \epsilon e^{i \varphi}} \; d\varphi }
+      = -i \int_{0}^{\pi} {e^{i \epsilon \cos{\varphi}} \, e^{-\epsilon \sin{\varphi}} \; d\varphi }
     $$
 
-    so that as $\epsilon \to 0$ we obtain $I(0) = -i \pi$ by continuity of $I$.\footnote{
-        \textbf{TODO: Check this. Showing uniform convergence of the integrand might be the better bet.}
-    }
-
+    where the modulus of the integrand is bounded above by the constant (and hence integrable) function 
+    $g(z) = e^{\epsilon}$ so that as $\epsilon \to 0$ we obtain $I(0) = -i \pi$ by the Dominated Convergence Theorem.
+    
     \pagebreak
     Next, we note that substituting $u = -x$ in the second integral yields
 
