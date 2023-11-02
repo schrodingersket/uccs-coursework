@@ -54,15 +54,15 @@ is holomorphic on on $\mathbb{C} \setminus \gamma$ for $n \in \mathbb{N}$ and th
           &\le \left|\oint_{\gamma} {\frac{\varphi(\zeta)}{\zeta - z_0}\left(\frac{1}{(\zeta - z)^{n}} - \frac{1}{(\zeta - z_0)^{n}} \right) \; d\zeta} \right| + \left|(z - z_0) \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right|.
     \end{align*}
 
-    We let $\phi \coloneqq \frac{\varphi(\zeta)}{\zeta - z_0}$ and note that $\phi$ is continuous on $\gamma$ since
+    We let $g(\zeta) \coloneqq \frac{\varphi(\zeta)}{\zeta - z_0}$ and note that $g$ is continuous on $\gamma$ since
     $z_0$ lies outside $\gamma$. Hence by our inductive hypothesis (which applies to any numerator which is continuous 
-    on $\gamma$), the left summand vanishes as $z \to z_0$ by continuity of $F_n(z)$ (applied to $\phi$). To bound the 
+    on $\gamma$), the left summand vanishes as $z \to z_0$ by continuity of $F_n(z)$ (applied to $g$). To bound the 
     right-hand term, we choose $z$ to be in the open ball of radius $\sfrac{d}{2}$ centered at $z_0$ so that 
     $|\zeta - z| > \sfrac{d}{2}$ (and $|\zeta - z_0| > \sfrac{d}{2}$). Together with the observation that 
     $\varphi(\zeta)$ is continuous on $\gamma$ and therefore has some bound $M_{\gamma}$, we find that
 
     \begin{align*}
-        \left|(z - z_0) \oint_{\gamma} {\frac{\varphi(\zeta)(z - z_0)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right| 
+        \left|(z - z_0) \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right| 
           &\le |z - z_0| \oint_{\gamma} { M_{\gamma} \left(\frac{2}{d}\right)^{n+2} \; |d\zeta| }
           &= |z - z_0| \left[ M_{\gamma} L_{\gamma} \left(\frac{2}{d}\right)^{n+2} \right]
     \end{align*}
@@ -83,17 +83,17 @@ is holomorphic on on $\mathbb{C} \setminus \gamma$ for $n \in \mathbb{N}$ and th
                     &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{\varphi(\zeta)}{(\zeta - z)^{n}(\zeta - z_0)} - \frac{\varphi(\zeta)}{(\zeta - z_0)^{n+1}} \right) \; d\zeta} \\
                     &+ \lim_{z \to z_0} \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \\
                     &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{\varphi(\zeta)}{(\zeta - z)^{n}(\zeta - z_0)} - \frac{\varphi(\zeta)}{(\zeta - z_0)^{n+1}} \right) \; d\zeta}
-                    + \lim_{z \to z_0} \oint_{\gamma} {\frac{\phi(\zeta)}{(\zeta - z)^{n+1}} \; d\zeta} \\
-                    &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{\phi(\zeta)}{(\zeta - z)^{n}} - \frac{\phi(\zeta)}{(\zeta - z_0)^n} \right) \; d\zeta}
-                    + \oint_{\gamma} {\frac{\phi(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta} \\
-                    &= n \oint_{\gamma} {\frac{\phi(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta}
+                    + \lim_{z \to z_0} \oint_{\gamma} {\frac{g(\zeta)}{(\zeta - z)^{n+1}} \; d\zeta} \\
+                    &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{g(\zeta)}{(\zeta - z)^{n}} - \frac{g(\zeta)}{(\zeta - z_0)^n} \right) \; d\zeta}
+                    + \oint_{\gamma} {\frac{g(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta} \\
+                    &= n \oint_{\gamma} {\frac{g(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta}
                     + \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z_0)^{n+2}} \; d\zeta} \\
                     &= n \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z_0)^{n+2}} \; d\zeta} + F_{n+2}(z_0) \\
                     &= (n + 1) F_{n+2}(z_0).
     \end{align*}
 
-    where we have utilized the continuity of $F_{n+1}$ (applied to $\phi$) the first time a limit is evaluated and the 
-    definition of the derivative and the inductive hypothesis (once again applied to $\phi$) to perform the second 
+    where we have utilized the continuity of $F_{n+1}$ (applied to $g$) the first time a limit is evaluated and the 
+    definition of the derivative and the inductive hypothesis (once again applied to $g$) to perform the second 
     evaluation.
     \ \\
 \end{solution}
