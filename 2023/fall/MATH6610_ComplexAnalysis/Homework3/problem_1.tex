@@ -1,0 +1,100 @@
+Let $\gamma$ be a simple, closed, rectifiable curve, and let $\varphi(\zeta)$ be continuous on $\gamma$. Complete the 
+inductive step to show that the function
+
+$$
+F_n(z) = \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n}} \; d\zeta}
+$$
+
+is holomorphic on on $\mathbb{C} \setminus \gamma$ for $n \in \mathbb{N}$ and that $F'_n(z) = n F_{n+1}(z)$.
+
+\begin{solution}
+    We assume that the base case holds, i.e.
+
+    $$
+    F(z) = \oint_{\gamma} {\frac{\varphi(\zeta)}{\zeta - z} \; d\zeta}
+    $$
+    
+    is continuous and that $F'(z) = F_2(z)$. Let $z_0 \in \mathbb{C} \setminus \gamma$, and let $d$ be the distance from
+    $z_0$ to $\gamma$ (i.e., $d = \inf_{\zeta \in \gamma}|z_0 - \zeta|$), and suppose that our hypothesis holds for 
+    $F_n$ so that
+    
+    $$
+    F'_n(z) = n \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}} \; d\zeta}
+    $$
+
+    and that $F_n(z)$ is continuous so that 
+
+    $$
+    \lim\limits_{z \to z_0} \left|F_n(z) - F_n(z_0)\right|
+      = \lim\limits_{z \to z_0} \left|\oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^n} -\frac{\varphi(\zeta)}{(\zeta - z_0)^n} } \right|
+      = 0.
+    $$
+
+    We show continuity of $F_{n+1}$ by first introducing the following identity:
+
+    $$
+    \frac{1}{(\zeta - z)^n (\zeta - z_0)} - \frac{1}{(\zeta - z)^{n+1}} 
+      = \frac{(\zeta - z) - (\zeta - z_0)}{(\zeta - z)^{n+1} (\zeta - z_0)}
+      = \frac{z_0 - z}{(\zeta - z)^{n+1} (\zeta - z_0)}
+    $$
+
+    In particular, we have:
+
+    $$
+    \frac{1}{(\zeta - z)^{n+1}} = \frac{1}{(\zeta - z)^n (\zeta - z_0)} + \frac{z - z_0}{(\zeta - z)^{n+1} (\zeta - z_0)}
+    $$
+   
+    from which we obtain the following expression for $\left|F_{n+1}(z) - F_{n+1}(z_0)\right|$:
+
+    \begin{align*}
+        \left|F_{n+1}(z) - F_{n+1}(z_0)\right| 
+          &= \left|\oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}} - \frac{\varphi(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta} \right| \\
+          &= \left|\oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n}(\zeta - z_0)} + \frac{\varphi(\zeta)(z - z_0)}{(\zeta - z)^{n+1}(\zeta - z_0)} - \frac{\varphi(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta} \right| \\
+          &= \left|\oint_{\gamma} {\frac{\varphi(\zeta)}{\zeta - z_0}\left(\frac{1}{(\zeta - z)^{n}} - \frac{1}{(\zeta - z_0)^{n}} \right) \; d\zeta} + \oint_{\gamma} {\frac{\varphi(\zeta)(z - z_0)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right| \\
+          &\le \left|\oint_{\gamma} {\frac{\varphi(\zeta)}{\zeta - z_0}\left(\frac{1}{(\zeta - z)^{n}} - \frac{1}{(\zeta - z_0)^{n}} \right) \; d\zeta} \right| + \left|(z - z_0) \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right|.
+    \end{align*}
+
+    We let $\phi \coloneqq \frac{\varphi(\zeta)}{\zeta - z_0}$ and note that $\phi$ is continuous on $\gamma$ since
+    $z_0$ lies outside $\gamma$. Hence by our inductive hypothesis (which applies to any continuous $\phi$), the left
+    summand vanishes as $z \to z_0$ by continuity of $F_n(z)$ (applied to $\phi$). To bound the right-hand term, we 
+    choose $z$ to be in the open ball of radius $\sfrac{d}{2}$ centered at $z_0$) so that $|\zeta - z| > \sfrac{d}{2}$ 
+    (and $|\zeta - z_0| > \sfrac{d}{2}$). Together with the observation that $\varphi(\zeta)$ is continuous on $\gamma$ 
+    and therefore has some bound $M_{\gamma}$, we find that
+
+    \begin{align*}
+        \left|(z - z_0) \oint_{\gamma} {\frac{\varphi(\zeta)(z - z_0)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right| 
+          &\le |z - z_0| \oint_{\gamma} { M_{\gamma} \left(\frac{2}{d}\right)^{n+2} \; |d\zeta| }
+          &= |z - z_0| \left[ M_{\gamma} L_{\gamma} \left(\frac{2}{d}\right)^{n+2} \right]
+    \end{align*}
+
+    where $L_{\gamma}$ is the length of the rectifiable curve $\gamma$. In the limit as $z \to z_0$, this
+    term vanishes, and hence
+
+    $$
+    \lim_{z \to z_0} \left|F_{n+1}(z) - F_{n+1}(z_0)\right| = 0.
+    $$
+
+    Since $z_0$ was chosen to be an arbitrary point outside of $\gamma$, we conclude that $F_{n+1}(z)$ is continuous and
+    hence by induction, every $F_n(z)$ is continuous.
+    
+    
+    To
+    show that $F'_{n+1}(z) = (n + 1) F_{n+2}(z)$, we observe from our earlier expression for 
+    $F_{n+1}(z) - F_{n+1}(z_0)$ that:
+
+    \begin{align*}
+        F'_{n+1}(z_0) &= \lim_{z \to z_0} \frac{F_{n+1}(z) - F_{n+1}(z_0)}{z - z_0} \\
+                    &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{\varphi(\zeta)}{(\zeta - z)^{n}(\zeta - z_0)} - \frac{\varphi(\zeta)}{(\zeta - z_0)^{n+1}} \right) \; d\zeta} \\
+                    &+ \lim_{z \to z_0} \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \\
+                    &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{\varphi(\zeta)}{(\zeta - z)^{n}(\zeta - z_0)} - \frac{\varphi(\zeta)}{(\zeta - z_0)^{n+1}} \right) \; d\zeta}
+                    + \lim_{z \to z_0} \oint_{\gamma} {\frac{\phi(\zeta)}{(\zeta - z)^{n+1}} \; d\zeta} \\
+                    &= \lim_{z \to z_0} \frac{1}{z - z_0}\oint_{\gamma} {\left(\frac{\phi(\zeta)}{(\zeta - z)^{n}} - \frac{\phi(\zeta)}{(\zeta - z_0)^n} \right) \; d\zeta}
+                    + \oint_{\gamma} {\frac{\phi(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta} \\
+                    &= n \oint_{\gamma} {\frac{\phi(\zeta)}{(\zeta - z_0)^{n+1}} \; d\zeta}
+                    + \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z_0)^{n+2}} \; d\zeta} \\
+                    &= n \oint_{\gamma} {\frac{\varphi(\zeta)}{(\zeta - z_0)^{n+2}} \; d\zeta} + F_{n+2}(z_0) \\
+                    &= (n + 1) F_{n+2}.
+    \end{align*}
+
+    as desired.
+\end{solution}
