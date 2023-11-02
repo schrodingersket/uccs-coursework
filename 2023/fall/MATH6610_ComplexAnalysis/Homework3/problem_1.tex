@@ -55,11 +55,11 @@ is holomorphic on on $\mathbb{C} \setminus \gamma$ for $n \in \mathbb{N}$ and th
     \end{align*}
 
     We let $\phi \coloneqq \frac{\varphi(\zeta)}{\zeta - z_0}$ and note that $\phi$ is continuous on $\gamma$ since
-    $z_0$ lies outside $\gamma$. Hence by our inductive hypothesis (which applies to any continuous $\phi$), the left
-    summand vanishes as $z \to z_0$ by continuity of $F_n(z)$ (applied to $\phi$). To bound the right-hand term, we 
-    choose $z$ to be in the open ball of radius $\sfrac{d}{2}$ centered at $z_0$) so that $|\zeta - z| > \sfrac{d}{2}$ 
-    (and $|\zeta - z_0| > \sfrac{d}{2}$). Together with the observation that $\varphi(\zeta)$ is continuous on $\gamma$ 
-    and therefore has some bound $M_{\gamma}$, we find that
+    $z_0$ lies outside $\gamma$. Hence by our inductive hypothesis (which applies to any numerator which is continuous 
+    on $\gamma$), the left summand vanishes as $z \to z_0$ by continuity of $F_n(z)$ (applied to $\phi$). To bound the 
+    right-hand term, we choose $z$ to be in the open ball of radius $\sfrac{d}{2}$ centered at $z_0$ so that 
+    $|\zeta - z| > \sfrac{d}{2}$ (and $|\zeta - z_0| > \sfrac{d}{2}$). Together with the observation that 
+    $\varphi(\zeta)$ is continuous on $\gamma$ and therefore has some bound $M_{\gamma}$, we find that
 
     \begin{align*}
         \left|(z - z_0) \oint_{\gamma} {\frac{\varphi(\zeta)(z - z_0)}{(\zeta - z)^{n+1}(\zeta - z_0)} \; d\zeta} \right| 
@@ -74,13 +74,9 @@ is holomorphic on on $\mathbb{C} \setminus \gamma$ for $n \in \mathbb{N}$ and th
     \lim_{z \to z_0} \left|F_{n+1}(z) - F_{n+1}(z_0)\right| = 0.
     $$
 
-    Since $z_0$ was chosen to be an arbitrary point outside of $\gamma$, we conclude that $F_{n+1}(z)$ is continuous and
-    hence by induction, every $F_n(z)$ is continuous.
-    
-    
-    To
-    show that $F'_{n+1}(z) = (n + 1) F_{n+2}(z)$, we observe from our earlier expression for 
-    $F_{n+1}(z) - F_{n+1}(z_0)$ that:
+    Since $z_0$ was chosen to be an arbitrary point outside of $\gamma$, we conclude that $F_{n+1}(z)$ is continuous. To
+    show that $F'_{n+1}(z) = (n + 1) F_{n+2}(z)$, we observe from our earlier expression for $F_{n+1}(z) - F_{n+1}(z_0)$ 
+    that:
 
     \begin{align*}
         F'_{n+1}(z_0) &= \lim_{z \to z_0} \frac{F_{n+1}(z) - F_{n+1}(z_0)}{z - z_0} \\
@@ -96,5 +92,8 @@ is holomorphic on on $\mathbb{C} \setminus \gamma$ for $n \in \mathbb{N}$ and th
                     &= (n + 1) F_{n+2}(z_0).
     \end{align*}
 
-    as desired.
+    where we have utilized the continuity of $F_{n+1}$ (applied to $\phi$) the first time a limit is evaluated and the 
+    definition of the derivative and the inductive hypothesis (once again applied to $\phi$) to perform the second 
+    evaluation.
+    \ \\
 \end{solution}
