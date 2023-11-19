@@ -48,32 +48,34 @@ then $f$ is constant.
     
     By definition, $\tilde{f}$ is holomorphic on the open disc $\mathbb{D}$. It remains to show that $\tilde{f}$ is 
     holomorphic on the boundary of the disc and on $\mathbb{C} \setminus \closeD$. We proceed with the latter. Since $f$ 
-    is non-vanishing, we have that $\frac{1}{f(\sfrac{1}{z})}$ is holomorphic as a composition of holomorphic functions 
-    whenever $|z| > 1$ and therefore has a power series expansion $\sum a_n (z - z_0)^n$ about any 
-    $z_0 \in \mathbb{C} \setminus \closeD$. Hence for any 
-    $\overline{z}, \overline{z_0} \in \mathbb{C} \setminus{\closeD}$, we have 
+    is non-vanishing, we have that $\frac{1}{f(\sfrac{1}{z})}$ is holomorphic whenever $|z| > 1$ as a composition of 
+    holomorphic functions . Let $z_0 \in \mathbb{C} \setminus \closeD$. Since $|z_0| > 1$, we observe that 
+    $|\overline{z_0}| > 1$ and hence there exists a power series expansion 
+    $\frac{1}{f(\sfrac{1}{z})} = \sum a_n (z - \overline{z_0})^n$ about $\overline{z_0}$ in some sufficiently small open 
+    disc. We therefore find that for $z$ in that disc,
 
     $$
     \frac{1}{\overline{f(\sfrac{1}{\overline{z}})}}
     = \overline{\left(\frac{1}{f(\sfrac{1}{\overline{z}})} \right)} 
     = \overline{\sum a_n (\overline{z} - \overline{z}_0)^n}
     = \left( \sum \overline{a_n} \cdot \overline{(\overline{z} - \overline{z_0})^n} \right)
-    = \sum \overline{a_n} (z - z_0)^n
+    = \sum \overline{a_n} (z - z_0)^n.
     $$
 
-    so that $\tilde{f}$ is holomorphic in $\mathbb{C} \setminus \closeD$ by virtue of the existence of power series 
-    expansion about any point in $\mathbb{C} \setminus \closeD$. To show that $\tilde{f}$ is entire, we consider a 
-    an arbitrary simple closed Jordan curve $\gamma$ which intersects the circle $|z| = 1$ (any such curve which does 
-    not intersect this circle integrates to zero by holomorphicity of $\tilde{f}$ away from this circle). By splitting 
-    the curve where it intersects the circle by some arbitrary distance $\epsilon > 0$ (see Figure \ref{fig:problem_12}
-    ), we obtain two curves $\gamma_1$ and $\gamma_2$ which are entirely contained in $\closeD$ and 
-    $\mathbb{C} \setminus \closeD$, respectively. Since $\tilde{f}$ is holomorphic in these regions, the integral of 
-    $\tilde{f}$ over each curve is zero.  Since this is true for every $\epsilon > 0$, we let $\epsilon \to 0$ and 
-    conclude by continuity of $\tilde{f}$ over all $\mathbb{C}$ that the integral of $\tilde{f}$ over $\gamma$ is also 
-    zero. Since $\gamma$ was an arbitrary simple closed Jordan curve, we have by Morera's Theorem that $\tilde{f}$ is 
-    holomorphic on $|z| = 1$ and is therefore entire. Since $f$ is a continuous function on the compact disc $\closeD$, 
-    it (and therefore its conjugate reciprocal) is bounded. By Liouville's Theorem, we have that $\tilde{f}$ is constant 
-    as was desired.
+    so that a power series expansion evidently exists for $\frac{1}{\overline{f(\sfrac{1}{\overline{z}})}}$ about any 
+    arbitrary $z_0 \in \mathbb{C} \setminus \closeD$ and so $\tilde{f}$ is holomorphic outside the unit disc.
+
+    Lastly, to show that $\tilde{f}$ is entire, we consider a an arbitrary simple closed Jordan curve $\gamma$ which 
+    intersects the circle $|z| = 1$ (any such curve which does not intersect this circle integrates to zero by 
+    holomorphicity of $\tilde{f}$ away from this circle). By splitting the curve where it intersects the circle by some 
+    arbitrary distance $\epsilon > 0$ (see Figure \ref{fig:problem_12}), we obtain two curves $\gamma_1$ and $\gamma_2$ 
+    which are entirely contained in $\closeD$ and $\mathbb{C} \setminus \closeD$, respectively. Since $\tilde{f}$ is
+    holomorphic in these regions, the integral of $\tilde{f}$ over each curve is zero.  Since this is true for every 
+    $\epsilon > 0$, we let $\epsilon \to 0$ and conclude by continuity of $\tilde{f}$ over all $\mathbb{C}$ that the 
+    integral of $\tilde{f}$ over $\gamma$ is also zero. Since $\gamma$ was an arbitrary simple closed Jordan curve, we 
+    have by Morera's Theorem that $\tilde{f}$ is holomorphic on $|z| = 1$ and is therefore entire. Since $f$ is a 
+    continuous function on the compact disc $\closeD$, it (and therefore its conjugate reciprocal) is bounded. By 
+    Liouville's Theorem, we have that $\tilde{f}$ is constant as was desired.
 
     \vspace{1.0em}
 
