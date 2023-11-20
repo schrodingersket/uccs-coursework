@@ -9,19 +9,21 @@ $$
 for some $\epsilon > 0$ and all $z$ near $z_0$. Show that the singularity of $f$ at $z_0$ is removable.
 
 \begin{solution}
-  If $\epsilon \ge 1$, then $f(z)$ is bounded near $z_0$ by $A$ for all $z \in \mathbb{D}(z_0)$ and so $z_0$ is a 
-  removable singularity by Riemann's theorem on removable singularities. We may therefore assume $0 < \epsilon < 1$.
-  We proceed as in the proof of Riemann's theorem by defining $F: D_r \to \mathbb{C}$ of $f(z)$ to be:
+  If $\epsilon \ge 1$, then $f(z)$ is bounded near $z_0$ by $A$ for all $z$ in a sufficiently small open ball around 
+  $z_0$ and so $z_0$ is a removable singularity by Riemann's theorem on removable singularities. We may therefore assume 
+  $0 < \epsilon < 1$.  We proceed as in the proof of Riemann's theorem by defining $F: D_r \to \mathbb{C}$ of $f(z)$ to 
+  be:
 
   $$
   F(z) = \frac{1}{2 \pi i} \int_C \frac{f(\zeta)}{\zeta - z} d\zeta
   $$
 
-  where $C$ is the boundary of an open ball $B_R(z) \subset D_r$ centered about $z_0$ such that the ball and its 
-  boundary are entirely contained in the punctured disc; we fix $z \in D$ with $z \neq z_0$, and utilize the double 
-  keyhole contour shown in Figure \ref{fig:double_keyhole_contour} so that $F(z)$ is holomorphic on all of $D$ (that is, 
-  inside the contour and out) by a lemma from class. It remains to show that $F(z) = f(z)$ for all $z \neq z_0$, which 
-  shows that $F$ is a holomorphic extension of $f$ and hence that the singularity of $f$ at $z_0$ is removable. 
+  where $C$ is the boundary of an open ball $B_R(z) \subset D_r(z_0)$ centered about $z_0$ such that the ball and its 
+  boundary are entirely contained in the punctured disc; we fix $z \in B_R(z_0)$ with $z \neq z_0$, and utilize the 
+  double keyhole contour shown in Figure \ref{fig:double_keyhole_contour} so that $F(z)$ is holomorphic on all of 
+  $D_r(z_0)$ (that is, inside the contour and out) by a lemma from class. It remains to show that $F(z) = f(z)$ for all 
+  $z \neq z_0$, which shows that $F$ is a holomorphic extension of $f$ and hence that the singularity of $f$ at $z_0$ is 
+  removable. 
 
   \begin{figure}[h]
     \centering
@@ -56,7 +58,7 @@ for some $\epsilon > 0$ and all $z$ near $z_0$. Show that the singularity of $f$
     &\le \frac{1}{\pi |z_0 - z|} \int_{\gamma_0} {A |\zeta - z_0|^{-1 + \epsilon}} \; |d\zeta| \\
     &= \frac{A \delta_0^{-1 + \epsilon}}{\pi |z_0 - z|} \int_{\gamma_0} {|d\zeta|}  \\
     &= \frac{A \delta_0^{-1 + \epsilon}}{\pi |z_0 - z|} 2 \pi \delta_0 \\
-    &= \frac{2 A }{|z_0 - z|} \delta_0 \\
+    &= \frac{2 A }{|z_0 - z|} \delta_0^{\epsilon} \\
   \end{align*}
 
   which vanishes in the limit as $\delta_0 \to 0$, as was to be shown.
