@@ -7,5 +7,61 @@ $$
 $$
 
 \begin{solution}
+  We fix $n \in \mathbb{N}$ and observe that poles exist at $z = i$ and $z = -i$, each of order $n + 1$. Integrating 
+  over the semicircle $\gamma_R$ of radius $R > 1$ (so that $z = i$ is contained in the closed curve) and applying the 
+  residue theorem yields:
+
+  \begin{align*}
+    \int_{\gamma_R} { \frac{1}{(1 + z^2)^{n+1}} \; dz } 
+      &= \lim\limits_{z \to i} \frac{1}{n!} \left(\frac{d}{dz}\right)^n (z - i)^{n+1} \frac{1}{(1 + z^2)^{n+1}} \\
+      &= \lim\limits_{z \to i} \frac{1}{n!} \left(\frac{d}{dz}\right)^n \frac{1}{(z + i)^{n+1}} \\
+      &= \lim\limits_{z \to i} \frac{1}{n!} \left(\frac{d}{dz}\right)^{n-1} \frac{-(n+1)}{(z + i)^{n+2}} \\
+      &\vdots \\
+      &= \lim\limits_{z \to i} \frac{1}{n!} \frac{(2n)!}{n!} \frac{(-1)^n}{(z + i)^{2n}} \\
+      &= \frac{(2n)!}{n! \, n! \, 2^{2n}} \\
+      &= \frac{1 \cdot 2 \cdots (2n)}{n! \, n! \, 2^{2n}} \\
+      &= \frac{[1 \cdot 3 \cdots (2n - 1)] \cdot 2 \cdot 4 \cdots 2n}{n! \, n! \, 2^{2n}} \\
+      &= \frac{[1 \cdot 3 \cdots (2n - 1)] 2^n \, n!}{n! \, n! \, 2^{2n}} \\
+      &= \frac{[1 \cdot 3 \cdots (2n - 1)]}{n! \, 2^n} \\
+      &= \frac{1 \cdot 3 \cdots (2n - 1)}{2 \cdot 4 \cdots 2n}.
+  \end{align*}
+
+  To obtain the desired result, we observe that together with the parametrization of 
+  $z = e^{i \theta}$ for $\theta \in [0, \pi]$, the integral over the semicircle $\gamma_R$ is given by
+
+  $$
+    \int_{\gamma_R} { \frac{1}{(1 + z^2)^{n+1}} \; d\theta } = \int_{-R}^{R} { \frac{1}{(1 + x^2)^{n+1}} \; dx } 
+                                                             + \int_0^{\pi} { \frac{i R e^{i \theta}}{\left(1 + R^2 e^{2 i \theta}\right)^{n+1}} \; d\theta }
+  $$
+
+  \pagebreak
+  To bound the latter integral, we note that the reverse triangle inequality yields
+
+  $$
+  \left|1 + R^2 e^{2 i \theta}\right| = \left|1 - \left(-R^2 e^{2 i \theta}\right)\right| 
+                                      \ge \Big| 1 - \left| R^2 e^{2 i \theta} \right| \Big| 
+                                      = \left|R^2 - 1\right|
+  $$
+
+  so that we obtain
+
+  \begin{align*}
+    \left|\int_0^{\pi} { \frac{i R e^{i \theta}}{\left(1 + R^2 e^{2 i \theta}\right)^{n+1}} \; d\theta } \right|
+      &\le \int_0^{\pi} { \frac{R}{\left| 1 + R^2 e^{2 i \theta} \right|^{n+1}} \; dz} \\
+      &\le \int_0^{\pi} { \frac{R}{\left| 1 - R^2 \right|^{n+1}} \; |dz|} \\
+      &= \frac{2 \pi R^2}{\left| 1 - R^2 \right|^{n+1}}
+  \end{align*}
+
+  which tends to zero as $R \to \infty$ whenever $n \ge 1$. We combine this result with the above residue calculation to 
+  obtain in the limit that 
+
+  $$
+    \int_{-\infty}^{\infty} { \frac{1}{(1 + x^2)^{n+1}} \; dx } 
+      = \int_{\gamma_{\infty}} { \frac{1}{(1 + z^2)^{n+1}} \; dz } 
+      = \frac{1 \cdot 3 \cdots (2n - 1)}{2 \cdot 4 \cdots 2n}
+  $$ 
+
+  as desired.
+
   \ \\
 \end{solution}
