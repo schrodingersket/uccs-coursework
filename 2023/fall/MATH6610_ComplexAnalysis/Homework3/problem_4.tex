@@ -30,8 +30,8 @@ $$
   $z = e^{i \theta}$ for $\theta \in [0, \pi]$, the integral over the semicircle $\gamma_R$ is given by
 
   $$
-    \int_{\gamma_R} { \frac{1}{(1 + z^2)^{n+1}} \; d\theta } = \int_{-R}^{R} { \frac{1}{(1 + x^2)^{n+1}} \; dx } 
-                                                             + \int_0^{\pi} { \frac{i R e^{i \theta}}{\left(1 + R^2 e^{2 i \theta}\right)^{n+1}} \; d\theta }
+    \int_{\gamma_R} { \frac{1}{(1 + z^2)^{n+1}} \; dz } = \int_{-R}^{R} { \frac{1}{(1 + x^2)^{n+1}} \; dx } 
+                                                        + \int_0^{\pi} { \frac{i R e^{i \theta}}{\left(1 + R^2 e^{2 i \theta}\right)^{n+1}} \; d\theta }
   $$
 
   \pagebreak
@@ -39,8 +39,8 @@ $$
 
   \begin{align*}
     \left|\int_0^{\pi} { \frac{i R e^{i \theta}}{\left(1 + R^2 e^{2 i \theta}\right)^{n+1}} \; d\theta } \right|
-      &\le \int_0^{\pi} { \frac{R}{\left| 1 + R^2 e^{2 i \theta} \right|^{n+1}} \; dz} \\
-      &\le \int_0^{\pi} { \frac{R}{\left| 1 - R^2 \right|^{n+1}} \; |dz|} \\
+      &\le \int_0^{\pi} { \frac{R}{\left| 1 + R^2 e^{2 i \theta} \right|^{n+1}} \; d\theta} \\
+      &\le \int_0^{\pi} { \frac{R}{\left| 1 - R^2 \right|^{n+1}} \; |d\theta|} \\
       &= \frac{2 \pi R^2}{\left| 1 - R^2 \right|^{n+1}}
   \end{align*}
 

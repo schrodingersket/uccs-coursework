@@ -24,10 +24,10 @@ circle, and letting $N$ tend to infinity.
 
   \begin{align*}
     \text{res}_{z = -u} f(z) &= \lim\limits_{z \to -u} \frac{d}{dz} \left[ (z - (-u))^2 \frac{\pi \cot{\pi z}}{(u + z)^2} \right] \\
-    \text{res}_{z = -u} f(z) &= \lim\limits_{z \to -u} \frac{d}{dz} \left[ \pi \cot{\pi z}\right] \\
-    \text{res}_{z = -u} f(z) &= \lim\limits_{z \to -u} -\frac{\pi^2}{\sin^2{\pi z}} \\
-    \text{res}_{z = -u} f(z) &= -\frac{\pi^2}{(-\sin{\pi u})^2} \\
-    \text{res}_{z = -u} f(z) &= -\frac{\pi^2}{(\sin{\pi u})^2} \\
+                             &= \lim\limits_{z \to -u} \frac{d}{dz} \left[ \pi \cot{\pi z}\right] \\
+                             &= \lim\limits_{z \to -u} -\frac{\pi^2}{\sin^2{\pi z}} \\
+                             &= -\frac{\pi^2}{(-\sin{\pi u})^2} \\
+                             &= -\frac{\pi^2}{(\sin{\pi u})^2}.
   \end{align*}
 
   To compute the residue contributed by the cotangent term, we first note that 
@@ -72,7 +72,7 @@ circle, and letting $N$ tend to infinity.
   \left| \int_{|z| = R_N} f(z) dz \right| 
     \le \int_{|z| = R_N} \left| \frac{\pi \cot{\pi z}}{(u + z)^2} \right| dz
     \le \pi \int_{|z| = R_N} \frac{M}{\big||u| - (N + \sfrac{1}{2})\big|^2} |dz|
-    = \frac{2 M \pi^2}{\big||u| - (N + \sfrac{1}{2})\big|^2}
+    = \frac{2 M \pi^2}{\big||u| - (N + \sfrac{1}{2})\big|^2}.
   $$
 
   In the limit as $N$ goes to infinity, this integral goes to zero. By the residue theorem, we have
