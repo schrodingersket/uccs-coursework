@@ -5,5 +5,36 @@ If $|f(z)| = 1$ whenever $|z| = 1$, then the image of $f$ contains the unit disc
 show that $f(z) = 0$ has a root (why?). Use the maximum modulus principle to conclude.]
 
 \begin{solution}
+  To show that the image of $\Omega$ under $f$ contains the unit disc, we must to show that there exists some 
+  $z_0 \in \Omega$ for every $w_0 \in \mathbb{D}$ such that $f(z_0) = w_0$, i.e., that for every such $w_0$, there 
+  exists a zero of the function $f(z) - w_0$. To do so, we let $w_0$ be an arbitrary point in $\mathbb{D}$ and observe 
+  that with $g(z) = -w_0$, we have $|f(z)| = 1 > |g(z)|$ for all $z$ on the unit circle $|z| = 1$. We may therefore 
+  apply Rouch\'e's theorem to conclude that $f + g = f(z) - w_0$ has the same number of zeros as $f(z)$ inside the unit 
+  disc since $f$ and $g$ are holomorphic in an open set containing the unit circle and its interior.
+
+  To show that a zero of $f(z)$ (and therefore of $f(z) - w_0$) exists in $\mathbb{D}$, we suppose for the sake of 
+  contradiction that no such zero exists. Then the function $h(z) = \sfrac{1}{f(z)}$ is also holomorphic on the unit 
+  disc (since the denominator is never zero in $\mathbb{D}$). Moreover, since $f$ is non-constant, $h$ is also 
+  non-constant so that by the maximum modulus principle we have
+
+  $$
+  |f(z)| < 1 \qquad z \in \mathbb{D}.
+  $$
+
+  But $h$ is also holomorphic and non-constant, and on the unit circle $C$, we have
+
+  $$
+  |h(z)| = \frac{1}{|f(z)|} = 1 \qquad z \in C
+  $$
+
+  so that another application of the maximum modulus principle yields
+
+  $$
+  |h(z)| = \sfrac{1}{|f(z)|} < 1 \qquad z \in \mathbb{D}.
+  $$
+
+  from which we obtain $|f(z)| > 1$ for all $z \in \mathbb{D}$, a contradiction. We conclude that $f(z)$ (and hence 
+  $f(z) - w_0$) must have a zero in the unit disc, and so there exists some $z_0 \in \mathbb{D}$ such that 
+  $f(z_0) = w_0$. Since $w_0$ was chosen to be arbitrary, the image of $f$ contains the unit disc, as desired.
   \ \\
 \end{solution}
