@@ -7,5 +7,39 @@ $a \ne 0$.
 [\textbf{Hint:} Apply the Casorati-Weierstrass theorem to $f(\sfrac{1}{z})$ and use Theorem 4.4.]
 
 \begin{solution}
+  Suppose that $f(z)$ is entire and injective. Since $f$ is entire, there exists a power series expansion about 
+  $z_0 = 0$ so that $f = \sum {a_k z^k}$ holds for all $z \in \mathbb{C}$. In particular, since $f$ is holomorphic on 
+  $\mathbb{C}$ and injective, the function $g(z) \coloneqq f(\sfrac{1}{z}) = \sum {\frac{a_k}{z^k}}$ is holomorphic on 
+  $\mathbb{C} \setminus \{0\}$ and is also injective. Moreover, the injectiveness of $g$ implies that $g$ is 
+  non-constant, so that at least one of $a_k$ is non-zero. To show that only finitely many $a_k$ may be non-zero, we 
+  suppose for the sake of contradiction that infinitely many $a_k$ are non-zero. The point $z_0 = 0$ is then an 
+  essential singularity of $g(z)$, and so by the Casorati-Weierstrass theorem, the image of the punctured unit disc 
+  under $g$ is dense in $\mathbb{C}$. Moreover, since $g$ is holomorphic and non-constant in the punctured disc
+  $\mathbb{D} \setminus \{0\}$, $g$ is an open function by the open mapping theorem. To obtain our contradiction, we 
+  observe that the open ball $B_1(3)$ of radius $1$ centered about $z = 3$ is open and disjoint from the punctured unit 
+  disc.  Since $g(\mathbb{D} \setminus \{0\})$ is dense, there exists some point $w_0 \in g(B_1(3))$ which is non-zero 
+  (since $f(z)$ is not constant and is injective) whose preimage is in the punctured unit disc which violates the 
+  injectiveness of $g$ and yields the desired contradiction. Hence $z_0 = 0$ is a pole singularity of $g$, so that
+
+  $$
+  g(z) = a_0 + \sum\limits_{k=0}^{m} \frac{a_k}{z^k}
+  $$
+
+  and so $f$ is a polynomial:
+
+  $$
+  f(z) = a_0 + \sum\limits_{k=0}^{m} {a_k  z^k}
+  $$
+
+  Since $f$ is injective, it may have at most one zero (say, $z_0$), and so $f(z)$ = $a (z - z_0)^m$ for some $m \ge 2$. 
+  In particular, if $m > 1$, we have
+
+  $$
+  f(e^{\sfrac{2 \pi i}{m}} + z_0) = a \left[e^{\sfrac{2 \pi i}{m}}\right]^m = a e^{2 \pi i} = a = a (1)^m = f(1 + z_0)
+  $$
+
+  which contradicts the fact that $f$ is injective. Hence $m = 1$, and with $b \coloneqq -a z_0$ we conclude that
+  $f(z) = a z  + b$, as desired.
+
   \ \\
 \end{solution}
