@@ -1,0 +1,20 @@
+$(x_k)_{k \in \mathbb{N}}$, where $x_k = 3^{-k^2}$.
+
+\begin{solution}
+  Observe that each $x_k$ is bounded below by 0 and that $\frac{1}{3^{k^2}} \le \frac{1}{3^k}$ for all 
+  $k \in \mathbb{N}$. By (i), the right side of the inequality converges to 0, and so $x_k$ converges to 0 by the 
+  Squeeze Lemma. Hence $\Vert e_{k} \Vert = 3^{-k^2}$ and so we find
+
+  $$
+    \lim\limits_{k \to \infty} \frac{\Vert e_{k+1} \Vert}{\Vert e_k \Vert^1} 
+        = \lim\limits_{k \to \infty} \frac{3^{-(k+1)^2}}{3^{-k^2}}
+        = \lim\limits_{k \to \infty} \frac{3^{k^2}}{3^{k^2 + 2k + 1}}
+        = \lim\limits_{k \to \infty} \frac{1}{3 \cdot 3^{2k}}
+        = \frac{1}{3} \lim\limits_{k \to \infty} \frac{1}{9^k}
+        = 0.
+  $$
+
+  The rate of convergence of $(x_k)$ is therefore $r = 1$ with rate constant $C = 0$, and so the convergence
+  of $(x_k)$ is superlinear.
+  \ \\
+\end{solution}

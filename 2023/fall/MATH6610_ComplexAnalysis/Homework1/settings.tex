@@ -1,0 +1,31 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage[bottom]{footmisc}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{enumerate}
+\usepackage{optidef}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage[normalem]{ulem}
+
+\pagestyle{fancy}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}

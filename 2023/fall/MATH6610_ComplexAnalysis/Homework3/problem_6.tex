@@ -1,0 +1,99 @@
+\textbf{Stein, Shakarchi 3.12}
+
+Suppose that $u$ is not an integer. Prove that
+
+$$
+\sum\limits_{n = -\infty}^{\infty} \frac{1}{(u + n)^2} = \frac{\pi^2}{(\sin{\pi u})^2}
+$$
+
+by integrating
+
+$$
+f(z) = \frac{\pi \cot{\pi z}}{(u + z)^2}
+$$
+
+over the circle $|z| = R_N = N + \sfrac{1}{2}$ (where $|u| \le N \in \mathbb{N}$), adding the residues of $f$ inside the 
+circle, and letting $N$ tend to infinity.
+
+\begin{solution}
+
+  We first note that $f(z)$ has two sources of poles within a circle of radius $R_N$; the first is a pole of order 2 at 
+  $z = -u$, and the second yields $2 N$ poles of order one (since $\sin{\pi z}$ has poles of order one at the integers) 
+  at each $z = k$ where $k \in \left\{j \in \mathbb{Z} \mid |j| \le N \right\}$. We first compute the residue of the 
+  former, which is given by:
+
+  \begin{align*}
+    \text{res}_{z = -u} f(z) &= \lim\limits_{z \to -u} \frac{d}{dz} \left[ (z - (-u))^2 \frac{\pi \cot{\pi z}}{(u + z)^2} \right] \\
+                             &= \lim\limits_{z \to -u} \frac{d}{dz} \left[ \pi \cot{\pi z}\right] \\
+                             &= \lim\limits_{z \to -u} -\frac{\pi^2}{\sin^2{\pi z}} \\
+                             &= -\frac{\pi^2}{(-\sin{\pi u})^2} \\
+                             &= -\frac{\pi^2}{(\sin{\pi u})^2}.
+  \end{align*}
+
+  To compute the residue contributed by the cotangent term, we first note that 
+
+  \begin{align*}
+    \lim\limits_{z \to k} (z - k) \pi \cot{\pi z}
+      &= \lim\limits_{z \to k} \left[(\pi z - \pi k) \frac{
+          \sum_{n=0}^{\infty} \frac{(-1)^n (\pi z - \pi k)^{2n}}{(2n)!}
+        }{
+          \sum_{n=0}^{\infty} \frac{(-1)^n (\pi z - \pi k)^{2n+1}}{(2n + 1)!}
+        } \right] \\
+      &= \lim\limits_{z \to k} \left[
+        \frac{
+          \sum_{n=0}^{\infty} \frac{(-1)^n (\pi z - \pi k)^{2n}}{(2n)!}
+        }{
+          \sum_{n=0}^{\infty} \frac{(-1)^n (\pi z - \pi k)^{2n}}{(2n + 1)!}
+        }
+      \right] \\
+      &= \lim\limits_{z \to k} \left[
+        \frac{1 + \mathcal{O}(z - k)}{1 + \mathcal{O}(z - k)} 
+      \right] \\
+      &= 1
+  \end{align*}
+  
+  so that the residue at each $k \in \mathbb{Z}$ is given by:
+
+  \begin{align*}
+    \text{res}_{z = k} f(z) &= \lim\limits_{z \to k} (z - k) \frac{\pi \cot{\pi z}}{(u + z)^2} \\
+                            &= \lim\limits_{z \to k} \frac{1}{(u + z)^2} \left[(\pi z - \pi k) \cot{\pi z} \right] \\
+                            &= \frac{1}{(u + k)^2}
+  \end{align*}
+
+  and hence the total residue from the cotangent term is given by $\sum_{n = -N}^{N} \frac{1}{(u + n)^2}$.
+
+  We now bound the integral of $f$ over the circle $|z| = R_N = N + \sfrac{1}{2}$. Since $|u| \le N$, we observe 
+  that $u \neq z$; moreover, since the zeros of $\sin{\pi z}$ are at the integers and $N + \sfrac{1}{2}$ is by 
+  construction not an integer, $\cot{\pi z}$ is holomorphic and therefore continuous on the (compact) circle 
+  $|z| = R_N$. Hence $\cot{\pi z}$ is bounded on the circle by some finite $M$. Noting that 
+  $|u + z| \ge \big||u| - |N + \sfrac{1}{2}|\big|$, we obtain
+
+  $$
+  \left| \int_{|z| = R_N} f(z) dz \right| 
+    \le \int_{|z| = R_N} \left| \frac{\pi \cot{\pi z}}{(u + z)^2} \right| dz
+    \le \pi \int_{|z| = R_N} \frac{M}{\big||u| - (N + \sfrac{1}{2})\big|^2} |dz|
+    = \frac{2 M \pi^2}{\big||u| - (N + \sfrac{1}{2})\big|^2}.
+  $$
+
+  In the limit as $N$ goes to infinity, this integral goes to zero. By the residue theorem, we have
+
+  \begin{align*}
+  \int_{|z| = R_N} f(z) dz &= 2 \pi i \left( \text{res}_{z = -u} f(z) + \sum_{n = -N}^{N} \text{res}_{z = n} f(z) \right) \\
+                           &= 2 \pi i \left( -\frac{\pi^2}{(\sin{\pi u})^2} + \sum_{n = -N}^{N} \frac{1}{(u + n)^2} \right) \\ 
+  \end{align*}
+
+  so that as $N$ goes to infinity, we obtain
+
+  $$
+    0 = 2 \pi i \left( -\frac{\pi^2}{(\sin{\pi u})^2} + \sum_{n = -\infty}^{\infty} \frac{1}{(u + n)^2} \right)
+  $$
+
+  and hence
+
+  $$
+    \sum_{n = -\infty}^{\infty} \frac{1}{(u + n)^2} = \frac{\pi^2}{(\sin{\pi u})^2}
+  $$
+
+  as desired.
+  \ \\
+\end{solution}

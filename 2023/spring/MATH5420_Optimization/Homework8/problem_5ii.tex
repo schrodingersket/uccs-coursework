@@ -1,0 +1,33 @@
+Show that the second-order sufficiency conditions do not hold anywhere, but that any point $x_*$ which satisfies the
+first-order necessary conditions is a global minimizer.
+
+\textit{Hint: } Show that there are no feasible directions of descent at $x_*$, and that this implies that $x_*$ is a
+global minimizer.
+
+\begin{solution}
+    The second-order sufficiency conditions for $x_*$ to be a local minimizer of $f$ require that 
+    $Z^T \nabla^2 f(x_*) Z$ be positive definite. From the previous problem, we know that $\nabla^2 f = 0$, and hence 
+    $Z^T \nabla ^2 f(x_*) Z$ is the zero matrix and cannot be positive definite. To show that any point $x_*$ which
+    satisfies the first-order necessary conditions is a global minimizer, we suppose for the sake of contradiction that
+    there exists a feasible direction of descent $p$ at $x_*$ so that $f(x_* + p) - f(x_*) < 0$. Then
+
+    $$
+    f(x_* + p) - f(x_*) = (c^T x + c^T p) - (c^T x) = c^T p < 0.
+    $$
+
+    By the first-order necessary conditions, we have $A^T \lambda_* = \nabla f = c$ for some \newline
+    $\lambda_* \ge 0$. Hence
+
+    $$
+        c^T p = \left(A^T \lambda_*\right)^T p = \lambda_*^T A p < 0.
+    $$
+
+    Since $\lambda_*$ is nonnegative, this can only be true if $A p < 0$, which contradicts the assumption that $p$ is a
+    feasible direction.\footnote{
+        For $p$ to be a feasible direction, we require $A(x + p) = Ax + Ap \ge b$; since $Ax \ge b$ by assumption, we
+        obtain the requirement that $Ap \ge 0$.
+    } Hence there are no feasible directions of descent at $x_*$, and so $x_*$ is a local minimizer. Finally, since the
+    objective function and constraints are convex (as linear functions), $x_*$ is the local minimizer of a convex 
+    function over a convex set and must therefore also be a global minimizer.
+    \ \\
+\end{solution}

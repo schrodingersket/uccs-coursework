@@ -1,0 +1,24 @@
+\textbf{Trefethen 13.3}
+
+Modify Program 19 (p. 82) to solve $u_{tt} = u_{xx}$ as before but with initial and boundary conditions
+
+$$
+u(x, 0) = 0, \quad u_x(-1, t) = 0, \quad u(1, t) = \sin{(10t)}
+$$
+
+Product an attractive plot of the solution for $0 \le t \le 5$.
+
+\begin{solution}
+    The solution plot for $0 \le t \le 5$ is given in Figure \ref{fig:problem_3}.
+
+    \begin{figure}[h]
+        \includegraphics*[width=0.95\textwidth]{problem_3.png}
+        \caption{Output of \texttt{problem\_3.m}}
+        \label{fig:problem_3}
+    \end{figure}
+
+    We observe a constant solution at the left boundary $x = -1$ which represents our Neumann BC; at the
+    right boundary $x = 1$, we observe a sinusoidal function of time with period $10$. Our initial condition 
+    (at $t = 0$) is identically zero.
+    \ \\
+\end{solution}

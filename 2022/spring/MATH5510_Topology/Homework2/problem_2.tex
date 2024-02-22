@@ -1,0 +1,111 @@
+(\#4 in 3.2) Find all the topologies on the set $X = \{a,b,c\}$. There are 29 of them. (Hint: be extremely organized in how you write them down). 
+
+\ \\
+\emph{Claim.} Let $X = \{a, b, c\}$ be a set. Then the following 8 classes form 29 topologies on X, where for 
+              notational convenience we define $x_1 = a$, $x_2 = b$, and $x_3 = c$ and assume that 
+              that $i \neq j \neq k$.
+
+\begin{enumerate}
+    \item $\{\emptyset, X, \mathcal{P}(X)\}$ (the discrete topology on $X$)
+    \item $\{\emptyset, X\}$ (the trivial topology on $X$)
+    \item $\{\emptyset, X, \{x_i\}\}$
+    \item $\{\emptyset, X, \{x_i, x_j\}\}$
+    \item $\{\emptyset, X, \{x_i, x_j\}, \{x_i\}\}$
+    \item $\{\emptyset, X, \{x_i, x_j\}, \{x_k\}\}$
+    \item $\{\emptyset, X, \{x_i, x_j\}, \{x_i\}, \{x_j\}\}$
+    \item $\{\emptyset, X, \{x_i, x_j\}, \{x_j, x_k\}, \{x_j\}\}$
+    \item $\{\emptyset, X, \{x_i, x_j\}, \{x_j, x_k\}, \{x_i\}, \{x_j\}\}$
+\end{enumerate}
+
+\begin{proof}\ \\\\
+    (a) and (b) are the discrete and trivial topologies on $X$, and are therefore topologies. We therefore only prove
+    that classes (c)-(h) are topologies on $X$. Recall that the intersection of a set $X$ with any set in $X$ is the set
+    itself and that the union of $X$ with any set in $X$ yields $X$ itself. Similarly, the union of the empty set 
+    $\emptyset$ with any set in $X$ yields the set itself and the intersection of the empty set with any set is the 
+    empty set. To show that the classes (a)-(h) define topologies then, we need only show that arbitrary unions and 
+    finite intersections of the sets which are not $X$ and not $\emptyset$ also belong to the topology.
+
+    \textbf{(c)} $\tau = \{\emptyset, X, \{x_i\}\}$
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i\}\}$.
+        Because a single set intersected or unioned with itself is itself, we have that $\tau$ is (set-theoretically) 
+        closed under arbitrary unions and intersections of its elements and is therefore a topology on $X$.
+
+        There are three unique permutations of this class of topologies on $X$.
+    
+    \textbf{(d)} $\tau = \{\emptyset, X, \{x_i, x_j\}$
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i, x_j\}\}$.
+        Because a single set intersected or unioned with itself is itself, we have that $\tau$ is (set-theoretically) 
+        closed under arbitrary unions and intersections of its elements and is therefore a topology on $X$.
+        
+        There are three unique permutations of this class of topologies on $X$.
+    
+    \pagebreak
+    \textbf{(e)} $\tau = \{\emptyset, X, \{x_i, x_j\}, \{x_i\}\}$
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i, x_j\}, \{x_i\}\}$.
+        Then the following are the only new intersections and unions of open sets in this topology which were not shown
+        not already shown to be open in $\tau$ by the same argument as in (c)-(d):
+        
+        \begin{itemize}
+            \item $\{x_i, x_j\} \cup \{x_i\} = \{x_i, x_j\} \in \tau$.
+            \item $\{x_i, x_j\} \cap \{x_i\} = \{x_i\} \in \tau$.
+        \end{itemize}
+        Hence arbitrary unions and intersections of elements in $\tau$ belong to $\tau$, and so $\tau$ defines a 
+        topology on $X$.
+        
+        There are six unique permutations of this class of topologies on $X$.
+    
+    \textbf{(f)} $\tau = \{\emptyset, X, \{x_i, x_j\}, \{x_k\}\}$
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i, x_j\}, \{x_k\}\}$.
+        Then the following are the only new intersections and unions of open sets in this topology which were not shown
+        not already shown to be open in $\tau$ by the same argument as in (c)-(e):
+        
+        \begin{itemize}
+            \item $\{x_i, x_j\} \cup \{x_k\} = \{x_i, x_j, x_k\} = X \in \tau$.
+            \item $\{x_i, x_j\} \cap \{x_k\} = \emptyset \in \tau$.
+        \end{itemize}
+        Hence arbitrary unions and intersections of elements in $\tau$ belong to $\tau$, and so $\tau$ defines a 
+        topology on $X$.
+        
+        There are three unique permutations of this class of topologies on $X$.
+
+    \textbf{(g)} $\tau = \{\emptyset, X, \{x_i, x_j\}, \{x_i\}, \{x_i\}\}$
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i, x_j\}, \{x_i\}, \{x_j\} \}$.
+        Then the following are the only new intersections and unions of open sets in this topology which were not shown
+        not already shown to be open in $\tau$ by the same argument as in (c)-(f):
+        
+        \begin{itemize}
+            \item $\{x_i\} \cup \{x_j\} = \{x_i, x_j\} \in \tau$.
+            \item $\{x_i\} \cap \{x_j\} = \emptyset \in \tau$.
+        \end{itemize}
+        Hence arbitrary unions and intersections of elements in $\tau$ belong to $\tau$, and so $\tau$ defines a 
+        topology on $X$.
+        
+        There are three unique permutations of this class of topologies on $X$.
+    
+    \pagebreak
+    \textbf{(h)} $\tau = \{\emptyset, X, \{x_i, x_j\}, \{x_j, x_k\}, \{x_j\}\}$
+        
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i, x_j\}, \{x_j, x_k\}, \{x_j\} \}$.
+        Then the following are the only possible new intersections and unions of open sets in this topology which were 
+        not already shown to be open in $\tau$ by the same argument as in (c)-(g):
+        
+        \begin{itemize}
+            \item $\{x_i, x_j\} \cup \{x_j, x_k\} = \{x_i, x_j, x_k\} = X \in \tau$.
+            \item $\{x_i, x_j\} \cap \{x_j, x_k\} = \{x_j\} \in \tau$.
+        \end{itemize}
+        Hence arbitrary unions and intersections of elements in $\tau$ belong to $\tau$, and so $\tau$ defines a 
+        topology on $X$.
+        
+        There are three unique permutations of this class of topologies on $X$.
+    
+    \textbf{(i)} $\tau = \{\emptyset, X, \{x_i, x_j\}, \{x_j, x_k\}, \{x_i\}, \{x_j\}\}$
+        
+        Observe that $\tau \backslash \{X, \emptyset\} = \{\{x_i, x_j\}, \{x_j, x_k\}, \{x_i\}, \{x_j\} \}$.
+        We have shown in (c)-(h) that any union or intersection of any subset of $\tau$ remains in $\tau$, and hence 
+        arbitrary unions and intersections of elements in $\tau$ belong to $\tau$, and so $\tau$ defines a topology on 
+        $X$.
+        
+        There are six unique permutations of this class of topologies on $X$, and therefore a total of 29 topologies on
+        $X$.
+        \ \\
+\end{proof}

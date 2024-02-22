@@ -1,0 +1,30 @@
+Prove that if $\Omega$ is open and path connected, it is also connected.
+
+\begin{solution}
+    Suppose $\Omega$ is open and path connected. For the sake of contradiction, suppose that $\Omega$ is not connected,
+    and let $\Omega_1$ and $\Omega_2$ be a separation of $\Omega$ (so that $\Omega = \Omega_1 \cup \Omega_2$ and 
+    $\Omega_1 \cap \Omega_2 = \emptyset$, where $\Omega_1$ and $\Omega_2$ are non-empty open subsets of $\Omega$). Since
+    $\Omega$ is path connected, there exists a path $\gamma : [0, 1] \to \Omega$ such that $\gamma(0) \in \Omega_1$ and 
+    $\gamma(1) \in \Omega_2$. Moreover, because $\gamma$ is continuous (by virtue of the fact that paths are 
+    continuous), both $\gamma^{-1}(\Omega_1)$ and $\gamma^{-1}(\Omega_2)$ are open in $[0, 1]$. Furthermore, we have
+
+    \begin{align*}
+    [0, 1] &= \gamma^{-1}( \Omega ) \\
+           &= \gamma^{-1}( \Omega_1 \cup \Omega_2 ) \\
+           &= \gamma^{-1}( \Omega_1 ) \cup \gamma^{-1}( \Omega_2 ) \\
+    \end{align*}
+
+    and
+
+    \begin{align*}
+        \gamma^{-1}( \Omega_1 ) \cap \gamma^{-1}( \Omega_2 ) &= \gamma^{-1}( \Omega_1 \cap \Omega_2 ) \\
+                                                             &= \gamma^{-1}( \emptyset ) \\
+                                                             &= \emptyset.
+    \end{align*}
+
+    Lastly, since $0 \in \gamma^{-1}( \Omega_1 )$ and $1 \in \gamma^{-1}( \Omega_2 )$, we see that 
+    $\gamma^{-1}(\Omega_1)$ and $\gamma^{-1}(\Omega_2)$ are non-empty and hence form a separation of $[0, 1]$. 
+    Since intervals in $\mathbb{R}$ are connected, we arrive at the desired contradiction and $\Omega$ is therefore
+    connected.
+    \ \\
+\end{solution}

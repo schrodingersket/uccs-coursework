@@ -1,0 +1,24 @@
+$(x_k)_{k \in \mathbb{N}}$, where $x_k = 2^{-k}$.
+
+\begin{solution}
+  Let $C > 1$ for any $C \in \mathbb{R}$. Then we have
+
+  $$
+  \frac{C^{-(k+1)}}{C^{-k}} = \frac{C^k}{C^{k+1}} = \frac{1}{C} < 1
+  $$
+
+  and so the sequence $(a_k)$ defined by $a_k = C^{-k}$ converges by the Ratio Test. Moreover, for any $\epsilon > 0$,
+  we may choose sufficiently large $N \in \mathbb{N}$ such that $\left|\frac{1}{C^{k}} - 0 \right| < \epsilon$ whenever 
+  $k > N$ and so $\lim\limits_{k \to \infty} a_k = 0$. Hence (for $C = 2$) $\Vert e_{k} \Vert = \frac{1}{2^k}$ and thus
+
+  $$
+    \lim\limits_{k \to \infty} \frac{\Vert e_{k+1} \Vert}{\Vert e_k \Vert^1} 
+        = \lim\limits_{k \to \infty} \frac{2^{-(k+1)}}{2^{-k}} \\
+        = \lim\limits_{k \to \infty} \frac{2^k}{2 \cdot 2^k} \\
+        = \frac{1}{2}.
+  $$
+
+  The rate of convergence of $(x_k)$ is therefore $r = 1$ with rate constant $C = \frac{1}{2}$ and so $(x_k)$ converges 
+  linearly.
+  \ \\
+\end{solution}

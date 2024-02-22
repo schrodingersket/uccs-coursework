@@ -1,0 +1,83 @@
+\begin{maxi*}
+  {}{z = 5x_1 + 3x_2 + 2x_3}{}{}
+  \addConstraint{4x_1 + 5x_2 + 2x_3 + x_4}{\le 20}
+  \addConstraint{3x_1 + 4x_2 - x_3 + x_4}{\le 30}
+  \addConstraint{x_1, x_2, x_3, x_4}{\ge 0}.
+\end{maxi*}
+
+\begin{solution}
+  Since our linear program as given is a maximization problem, we seek to minimize $\hat{z} = -z = -5x_1 - 3x_2 - 2x_3$.
+  In standard form, we have $Ax = b$, where
+
+  $$
+  A = \begin{pmatrix*}[r]
+     4 & 5 &  2 & 1 & 1 & 0 \\
+     3 & 4 & -1 & 1 & 0 & 1 \\
+  \end{pmatrix*}, \quad b = \begin{pmatrix*}[r]
+    20 \\
+    30
+  \end{pmatrix*}, \quad x = \begin{pmatrix*}[r]
+    x_1 \\
+    x_2 \\
+    x_3 \\
+    x_4 \\
+    x_5 \\
+    x_6
+  \end{pmatrix*}, \quad c = \begin{pmatrix*}[r]
+    -5  \\
+    -3  \\
+    -2 \\
+     0  \\
+     0  \\ 
+     0
+  \end{pmatrix*}.
+  $$
+
+  This system yields the following tableau (with $x_B = \{x_5, x_6\}$ as our initial basis of slack variables):
+
+  \[\arraycolsep=8pt\def\arraystretch{2.2}
+  \begin{array}{r|rrrrrr|r|r}
+    \text{Basic} &  x_1  &  x_2  &  x_3  &  x_4  & x_5 & x_6  & \text{RHS} & \text{(ratio)}  \\ \hline
+    -\hat{z}     &  -5   &  -3   &  -2   &   0   &  0  &  0   &   0        &                 \\ \hline
+    x_5          &   4   &   5   &   2   &   1   &  1  &  0   &  20        &                 \\
+    x_6          &   3   &   4   &  -1   &   1   &  0  &  1   &  30        &               
+  \end{array}
+  \]
+
+  We select $x_1$ as our entering variable and compute ratios accordingly to find that $x_5$ is our leaving variable:
+
+
+  \[\arraycolsep=8pt\def\arraystretch{2.2}
+  \begin{array}{r|rrrrrr|r|r}
+    \text{Basic} &  \bm{x_1}  &  x_2  &  x_3  &  x_4  & x_5 & x_6  & \text{RHS} & \text{(ratio)}  \\ \hline
+    -\hat{z}     &  -5        &  -3   &  -2   &   0   &  0  &  0   &   0        &                 \\ \hline
+    \bm{x_5}     &   4        &   5   &   2   &   1   &  1  &  0   &  20        & 5               \\
+    x_6          &   3        &   4   &  -1   &   1   &  0  &  1   &  30        & 10              
+  \end{array}
+  \]
+
+  \pagebreak
+  We pivot on $x_1$ by applying sequential row operations:
+
+  $$
+  -3 \left(\frac{1}{4} R_{x_5}\right) + R_{x_6} \longrightarrow 
+  5 \left(\frac{1}{4} R_{x_5}\right) + R_{-z} \longrightarrow 
+  \frac{1}{4} R_{x_5}
+  $$
+
+  to find our final tableau:
+
+  \[\arraycolsep=8pt\def\arraystretch{2.2}
+  \begin{array}{r|rrrrrr|r|r}
+    \text{Basic} &  x_1  &  x_2            &  x_3           &  x_4           &  x_5           & x_6  & \text{RHS} & \text{(ratio)}  \\ \hline
+    -\hat{z}     &   0   &  \sfrac{13}{4}  &  \sfrac{1}{2}  &  \sfrac{5}{4}  &  \sfrac{5}{4}  &  0   &  25        &                 \\ \hline
+    x_1          &   1   &  \sfrac{5}{4}   &  \sfrac{1}{2}  &  \sfrac{1}{4}  &  \sfrac{1}{4}  &  0   &   5        &                 \\
+    x_6          &   0   &  \sfrac{1}{4}   &  \sfrac{-5}{2} &  \sfrac{1}{4}  &  \sfrac{-3}{4} &  1   &  15        &              
+  \end{array}
+  \]
+
+  Since all elements of $c_N$ are positive, we have arrived at our optimal basic feasible solution, which corresponds to
+  the basis $x_B = \{x_1, x_6\}$. This point lies at \linebreak
+  $\bar{x} = \left(5, 0, 0, 0, 0, 15\right)$, and yields an optimal value of $z = -\hat{z} = 25$.
+  \ \\
+\end{solution}

@@ -1,0 +1,13 @@
+Write down a linear program describing this problem with weekly revenue as the objective function.
+
+\begin{solution}
+  Let $x_1$ represent the number of basic bikes assembled and $x_2$ the number of deluxe bikes. We wish to maximize
+  total revenue, which is given by \linebreak
+  $r = 100 x_1 + 200 x_2$. When we account for constraints on parts costs and labor hours, our system becomes
+
+  \begin{mini*}
+    {}{-z = -100 x_1 - 200 x_2}{}{}
+    \addConstraint{2 x_1 + 3 x_2}{\le 11}
+    \addConstraint{50 x_1 + 150 x_2}{\le 500}.
+  \end{mini*}
+\end{solution}

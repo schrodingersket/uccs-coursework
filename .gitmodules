@@ -1,0 +1,3 @@
+[submodule "latex-assignment-template"]
+	path = latex-assignment-template
+	url = https://github.com/schrodingersket/latex-assignment-template.git

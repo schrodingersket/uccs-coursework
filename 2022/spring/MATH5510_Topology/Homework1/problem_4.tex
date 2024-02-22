@@ -1,0 +1,24 @@
+(\#5 in 2.2) Prove \textbf{Theorem 2.2.5}: For $A\subseteq X$ and
+$f:X\to Y$ any function, we have $A\subseteq f^{-1}(f(A))$. If, in addition, 
+$f$ is one-to-one, then $A=f^{-1}(f(A))$.
+
+\begin{proof}\ \\\\
+    Suppose $x \in A$ and let $y = f(x)$. Observe that $y$ is in the image of
+    $A$ by definition. Since $f(x) \in f(A)$, we have that $x$ is in the
+    preimage of $y$ (again by definition), and hence
+    $x \in f^{-1}{(y)} = f^{-1}{\left(f(x)\right)}$. Since $x$ was chosen to be
+    any arbitrary element of $A$, we have that
+    $A \subseteq f^{-1}{\left(f(A)\right)}$.
+
+    Now suppose that $f$ is one-to-one, and let
+    $x \in f^{-1}{\left(f(A)\right)}$. By definition of the inverse image
+    $f^{-1}{\left(f(A)\right)}$, we have that $f(x) \in f(A)$ and hence there exists some $a \in A$
+    such that $f(x) = f(a)$. Since $f$ is one-to-one, we have that $x = a$, and
+    so $x \in A$. Since $x$ was chosen to be any arbitrary element of 
+    $f^{-1}{\left(f(A)\right)}$, we have that
+    $f^{-1}{\left(f(A)\right)} \subseteq A$. Finally, since 
+    $A \subseteq f^{-1}{\left(f(A)\right)}$ from above, 
+    $A = f^{-1}{\left(f(A)\right)}$, as desired.
+    \begin{align*}
+    \end{align*}
+\end{proof}

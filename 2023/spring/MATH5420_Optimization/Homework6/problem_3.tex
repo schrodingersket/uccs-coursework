@@ -1,0 +1,53 @@
+\textbf{Griva, Nash, Sofer 11.3.2}
+
+Use Newton's method to find a minimum of the following function:
+
+$$
+f(x) = 5x^5 + 2x^3 - 4x^2 - 3x + 2
+$$
+
+in the interval $-2 \le x \le 2$.
+
+\begin{solution}
+    We utilize Newton's method with initial guess $x_0 = 1$ to find a zero of the gradient of $f$, which is given by:
+
+    $$
+    \nabla f = 25 x^4 + 6x^2 - 8x - 3.
+    $$
+
+    We implement this algorithm in \texttt{newton\_raphson.py} (which is called by 
+    \texttt{problem\_3.py}) to obtain the root $x_0 = 0.68989795$ after 5 iterations. We show the output of this script 
+    in Figure \ref{fig:problem_3}:
+    \ \\
+
+    \begin{figure}[h]
+        \centering
+        \begin{verbatim}
+         i | xk                        | f(xk)                     | ||f(xk)||            
+        -----------------------------------------------------------------------
+         0 | [ 1.00000000] | [ 20.0000000] | 20.00000000
+         1 | [ 0.80769231] | [ 5.09222585] | 5.09222585
+         2 | [ 0.71405678] | [ 0.84617415] | 0.84617415
+         3 | [ 0.69117285] | [ 0.04234459] | 0.04234459
+         4 | [ 0.68990173] | [ 0.00012533] | 0.00012533
+         5 | [ 0.68989795] | [ 0.00000000] | 0.00000000
+
+        Root identified at x = [ 0.68989795]
+        Minimum value at root is f = -0.5353664979659847
+        Gradient at root is given by [-2.6645352591003757e-15]
+        Hessian at root is given by [33.1151015307185]
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_3.py}}
+        \label{fig:problem_3}
+    \end{figure}
+
+    The second derivative of $f$ is given by:
+
+    $$
+    \nabla^2 f = 100 x^3 + 12x - 8
+    $$
+
+    which takes the value $\nabla^2 f = 100 x^3 + 12x - 8 \approx 33.115 > 0$ at $x = x_0$ and so $x_0$ is a local 
+    minimizer of $f$; this minimum of $f$ is given by $f(x_0) \approx -0.53537$.
+    \ \\
+\end{solution}

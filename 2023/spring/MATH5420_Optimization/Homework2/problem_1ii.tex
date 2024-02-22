@@ -1,0 +1,35 @@
+$(x_k)_{k \in \mathbb{N}}$, where $x_k = 1 + 5 \left(10^{-2k}\right)$.
+
+\begin{solution}
+  Observe that each $x_k$ is bounded below by 1.
+  Let $C > 1$ for any $C \in \mathbb{R}$. The difference between each successive term in the sequence is given by
+
+  \begin{align*}
+    x_{k+1} - x_{k} &= 5 \cdot 10^{-2(k+1)} - 5 \cdot 10^{-2k} \\
+                    &= 5 \cdot 100^{-(k+1)} - 5 \cdot 100^{-k} \\
+                    &= 5 \cdot 100^{-k} \left( \frac{1}{100} - 1 \right) \\
+                    &< 0.
+  \end{align*}
+
+  The sequence $(x_k)$ is therefore monotonically decreasing and bounded below, and hence it converges. Moreover, the 
+  limit of the sequence is given by
+
+  $$
+  \lim\limits_{k \to \infty} 1 + 5\left( 10^{-2k} \right)
+      = 1 + 5 \cdot \lim\limits_{k \to \infty} \left( \frac{1}{100^k} \right)
+      = 1
+  $$
+
+  by (i). We observe that $\Vert e_{k} \Vert = 5 \cdot 100^{-k}$ and so
+
+  $$
+    \lim\limits_{k \to \infty} \frac{\Vert e_{k+1} \Vert}{\Vert e_k \Vert^1} 
+        = \lim\limits_{k \to \infty} \frac{5 \cdot 100^{-(k+1)}}{5 \cdot 100^{-k}} \\
+        = \lim\limits_{k \to \infty} \frac{100^k}{100 \cdot 100^k} \\
+        = \frac{1}{100}.
+  $$
+
+  The rate of convergence of $(x_k)$ is therefore $r = 1$ with rate constant $C = \frac{1}{100}$ and so the convergence
+  of $(x_k)$ is linear.
+  \ \\
+\end{solution}

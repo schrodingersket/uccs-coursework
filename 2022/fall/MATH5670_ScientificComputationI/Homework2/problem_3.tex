@@ -1,0 +1,113 @@
+\textbf{LeVeque 2.3}
+Determine the null space of the matrix $A^T$ where $A$ is given in equation (2.58), and verify that the condition (2.62)
+must hold for the linear system to have solutions.
+
+\begin{solution}\ \\\\
+    The matrix $A^T \in M_{n \times n}$ where $A$ is given in equation (2.58) is given by:
+    \[
+    A^T = \begin{pmatrix} 
+        -h &       1 \\
+         h &      -2 & 1 \\
+           &       1 & -2 & 1 \\
+           &         & \ddots & \ddots & \ddots \\
+           &         &        & 1      & -2 & 1 \\
+           &         &        &        & 1  & -2 & h \\
+           &         &        &        &    & 1  & -h \\
+    \end{pmatrix}
+    \]
+
+    We reduce this matrix to row echelon form by adding (in order) the first row to the second, the second to the third,
+    etc. The result of this process is the following matrix:
+    
+    \[
+    A^T \rightarrow \begin{pmatrix} 
+        -h &       1 \\
+           &      -1 & 1 \\
+           &         & -1     & 1 \\
+           &         &        & \ddots & \ddots \\
+           &         &        &        & -1 & 1 \\
+           &         &        &        &    & -1 & h \\
+           &         &        &        &    &    & 0 \\
+    \end{pmatrix}
+    \]
+
+    The null space of this matrix (and hence $A^T$) is therefore the set of all vectors $\textbf{x} \in \mathbb{R}^n$ 
+    which satisfy:
+
+    \[
+    \begin{pmatrix} 
+        -h &       1 \\
+           &      -1 & 1 \\
+           &         & -1     & 1 \\
+           &         &        & \ddots & \ddots \\
+           &         &        &        & -1 & 1 \\
+           &         &        &        &    & -1 & h \\
+           &         &        &        &    &    & 0 \\
+    \end{pmatrix} \textbf{x} = \textbf{0}.
+    \]
+
+    \pagebreak
+    If we let $\textbf{x} = (x_1, x_2, ... x_n)^T$, then the above becomes the following system of $n-1$ equations and 
+    $n$ unknowns:
+
+    \begin{align*}
+        \begin{cases}
+                  -h x_1 + x_2 &= 0 \\
+                    -x_2 + x_3 &= 0 \\
+                             \vdots \\
+            -x_{n-2} + x_{n-1} &= 0 \\
+            -x_{n-1} + h x_{n} &= 0
+        \end{cases}
+    \end{align*}
+
+    Hence $x_i = x_{i+1}$ for $2 \le i \le n-2$, $h x_1 = x_2$, and $h x_n = x_{n-1}$, and so (with $x_n$ as our free 
+    variable), the solution to our system is given by:
+
+    \[
+    \begin{pmatrix} 
+            x_1 \\
+            x_2 \\
+         \vdots \\
+        x_{n-1} \\
+            x_n \\
+    \end{pmatrix} = 
+    \begin{pmatrix} 
+             1 \\
+             h \\
+        \vdots \\
+             h \\
+             1 \\
+    \end{pmatrix} x_n
+    \]
+
+    The null space of $A^T$ is therefore the space spanned by $\beta = \{(1, h, ..., h, 1)^T\} \in \mathbb{R}^n$. To show that 
+    condition (2.62) must hold for the linear system in (2.58) to have solutions, we need only show that $F$ is 
+    orthogonal to the space spanned by $A^T$. Since $\beta$ forms a basis for the kernel of $A^T$, we need
+    only show that $F$ is orthogonal to $\beta_1 = (1, h, ..., h, 1)^T$. Setting the dot product 
+    $\langle \beta_1, F \rangle = 0$ yields:
+
+    \[
+    0 = \langle F, \beta_1 \rangle = \begin{pmatrix} 
+             1 \\
+             h \\
+        \vdots \\
+             h \\
+             1 \\
+    \end{pmatrix} \cdot
+    \begin{pmatrix} 
+             \sigma_0 + \frac{h}{2} f(x_0) \\
+                                    f(x_1) \\
+                                    \vdots \\
+                                    f(x_m) \\
+        -\sigma_1 + \frac{h}{2} f(x_{m+1}) \\
+    \end{pmatrix} = \sigma_0 + \frac{h}{2} f(x_0) + \sum\limits_{k=1}^{m}{h f(x_k)} - \sigma_1 + \frac{h}{2} f(x_{m+1}).
+    \]
+
+    and hence
+
+    $$
+    \sigma_1 - \sigma_0 = \frac{h}{2} f(x_0) + \sum\limits_{k=1}^{m}{h f(x_k)} + \frac{h}{2} f(x_{m+1})
+    $$
+
+    as desired.
+\end{solution}

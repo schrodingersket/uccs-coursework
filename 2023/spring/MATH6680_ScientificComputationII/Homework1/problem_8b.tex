@@ -1,0 +1,13 @@
+Determine $\hat{v}(k)$, where $v$ is the discretization of $u$ on the grid $h \mathbb{Z}$.
+
+\textit{Hint:} Calculating $\hat{v}(k)$ is very difficult.
+
+\begin{solution}
+  We apply the aliasing formula (4.4):
+
+  \begin{align*}
+    \hat{v}(k) &= \sum_{j=-\infty}^{\infty} \hat{u}\left( k + \frac{2\pi j}{h} \right) \\
+               &= \sum_{j=-\infty}^{\infty} \pi e^{-\left\vert k + \frac{2\pi j}{h} \right\vert}
+  \end{align*}
+  \ \\
+\end{solution}

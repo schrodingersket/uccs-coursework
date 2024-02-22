@@ -1,0 +1,26 @@
+Before we dive into the construction of a physics-informed neural network, we provide some basic background on neural 
+networks and how we generate neural network approximations in the context of optimization.
+
+One of the most basic neural networks (of the type used in this project) is the \textit{feedforward neural network} 
+(FNN), which is a function from $\mathbb{R}^n \to \mathbb{R}^m$ that consists of an input layer, an output layer, and 
+one or more hidden layers. More specifically, each ``layer" is a multivariate affine composition of the previous layer 
+composed with a particular choice of squashing function (also called an \textit{activation function}; each instance of 
+this function in the network is called a \textit{neuron}). A function $\psi: \mathbb{R} \to [0, 1]$ is called a 
+squashing function if it is non-decreasing and satisfies
+
+$$
+\lim\limits_{x \to -\infty} \psi(x) = 0 \quad \text{and} \quad \lim\limits_{x \to \infty} \psi(x) = 1.
+$$
+
+With a sufficient number of neurons and hidden layers, neural networks are capable of approximating any Borel measurable
+function over a compact set from one finite-dimensional space to another \cite{hornik_multilayer_1989}. These networks 
+are characterized by the depth of the network, the number of neurons in each layer,\footnote{
+    We call the combination of network depth and neuron count the \textit{architecture} of the neural network.
+} and by the affine coefficients associated with each neuron. The process of finding a neural network that best 
+approximates a particular function is then a matter of choosing the neural network architecture and then finding the optimal
+affine coefficients (often referred to as the \textit{weights} and \textit{biases} of the neural network). The choice of 
+squashing function has various effects on the resulting network. For example, by constructing a neural network from 
+hyperbolic tangent squashing functions (as we do in this project), we are guaranteed that the resulting neural network can 
+approximate smooth PDE solutions. Lastly, associated with a neural network is a \textit{loss function}, which is the 
+objective function we wish to minimize and is typically constructed in such a way that the loss function exhibits behavior 
+that is favorable for minimization (such as convexity).

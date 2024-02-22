@@ -1,0 +1,123 @@
+To simulate experimental observations and generate a reference solution, we adopt the approach used by Fabien \cite{fabien2014spectral} and utilize a Fourier collocation method along 
+with fourth-order Runge-Kutta time stepping. Recall the definition of the Fourier Transform of a differentiable function 
+$f$:
+
+$$
+\mathcal{F}(f(x)) \equiv \int_{-\infty}^{\infty}f(x)e^{-ikx}dx
+$$
+
+where $\hat{f}(k) \equiv \mathcal{F}(f(x))$ is a function in $k$. From this, we also have the inverse Fourier transform:
+
+$$
+f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{f}(k)e^{ikx}dk
+$$
+
+\noindent Differentiating both sides of the above equation with respect to $k$ yields
+
+$$
+\frac{df}{dx} = ik\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(x)e^{ikx}dx
+$$
+
+\noindent and so
+
+$$
+\hat{f'}(k) = ik\hat{f}(k).
+$$
+
+Taking the inverse Fourier transform of the above equation yields the general form for the derivative of a function with 
+respect to its Fourier transform:
+
+$$
+f'(x) = \mathcal{F}^{-1}(ik\mathcal{F}(f(x))).
+$$
+
+\noindent Extending this to the $n^{th}$ derivative yields:
+
+$$
+f^{(n)}(x) = \mathcal{F}^{-1}((ik)^n\mathcal{F}(f(x))).
+$$
+
+We apply these results to the SWE system with periodic boundary conditions, which takes the following form:
+
+\begin{align*}
+    \begin{bmatrix}
+        h\\
+        uh
+    \end{bmatrix}_t
+    + 
+    \begin{bmatrix}
+        uh\\
+        hu^2 + \frac{gh^2}{2}
+    \end{bmatrix}_x
+    =
+    \begin{bmatrix}
+        0\\
+        -ghB_x
+    \end{bmatrix}
+\end{align*}    
+
+To compute the spatial derivative, we differentiate in the Fourier domain and apply the inverse Fourier transform 
+$\mathcal{F}^{-1}$ to the resulting expression. Upon doing so, our system becomes
+
+\begin{align*}
+    \begin{bmatrix}
+        h\\
+        uh
+    \end{bmatrix}_t
+    + 
+    \mathcal{F}^{-1}\left(ik\mathcal{F}\left(\begin{bmatrix}
+        uh\\
+        hu^2 + \frac{gh^2}{2}
+    \end{bmatrix} \right)\right)
+    = 
+    \begin{bmatrix}
+        0\\
+        -ghB_x
+    \end{bmatrix}.
+\end{align*}
+
+We approximate the time derivative with a fourth-order Runge-Kutta time-stepping scheme. This system is expressed in 
+terms of the time derivatives of $u$ and $uh$; we therefore rewrite the second equation in the system in 
+terms of $u$ and $uh$ to find:
+
+$$
+\renewcommand*{\arraystretch}{1.5}
+\begin{bmatrix}
+    h\\
+    uh
+\end{bmatrix}_t = -\begin{bmatrix}
+    \mathcal{F}^{-1}(ik\mathcal{F}(uh))\\
+    ghB_x + \mathcal{F}^{-1}(ik\mathcal{F}((uh)^2/h + gh^2/2)) 
+\end{bmatrix} = \begin{bmatrix}
+    F_1(u,uh)\\
+    F_2(u,uh)
+\end{bmatrix}.
+$$
+
+\noindent Given $h$ at step $n$, our update step to compute $h_{n+1}$ is
+
+\begin{align*}
+    k_{1,h} &= dt\frac{L}{2\pi}F_1(h_n, uh_n)\\
+    k_{2,h} &= dt\frac{L}{2\pi}F_1(h_n + k_{1,h}/2, uh_n)\\
+    k_{3,h} &= dt\frac{L}{2\pi}F_1(h_n + k_{2,h}/2, uh_n)\\
+    k_{4,h} &= dt\frac{L}{2\pi}F_1(h_n + k_{3,h}, uh_n)\\
+    h_{n+1} &= h_n + \frac{1}{6}(k_{1,h} + 2k_{2,h} + 2k_{3,h} + k_{4,h})
+\end{align*}
+
+\noindent As for the quantity $uh$, our update $(uh)_{n+1}$ is given by
+
+\begin{align*}
+    k_{1,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n)\\
+    k_{2,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n + k_{1,uh}/2)\\
+    k_{3,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n + k_{2,uh}/2)\\
+    k_{4,uh} &= dt\frac{L}{2\pi}F_2(h_{n+1}, uh_n + k_{3,uh})\\
+    uh_{n+1} &= \frac{1}{6}(k_{1,uh} + 2k_{2,uh} + 2k_{3,uh} + k_{4,uh})
+\end{align*}
+
+where $dt$ is the time step and $\frac{L}{2\pi}$ the domain scaling factor. To simulate our desired experimental 
+measurement data, we solve the SWE system subject to various (sinusoidal) initial conditions and bathymetry functions. 
+In the homogeneous scheme, we impose a bathymetry function that is identically zero; for the inhomogeneous system, we
+impose a sinusoidal bathymetry. The exact functions used for these computations are described in Section 
+\ref{sec:results} and results of these computations for the homogenous system are shown in Figures 
+\ref{fig:homogeneous_pseudospectral_swe_height} and \ref{fig:homogeneous_pseudospectral_swe_velocity}; inhomogeneous 
+results are shown in Figure \ref{fig:inhomogeneous_pseudospectral_swe_velocity}.

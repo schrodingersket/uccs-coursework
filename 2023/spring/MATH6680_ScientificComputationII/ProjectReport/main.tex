@@ -1,0 +1,107 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[bottom]{footmisc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{upref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+\usepackage{subcaption}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{ifthen}
+\usepackage{optidef}
+\usepackage{float}
+\usepackage{dirtytalk}
+
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-1in}
+\addtolength{\headheight}{0.0675in}
+\setlength{\oddsidemargin}{0.2in}
+\setlength{\evensidemargin}{0.2in}
+
+\let\oldcite=\cite
+\renewcommand\cite[1]{\ifthenelse{\equal{#1}{NEEDED}}{[citation~needed]}{\oldcite{#1}}}
+
+\begin{document}
+
+    \title{\vspace{1.0in}%
+        1D Shallow-Water Wave Equation with Inferred Bathymetry\\
+        \large A Physics-Informed Neural Network Approach
+    }
+    \author{%
+        Nameika, Michael \\
+        Thompson, Jonathan
+    }
+    \date{\today}
+
+    \maketitle
+
+    \vspace*{1.0in}
+
+    \begin{abstract}
+        In this project, we examine a Physics-Informed Neural Network (PINN) approach to solving a 1-D system of 
+        shallow-water equations with variable bathymetry. We begin by stating the system of equations with variable
+        bathymetry and subsequently derive the system of equations corresponding to a constant bathymetry with negligible
+        frictional forces. From there, we solve the resulting system via pseudospectral methods for various boundary
+        and initial conditions. We then use the results of this computation as sampled data with which to train a 
+        Physics-Informed Neural Network; in this scheme, we treat the bathymetry as an unknown and allow the 
+        neural network to infer the solution and bathymetry simultaneously. Lastly, we compare the results of the PINN
+        approach to the results of the pseudospectral approach and discuss the advantages and disadvantages of each.
+    \end{abstract}
+
+    \pagebreak
+
+    \section{Introduction}\label{sec:introduction}
+        \input{introduction.tex}
+
+    \section{Background}\label{sec:background}
+        \input{background.tex}
+
+    \section{Methodology}\label{sec:proposed-methodology}
+        \input{methodology.tex}
+
+    \subsection{Pseudospectral Methods}\label{subsec:pseudospectral-methodology}
+        \input{pseudospectral.tex}
+
+    \subsection{Physics-Informed Neural Networks}\label{subsec:pinn-methodology}
+        \subsubsection{Neural Networks}
+            \input{neural-networks.tex}
+        \subsubsection{Application to PDEs}
+            \input{pinn.tex}
+            
+    \subsection{Optimization Algorithms}
+        \input{algorithms.tex}
+        \subsubsection{Adam}
+            \input{adam.tex}
+        \subsubsection{L-BFGS}
+            \input{l-bfgs.tex}
+
+    \section{Results}\label{sec:results}
+    We apply the above approach to two different systems: the first is a homogeneous system with constant bathymetry,
+    and the second is an inhomogeneous system with sinusoidal bathymetry. 
+
+    \subsection{Homogeneous System}\label{subsec:homogeneous-results}
+        \input{homogeneous-results.tex}
+    
+    \subsection{Inhomogeneous System}\label{subsec:inhomogeneous-results}
+        \input{inhomogeneous-results.tex}
+
+    \section{Concluding Remarks}\label{sec:conclusion}
+        \input{conclusion.tex}
+
+    \pagebreak
+
+    \bibliographystyle{plain}
+    \bibliography{refs}
+
+    \pagebreak
+    \appendix
+
+\end{document}

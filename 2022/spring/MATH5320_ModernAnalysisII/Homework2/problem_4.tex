@@ -1,0 +1,103 @@
+Let $M_n(\mathbb{R})$ denote the set of all real $n \times n$ matrices. For matrices
+$A \coloneqq (a_{ij})$ and $B \coloneqq (b_{ij})$ in $M_n{(\mathbb{R})}$, define
+the function $d(A, B) = \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|}$.
+
+a.  Show that $d(A, B)$ is a metric on $M_n(\mathbb{R})$. \ \\
+
+    \begin{proof}\ \\\\
+        Let $A, B, C \in M_n(\mathbb{R})$ and observe that because $d$ is the maximum of a set of absolute values in
+        $\mathbb{R}$, $d$ is a non-negative real-valued function.
+        
+        We first show that $d$ is transitive:
+
+        \begin{align*}
+            d(A, B) &= \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} \\
+                    &= \max\limits_{1 \le i,j \le n}{|-(b_{ij} - a_{ij})|} \\
+                    &= \max\limits_{1 \le i,j \le n}{|b_{ij} - a_{ij}|} \\
+                    &= d(B, A). 
+        \end{align*}
+
+        To show that $d(A, B) = 0$ if and only if $A = B$, we first suppose that $A = B$ and observe that
+        $d(A, B) = \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} = \max\limits_{1 \le i,j \le n}{|a_{ij} - a_{ij}|} = 0$.
+        
+        Conversely, suppose that $d(A, B) = 0$. Then $d(A, B) = \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} = 0$
+        and so by the definition of maximum, we have that $|a_{ij} - b_{ij}| \le 0$ for each $1 \le i, j \le n$. Since
+        $|a_{ij} - b_{ij}| \ge 0$ trivially, we have that $|a_{ij} - b_{ij}| = 0$ and hence $a_{ij} = b_{ij}$ by a
+        similar argument as from (1a). Since this is true for every $1 \le i, j \le n$, we have that $A = B$ as
+        desired.
+        
+        Lastly, recall by the triangle inequality for the usual metric on $\mathbb{R}$ that \linebreak 
+        $|a - c| + |c - b| \ge |a - b|$ for any $a, b, c \in \mathbb{R}$. Hence for each $1 \le i, j \le n$, we have
+        that $|a_{ij} - c_{ij}| + |c_{ij} - b_{ij}| \ge |a_{ij} - b_{ij}|$ and so the triangle inequality holds for $d$:
+
+        \begin{align*}
+            d(A, C) + d(C, B) &= \max\limits_{1 \le i,j \le n}{|a_{ij} - c_{ij}|} + \max\limits_{1 \le i,j \le n}{|c_{ij} - b_{ij}|} \\
+                              &\ge \max\limits_{1 \le i,j \le n}{|a_{ij} - b_{ij}|} \\
+                              &= d(A, B).
+        \end{align*}
+    \end{proof}
+
+    \pagebreak
+
+b.  Let $\{A^{(k)}\}_{k=1}^{\infty}$ be a sequence in $M_n(\mathbb{R})$. Prove that $\{A^{(k)}\}_{k=1}^{\infty}$ is a
+    convergent sequence if and only if $\{a_{ij}^{(k)}\}_{k=1}^{\infty}$ is a convergent subsequence in $\mathbb{R}$.\ \\
+
+    \begin{proof}\ \\\\
+        Suppose first that $\{A^{(k)}\}_{k=1}^{\infty}$ is a convergent sequence so that $\{A^{(k)}\}_{k=1}^{\infty}$ 
+        converges to some $A \in M_n(\mathbb{R})$. Then for any fixed $\epsilon > 0$, there exists some 
+        $N \in \mathbb{N}$ such that $\max\limits_{1 \le i,j \le n}{|a_{ij} - a^{(k)}_{ij}|} = d(A, A^{(k)}) < \epsilon$
+        whenever $k > N$, where $a_{ij}^{(k)}$ represents the $i^{th}$ row and $j^{th}$ column of the $k^{th}$ element 
+        of $\{A^{(k)}\}_{k=1}^{\infty}$. In particular, by the definition of the maximum element of a set, we have that 
+        $|a_{ij} - a_{ij}^{(k)}| < \epsilon$ for any particular choice of $i$ and $j$. Since our choice of $\epsilon$ 
+        was arbitrary, we have that $\lim\limits_{k \to \infty}{a_{ij}^{(k)} = a_{ij}}$ and hence 
+        $\{a_{ij}^{(k)}\}_{k=1}^{\infty}$ is a convergent sequence in $\mathbb{R}$ with the usual metric.
+        
+        Conversely, suppose that each $\{a_{ij}^{(k)}\}_{k=1}^{\infty}$ represents a convergent sequence in $\mathbb{R}$
+        with the usual metric so that each $\{a_ij^{(k)}\}_{k=1}^{\infty}$ converges to some $a_{ij}$. Then for any 
+        fixed $\epsilon > 0$, there exists for each unique $i, j$ some $N_{ij} \in \mathbb{N}$ such that 
+        $|a_{ij}^{(k)} - a_{ij}| < \epsilon$ whenever $k > N_{ij}$. Let $N = \max\limits_{1 \le i,j \le n}{\{N_{ij}\}}$.
+        Then whenever $k > N$, we have that 
+        $d(A, A^{(k)}) = \max\limits_{1 \le i,j \le n}{|a_{ij} - a^{(k)}_{ij}|} < \epsilon$. Lastly, we let 
+        $A$ be the matrix defined by $A = \left(a_{ij}\right)$ and observe that $a_{ij} \in \mathbb{R}$ for all
+        $1 \le i,j \le n$. Hence $A \in M_n(\mathbb{R})$, and so $\{A^{(k)}\}_{k=1}^{\infty}$ is a convergent sequence.
+    \end{proof}
+
+    \pagebreak
+
+c.  Show that $\left(M_n(\mathbb{R}), d\right)$ is a complete metric space.
+
+    \begin{proof}\ \\\\
+        Let $\{A^{(k)}\}$ be a Cauchy sequence in $M_n(\mathbb{R})$. Then for any fixed $\epsilon > 0$, there exists
+        some $N_0 \in \mathbb{N}$ such that $d(A^{(k)}, A^{(l)}) < \frac{\epsilon}{4}$ whenever $k,l > N_0$. In 
+        particular, by the definition of the maximum element of a set, we see that 
+        $|a_{ij}^{(k)} - a_{ij}^{(l)}| < \frac{\epsilon}{4}$ for any particular choice of $i$ and $j$ for all 
+        $k,l > N_0$. Since our choice of $\epsilon$ was arbitrary, we have that ${\{a_{ij}^{(k)}\}}_{k=1}^{\infty}$ is a
+        Cauchy sequence in $\mathbb{R}$ and hence converges to some $a_{ij} \in \mathbb{R}$ by the completeness of 
+        $\mathbb{R}$ with respect to the usual metric. Moreover, because ${\{a_{ij}^{(k)}\}}_{k=1}^{\infty}$ converges 
+        to $a_{ij}$, there exists some $N_{ij} \in \mathbb{N}$ such that $|a_{ij}^{(l)} - a_{ij}| < \frac{\epsilon}{4}$ 
+        whenever $l > N_{ij}$. We therefore define $N = \max\limits_{1 \le i, j \le n}{\left\{N_0, N_{ij}\right\}}$ and
+        observe that the following holds for all $1 \le i, j \le n$ whenever $k, l > N$:
+
+        \begin{align*}
+            |a_{ij}^{(k)} - a_{ij}| &\le |a_{ij}^{(k)} - a_{ij}^{(l)}| + |a_{ij}^{(l)} - a_{ij}| \\
+                                    &\le \frac{\epsilon}{4} + \frac{\epsilon}{4} \\
+                                    &= \frac{\epsilon}{2} \\
+                                    &< \epsilon.
+        \end{align*}
+
+        Lastly, because the above $N$ holds for every $i, j$, we have that:
+        
+        \begin{align*}
+            d(A^{(k)}, A) &= \max\limits_{1 \le i,j \le n}{|a_{ij}^{(k)} - a_{ij}|} \\
+                          &\le \frac{\epsilon}{2} \\
+                          &< \epsilon.
+        \end{align*}
+
+        The sequence ${\{A^{(k)}\}}_{k=1}^{\infty}$ therefore converges to $A$ with respect to $d$, and since $A$
+        is composed of entries in $\mathbb{R}$, $A$ is in $M_n(\mathbb{R})$. Since ${\{A^{(k)}\}}_{k=1}^{\infty}$ was 
+        chosen to be an arbitrary Cauchy sequence in $M_n(\mathbb{R})$, we have that $(M_n(\mathbb{R}), d)$ is a 
+        complete metric space.
+        \ \\
+    \end{proof}
+
+    \pagebreak

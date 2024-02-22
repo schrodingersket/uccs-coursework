@@ -1,0 +1,40 @@
+Let $(X, d)$ be a metric space, and let $f: X \to \mathbb{R}$ be the function defined by \linebreak
+$f(x) = d(z_0, x)$ for some fixed $z_0 \in X$. \\
+
+a) Prove that $f(x)$ is uniformly continuous on $X$.
+
+\begin{proof}\ \\\\
+   Let $x$ and $y$ be two arbitrary points in $X$, and let $z_0$ be fixed in $X$. Let $\epsilon > 0$, let 
+   $\delta = \epsilon$, and observe that whenever $d(x, y) < \delta$, the following holds by the reverse triangle
+   inequality, non-negativity of $d$, and the definition of $f$:
+
+   \begin{align*} 
+      d(f(x), f(y)) &= |f(x) - f(y)| \\
+                    &= |d(x, z_0) - d(z_0, y)| \\
+                    &\le d(x, y) \\
+                    &< \delta \\
+                    &= \epsilon.
+   \end{align*}
+
+   Hence for any fixed $\epsilon > 0$, there exists a corresponding $\delta > 0$ such that $d(f(x), f(x)) < \epsilon$
+   whenever $d(x, y) < \delta$. Moreover, since the above holds for every $x$ and $y$ in $X$, $f(x)$ is uniformly
+   continuous, as desired.
+   \ \\
+\end{proof}
+
+\pagebreak
+
+
+b) Let $K \subset X$ be a non-empty compact subset of $(X, d)$. Using the basic properties of compactness and part 
+   $(a)$, prove that there exists $x_0 \in K$ such that \linebreak
+   $d(z_0, x_0) = \inf\limits_{x \in K}{d(z_0, x)}$.
+
+\begin{proof}\ \\\\
+   Observe that by part (a), the function $f:K \to \mathbb{R}$ given by $f(x) = d(x, z_0)$ defines a uniformly
+   continuous function on a compact set. Hence by the Extreme Value Theorem, $f$ attains its minimum for at least one
+   point $x_0 \in K$, and hence $d(z_0, x_0) \le d(z_0, x)$ for every $x \in K$. Because the infimum of a set is equal
+   to the minimum if the minimum exists, we see that $d(z_0, x_0) = \inf\limits_{x \in K}{d(z_0, x)}$, as desired.
+   \ \\
+\end{proof}
+
+\pagebreak

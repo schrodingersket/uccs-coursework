@@ -1,0 +1,61 @@
+\textbf{Griva, Nash, Sofer 12.3.4}
+
+Let $C$ be a symmetric matrix of rank one. Prove that $C$ must have the form $C = \gamma w w^T$, where $\gamma$ is a 
+scalar and $w$ is a vector of norm one.
+
+\begin{solution}
+    Since $C$ is a real symmetric matrix, there exists an orthonormal basis $\beta$ of eigenvectors for the range 
+    of $C$. Since an eigenbasis of $R(C)$ exists, $C$ is diagonalizable so that
+
+    $$
+    C = Q^{-1} \Lambda Q = Q^T \Lambda Q
+    $$
+
+    where $Q^T$ is the orthogonal matrix whose columns are the orthonormal eigenvectors of $C$ belonging to $\beta$ and 
+    $\Lambda$ is a diagonal matrix whose diagonal elements are the ordered eigenvalues corresponding to the columns of
+    $Q^T$. In particular, since $C$ has rank one, $C$ has only one nontrivial eigenspace (which in turn has dimension 
+    one since the direct sum of the eigenspaces of $C$ must have the same dimension as the range space of $C$). Hence 
+    $C$ has only one nonzero eigenvalue, which we denote $\gamma$. By virtue of the fact that $\beta$ is a basis for 
+    the range space of $C$, there exists some nonzero eigenvector $w \in \beta$ corresponding to $\gamma$. Without loss
+    of generality, we let $w = \beta_1$ so that our diagonalization of $C$ becomes
+
+    \begin{align*}
+        C &= \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            w & \beta_2 & \cdots & \beta_n \\
+            \vline & \vline & & \vline
+        \end{pmatrix} \begin{pmatrix}
+            \gamma & 0 & \cdots & 0 \\
+            0 & 0 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & 0
+        \end{pmatrix} \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            w & \beta_2 & \cdots & \beta_n \\
+            \vline & \vline & & \vline
+        \end{pmatrix}^T  \\
+        &= \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            w & \beta_2 & \cdots & \beta_n \\
+            \vline & \vline & & \vline
+        \end{pmatrix} \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            \gamma w & 0 & \cdots & 0 \\
+            \vline & \vline & & \vline
+        \end{pmatrix}^T \\
+        &= \gamma \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            w & 0 & \cdots & 0 \\
+            \vline & \vline & & \vline
+        \end{pmatrix} \begin{pmatrix}
+            \vline & \vline & & \vline \\
+            w & 0 & \cdots & 0 \\
+            \vline & \vline & & \vline
+        \end{pmatrix}^T \\
+        &= \gamma w w^T
+    \end{align*}
+
+    where the second-to-last equality follows from the fact that the vectors which comprise $\beta$ are orthogonal.
+    Finally, because $w$ belongs to the orthonormal basis $\beta$, the norm of $w$ is one, as desired.
+    \ \\
+\end{solution}

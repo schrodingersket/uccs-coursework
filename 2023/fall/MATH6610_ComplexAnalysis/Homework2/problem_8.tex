@@ -1,0 +1,62 @@
+\textbf{Stein, Shakarchi 2.8}
+
+If $f$ is a holomorphic function on the strip $\mathbb{R} \times (-1, 1)$ with
+
+$$
+\left| f(z)  \right| \le A (1 + |z|)^{\eta}
+$$
+
+for some fixed $\eta \in \mathbb{R}$ for all $z$ in that strip, show that for each integer $n \ge 0$, there exists 
+$A_n \ge 0$ so that 
+
+$$
+\left| f^{(n)}(x) \right| \le A_n (1 + |x|)^{\eta}, \quad \text{for all} \; x \in \mathbb{R}.
+$$
+
+\begin{solution}
+    For each $x \in \mathbb{R}$, we consider the circle $C_R$ of radius $R < 1$ centered at $x$. Since $f$ is 
+    holomorphic for $y \in (-1, 1)$, it is holomorphic on the closed disc $D_R$ of radius $R$ centered at $x$ and we
+    may therefore apply the Cauchy inequalities for derivatives to obtain the following bound on the $n^{th}$ derivative 
+    of $f$:
+
+    $$
+    \left| f^{(n)}(x) \right| \le \frac{n! \lVert f \rVert_{C_R}}{R^n} 
+                              \le \frac{n! A(1 + |z|)^{\eta}}{R^n}.
+    $$
+
+    When $\eta = 0$, we obtain the desired result by defining $A_{n_1} = \frac{n! A}{R^n}$. When $\eta > 0$, we have (by 
+    applying the Triangle inequality to $z \in C_R$ where $C_R$ is given by $z = x + R$):
+
+    $$
+    \left(1 + |z| \right)^{\eta} \le \left(1 + |x| + R \right)^{\eta} 
+                                 \le (1 + R + |x| + R|x|)^{\eta} 
+                                 = (1 + R)^{\eta} (1 + |x|)^{\eta}.
+    $$
+
+    so that we obtain the desired result by defining $A_{n_2} = \frac{n! A (1 + R)^{\eta}}{R^n}$. Lastly, when $\eta < 0$, 
+    we consider two cases. In the first case, we assume $|x| \ge R$; this with the observation that $1 > R$ implies
+    $|x| > R |x|$ yields
+
+    $$
+    \left(1 + |z| \right)^{\eta} \le \left(1 + |x| - R \right)^{\eta} 
+                                 \le (1 - R + |x| - R|x|)^{\eta} 
+                                 = (1 - R)^{\eta} (1 + |x|)^{\eta}
+    $$
+
+    so that we obtain the desired result by defining $A_{n_3} = \frac{n! A (1 - R)^{\eta}}{R^n}$. On the other hand, for 
+    $|x| < 1$, we have
+
+    \begin{align*}
+    \left(1 + |z| \right)^{\eta} &\le \left(1 + R - |x| \right)^{\eta} \\
+                                 &\le \left(1 + \sfrac{1}{4}\left(R - |x|\right) \right)^{\eta} \\
+                                 &\le \left(\sfrac{1}{4} + \sfrac{|x|}{2} + \sfrac{1}{4}\left(R - |x|\right) \right)^{\eta} \\
+                                 &= \left(\sfrac{1}{4}\right)^{\eta} \left(1 + |x| + R \right)^{\eta} \\
+                                 &\le \left(\sfrac{1}{4}\right)^{\eta} \left(1 + |x| \right)^{\eta} \\
+    \end{align*}
+
+    so that we have the desired result by defining $A_{n_4} = \frac{n! A}{R^n 4^{\eta}}$. We define 
+    $A_n = \max_k{A_{n_k}}$ to obtain a single $A_n$ for each $n$ so that the desired inequality holds for all 
+    $x, \eta \in \mathbb{R}$.
+
+
+\end{solution}

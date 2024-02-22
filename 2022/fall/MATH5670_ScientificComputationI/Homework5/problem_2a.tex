@@ -1,0 +1,46 @@
+Verify that the predictor-corrector method (5.53) is second order accurate.
+
+\begin{solution}\ \\\\
+    We begin with the observation that the first-order Taylor expansion of \linebreak
+    $f(u_n + k f(u_n))$ about $u_n \coloneqq u(t_n)$ is given by:
+
+    \begin{equation}
+        f(u_n + k f(u_n)) = f(u_n) + \left[k f(u_n)\right] f'(u_n) + \mathcal{O}(k^2).
+    \end{equation}
+
+    Similarly, the second-order Taylor expansion of $u(t_{n+1})$ about $u(t_n)$ is given by:
+
+    \begin{equation}
+        u_{n+1} = u_n + k u'_n + \frac{1}{2!} k^2 u''_n + \mathcal{O}(h^3).
+    \end{equation}
+
+    With these expansions in mind, we turn our attention to the predictor-corrector method (5.53), which is given by:
+    \begin{align*}
+        \hat{U}^{n+1} &= U^n + kf(U^{n}) \\
+        U^{n+1}      &= U^n + \frac{1}{2} k \left[f(U^n) + f(\hat{U}^{n+1})\right].
+    \end{align*}
+
+    Combining these two equations yields:
+
+    $$
+    U^{n+1} = U^n + \frac{1}{2} k \left[f(U^n) + f(U^n + kf(U^{n}))\right].
+    $$
+
+    To find the local truncation error, we substitute $u(t_{n + k})$ for $U^{n+k}$ in the above equation to find:
+
+    \begin{equation}
+        \tau(t_{n+1}) = \frac{2}{k} (u_{n+1} - u_n) - f(u_n) - f(u_n + kf(u_n)).
+    \end{equation}
+
+    We substitute our Taylor expansions from (1) and (2) into (3) (noting that $u'_n = f(u_n)$ and 
+    $u''_n = [f(u_n)]' = f'(u_n) u'_n = f'(u_n) f(u_n))$ to find:
+
+    \begin{align*}
+    \tau(t_{n+1}) &= \frac{2}{k} \left[ u_n + k u'_n + \frac{1}{2!} k^2 u''_n + \mathcal{O}(k^3) - u_n \right] \\
+                  & - u'_n - \left( f(u_n) + \left[k f(u_n)\right] f'(u_n) + \mathcal{O}(k^2) \right)  \\
+                  &= \frac{2}{k} \left[ k u'_n + \frac{1}{2} k^2 u''_n + \mathcal{O}(k^3) \right] - 2 u'_n - k u''_n + \mathcal{O}(k^2) \\
+                  &= 2 \mathcal{O}(k^2) \\
+                  &= \mathcal{O}(k^2).
+    \end{align*}
+    \ \\
+\end{solution}

@@ -1,0 +1,42 @@
+Show that the predictor-corrector method obtained by predicting with the 2-step Adams-Bashforth method followed by
+correcting with the 2-step Adams-Moulton method is third order accurate.
+
+\begin{solution}\ \\\\
+    Recall that the predictor-corrector method obtained by predicting with the 2-step Adams-Bashforth method followed by
+    correcting with the 2-step Adams-Moulton method yields the following explicit one-step iteration expression:
+
+    $$
+    U^{n+1} = U^n + \frac{k}{12}\left[ -f(U^{n+1}) + 8 f(U^n) + 5f\left(U^n - \frac{k}{2} f(U^{n-1}) + \frac{3 k}{2} f(U^n)\right) \right]
+    $$
+
+    For a single step, the local truncation error is given by substituting for each approximation $U^k$ the 
+    corresponding exact solution $u_k = u(t_k)$:
+
+    $$
+    \tau = \frac{12}{k} (u_{n+1} - u_n) + f(u_{n-1}) - 8 f(u_n) - 5f\left(u_n - \frac{k}{2} f(u_{n-1}) + \frac{3 k}{2} f(u_n)\right)
+    $$
+
+    To show that the above is $\mathcal{O}(k^3)$, we substitute the test function $u' = f(u) = \lambda u$, which yields
+    the following:
+
+    $$
+    \tau = \frac{12}{k} (u_{n+1} - u_n) + \lambda u_{n-1} - 8 \lambda u_n - 5 \lambda u_n + \frac{5 k \lambda^2}{2} u_{n-1} - \frac{15 k \lambda^2}{2} u_n \\
+    $$
+
+    We then expand each $u_{n+1}$ and $u_{n-1}$ term about $u_n$ via Taylor series to find (substituting 
+    $u^{(k)}_n = \lambda^k u_n$ where appropriate along the way):
+
+    \begin{align*}
+    \tau &= \frac{12}{k} \left(u_n + k u'_n + \frac{k^2}{2}u''_n + \frac{k^3}{6}u'''_n + \mathcal{O}(k^4) - u_n\right) + \lambda \left( u_n - k u'_n + \frac{k^2}{2}u''_n - \mathcal{O}(k^3) \right) \\
+         &- 13 \lambda u_n + \frac{5 k \lambda^2}{2} \left( u_n - k u'_n + \mathcal{O}(k^2) \right) - \frac{15 k \lambda^2}{2} u_n \\
+         &= 12 \lambda u_n + 6 k \lambda^2 u_n + 2 k^2 \lambda^3 u_n + \mathcal{O}(k^3) + \left( \lambda u_n - k \lambda^2 u_n + \frac{k^2 \lambda^3}{2}u_n - \mathcal{O}(k^3) \right)  \\
+         &- 13 \lambda u_n + \frac{5 k \lambda^2}{2} u_n - \frac{5 k^2 \lambda^3}{2} u_n + \mathcal{O}(k^3) - \frac{15 k \lambda^2}{2} u_n \\
+         &= \mathcal{O}(k^3)
+    \end{align*}
+
+    as desired.\footnote{
+        Strictly speaking, we have only showed that this scheme is at \textit{least} $\mathcal{O}(k^3)$ only for 
+        $u' = \lambda u$.
+    }
+    \ \\
+\end{solution}

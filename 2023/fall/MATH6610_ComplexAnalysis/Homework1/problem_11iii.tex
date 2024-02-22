@@ -1,0 +1,34 @@
+Show that if $|a| < r < |b|$, then 
+
+$$
+\int_{\gamma} \frac{1}{(z - a)(z - b)} \; dz = \frac{2 \pi i}{a - b}
+$$
+
+where $\gamma$ denotes the circle of radius $r$ centered at the origin with positive orientation.
+
+\begin{solution}
+    We begin with the observation that the partial fraction decomposition of the integrand is given by
+
+    $$
+    \frac{1}{(z - a)(z - b)} = \frac{1}{a - b} \left( \frac{1}{z - a} - \frac{1}{z - b} \right).
+    $$
+
+    so that upon parametrizing $\gamma$ by $z(t) = re^{it}$ for $t \in [0, 2 \pi]$, we have
+
+    \begin{align*}
+        \int_{\gamma} \frac{1}{(z - a)(z - b)} \; dz &= \int_{\gamma} \frac{1}{a - b} \left( \frac{1}{z - a} - \frac{1}{z - b} \right) \; dz \\
+                                                     &= \frac{1}{a - b} \int_{\gamma} \frac{1}{z} \cdot \frac{1}{1 - \frac{a}{z}} \; dz 
+                                                      + \frac{1}{a - b} \int_{\gamma} \frac{1}{b} \cdot \frac{1}{1 - \frac{z}{b}} \; dz \\
+                                                     &= \frac{1}{a - b} \int_{\gamma} \frac{1}{z} \cdot \sum\limits_{k=0}^{\infty} \left(\frac{a}{z}\right)^k \; dz 
+                                                      + \frac{1}{a - b} \cdot \frac{1}{b} \int_{\gamma} \sum\limits_{k=0}^{\infty} \left(\frac{z}{b}\right)^k \; dz \\
+                                                     &= \frac{1}{a - b} \cdot \sum\limits_{k=0}^{\infty} a^k \int_{\gamma} \left(\frac{1}{z}\right)^{k+1} \; dz 
+                                                      + \frac{1}{a - b} \cdot \frac{1}{b} \sum\limits_{k=0}^{\infty} b^{-k} \int_{\gamma} z^k \; dz \\
+                                                     &= \frac{1}{a - b} \int_{\gamma} z^{-1} \; dz 
+                                                      + \frac{1}{a - b} \cdot \sum\limits_{k=1}^{\infty} a^k \int_{\gamma} z^{-(k+1)} \; dz \\
+                                                     &= \frac{2 \pi i}{a - b} 
+    \end{align*}
+
+    where we have used the results from (a) to evaluate the integrals of $z^n$ and the same argument as (b) to justify 
+    interchanging sums and integrals.
+    \ \\
+\end{solution}

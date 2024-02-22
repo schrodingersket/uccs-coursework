@@ -1,0 +1,28 @@
+(\#12 in 3.2) Prove that the set $FC$ is a topology on any set $X$.
+
+\begin{proof}\ \\\\
+    Let $X$ be a non-empty set. We wish to show that the collection of sets \linebreak
+    $\tau_{FC} = \{A~| A = \emptyset~\text{or}~ \left(X \backslash A\right) ~ \text{is finite}\}$ defines a topology on
+    $X$.
+
+    Let $\bigcup\limits_{i \in I}{S_i}$ be an arbitrary union of sets with $S_i \in \tau_{FC}$, and observe that 
+    $X \backslash \bigcup\limits_{i \in I}{S_i} = \bigcap\limits_{i \in I}{\left(X \backslash S_i\right)}$ by DeMorgan's
+    Laws. Moreover, each $X \backslash S_i$ is finite because $S_i \in \tau_{FC}$; hence
+    $\bigcap\limits_{i \in I}{\left(X \backslash S_i\right)}$ is an intersection of finite sets. Since arbitrary 
+    intersections of finite sets are finite, we have that $X \backslash \bigcup\limits_{i \in I}{S_i}$ is finite and 
+    hence $\bigcup\limits_{i \in I}{S_i} \in \tau_{FC}$. Since $\bigcup\limits_{i \in I}{S_i}$ was chosen to be 
+    arbitrary, $\tau_{FC}$ is closed under arbitrary unions.
+
+    We now let $\bigcap\limits_{i=1}^{n}{F_{i}}$ be a finite intersection of sets with $F_i \in \tau_{FC}$. Observe that
+    \linebreak $X \backslash \bigcap\limits_{i=1}^{n}{F_{i}} = \bigcup\limits_{i=1}^{n}{\left(X \backslash F_i\right)}$ 
+    by DeMorgan's Laws. Because $F_i \in \tau_{FC}$, the relative complement $X \backslash F_i$ is finite, and so 
+    $\bigcup\limits_{i=1}^{n}{\left(X \backslash F_i\right)}$ is a finite union of finite sets and is therefore itself
+    finite. Hence $X \backslash \bigcap\limits_{i=1}^{n}{F_{i}}$ is finite, and so 
+    $\bigcap\limits_{i=1}^{n}{F_{i}} \in \tau_{FC}$. Since $\bigcap\limits_{i=1}^{n}{F_{i}}$ was chosen to be arbitrary,
+    $\tau_{FC}$ is closed under finite intersections.
+
+    Lastly, observe that because the empty set is finite and $X \backslash X = \emptyset$, we have that
+    $X \in \tau_{FC}$. Because $\emptyset \in \tau_{FC}$ by definition, $\tau_{FC}$ defines a topology on $X$; Since
+    $X$ was chosen to be any arbitrary set, $\tau_{FC}$ defines a topology on any set.
+
+\end{proof}

@@ -1,0 +1,78 @@
+\textbf{Griva, Nash, Sofer 2.6.4}
+
+Find the first three terms of the Taylor series for 
+
+$$
+  f(x) = 3 x_1^4 - 2 x_1^3 x_2 - 4 x_1^2 x_2^2 + 5 x_1 x_2^3 + 2 x_2^4
+$$
+
+about the point 
+
+$$
+  x_0 = (1, -1)^T.
+$$
+
+Evaluate the series for $p = (0.1, 0.01)^T$ and compare with the value of
+$f(x_0 + p)$.
+
+
+\begin{solution}
+  Since $f$ is a real polynomial, it is smooth and we may therefore evaluate its 
+  gradient and Hessian:
+
+  \begin{align*}
+    \nabla f(x) &= \begin{pmatrix}
+      12 x_1^3 - 6 x_1^2 x_2 - 8 x_1 x_2^2 + 5 x_2^3 \\
+      -2 x_1^3 - 8 x_1^2 x_2 + 15 x_1 x_2^2 + 8 x_2^3
+    \end{pmatrix} \\\\
+    \nabla^2 f(x) &= \begin{pmatrix}
+      36 x_1^2 - 12 x_1 x_2 - 8 x_2^2  & -6 x_1^2 - 16 x_1 x_2 + 15 x_2^2 \\
+      -6 x_1^2 - 16 x_1 x_2 + 15 x_2^2 & -8 x_1^2 + 30 x_1 x_2 + 24 x_2^2
+    \end{pmatrix}.
+  \end{align*}
+
+  At $x_0 = (1, -1)^T$, we have:
+
+
+  \begin{align*}
+    f(x_0) &= -2 \\\\
+    \nabla f(x_0) &= \begin{pmatrix}
+      5 \\
+      13
+    \end{pmatrix} \\\\
+    \nabla^2 f(x_0) &= \begin{pmatrix}
+      40 &  25 \\
+      25 & -14
+    \end{pmatrix}
+  \end{align*}
+
+  and so our second-order Taylor series approximation of $f(x_0 + p)$ becomes:
+
+  \begin{align*}
+    f(x_0 + p) &\approx f(x_0) + p^T \nabla f(x_0) + \frac{1}{2} p^T \nabla^2 f(x_0) p \\
+               &= -2 + \begin{pmatrix}
+                0.1 & 0.01
+              \end{pmatrix}
+              \begin{pmatrix}
+                5 \\
+                13
+              \end{pmatrix} + \frac{1}{2} \begin{pmatrix}
+                0.1 & 0.01
+              \end{pmatrix}
+              \begin{pmatrix}
+                40 &  25 \\
+                25 & -14
+              \end{pmatrix}
+              \begin{pmatrix}
+                0.1 \\
+                0.01
+              \end{pmatrix} \\
+              & = -1.1457.
+  \end{align*}
+
+  Since the true value\footnote{
+    See \texttt{problem\_9.py} for computational details.
+  } $f(x_0 + p) \approx -1.131 $, we see that the Taylor approximation is accurate to two
+  digits, as is expected for quadratic expansion.
+  \ \\
+\end{solution}

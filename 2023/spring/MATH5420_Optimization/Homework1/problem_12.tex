@@ -1,0 +1,41 @@
+\textbf{Griva, Nash, Sofer 2.4.2}
+
+Find all descent directions for the linear function $f(x) = x_1 - 2x_2 + 3x_2$. Does your
+answer depend on the value of $x$?
+
+\begin{solution}
+  Recall that for a linear function $f(x) = c^Tx$, $p_k$ is a descent direction if
+
+  \begin{equation}\label{eq:4}
+    c^T p_k < 0.
+  \end{equation}
+
+  Observe that we may write $f(x)$ as follows:
+
+  $$
+  f(x) = c^T x
+  $$
+  
+  where
+  
+  $$
+  c = \begin{pmatrix}
+     1 \\
+    -2 \\
+     3
+  \end{pmatrix}
+  \text{ and }
+  x = \begin{pmatrix}
+    x_1 \\
+    x_2 \\
+    x_3
+  \end{pmatrix}
+  $$
+
+  and hence $f$ is linear. By (\ref{eq:4}), the descent directions of $f$ 
+  are precisely those $p_k$ for which $c^T p_k < 0$ or, in other words, when 
+  $p_1 - 2p_2 + 3p_3 < 0$ where $p_i$ are the components of $p$. We note 
+  further that neither $c$ nor $p_k$ depend on $x$, and so this holds  
+  irrespective of the value of $x$.
+  \ \\
+\end{solution}

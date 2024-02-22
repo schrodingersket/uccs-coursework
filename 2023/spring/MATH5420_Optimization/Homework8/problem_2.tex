@@ -1,0 +1,119 @@
+\textbf{Griva, Nash, Sofer 14.2.3}
+
+Find all the values of the parameters $a$ and $b$ such that $(0, 0)^T$ minimizes or maximizes
+
+$$
+f(x_1, x_2) = (a + 2)x_1 - 2x_2
+\quad \text{subject to} \quad 
+a \left(x_1 + e^{x_1} \right) + b \left(x_2 + e^{x_2} \right) = 1.
+$$
+
+
+\begin{solution}
+    We solve this problem by way of Lagrange multipliers. Since this problem has a single constraint, the vector of 
+    Lagrange multipliers reduces to a single scalar value $\lambda$. The Lagrangian is therefore given by:
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda^T g(x) = (a + 2)x_1 - 2x_2 - \lambda \left[a \left(x_1 + e^{x_1} \right) + b \left(x_2 + e^{x_2} \right) - 1 \right]
+    $$
+
+    with corresponding gradient and Hessian (with respect to $x$):
+
+    $$
+    \nabla_x \mathcal{L} = \begin{pmatrix*}
+        a + 2 - \lambda a \left(1 + e^{x_1} \right) \\
+        -2 - \lambda b \left(1 + e^{x_2} \right)
+    \end{pmatrix*}, \qquad \nabla^2_{xx} \mathcal{L} = \begin{pmatrix*}
+        -\lambda a e^{x_1} & 0 \\
+        0                  & -\lambda b e^{x_2}
+    \end{pmatrix*},
+    $$
+
+    respectively. At $x_* = (0, 0)^T$, our constraint requires $a + b = 1$ and hence $b = 1 - a$. We require that $x_*$
+    be a stationary point, and so we impose the condition that $\nabla_x \mathcal{L} = 0$ at $x_*$. From this, we 
+    obtain the system
+
+    $$
+    \nabla_x \mathcal{L} = \begin{pmatrix*}
+        a + 2 - \lambda a \left(1 + e^{0} \right) \\
+        -2 - \lambda b \left(1 + e^{0} \right)
+    \end{pmatrix*} = \begin{pmatrix*}
+        a + 2 - 2 \lambda a \\
+        -2 - 2 \lambda (1 - a)
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}.
+    $$
+
+    We solve the first equation for $\lambda$ to find $\lambda = \frac{a + 2}{2a}$. Substitution into the second 
+    equation yields
+
+    $$
+    -2 - \frac{a + 2}{a} + a + 2 = 0
+    $$
+
+    which after multiplying through by $a$ yields the quadratic equation $(a - 2)(a + 1) = 0$ with solutions $a = 2$ and
+    $a = -1$ (with $b = -1$ and $b = 2$, respectively). We next determine whether $x_*$ minimizes or maximizes $f$ for
+    $a = 2$ and $a = -1$. To do so, we first take the Jacobian of the constraint vector (which for this problem is a
+    single constraint) and evaluate it at $x_*$:
+
+    $$
+    \nabla g = \begin{pmatrix*}
+        a \left(1 + e^{x_1} \right) \\
+        b \left(1 + e^{x_2} \right)
+    \end{pmatrix*} = 2 \begin{pmatrix*}
+        a \\
+        b
+    \end{pmatrix*}.
+    $$
+
+    When $a = 2$, we have 
+    
+    $$
+    b = -1, \quad \lambda = 1, \quad \nabla g(x_*) = 2 \begin{pmatrix*}[r]
+        2 \\
+       -1
+    \end{pmatrix*}
+    $$
+
+    so that a null space matrix for $\nabla g(x_*)$ is given by $Z = (1, 2)^T$ and the reduced Hessian becomes
+
+    $$
+    Z^T \nabla^2_{xx} \mathcal{L}(x_*) Z = \begin{pmatrix*}
+        1 & 2
+    \end{pmatrix*} \begin{pmatrix*}[r]
+        -2 & 0 \\
+         0 & 1
+    \end{pmatrix*} \begin{pmatrix*}
+        1 \\
+        2
+    \end{pmatrix*} = 2 > 0
+    $$
+
+    and hence $x_*$ is a local minimum. On the other hand, when $a = -1$, we have
+
+    $$
+    b = 2, \quad \lambda = -\frac{1}{2}, \quad \nabla g(x_*) = 2 \begin{pmatrix*}[r]
+       -1 \\
+        2
+    \end{pmatrix*}
+    $$
+
+    so that a null space matrix for $\nabla g(x_*)$ is given by $Z = (2, 1)^T$ and the reduced Hessian becomes
+
+    $$
+    Z^T \nabla^2_{xx} \mathcal{L}(x_*) Z = \begin{pmatrix*}
+        2 & 1
+    \end{pmatrix*} \begin{pmatrix*}
+        \sfrac{-1}{2} & 0 \\
+         0            & 1
+    \end{pmatrix*} \begin{pmatrix*}
+        2 \\
+        1
+    \end{pmatrix*} = -1 < 0
+    $$
+
+    and hence $x_*$ is a local maximum.
+    \ \\
+\end{solution}

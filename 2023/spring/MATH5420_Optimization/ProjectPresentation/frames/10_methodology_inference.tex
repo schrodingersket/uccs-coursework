@@ -1,0 +1,31 @@
+\begin{frame}
+    \frametitle{Methodology: Inference}
+
+    We can use this approach to solve the classical homogeneous system with fluid flow over a flat surface.\footnote{
+        An example problem with PINN solution can be found in Appendix A.
+    }
+
+    \bigskip
+    \pause
+    
+    Let's try something more difficult. Based on some experimental height and velocity measurements, could a neural 
+    network ``see'' under the fluid surface to infer the bathymetry function $\beta(x)$ when it's not known in advance?
+
+    \bigskip
+    \pause
+
+    For this problem, we'll choose our neural network to be a mapping from 
+    $\mathbb{R}^2 \to \mathbb{R}^3$:
+
+    $$
+    \mathcal{N}(x, t) = \begin{pmatrix*}
+        \mathcal{N}_h \\
+        \mathcal{N}_v \\
+        \mathcal{N}_{\beta}
+    \end{pmatrix*} \approx \begin{pmatrix*}
+        h \\
+        v \\
+        \beta
+    \end{pmatrix*}.
+    $$
+\end{frame}

@@ -1,0 +1,15 @@
+The series $\sum\limits_{n=0}^{\infty}{\frac{z^n}{n^2}}$ converges on $S \coloneqq \left\{ z \colon |z| = 1 \right\}$.
+
+\begin{solution}
+    Let $|z| = 1$. We observe that
+
+    $$
+    \sum\limits_{n=0}^{\infty} \left| \frac{z^n}{n^2} \right| = \sum\limits_{n=0}^{\infty} \frac{|z|^n}{\left|n^2\right|} 
+                                                              = \sum\limits_{n=0}^{\infty} \frac{1}{n^2} 
+                                                              = \frac{\pi^2}{6}
+    $$
+
+    Hence the series converges absolutely on $S$ and therefore converges as desired (since absolute convergence implies
+    convergence in any Banach space, of which $(\mathbb{C}, |\cdot|)$ is a nice example).
+    \ \\
+\end{solution}

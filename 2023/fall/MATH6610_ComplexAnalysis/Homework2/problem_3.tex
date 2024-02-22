@@ -1,0 +1,113 @@
+\textbf{Stein, Shakarchi 2.3}
+
+Evaluate the integrals 
+
+$$
+\int_{0}^{\infty} {e^{-ax} \cos{(bx)} \; dx} \quad \text{and} \quad \int_{0}^{\infty} {e^{-ax} \sin{(bx)} \; dx}, \quad a > 0
+$$
+
+by integrating $e^{-Az}$ (where $A = \sqrt{a^2 + b^2} > 0$) over an appropriate sector with angle $\omega$ and 
+$\cos{\omega} = \sfrac{a}{A}$.
+
+\begin{solution}
+    We first fix $\omega \in \left(0, \frac{\pi}{2} \right)$ and integrate $e^{-Az}$ over the sector of radius $R$ and 
+    angle $\omega$ (See Figure \ref{fig:problem_3}). We split the integral into three components; the first component 
+    ($\gamma_1$) is the integral along the real axis from $0$ to $R$, the second component ($\gamma_2$) is the integral 
+    along the arc, and the third ($\gamma_3$) is the integral from the end of the arc back to the origin. 
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=0.4\textwidth]{problem_3.png}
+        \caption{Integration over sector of radius $R$ and angle $0 < \omega < \frac{\pi}{4}$}
+        \label{fig:problem_3}
+    \end{figure}
+    
+    We parametrize these integrals by $z = x$, $z = Re^{i\varphi}$, and $z = t e^{i\omega}$, respectively. With these 
+    parametrizations (along with an application of Cauchy's Integral theorem, since $f = e^{-Az}$ is entire), we obtain
+
+    $$
+    0 = \int_{\gamma} {e^{-Az}} \; dz = \int_{0}^{R} {e^{-Ax}} \; dx + \int_{0}^{\omega} {e^{-ARe^{i\varphi}} \; iRe^{i\varphi}} \; d\varphi + \int_{R}^{0} {e^{-Ate^{i\omega}} \, e^{i\omega}} \; dt
+    $$
+
+    In the limit at $R \to \infty$, the first of these integrals becomes:
+
+    $$
+    \lim_{R \to \infty} \int_{0}^{R} {e^{-Ax}} \; dx = \lim_{R \to \infty} \left( \frac{e^{-Ax}}{-A} \right)\bigg|_{0}^{R} 
+                                                     = \lim_{R \to \infty} \left( -\frac{1}{A e^{AR}} + \frac{1}{A} \right)
+                                                     = \frac{1}{A}.
+    $$
+
+    \pagebreak
+    For the second integral, we have
+
+    \begin{align*}
+        \left| \int_0^{\omega} e^{-AR e^{i \varphi}} \, i R e^{i \varphi} \; d\varphi \right| 
+        &= \left| \int_0^{\omega} e^{-AR (\cos \varphi + i \sin{\varphi})} \, i R e^{i \varphi} \; d\varphi \right| \\
+        &= \left| \int_0^{\omega} e^{-AR \cos \varphi} e^{-i A R \sin{\varphi}} \, i R e^{i \varphi} \; d\varphi \right| \\
+        &= \left| R \int_0^{\omega} e^{-AR \cos \varphi} \; d\varphi \right| 
+    \end{align*}
+
+    We note that for $\varphi \in \left(0, \frac{\pi}{2} \right)$, $\cos{\varphi}$ is non-negative, monotonically 
+    decreasing, and attains its minimum value at $\varphi = \omega$ so that 
+    
+    $$
+        \sup_{\varphi \in \left(0, \frac{\pi}{2} \right)} \left| e^{-A R \cos{\varphi}} \right| 
+          = e^{-A R \cos{\omega}} 
+          = e^{-\frac{A R a}{A}} 
+          = e^{-a R}
+    $$
+
+    which yields the following bound for the second integral:
+
+    \begin{align*}
+        \left| \int_0^{\omega} e^{-AR e^{i \varphi}} \, i R e^{i \varphi} \; d\varphi \right| 
+        &=   \left| R \int_0^{\omega} e^{-AR \cos \varphi} \; d\varphi \right|  \\
+        &\le R \int_0^{\omega} \sup_{\varphi \in \left(0, \frac{\pi}{2} \right)} \left| e^{-A R \cos{\varphi}} \right| |d\varphi| \\
+        &=  \frac{\omega R^2}{e^{aR}}
+    \end{align*}
+
+    which vanishes in the limit as $R \to \infty$. We therefore conclude that the second integral evaluates to zero.
+    Finally, we consider the third integral. With our parametrization from above, we have (noting that 
+    $\cos{\omega} = \sfrac{a}{A}$ together with the definition of $A$ implies $\sin{\omega} = \sfrac{b}{A}$):
+
+    \begin{align*}
+        \int_{R}^{0} {e^{-Ate^{i\omega}} \, e^{i\omega} \; dt}
+          &= \int_{R}^{0} {e^{-At(\cos{\omega} + i \sin{\omega})} \, e^{i\omega} \; dt} \\
+          &= \int_{R}^{0} {e^{-At\left(\frac{a}{A} + i \frac{b}{A}\right)} \, \left(\frac{a}{A} + i \frac{b}{A}\right) \; dt} \\
+          &= \int_{R}^{0} {e^{-(a + ib) t} \, \left(\frac{a}{A} + i \frac{b}{A}\right) \; dt} \\
+          &= \frac{a}{A} \int_{R}^{0} {e^{-(a + ib) t} \; dt} + i \frac{b}{A} \int_{R}^{0} {e^{-(a + ib) t} \; dt} \\
+          &= \frac{a}{A} \int_{R}^{0} {e^{-at} \left[\cos{(bt)} - i \sin{(bt)} \right] \; dt} + i \frac{b}{A} \int_{R}^{0} {e^{-at} \left[\cos{(bt)} - i \sin{(bt)} \right] \; dt} \\
+          &= -\frac{a}{A} \int_{0}^{R} {e^{-at} \cos{(bt)} \; dt}
+             - \frac{b}{A} \int_{0}^{R} {e^{-at} \sin{(bt)} \; dt} \\
+             &+ i \left(
+                   \frac{a}{A} \int_{0}^{R} {e^{-at} \sin{(bt)} \; dt}
+                 - \frac{b}{A} \int_{0}^{R} {e^{-at} \cos{(bt)} \; dt}
+                 \right).
+    \end{align*}
+
+    We take the limit as $R \to \infty$ and (for notational convenience) define 
+    $I_1 = \int_0^{\infty} e^{-at} \cos{(bt)} \; dt$ and $I_2 = \int_0^{\infty} e^{-at} \sin{(bt)} \; dt$. Upon 
+    interchanging integration limits appropriately, we have
+
+    $$
+    \frac{1}{A} = \int_0^{\infty} e^{-Ax} \; dx 
+                = \int_{0}^{\infty} {e^{-At e^{i\omega}} \, e^{i\omega} \; dt} 
+                = \frac{a}{A} I_1 + \frac{b}{A} I_2 - i\left( \frac{a}{A} I_2 - \frac{b}{A} I_1 \right)
+    $$
+
+    Equating real and imaginary parts yields the linear system
+
+    $$
+    \begin{cases}
+        \frac{a}{A} I_1 + \frac{b}{A} I_2 = \frac{1}{A} \\
+        \frac{a}{A} I_2 - \frac{b}{A} I_1 = 0
+    \end{cases}
+    $$
+
+    whose solution is given by $I_1 = \frac{a}{A^2} = \frac{a}{a^2 + b^2}$ and $I_2 = \frac{b}{A^2} = \frac{b}{a^2 + b^2}$ so that we have
+
+    $$
+    \int_0^{\infty} e^{-ax} \cos{(bx)} \; dx = \frac{a}{a^2 + b^2} \quad \text{and} \quad \int_0^{\infty} e^{-ax} \sin{(bx)} \; dx = \frac{b}{a^2 + b^2}.
+    $$
+    \ \\
+\end{solution}

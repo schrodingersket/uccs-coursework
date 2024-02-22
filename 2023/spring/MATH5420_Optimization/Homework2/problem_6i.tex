@@ -1,0 +1,22 @@
+$x = (8, 4, -3, 4, 1)^T$ and $p = (1, 1, 1, 1, 1)^T.$
+
+\begin{solution}
+  For each $a_i$, we have:
+
+  \begin{align*}
+    a_1^T p &= (9, 4, 1, 9, -7)^T (1, 1, 1, 1, 1) = 16 \\
+    a_2^T p &= (6, -7, 8, -4, -6)^T (1, 1, 1, 1, 1) = -3 \\
+    a_3^T p &= (1, 6, 3, -7, 6)^T (1, 1, 1, 1, 1) = 9
+  \end{align*}
+
+  and so $a_2^T p$ is the only constraint used in the ratio test, which yields:\footnote{
+    Numeric calculations are computed in \texttt{problem\_6i.py}.
+  }
+
+  \begin{align*}
+    \bar{\alpha} &= \min \left\{ \frac{a_i^T x - b_i}{-a_i^Tp} \ \middle| \ a_i^T p < 0 \right\} \\
+                 &= \min \left\{ \frac{-26 - (-30)}{3} \right\} \\
+                 &= \frac{4}{3}.
+  \end{align*}
+  \ \\
+\end{solution}

@@ -1,0 +1,67 @@
+\textbf{Stein, Shakarchi 3.4}
+
+Show that
+
+$$
+\int_{-\infty}^{\infty} {\frac{x \sin x}{x^2 + a^2}} \; dx = \pi e^{-a}, \quad a > 0.
+$$
+
+\begin{solution}
+  We consider the function 
+
+  $$
+  f(z) = \frac{z e^{iz}}{z^2 + a^2} = \frac{z e^{iz}}{(z + ia)(z - ia)}
+  $$
+
+  which has simple poles at $z = ia$ and $z = -ia$. Integrating $f(z)$ over the semicircle $\gamma_R$ of radius $R > a$ 
+  in the upper half plane yields
+
+  $$
+  \int_{\gamma_R} { f(z) \; dz } = \int_{-R}^{R} { f(x) \; dx } 
+                                 + \int_0^{\pi} { i R e^{i \theta} f(R e^{i \theta}) \; d\theta }
+  $$
+
+  To bound the latter integral, we note that the reverse triangle inequality implies
+
+  $$
+  \left|a^2 + R^2 e^{2 i \theta}\right| = \left|a^2 - \left(-R^2 e^{2 i \theta}\right)\right| 
+                                      \ge \Big| a^2 - \left| R^2 e^{2 i \theta} \right| \Big| 
+                                      = \left|R^2 - a^2\right|
+  $$
+
+  so that
+
+  \begin{align*}
+    \left| \int_0^{\pi} { i R e^{i \theta} f(R e^{i \theta}) \; d\theta } \right|
+      &\le \int_0^{\pi} { \frac{\left| R e^{i \theta} e^{i R (\cos{\theta} + i \sin{\theta})} \right|}{\left| a^2 + R^2 e^{2 i \theta} \right|^2} \left| i R e^{i \theta} \right|\; d\theta } \\
+      &= R^2 \int_0^{\pi} { \frac{\left| e^{-R \sin{\theta}} \right|}{\left| a^2 + R^2 e^{2 i \theta} \right|^2} \; d\theta } \\
+      &\le \frac{R^2}{\left(a^2 - R^2\right)^2} \int_0^{\pi} { e^{-R \sin{\theta}} \; d\theta } \\
+      &\le \frac{2 R^2}{\left(a^2 - R^2\right)^2} \int_0^{\sfrac{\pi}{2}} { e^{-\frac{2 R}{\pi} \theta} \; d\theta } \\
+      &\le \frac{2 R^2}{\left(a^2 - R^2\right)^2} \left(-\frac{\pi}{2 R} \right) \left[ e^{-R} - 1 \right] \\
+      &= \frac{2 R}{\left(a^2 - R^2\right)^2} \left(\frac{\pi}{2} \right) \left[ 1 - e^{-R} \right] 
+  \end{align*}
+
+  which decays to zero as $R \to \infty$ when $a > 0$. \pagebreak
+
+  Furthermore, by the residue theorem, we have (since only $z = i a$ is contained in our semicircle):
+
+  \begin{align*}
+    \int_{\gamma_R} { f(z) \; dz } &= 2 \pi i \, \lim\limits_{z \to ia} (z - ia) \frac{z e^{iz}}{(z + ia) (z - ia)} \\
+                                   &= 2 \pi i \, \lim\limits_{z \to ia} \frac{z e^{iz}}{(z + ia)} \\
+                                   &= 2 \pi i \, \frac{ia e^{-a}}{2ia} \\
+                                   &= i \pi e^{-a}
+  \end{align*}
+
+  Hence in the limit as $R \to \infty$, we have
+
+  \begin{align*}
+    i \pi e^{-a} &= \int_{\gamma_{\infty}} { f(z) \; dz } \\
+                 &= \int_{-\infty}^{\infty} { \frac{x e^{i x}}{x^2 + a^2} \; dx } \\
+                 &= \int_{-\infty}^{\infty} { \frac{x (\cos{x} + i \sin{x})}{x^2 + a^2} \; dx } \\
+                 &= \int_{-\infty}^{\infty} { \frac{x \cos{x}}{x^2 + a^2} \; dx }
+                  + i \int_{-\infty}^{\infty} { \frac{x \sin{x}}{x^2 + a^2} \; dx }  \\
+  \end{align*}
+
+  so that equating imaginary parts yields the desired result.
+  \ \\
+\end{solution}

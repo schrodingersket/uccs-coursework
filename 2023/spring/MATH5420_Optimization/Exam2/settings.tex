@@ -1,0 +1,44 @@
+\usepackage[margin=1in]{geometry} 
+\usepackage[bottom]{footmisc}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{accents}
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{enumerate}
+\usepackage{optidef}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{fancy}
+\setlength{\headheight}{40pt}
+
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}
+  \begin{proof}[Solution]}
+  {\end{proof}}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% \def\mygraphpaper{%
+%   \begin{tikzpicture}
+%     \draw[line width=.4pt,draw=black!30] (0,0) grid[step=4mm] (\paperwidth,\paperheight);
+%     \draw[line width=.4pt,draw=black!50] (0,0) grid[step=2cm] (\paperwidth,\paperheight);
+%   \end{tikzpicture}%
+% }
+% \usepackage{tikz}
+% \usepackage{background}
+% \backgroundsetup{
+%   angle=0,
+%   contents=\mygraphpaper,
+%   color=black,
+%   scale=1,
+% }

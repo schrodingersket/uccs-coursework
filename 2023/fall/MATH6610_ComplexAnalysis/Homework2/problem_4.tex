@@ -1,0 +1,42 @@
+\textbf{Stein, Shakarchi 2.4}
+
+Prove that for all $\xi \in \mathbb{C}$, we have
+
+$$
+e^{-\pi \xi^2} = \int_{-\infty}^{\infty} {e^{-\pi x^2} e^{2 \pi i x \xi} \; dx}.
+$$
+
+\begin{solution}
+    Let $\xi = a + bi$, where $a, b \in \mathbb{R}$. Completing the square for $x^2 - 2 i x \xi$ yields
+
+    $$
+    x^2 - 2 i x \xi = (x - i\xi)^2 + \xi^2
+    $$
+
+    so that we have
+
+    \begin{align*}
+        \int_{-\infty}^{\infty} {e^{-\pi x^2} e^{2 \pi i x \xi} \; dx} &= \int_{-\infty}^{\infty} {e^{-\pi (x^2 - 2 i x \xi)} \; dx} \\
+                                                                       &= \int_{-\infty}^{\infty} {e^{-\pi \left( (x - i\xi)^2 + \xi^2 \right)} \; dx} \\
+                                                                       &= e^{-\pi \xi^2}\int_{-\infty}^{\infty} {e^{-\pi \left( x - i(a + bi)\right)^2} \; dx} \\
+                                                                       &= e^{-\pi \xi^2}\int_{-\infty}^{\infty} {e^{-\pi \left((x + b) - ai \right)^2} \; dx}.
+    \end{align*}
+
+    Letting $u = x + b$, we have $du = dx$ so that
+
+    \begin{align*}
+        e^{-\pi \xi^2}\int_{-\infty}^{\infty} {e^{-\pi \left((x + b) - ai \right)^2 } \; dx} 
+          &=e^{-\pi \xi^2}\int_{-\infty}^{\infty} {e^{-\pi \left(u^2 - 2 i u a - a^2 \right)} \; du} \\
+          &=e^{-\pi \xi^2} e^{\pi a^2} \int_{-\infty}^{\infty} {e^{-\pi u^2} e^{2 \pi i u a } \; du} \\
+          &=e^{-\pi \xi^2} e^{\pi a^2} e^{-\pi (-a)^2} \\
+          &=e^{-\pi \xi^2} 
+    \end{align*}
+
+    where we have used the fact that for \textit{real} $a, x \in \mathbb{R}$, we have
+
+    $$
+    e^{-\pi a^2} = \int_{-\infty}^{\infty} e^{-\pi x^2} e^{-2 \pi i x a}\; dx.
+    $$
+
+    \ \\
+\end{solution}

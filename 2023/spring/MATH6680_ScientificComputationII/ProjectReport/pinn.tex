@@ -1,0 +1,46 @@
+In the Physics-Informed Neural Network approach, we build upon the methodology developed by Raissi et. al. 
+\cite{raissi_physics-informed_2019} and approximate the solution to a system of partial differential equations with a
+neural network. In particular, we seek neural network solution surrogates to (possibly nonlinear) equations of the form 
+
+$$
+u_t + \mathcal{N}[u; \lambda] = 0, \quad x \in \Omega, \quad t \in [0, T]
+$$
+
+where $\mathcal{N}$ is a parameterized spatial differentiation operator and $\Omega$ is a subset of $\mathbb{R}^n$. In 
+the case of the shallow water equations, we have:
+
+$$
+\mathcal{N}[u; \lambda] = [F(u; \lambda)]_x - S(u; \lambda), \quad u = \begin{bmatrix}
+    h \\
+    v \\
+    \alpha
+\end{bmatrix}, \quad \text{and} \quad \lambda = C_f.
+$$
+
+We approximate the solution to the PDE by a neural network $U(x, t; \theta)$, where $\theta$ represents the parameters
+of the neural network which is trained by minimizing the PDE residual. We define the residual 
+$f \coloneqq u_t + \mathcal{N}[u]$ and, for given collocation points $\{x_i, t_i\}$, define the (mean-squared) loss 
+function for the neural network in terms of $f$:
+
+$$
+MSE_f = \frac{1}{N_f} \sum_{i=1}^{N_f} |f(x_i, t_i)|^2
+$$
+
+Furthermore, when sampled data for the solution is available, we enforce consistency of the neural network with respect 
+to measured data by introducing a second loss function for the sampled data:
+
+$$
+MSE_u = \frac{1}{N_u} \sum_{i=1}^{N_u} |U(x_i, t_i; \theta) - u(x_i, t_i)|^2
+$$
+
+where $u(x_i, t_i)$ represents a particular data sample and $U(x_i, t_i; \theta)$ the neural network prediction at that
+sample point. We may therefore view the process of finding a neural network that satisfies the PDE as the unconstrained 
+optimization problem:
+
+\begin{mini*}
+    {\theta}{MSE_f + MSE_u}{}{}
+\end{mini*}
+
+For this project, we generate an artificial data set for the $MSE_u$ term by first solving the PDE via pseudospectral 
+methods and sampling the numerical solution at various temporospatial points. We train the neural network using DeepXDE
+\cite{lu_deepxde_2021}, a Python library based on Tensorflow and PyTorch for solving PDEs via PINNs. 

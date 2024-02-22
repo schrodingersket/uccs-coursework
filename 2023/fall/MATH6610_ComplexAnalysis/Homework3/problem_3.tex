@@ -1,0 +1,68 @@
+\textbf{Stein, Shakarchi 3.5}
+
+Use contour integration to show that
+
+$$
+\int_{\infty}^{\infty} { \frac{e^{-2 \pi i x \xi}}{\left( 1 + x^2 \right)^2} \; dx } = \frac{\pi}{2} (1 + 2 \pi |\xi|) e^{-2 \pi |\xi|}
+$$
+
+for every $\xi \in \mathbb{R}$.
+
+\begin{solution}
+  We consider the function 
+
+  $$
+  f(z) = \frac{e^{-2 \pi i z \xi}}{\left(1 + z^2\right)^2} = \frac{e^{-2 \pi i z \xi}}{(z + i)^2 (z - i)^2}
+  $$
+
+  which has poles at $z = i$ and $z = -i$, each of order two. Integrating $f(z)$ over the semicircle $\gamma_R$ of 
+  radius $R > 1$ in the upper half plane yields
+
+  $$
+  \int_{\gamma_R} { f(z) \; dz } = \int_{-R}^{R} { f(x) \; dx } 
+                                 + \int_0^{\pi} { i R e^{i \theta} f(R e^{i \theta}) \; d\theta }
+  $$
+
+  To bound the latter integral, we note that the reverse triangle inequality implies
+
+  $$
+  \left|1 + R^2 e^{2 i \theta}\right| = \left|1 - \left(-R^2 e^{2 i \theta}\right)\right| 
+                                      \ge \Big| 1 - \left| R^2 e^{2 i \theta} \right| \Big| 
+                                      = \left|R^2 - 1\right|
+  $$
+
+  so that
+
+  \begin{align*}
+    \left| \int_0^{\pi} { i R e^{i \theta} f(R e^{i \theta}) \; d\theta } \right|
+      &\le \int_0^{\pi} { \frac{\left| i R e^{i \theta} e^{-2 \pi i \xi R (\cos{\theta} + i \sin{\theta})} \right|}{\left| 1 + R^2 e^{2 i \theta} \right|^2} \; d\theta } \\
+      &= \int_0^{\pi} { \frac{\left| e^{2 \pi \xi R \sin{\theta}} \right|}{\left| 1 + R^2 e^{2 i \theta} \right|^2} \; d\theta } \\
+      &\le \frac{1}{\left(1 - R^2\right)^2} \int_0^{\pi} { \left| e^{2 \pi \xi R \sin{\theta}} \right| \; d\theta } \\
+      &\le \frac{2}{\left(1 - R^2\right)^2} \int_0^{\sfrac{\pi}{2}} { e^{4 \xi R \theta} \; d\theta } \\
+      &\le \frac{2}{\left(1 - R^2\right)^2} \left(\frac{1}{4 \xi R} \right) \left[ e^{2 \xi R \pi} - 1 \right] 
+  \end{align*}
+
+  which decays to zero as $R \to \infty$ precisely when $\xi < 0$. Furthermore, by the residue theorem, we have (since 
+  only $z = i$ is contained in our semicircle):
+
+  \begin{align*}
+    \int_{\gamma_R} { f(z) \; dz } &= 2 \pi i \, \lim\limits_{z \to i} \frac{d}{dz} \left[ (z - i)^2 \frac{e^{-2 \pi i z \xi}}{(z+i)^2 (z - i)^2} \right] \\
+                                   &= 2 \pi i \, \lim\limits_{z \to i} \frac{d}{dz} \left[ \frac{e^{-2 \pi i z \xi}}{(z+i)^2} \right] \\
+                                   &= 2 \pi i \, \lim\limits_{z \to i} \frac{e^{-2 \pi i z \xi} \left[ -2 \pi i \xi (z + i) - 2 \right]}{(z+i)^3} \\
+                                   &= 2 \pi i \, \frac{e^{2 \pi \xi} \left[ 4 \pi \xi - 2 \right]}{-8i} \\
+                                   &= \frac{\pi}{2} (1 - 2 \pi \xi) e^{2 \pi \xi} \\
+                                   &= \frac{\pi}{2} (1 + 2 \pi |\xi|) e^{-2 \pi |\xi|}
+  \end{align*}
+
+  where we have used the fact that $\xi < 0$ precisely when $\xi = -|\xi|$. Hence in the limit as $R \to \infty$, we 
+  have
+
+  $$
+    \int_{-\infty}^{\infty} \frac{e^{-2 \pi i x \xi}}{\left(1 + x^2\right)^2 \; dx } 
+      = \int_{\gamma_{\infty}} { f(z) \; dz } 
+      = \frac{\pi}{2} (1 + 2 \pi |\xi|) e^{-2 \pi |\xi|}
+  $$
+
+  as was to be shown.
+  \ \\
+\end{solution}

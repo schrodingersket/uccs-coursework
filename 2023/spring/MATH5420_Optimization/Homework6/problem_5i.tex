@@ -1,0 +1,21 @@
+Prove that 
+
+$$
+x_{k+1} - x_* = \left[\nabla^2 f(x_k)\right]^{-1} \left[ \nabla^2 f(x_k)(x_k - x_*) - \left( \nabla f(x_k) - \nabla f(x_*) \right) \right].
+$$
+
+\begin{solution}
+    Since $x_*$ is a minimizer of $f(x)$, we have that $\nabla f(x_*) = 0$ by the first-order necessary condition for a
+    minimizer. Moreover, $\left[\nabla^2 f(x_k) \right]^{-1}$ represents a linear operator (since it is a real-valued 
+    matrix). We apply these two facts to the definition of $x_{k+1}$ to obtain
+
+    \begin{align*}
+    x_{k+1} - x_* &= x_k - \left[\nabla^2 f(x_k) \right]^{-1} \nabla f(x_k) - x_* \\
+                  &= (x_k - x_*) - \left[\nabla^2 f(x_k) \right]^{-1} \left(\nabla f(x_k) - \nabla f(x_*) \right) \\
+                  &= \left[\nabla^2 f(x_k) \right]^{-1} \left[\nabla^2 f(x_k) \right] (x_k - x_*) - \left[\nabla^2 f(x_k) \right]^{-1} \left(\nabla f(x_k) - \nabla f(x_*) \right) \\
+                  &= \left[\nabla^2 f(x_k) \right]^{-1} \left[ \nabla^2 f(x_k)(x_k - x_*) - \left( \nabla f(x_k) - \nabla f(x_*) \right) \right]
+    \end{align*}
+
+    as desired.
+    \ \\
+\end{solution}

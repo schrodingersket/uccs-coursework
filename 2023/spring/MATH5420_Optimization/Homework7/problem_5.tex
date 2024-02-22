@@ -1,0 +1,98 @@
+\textbf{Griva, Nash, Sofer 12.2.2}
+
+Apply the steepest-descent method, with an exact line search, to the three-dimensional quadratic function 
+$f(x) = \frac{1}{2} x^T Q x - c^T x$ with
+
+$$
+Q = \begin{pmatrix}
+    1 & 0      & 0 \\
+    0 & \gamma & 0 \\
+    0 & 0      & \gamma^2
+\end{pmatrix} \quad \text{and} \quad c = \begin{pmatrix}
+    1 \\
+    1 \\
+    1
+\end{pmatrix},
+$$
+
+where $\gamma$ is a parameter which can be varied. Try $\gamma = 1, 10, 100, 1000$, and compare these results to those
+predicted by theory.
+
+\begin{solution}
+    Since $Q$ is a diagonal matrix, its condition number simply becomes \linebreak $\kappa(Q(\gamma)) = \gamma^2$. Hence
+    we expect the convergence rate to be bounded by $0, 0.960788, 0.99600,$ and $0.999996$ for 
+    $\gamma = 1, 10, 100, 1000$, respectively. We implement the steepest descent method with exact line search in
+    \texttt{problem\_5.py} and observe the the computed convergence rate at each iteration agrees with these bounds; the
+    output for the first 10 iterations (or fewer, if convergence requires fewer than 10 iterations) of each case is 
+    shown in Figure (\ref{fig:gamma_1_10}) and Figure (\ref{fig:gamma_100_1000}) below.
+    
+    \begin{figure}[h]
+        \centering
+        \begin{verbatim}
+  Condition number: 1.0
+  Rate constant bound: 0.0
+   i |                 xk              |   f(xk)   |  error   | rate     | bound
+   0 | [ 1.000000  1.000000  1.000000] | -0.918750 | 1.078193 | 0.000000 | 0.000000
+   1 | [ 1.000000  1.000000  1.000000] | -1.500000 | 0.000000 | nan      | 0.000000
+   Solution f(x) = -1.5 identified at x = [ 1.000000  1.000000  1.000000]
+  
+  Condition number: 100.0
+  Rate constant bound: 0.9607881580237231
+   i |                 xk              |   f(xk)   |  error   | rate     | bound
+   0 | [ 1.098181  0.427250 -0.022750] |  0.330000 | 5.657738 | 0.671086 | 0.960788
+   1 | [ 1.096396  0.367761  0.036785] |  0.038911 | 4.630797 | 0.671812 | 0.960788
+   2 | [ 1.094643  0.319059 -0.011933] | -0.156004 | 3.788557 | 0.672851 | 0.960788
+   3 | [ 1.092923  0.279234  0.027942] | -0.286535 | 3.101305 | 0.674335 | 0.960788
+   4 | [ 1.091232  0.246630 -0.004695] | -0.373965 | 2.537732 | 0.676446 | 0.960788
+   5 | [ 1.089573  0.219967  0.022026] | -0.432539 | 2.077953 | 0.679431 | 0.960788
+   6 | [ 1.087943  0.198139  0.000144] | -0.471796 | 1.701017 | 0.683623 | 0.960788
+   7 | [ 1.086344  0.180287  0.018072] | -0.498120 | 1.393624 | 0.689446 | 0.960788
+   8 | [ 1.084772  0.165671  0.003377] | -0.515784 | 1.141754 | 0.697419 | 0.960788
+   9 | [ 1.083229  0.153717  0.015433] | -0.527650 | 0.936518 | 0.708118 | 0.960788
+   ...(932 more iterations)
+   Solution f(x) = -0.5549999999999 identified at x = [ 1.000  0.100  0.010]
+        \end{verbatim}
+        \caption{First 10 iterations of gradient descent for $\gamma = 1, 10$}
+        \label{fig:gamma_1_10}
+    \end{figure}
+    \pagebreak
+    \begin{figure}[h]
+        \centering
+        \begin{verbatim}
+Condition number: 10000.0
+Rate constant bound: 0.9996000799880015
+ i |                 xk              |   f(xk)   |  error     | rate     | bound
+ 0 | [ 1.099990  0.495053 -0.000376] | 23.955000 | 501.400050 | 0.481191 | 0.999600
+ 1 | [ 1.099476  0.245732  0.024106] | 11.264915 | 48.738723  | 0.481303 | 0.999600
+ 2 | [ 1.099466  0.243352 -0.000129] | 5.159875  | 241.217268 | 0.481536 | 0.999600
+ 3 | [ 1.098955  0.123407  0.011649] | 2.222816  | 23.447646  | 0.482014 | 0.999600
+ 4 | [ 1.098945  0.122262 -0.000010] | 0.809821  | 116.047728 | 0.483005 | 0.999600
+ 5 | [ 1.098436  0.064557  0.005656] | 0.130039  | 11.280597  | 0.485032 | 0.999600
+ 6 | [ 1.098426  0.064006  0.000047] | -0.197011 | 55.831973  | 0.489193 | 0.999600
+ 7 | [ 1.097920  0.036243  0.002774] | -0.354360 | 5.427477   | 0.497542 | 0.999600
+ 8 | [ 1.097910  0.035978  0.000074] | -0.430075 | 26.866221  | 0.514044 | 0.999600
+ 9 | [ 1.097407  0.022619  0.001388] | -0.466510 | 2.612193   | 0.544754 | 0.999600
+ ...(5304 more iterations)
+ Solution f(x) = -0.505050000000 identified at x = [ 1.0000  0.0100  0.0001]
+
+Condition number: 1000000.0
+Rate constant bound: 0.999996000008
+ i |                 xk              |   f(xk)   |  error       | rate     | bound
+ 0 | [ 1.100000  0.499501 -0.000004] | 1373.9550 | 50001.489998 | 0.090404 | 0.999996
+ 1 | [ 1.099909  0.046110  0.004521] | 123.75611 | 498.525786   | 0.090437 | 0.999996
+ 2 | [ 1.099909  0.046065  0.000001] | 10.736953 | 4520.181807  | 0.090805 | 0.999996
+ 3 | [ 1.099818  0.005078  0.000410] | 0.519915  | 45.067292    | 0.094842 | 0.999996
+ 4 | [ 1.099818  0.005074  0.000001] | -0.403723 | 408.632026   | 0.137216 | 0.999996
+ 5 | [ 1.099727  0.001367  0.000038] | -0.487221 | 4.075171     | 0.431011 | 0.999996
+ 6 | [ 1.099727  0.001366  0.000001] | -0.494777 | 36.977813    | 0.880539 | 0.999996
+ 7 | [ 1.099631  0.001013  0.000005] | -0.495461 | 0.379768     | 0.986198 | 0.999996
+ 8 | [ 1.099631  0.001013  0.000001] | -0.495530 | 3.763069     | 0.998574 | 0.999996
+ 9 | [ 1.099494  0.000995  0.000005] | -0.495537 | 0.100504     | 0.998607 | 0.999996
+ ...(27228 more iterations)
+ Solution f(x) = -0.500500500 identified at x = [ 1.000000  0.001000  0.000001]
+        \end{verbatim}
+        \caption{First 10 iterations of gradient descent for $\gamma = 100, 1000$}
+        \label{fig:gamma_100_1000}
+    \end{figure}
+    \ \\
+\end{solution}

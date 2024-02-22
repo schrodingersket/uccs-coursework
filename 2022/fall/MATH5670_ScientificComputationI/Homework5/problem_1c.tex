@@ -1,0 +1,32 @@
+The 3-step Adams-Bashforth method.
+
+\begin{solution}\ \\\\
+    Recall that Simpson's rule may be written as follows:
+
+    $$
+    -U^{n} + U^{n+2} = k \left(\frac{2}{6} f(U^n) - \frac{8}{6} f(U^{n+1}) + \frac{2}{6} f(U^{n+2}) \right)
+    $$
+
+    The characteristic polynomials $\phi(\zeta)$ and $\sigma(\zeta)$ may therefore be written:
+
+    \begin{align*}
+        \phi(\zeta)   &= -1 + \zeta^2 \\
+        \sigma(\zeta) &= \frac{2}{6} + \frac{8}{6} \zeta + \frac{2}{6} \zeta^2.
+    \end{align*}
+
+    Moreover, we have 
+    
+    $$
+    \sum\limits_{j=0}^{r}{\alpha_j = \alpha_0 + \alpha_2} = -1 + 1 = 0
+    $$
+
+    and 
+    
+    $$
+    \sum\limits_{j=0}^{r}{j \alpha_j - \beta_j} = 0 \cdot (-1) + 2 \cdot 1 - \left(\frac{2}{6} + \frac{8}{6} + \frac{2}{6} \right) = 0
+    $$
+
+    and so (5.48) holds.
+
+    \ \\
+\end{solution}

@@ -1,0 +1,61 @@
+\textbf{Stein, Shakarchi 3.7}
+
+Prove that 
+
+$$
+\int_0^{2 \pi} {\frac{d \theta}{(a + \cos{\theta})^2}} = \frac{2 \pi a}{(a^2 - 1)^{3/2}}, \quad a > 1.
+$$
+
+\begin{solution}
+  Let $z_{a^+} = -a + \sqrt{a^2 - 1}$ and $z_{a^-} = -a - \sqrt{a^2 - 1}$, and let
+
+  $$
+  f(z) = \frac{4 z}{(z - z_{a^+})^2 (z - z_{a^-})^2}.
+  $$
+  
+  With the parametrization $z = e^{i \theta}$, we find
+
+  \begin{align*}
+    \int_{|z| = 1} { f(z) \; dz } 
+      &= \int_{|z| = 1} { \frac{4 z}{(z - z_{a^+})^2 (z - z_{a^-})^2} \; dz } \\
+      &= \int_{|z| = 1} { \frac{1}{z} \left( \frac{2z}{z^2 + 2 a z + 1} \right)^2 \; dz } \\
+      &= \int_0^{2 \pi} { e^{-i \theta} \left( \frac{2}{e^{i \theta} + 2 a + e^{-i \theta}} \right)^2 i e^{i \theta} \; d\theta } \\
+      &= i \int_0^{2 \pi} {\frac{1}{(a + \cos{\theta})^2} \; d\theta } \\
+  \end{align*}
+
+  We apply the residue theorem to $f(z)$ over the unit disc. We note that while $z_{a^+}$ and $z_{a^-}$ are both poles 
+  of $f(z)$ each of order two, only $z_{a^+}$ lies inside the unit disc. Hence we find
+
+  \begin{align*}
+    \int_{|z| = 1} { f(z) \; dz } 
+      &= 2 \pi i \lim_{z \to z_{a^+}} \frac{d}{dz} \left[ (z - z_{a^+})^2 \frac{4z}{(z - z_{a^+})^2 (z - z_{z_a^-})^2} \right] \\
+      &= 2 \pi i \lim_{z \to z_{a^+}} \frac{d}{dz} \left[ \frac{4z}{(z - z_{z_a^-})^2} \right] \\
+      &= 8 \pi i \lim_{z \to z_{a^+}} \frac{(z - z_{a^-})^2 - 2 z (z - z_{a^-})}{(z - z_{z_a^-})^4} \\
+      &= 8 \pi i \lim_{z \to z_{a^+}} \frac{(z - z_{a^-}) - 2 z }{(z - z_{z_a^-})^3} \\
+      &= 8 \pi i \cdot \frac{2\sqrt{a^2 - 1} - 2(-a + \sqrt{a^2 - 1})}{(2\sqrt{a^2 - 1})^3} \\
+      &= i \frac{2 \pi a}{(a^2 - 1)^{3/2}}
+  \end{align*}
+
+  \pagebreak
+  where we have used the fact that
+
+  $$
+  z_{a^+} - z_{a^-} = 2 \sqrt{a^2 - 1}.
+  $$
+
+  Hence we have 
+
+  $$
+    i \int_0^{2 \pi} {\frac{1}{(a + \cos{\theta})^2} \; d\theta } = \int_{|z| = 1} {f(z) \; dz} 
+                                                                  = i \frac{2 \pi a}{(a^2 - 1)^{3/2}}
+  $$
+  so that 
+
+  $$
+    \int_0^{2 \pi} {\frac{1}{(a + \cos{\theta})^2} \; d\theta } = \frac{2 \pi a}{(a^2 - 1)^{3/2}}
+  $$
+
+  as desired.
+
+  \ \\
+\end{solution}

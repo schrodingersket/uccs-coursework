@@ -1,0 +1,63 @@
+What would the new solution be if the coefficient of $x_1$ in the objective were decreased by 2? Increased by 2?
+
+\begin{solution}
+  Recall from Example 6.14 that
+
+  $$
+  B^{-1} N = \begin{pmatrix*}[r]
+     \sfrac{1}{2} & \sfrac{1}{2} \\
+                0 &            1 \\
+     \sfrac{-1}{2} & \sfrac{3}{2}
+  \end{pmatrix*}, \quad c_B = \begin{pmatrix*}
+    -2 \\
+    -1 \\
+     0
+  \end{pmatrix*}
+  $$
+
+  Let $\delta$ be the change in the coefficient of $x_1$ in the objective so that $\bar{c}_B = c_B + \Delta c$ where 
+  $\Delta c = (0, \delta, 0)^T$.\footnote{
+    Recall that our current basis is $x_B = (x_2, x_1, x_2)^T$ and so the second element of $\Delta c$ represents a 
+    change in the coefficient of $x_1$.
+  } The current basis remains optimal so long as \linebreak
+  $c_N^T - \bar{c}_B^T B^{-1} N \ge 0 $. Hence we impose the condition
+
+  \begin{align*}
+    c_N^T - \bar{c}_B^T B^{-1} N &= (0, 0)^T - (c_B + \Delta c_B) B^{-1} N \\
+                                 &= -c_B^T B^{-1} N - \Delta c_B^T B^{-1} N \\
+                                 &= (2, 1, 0) \begin{pmatrix*}[r]
+                                        \sfrac{1}{2}  & \sfrac{1}{2} \\
+                                                   0  &            1 \\
+                                        \sfrac{-1}{2} & \sfrac{3}{2}
+                                    \end{pmatrix*} + (0, \delta, 0) \begin{pmatrix*}[r]
+                                        \sfrac{1}{2}  & \sfrac{1}{2} \\
+                                                   0  &            1 \\
+                                        \sfrac{-1}{2} & \sfrac{3}{2}
+                                    \end{pmatrix*} \\
+                                 &= \begin{pmatrix*}
+                                      1 \\
+                                      2 + \delta
+                                    \end{pmatrix*} \\
+                                 &\ge 0.
+  \end{align*}
+
+  The current basis is therefore optimal so long as $\delta \ge -2$. For any particular $\delta$, the new solution 
+  $\bar{z}$ is given by
+
+  \begin{align*}
+  \bar{z} &= \bar{c}_B^T B^{-1} b \\
+          &= \left(c_B^T + \Delta c_B^T \right) B^{-1} b \\
+          &= y^T b + \Delta c_B^T B^{-1} b \\
+          &= (0, -1, -2)(2, 7,  3)^T + (0, \delta, 0)(5, 3, 3)^T \\
+          &= -13 + 3\delta.
+  \end{align*}
+
+  Increasing the coefficient of $x_1$ in the objective function (i.e., letting $\delta = 2$) yields 
+  $\bar{z}^+ = -13 + 6 = -7$, and decreasing the coefficient by two ($\delta = -2$) yields $\bar{z}^- = -13 - 6 = -19$.
+  \footnote{
+    As in (ii), corresponding values for $x_B$ are computed in \texttt{problem\_9iii\_increase.py} and 
+    \texttt{problem\_9iii\_decrease.py}.
+  }
+  \ \\
+  \vfill
+\end{solution}

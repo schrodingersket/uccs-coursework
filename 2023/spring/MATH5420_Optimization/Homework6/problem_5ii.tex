@@ -1,0 +1,31 @@
+Prove that: \footnote{
+    I know this problem wasn't assigned, but it felt a little weird to start the next problem without showing this 
+    result.
+}
+
+$$
+\left\lVert x_{k+1} - x_* \right\rVert \le \frac{L}{2} \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert \left\lVert x_k - x_* \right\rVert^2.
+$$
+
+\begin{solution}
+    Let $F = \nabla f(x)$. Then the Jacobian of $F$ is $\nabla^2 f$ and by our hypothesis is Lipschitz continuous on the
+    open convex set $S$ with Lipschitz constant $L$. We may therefore apply Theorem B.6 to $F$ to obtain:
+
+    $$
+        \left\lVert \nabla f(y) - \nabla f(x) - \nabla^2 f(x) (y - x) \right\rVert \le \frac{L}{2} \left\lVert y - x \right\rVert^2 \\
+    $$
+
+    Letting $x = x_k$, $y = x_*$, and multiplying both sides by $\left\lVert \nabla^2 f(x_k)^{-1} \right\rVert$ yields:\footnote{
+        Since we're working in a normed vector space, we have $\lVert A \rVert \lVert v \rVert \ge \lVert A v \rVert$ 
+        for every $v \in \mathbb{R}^n$.
+    }
+
+    \begin{align*}
+        \frac{L}{2} \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert \left\lVert x_* - x_k \right\rVert^2 &\ge \left\lVert \nabla^2 f(x_k)^{-1} \right\rVert \left\lVert \nabla f(x_*) - \nabla f(x_k) - \nabla^2 f(x_k) (x_* - x_k) \right\rVert \\
+                                                                                                       &\ge \left\lVert \nabla^2 f(x_k)^{-1} \left[ \nabla f(x_*) - \nabla f(x_k) - \nabla^2 f(x_k) (x_* - x_k) \right] \right\rVert \\
+                                                                                                       &= \left\lVert x_{k+1} - x_* \right\rVert \\
+    \end{align*}
+
+    as desired.
+    \ \\
+\end{solution}

@@ -1,0 +1,50 @@
+Solve the linear program with the result from (b).
+
+\begin{solution}
+
+    We use our result from (a) as our initial basis to solve the original program so that $x_B = \{ x_1 \}$ and 
+    $x_N = \{ x_2, x_3 \}$ (where we have dropped the artificial variable from the problem now that we have obtained a
+    basic feasible solution with which to start the simplex method). At the first iteration, our simplex quantities of 
+    interest are given by:
+
+    \begin{align*}
+      B &= \begin{pmatrix}
+        1  \\
+      \end{pmatrix}, \quad y = \begin{pmatrix}
+        1 
+      \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+        1
+      \end{pmatrix}^T \\
+      \hat{b} &= \begin{pmatrix}
+        2
+      \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+        -2 & -1 
+      \end{pmatrix}^T, \quad \tilde{z} = 2.
+    \end{align*}
+
+    We choose $x_2$ as our entering variable and $x_1$ to leave the basis (since it is the only one in the basis),
+    which yields
+
+    \begin{align*}
+      B &= \begin{pmatrix}
+        1  \\
+      \end{pmatrix}, \quad y = \begin{pmatrix}
+       -1 
+      \end{pmatrix}^T, \quad c_B = \begin{pmatrix}
+       -1
+      \end{pmatrix}^T \\
+      \hat{b} &= \begin{pmatrix}
+        2
+      \end{pmatrix}^T, \quad \hat{c}_N = \begin{pmatrix}
+        1 & 1
+      \end{pmatrix}^T, \quad \tilde{z} = -2.
+    \end{align*}
+
+    Since all elements of the reduced cost vector $\hat{c}_N^T$ are nonnegative, we have found an optimal feasible 
+    solution to the original at the point $(x_1', x_2', x_3') = (0, 2, 0)$ with objective value $\tilde{z} = -2$. We 
+    apply the inverse of our original affine transformations of $x_1$ and $x_2$ to find that the optimal solution to the 
+    original program is given by $(x_1, x_2) = (3, 3)$ with objective value $z = 6$.\footnote{
+      In particular, $x_1 = -x_1' + 3$ and $x_2 = x_2' + 1$.
+    }
+
+\end{solution}

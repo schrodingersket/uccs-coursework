@@ -1,0 +1,32 @@
+The 3-step Adams-Bashforth method.
+
+\begin{solution}\ \\\\
+    Recall that the 3-step Adams-Bashforth method may be written as follows:
+
+    $$
+    -U^{n+2} + U^{n+3} = k \left(\frac{5}{12} f(U^n) - \frac{16}{12} f(U^{n+1}) + \frac{23}{12} f(U^{n+2}) \right)
+    $$
+
+    The characteristic polynomials $\phi(\zeta)$ and $\sigma(\zeta)$ may therefore be written:
+
+    \begin{align*}
+        \phi(\zeta)   &= -\zeta^2 + \zeta^3 \\
+        \sigma(\zeta) &= \frac{5}{12} - \frac{16}{12} \zeta + \frac{23}{12} \zeta^2.
+    \end{align*}
+
+    Moreover, we have 
+    
+    $$
+    \sum\limits_{j=0}^{r}{\alpha_j = \alpha_2 + \alpha_3} = -1 + 1 = 0
+    $$
+
+    and 
+    
+    $$
+    \sum\limits_{j=0}^{r}{j \alpha_j - \beta_j} = 2 \cdot (-1) + 3 \cdot 1 - \left(\frac{5}{12} - \frac{16}{12} + \frac{23}{12} \right) = 0
+    $$
+
+    and so (5.48) holds.
+
+    \ \\
+\end{solution}

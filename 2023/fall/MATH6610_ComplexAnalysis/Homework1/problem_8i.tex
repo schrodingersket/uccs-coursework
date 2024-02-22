@@ -1,0 +1,20 @@
+$\sum\limits_{n=1}^{\infty}{(\log n)^2 z^n}$
+
+\begin{solution}
+    We utilize the ratio test for power series to determine the disc of convergence. We have:
+
+    $$
+    \lim\limits_{n \to \infty}{\left| \frac{a_{n+1}}{a_n} \right|} = \lim\limits_{n \to \infty}{\left| \left( \frac{\log {(n+1)}}{\log {n}} \right)^2 \right|} 
+                                                                   = \lim\limits_{n \to \infty}{\left| \frac{\log {(n+1)}}{\log {n}} \right|^2} 
+                                                                   = 1.
+    $$
+
+    Since this limit exists, the radius of convergence is $R = 1$. When $|z| = 1$, we have 
+    
+    $$
+    \left| z^n (\log{n})^2 \right| = (\log{n})^2 |z|^n = (\log{n})^2
+    $$
+
+    which does not converge to zero as $n \to \infty$ and so the series diverges when $|z| = 1$.
+    \ \\
+\end{solution}

@@ -1,0 +1,36 @@
+Modify the m-file to create a version \texttt{advection\_up\_pbc.m} implementing the upwind method and verify this is
+first order accurate.
+
+\begin{solution}\ \\\\
+    We observe approximately first order accuracy with the upwind method. The output of \texttt{problem\_3b.m} is
+    given below: \ \\\\
+
+    \begin{figure}[h]
+        \begin{verbatim}
+               h        error       ratio       observed order
+            0.01000   1.78422e-01       NaN             NaN
+            0.00500   1.02013e-01   1.74902         0.80654
+            0.00333   7.15310e-02   1.42613         0.87546
+          
+          
+         Least squares fit gives E(h) = 8.16152 * h^0.82924
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_3b.m}}
+    \end{figure}
+
+    Since the least squares fit is given by $E(h) = 8.16152 h^{0.82924}$, we see this method is roughly first order 
+    accurate as desired. The \texttt{loglog} and solution plots for this method are given below:
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_3b_error.png}
+            \caption{\texttt{loglog} plot for the upwind method}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_3b.png}
+            \caption{Upwind method solution}
+        \end{subfigure}
+    \end{figure}
+\end{solution}

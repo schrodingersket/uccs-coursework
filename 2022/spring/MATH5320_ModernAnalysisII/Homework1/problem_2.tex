@@ -1,0 +1,85 @@
+a.  A sequence of real numbers $\{a_n\}$ is defined by $a_1 = 0$ and
+    $a_{n+1} = 0$ and $a_{n+1} = \sqrt{3a_n + 4}$, $n \ge 1$. Prove that
+    $\{a_n\}$ is a convergent sequence and find
+    $\nlim{a_n}$.
+
+    \begin{proof}\ \\\\
+
+        To show that $\{a_n\}$ is a convergent sequence, we first show that
+        $\{a_n\}$ is bounded above by $4$. Observe that
+        $a_1 = 0 \le 4$, and suppose that $a_n \le 4$. Then
+        $a_{n+1} = \sqrt{3a_n + 4} \le \sqrt{3 \cdot 4 + 4} = 4$
+        {\footnote{Since $\{a_n\}$ is given as a sequnce of real numbers,
+                   we assume that all square roots are positive.}} and hence by
+        induction $a_{n} \le 4, n \in \mathbb{N}$.
+
+        To show that $\{a_n\}$ is monotonically increasing, observe that
+        $a_2 = \sqrt{3 \cdot 0 + 4} = 2 \ge 0 = a_1$ (which establishes our 
+        base case for induction), and suppose that
+        $a_n - a_{n-1} \ge 0$. Then 
+        $a_{n+1} - a_n = \sqrt{3a_n + 4} - \sqrt {3a_{n-1} + 4}$, and since
+        $a_n \ge a_{n-1}$ by our inductive hypothesis, we have that 
+        $\sqrt{3a_n + 4} - \sqrt {3a_{n-1} + 4} \ge 0$ and hence
+        $a_{n+1} \ge a_n$.
+
+        Since $\{a_n\}$ is bounded and monotonically increasing, it converges to
+        some limit $a$.
+
+        Hence we have:
+
+        \begin{align*}
+            \nlim{a_{n+1}} &= \nlim{\sqrt{3a_n + 4}} \\
+                                               a &= \sqrt{3a + 4} \\
+                                             a^2 &= 3a + 4 \\
+                                               0 &= a^2 - 3a - 4 \\
+                                                 &= (a - 4)(a + 1).
+        \end{align*}
+
+        Since $0 \le a_n \le 4, n \in \mathbb{N}$, we have that 
+        $\nlim{a_n} = a = 4$.
+        \\
+    \end{proof}
+    \pagebreak
+
+b.  Define a sequence 
+    $\{x_n\}$ by $x_{n+1} = 1 - \sqrt{1 - x_n}, n = 0, 1, 2, \ldots$ where
+    $0 < x_0 < 1$. Find $x_2$ and $x_3$ in terms of $x_0$ and prove that the
+    sequence $\{x_n\}$ converges.
+
+    \begin{proof}\ \\\\
+
+        To show that $\{x_n\}$ is a convergent sequence, we first show that
+        $\{x_n\}$ is bounded above by $1$. Observe that $0 < \sqrt{1 - x_0} < 1$
+        whenever $0 < x_0 < 1$. Hence $0 < 1 - \sqrt{1 - x_0} < 1$ and so 
+        $0 < x_1 < 1$, which establishes our base case for induction. Now
+        suppose that $x_n \le 1$. Then $x_{n+1} = 1 - \sqrt{1 - x_n}$ and
+        because $0 < \sqrt{1 - x_n} < 1$ by our inductive hypothesis, we have
+        that $0 < 1 - \sqrt{1 - x_n} < 1$. Hence 
+        $0 < x_{n+1} < 1$ and thus by induction,
+         $0 < x_n < 1, n \in \mathbb{N}$.
+
+        To show that $\{x_n\}$ is monotonically decreasing, we show that the
+        difference of any two successive terms $a_{n+1} - a_n$ is negative.
+        In terms of $x_0$, the first four terms of $\{x_n\}$ are:
+
+        \begin{align*}
+            x_0 &= x_0 \\
+            x_1 &= 1 - \sqrt{1 - x_0}
+                 = 1 - \left(1 - x_0\right)^{2^{-1}} \\
+            x_2 &= 1 - \sqrt{1 - x_1}
+                 = 1 - \sqrt{1 - \left(1 - \sqrt{1 - x_0}\right)}
+                 = 1 - \left(1 - x_0\right)^{2^{-2}} \\ 
+            x_3 &= 1 - \sqrt{1 - x_2}
+                 = 1 - \sqrt{1 - \left(1 - \sqrt{\sqrt{1 - x_0}}\right)}
+                 = 1 - \left(1 - x_0\right)^{2^{-3}}.
+        \end{align*}
+
+        Then $x_{n+1} - x_n = 1 - \sqrt{1 - x_n} - x_n = (1 - x_n) - \sqrt{1 - x_n}$
+        , and since $0 < 1 - x_n < 1$ whenever $0 < x_n < 1$ (which we know
+        is true for all $n \in \mathbb{N}$ by our earlier induction argument),
+        we have that $1 - x_n < \sqrt{1 - x_n}$ and hence
+        $x_{n+1} - x_n = \left(1 - x_n\right) - \sqrt{1 - x_n} < 0$.
+        $\{x_n\}$ is therefore monotonically decreasing, and since it is
+        bounded, $\{x_n\}$ converges.
+        \\
+    \end{proof}

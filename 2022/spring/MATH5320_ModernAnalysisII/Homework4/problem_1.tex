@@ -1,0 +1,47 @@
+Let $K$ be a non-empty sequentially compact subspace of a metric space $(X, d)$.
+
+a) Let $p_0$ be a point in $K$. Prove that there exists a number $M > 0$ such that $K$ is contained in the open ball
+   $\mathcal{B}_M(p_0)$ of radius $M$ about the point $p_0$. 
+
+\begin{proof}\ \\\\
+   Observe that if $K$ contains only a single point $p_0$, any open ball centered about $p_0$ contains $K$. We may
+   therefore assume that $K$ contains at least two distinct points and observe that the distance between any two 
+   distinct points is strictly greater than zero, and so $\sup\limits_{x, y \in K}{d(x, y)} > 0$; in particular, any 
+   upper bound on $d(x, y)$ is also greater than zero by the definition of supremum.
+
+   Let $p_0 \in K$ be fixed, and observe that because $K \subseteq X$, $p_0$ is also a point in $X$. By problem 4(a),
+   the function $f:K \to \mathbb{R}$ defined by $f(x) = d(x, p_0)$ is a real-valued continuous function. Moreover, 
+   $K$ is a sequentially compact set in a metric space, and hence $K$ is also compact. Because $f(x)$ is a continous
+   real-valued function defined on a compact set, the Extreme Value Theorem guarantees that that $f$ attains a maximum
+   at some $x_0 \in K$. In particular, this implies that $d(x, p_0) \le d(x_0, p_0) \coloneqq M$ for all $x \in K$
+   and hence $K \subseteq \mathcal{B}_{M}(p_0)$, as desired. Lastly, because $M$ is an upper bound on $d(x, p_0)$, we
+   have from our above argument that $M > 0$.
+   \ \\
+\end{proof}
+
+\pagebreak
+
+b) Let $\mathcal{O}$ be an open set in $X$ such that $K \subseteq \mathcal{O}$. Prove that there exists an $r > 0$ such
+   that for every point $p \in K$, the open ball $\mathcal{B}_r(p)$ is contained in $\mathcal{O}$.
+
+\begin{proof}\ \\\\
+   Let $\{p_\alpha\}_{\alpha \in I}$ denote the set of all points in $K$. Since $\mathcal{O}$ is open
+   and $K \subseteq \mathcal{O}$, there exists for each point $p_{\alpha} \in K$ an open ball 
+   $B_{r_{\alpha}}(p_{\alpha}) \subseteq \mathcal{O}$ of radius $r_{\alpha}$ centered about $p_{\alpha}$ which is 
+   entirely contained in $\mathcal{O}$. Moreover, the open ball 
+   $B_{\tfrac{r_{\alpha}}{2}}(p_{\alpha}) \subseteq B_{r_{\alpha}}(p_{\alpha})$ of radius $\tfrac{r_{\alpha}}{2}$ 
+   centered about $p_{\alpha}$ is also contained in $\mathcal{O}$. By construction, the union 
+   $\bigcup\limits_{\alpha \in I}{B_{\tfrac{r_{\alpha}}{2}}}(p_{\alpha})$ of such open balls comprises an open cover
+   of $K$ and since $K$ is compact, there exists a finite subcover 
+   $\bigcup\limits_{i=1}^{n}{B_{\tfrac{r_i}{2}}}(p_i)$ of $K$. Since this subcover is finite, we may define 
+   $r \coloneqq \min\limits_i{\tfrac{r_i}{2}}$ to be the smallest such $\frac{r_i}{2}$.
+
+   To conclude the proof, let $p$ be an arbitrary point in $K$, and observe that because 
+   $\bigcup\limits_{i=1}^{n}{B_{\tfrac{r_i}{2}}}(p_i)$ is a covering of $K$, $p$ belongs to at least one open ball
+   $B_{\tfrac{r_k}{2}}(p_k)$ for some $1 \le k \le n$. Since $r + \frac{r_k}{2} \le r_k$, we see that 
+   $B_r(p) \subseteq B_{r_k}(p_k)$ and hence by construction of $B_{r_k}(p_k)$, the open ball $B_r(p)$ is also contained
+   in $\mathcal{O}$.
+   \ \\
+\end{proof}
+
+\pagebreak

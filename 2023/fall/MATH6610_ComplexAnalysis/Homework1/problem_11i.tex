@@ -1,0 +1,30 @@
+Evaluate the integrals
+
+$$
+\int_{\gamma} z^n \; dz
+$$
+
+for $n \in \mathbb{Z}$, where $\gamma$ is any circle of radius $r$ centered at the origin with the positive 
+(counterclockwise) orientation.
+
+\begin{solution}
+    We consider two distinct cases. First, suppose that $n = -1$. We parametrize $\gamma$ by $z(t) = r e^{it}$ so that
+    $z'(t) = i r e^{it}$. Our integral becomes
+
+    $$
+        \int_{\gamma} z^{-1} \; dz = \int_{0}^{2 \pi} (z(t))^{-1} z'(t) \; dt 
+                                   = \int_{0}^{2 \pi} (r e^{i t})^{-1} \cdot i r e^{i t} \; dt 
+                                   = \int_{0}^{2 \pi} i \; dt = 2 \pi i.
+    $$
+
+    On the other hand, when $n \neq -1$, we have
+
+    \begin{align*}
+        \int_{\gamma} z^n \; dz &= \int_{0}^{2 \pi} (r e^{i t})^{n} \cdot i r e^{it} \; dt \\
+                                &= i r^2 \int_{0}^{2 \pi} e^{i (n + 1) t} \; dt \\
+                                &= \frac{r^2}{n + 1} \left[ e^{i (n + 1) t} \right]_{0}^{2 \pi} \\
+                                &= \frac{r^2}{n + 1} (1 - 1) \\
+                                &= 0.
+    \end{align*}
+    \ \\
+\end{solution}

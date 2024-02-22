@@ -1,0 +1,44 @@
+What would the new solution be if the right-hand side of the third constraint were increased by 5?
+
+\begin{solution}
+  \ \\
+  Let $\Delta b = (0, 0, 5)^T$. We first verify that the new solution is feasible. As in (i), we observe
+
+  $$
+  B^{-1}\bar{b} = B^{-1} \left( b + \Delta b \right) = B^{-1}b + B^{-1}\Delta b = \begin{pmatrix*}[r]
+    5 \\
+    3 \\
+    3 
+  \end{pmatrix*} + \begin{pmatrix*}[r]
+    5 \\
+    0 \\
+    0
+  \end{pmatrix*} \ge \begin{pmatrix*}[r]
+    0 \\
+    0 \\
+    0
+  \end{pmatrix*}
+  $$
+
+  and hence the new solution is feasible. To determine the new solution, we recall from the results of Example 6.14 that
+
+  $$
+  y^T = c_B^T B^{-1} = \begin{pmatrix*}[r]
+    0 & -1 & -2
+  \end{pmatrix*}.
+  $$
+
+  Our new optimal value $\bar{z}$ is therefore given by: \footnote{
+    The resulting values for $x_B$ are computed in \texttt{problem\_9ii.py} for the interested reader.
+  }
+  
+  \begin{align*}
+    \bar{z} &= c_B^T B^{-1} \bar{b} \\
+            &= y^T \left(b + \Delta b \right) \\
+            &= y^T b + y^T \Delta b \\
+            &= (0, -1, -2)(2, 7,  3)^T + (0, -1, -2)(0, 0, 5)^T \\
+            &= -13 - 10 \\
+            &= -23.
+  \end{align*}
+  \ \\
+\end{solution}

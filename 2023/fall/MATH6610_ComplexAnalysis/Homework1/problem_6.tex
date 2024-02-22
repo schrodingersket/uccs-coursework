@@ -1,0 +1,46 @@
+\textbf{Stein, Shakarchi 1.12}
+
+Consider the function $f: \mathbb{C} \to \mathbb{R}$ defined by
+
+$$
+f(x + iy) = \sqrt{|x||y|}, \quad x, y \in \mathbb{R}.
+$$
+
+Show that $f$ satisfies the Cauchy-Riemann equations at the origin, but is not holomorphic at $z = 0$.
+
+\begin{solution}
+    We first observe that since $f$ is real-valued, we have $u(x, y) = \sqrt{|x||y|}$ and $v(x, y) = 0$ so that 
+    $v_x = v_y = 0$. From the limit definition of $u_x$ and $u_y$, we have
+
+    $$
+    u_x = \lim\limits_{h \to 0} \frac{u(h, 0) - u(0, 0)}{h} 
+        = \lim\limits_{h \to 0} \frac{\sqrt{|h||0|} - \sqrt{|0||0|}}{h} 
+        = \lim\limits_{h \to 0} \frac{0}{h} 
+        = 0
+    $$
+
+    and similarly
+
+    $$
+    u_y = \lim\limits_{h \to 0} \frac{u(0, h) - u(0, 0)}{h} 
+        = \lim\limits_{h \to 0} \frac{\sqrt{|0||h|} - \sqrt{|0||0|}}{h} 
+        = \lim\limits_{h \to 0} \frac{0}{h} 
+        = 0
+    $$
+
+    so that the Cauchy-Riemann equations are satisfied. We now suppose for the sake of contradiction that $f$ is 
+    holomorphic at $z = 0$. From the above, we have that $f'(z) = \frac{1}{2}\left((u + iv)_x - i (u + iv)_y\right) = 0$. To obtain
+    the desired contradiction, we consider the limit definition of $f'(0)$ along the line $x = y$ so that $h = x + ix$.
+    Then we have 
+
+    $$
+    f'(0) = \lim\limits_{h \to 0} \frac{f(0 + h) - f(0)}{h} 
+          = \lim\limits_{x \to 0} \frac{\sqrt{|x||x|} - \sqrt{|0||0|}}{x + ix} 
+        = \lim\limits_{x \to 0} \frac{x}{x + ix} 
+        = \lim\limits_{x \to 0} \frac{1}{1 + i}
+        = \frac{1}{1 + i}
+    $$
+
+    which yields the desired contradiction.
+    \ \\
+\end{solution}

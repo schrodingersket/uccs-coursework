@@ -1,0 +1,62 @@
+\textbf{Griva, Nash, Sofer 14.5.3}
+
+Solve the problem
+
+\begin{mini*}
+    {}{f(x) = x_1 + x_2}{}{}
+    \addConstraint{\ln{x_1} + 4 \ln{x_2}}{\ge 1.}
+\end{mini*}
+
+\begin{solution}
+    Since this problem has non-linear inequality constraints, we look for $x_*$ and $\lambda_*$ which satisfy
+    the KKT conditions. Since we only have a single inequality constraint, our vector of Lagrange multipliers is simply
+    a scalar $\lambda$. The Lagrangian is therefore given by
+
+    $$
+    \mathcal{L}(x, \lambda) = f(x) - \lambda g(x) = x_1 + x_2 - \lambda \left( \ln{x_1} + 4 \ln{x_2} - 1 \right).
+    $$
+
+    so that our first-order necessary optimality condition occurs when
+
+    $$
+    \nabla_x \mathcal{L} = \nabla f - \lambda \nabla g = \begin{pmatrix*}
+        1 - \sfrac{\lambda}{x_1} \\
+        1 - \sfrac{4 \lambda}{x_2}
+    \end{pmatrix*} = \begin{pmatrix}
+        0 \\
+        0
+    \end{pmatrix}
+    $$
+
+    From the first equality, we find (after multiplying through by $x_1$) that $\lambda = x_1$; from the second, we 
+    obtain $x_2 = 4 \lambda$. We observe that if $\lambda = 0$, then $x_1 = x_2 = 0$, which does not represent a 
+    feasible point. Hence by the complementary slackness condition, we must have $\lambda > 0$ and
+    $\ln{x_1} + 4 \ln{x_2} = 1$. From this, we have $\ln{x_1 x_2^4} = 1$ and hence
+
+    \begin{align*}
+        e &= x_1 x_2^4 \\
+          &= \lambda (4 \lambda)^4 \\
+          &= 256 \lambda^5
+    \end{align*}
+
+    so that $\lambda = \sqrt[5]{\frac{e}{256}} = x_1$ and $x_2 = 4 \lambda = \sqrt[5]{\frac{e}{4}}$. Our optimal point
+    is therefore
+
+    $$
+    x_* = (x_1, x_2)^T = \left( \sqrt[5]{\frac{e}{256}}, \sqrt[5]{\frac{e}{4}} \right) > 0.
+    $$
+
+    Lastly, we note that the Hessian of the Lagrangian with respect to $x$ is given by
+
+    $$
+    \nabla^2_{xx} \mathcal{L} = \begin{pmatrix*}
+        \sfrac{\lambda}{x_1^2} & 0 \\
+        0                      & \sfrac{4 \lambda}{x_2^2}
+    \end{pmatrix*}
+    $$
+
+    which (as a diagonal matrix) has positive eigenvalues (and is therefore positive definite) whenever $\lambda > 0$. 
+    Since $\lambda > 0$ at $x_*$, we conclude that $\nabla^2_{xx} \mathcal{L}$ is also positive definite over the null 
+    space of the Jacobian of our constraints at $x_*$ and hence $x_*$ is a strict local minimizer.
+    \ \\
+\end{solution}

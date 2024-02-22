@@ -1,0 +1,66 @@
+\textbf{Griva, Nash, Sofer 11.2.3}
+
+Find all stationary points of the following function, and determine whether they are local minimizers and/or maximizers:
+
+$$
+f(x_1, x_2) = 8x_1^2 + 3 x_1 x_2 + 7 x_2^2 - 25 x_1 + 31 x_2 - 29.
+$$
+
+Does this function have a global minimizer or a global maximizer?
+
+\begin{solution}
+    We begin with the observation that the gradient of $f$ is given by:
+
+    $$
+    \nabla f = \begin{pmatrix*}[r]
+        16 x_1 + 3 x_2 - 25 \\
+        3 x_1 + 14 x_2 + 31
+    \end{pmatrix*}
+    $$
+
+    We set this to zero (vis-a-vis the first-order necessary condition for a stationary point) to obtain the following 
+    system of equations:
+
+    $$
+    \nabla f = \begin{pmatrix*}[r]
+        16 x_1 + 3 x_2 - 25 \\
+        3 x_1 + 14 x_2 + 31
+    \end{pmatrix*} = \begin{pmatrix*}[r]
+        0 \\
+        0
+    \end{pmatrix*}.
+    $$
+
+    After moving constants to the right-hand side, we obtain:
+
+    $$
+    \begin{pmatrix*}[r]
+        16 & 3 \\
+        3  & 14
+    \end{pmatrix*} \begin{pmatrix*}[r]
+        x_1 \\
+        x_2
+    \end{pmatrix*} = \begin{pmatrix*}[r]
+        25 \\
+       -31
+    \end{pmatrix*}
+    $$
+
+    which yields the single stationary point $x_0 = \begin{pmatrix} 2.06046512 & -2.65581395 \end{pmatrix}^T$. Moreover,
+    the Hessian of $f$ is:
+
+    $$
+    \nabla^2 f(x) = \begin{pmatrix*}[r]
+        16 & 3 \\
+        3  & 14
+    \end{pmatrix*}
+    $$
+
+    which is diagonally dominant and therefore positive definite. The stationary point $x_0$ is therefore a strict 
+    minimizer of $f$, which takes the value $f(x_0) \approx -95.9209$.\footnote{
+        See \texttt{problem\_1.m} for the Python code used to solve this system.
+    } We further note that $f(x_1, x_2)$ is quadratic and thus convex over the convex set $\mathbb{R}^2$; $x_0$ is 
+    therefore also a global minimizer of $f$ by Theorem 2.1.
+
+    \ \\
+\end{solution}

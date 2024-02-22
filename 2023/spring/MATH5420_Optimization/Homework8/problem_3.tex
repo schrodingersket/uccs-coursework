@@ -1,0 +1,46 @@
+\textbf{Griva, Nash, Sofer 14.2.7}
+
+Let $A$ be a matrix of full row rank. Find the point in the set $Ax = b$ which minimizes $f(x) = \frac{1}{2} x^T x$.
+
+\begin{solution}
+    We begin with the observation that
+
+    $$
+    f(x) = \frac{1}{2} x^T x = \frac{1}{2} x^T I x
+    $$
+
+    where $I$ is the identity matrix. Since $I$ is symmetric, we have
+
+    $$
+    \nabla f(x) = I x = x, \quad \text{and} \quad \nabla^2 f(x) = I.
+    $$
+
+    For $x_*$ to be a stationary point, we require
+
+    $$
+    A^T \lambda_* = \nabla f(x_*) = x_*.
+    $$
+
+    Substituting this expression for $x_*$ into the constraint $A x_* = b$ yields
+
+    $$
+    A A^T \lambda_* = b.
+    $$
+
+    Since $A$ is full row rank, $A A^T$ is invertible and hence we may solve for $\lambda_*$ to obtain
+
+    $$
+    \lambda_* = \left(A A^T \right)^{-1} b.
+    $$
+
+    so that our minimizer $x_*$ is given by
+
+    $$
+    x_* = A^T \lambda_* = A^T \left(A A^T \right)^{-1} b.
+    $$
+
+    We conclude with the observation that $\nabla^2 f = I$ is trivially positive definite for all $x$ and hence 
+    $\nabla^2 f$ is also positive definite over the null space of $A$ which satisfies our final sufficient condition for
+    $x_*$ to be a local minimizer of $f$ subject to $Ax = b$.
+    \ \\
+\end{solution}

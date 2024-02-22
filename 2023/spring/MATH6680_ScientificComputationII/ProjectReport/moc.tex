@@ -1,0 +1,135 @@
+We begin by solving the homogeneous system (i.e., we set $\tilde{S}(\textbf{u}) = 0$). The eigenvalues of $A$ are given by
+
+\[\renewcommand\arraystretch{1.5}
+\lambda = \begin{bmatrix}
+    \lambda_1 \\
+    \lambda_2
+\end{bmatrix} = \begin{bmatrix}
+    v + \sqrt{g h \cos{(\alpha)}} \\
+    v - \sqrt{g h \cos{(\alpha)}}
+\end{bmatrix}
+\]
+
+\noindent with corresponding right eigenvectors\footnote{
+    We shall not use these immediately, but will need them later; it is convenient to introduce them alongside the 
+    eigenvalues.
+}
+
+\[\renewcommand\arraystretch{1.5}
+r_1 = \begin{bmatrix}
+    \sqrt\frac{h}{g \cos{(\alpha)}} \\
+    -1 \\
+\end{bmatrix}, \quad r_2 = \begin{bmatrix}
+    1 \\
+    \sqrt\frac{h}{g \cos{(\alpha)}}
+\end{bmatrix}.
+\]
+
+\noindent In the $x-t$ plane, our characteristic curves are defined by
+
+\[\renewcommand\arraystretch{1.5}
+\frac{d\textbf{x}}{dt} = \textbf{\lambda} (\textbf{u}(x(t), t)) = \begin{bmatrix}
+    v + \sqrt{g h \cos{(\alpha)}} \\
+    v - \sqrt{g h \cos{(\alpha)}}
+\end{bmatrix}
+\]
+
+\noindent To determine our Riemann invariants, we seek out (currently unknown) quantities $W_i$ which are conserved 
+(i.e., constant) along some curve $\mathcal{C}$. In particular, we wish to find $\textbf{W}$ along our
+characteristic curves, so that:
+
+$$
+\frac{d\textbf{W}}{dt} = 0
+$$
+
+\noindent along each curve defined in \textbf{x}. We examine the $i^{th}$ component $W_i$ of $\textbf{W}$ which we 
+determine by setting the total derivative $\frac{d W_i}{dt} = 0$ along the $i^{th}$ characteristic curve (denoted by 
+$x_i(t)$) corresponding to the $i^{th}$ element of \textbf{x}:
+
+\begin{align*}
+    0 &= \frac{d W_i}{dt} \\
+      &= \frac{\partial W_i}{\partial t} + \frac{\partial W_i}{\partial x_i} \frac{dx_i}{dt} \\
+      &= \frac{\partial W_i}{\partial h}\frac{\partial h}{\partial t}
+       + \frac{\partial W_i}{\partial v}\frac{\partial v}{\partial t}
+       + \left(\frac{\partial W_i}{\partial h}\frac{\partial h}{\partial x}
+       + \frac{\partial W_i}{\partial v}\frac{\partial v}{\partial x} \right) \frac{dx_i}{dt} \\
+      &= \nabla W_i \cdot \textbf{u}_t + \nabla W_i \cdot \textbf{u}_x \frac{dx_i}{dt}. \\
+\end{align*}
+
+\noindent We substitute $\frac{d x_i}{dt} = \lambda_i$ and $\textbf{u}_t = -A(\textbf{u}) \textbf{u}_x$ from the 
+previous section to obtain:
+
+$$
+-\nabla W_i \left[ A(\textbf{u}) - I \lambda_i \right] \textbf{u}_x = 0.
+$$
+
+\noindent and so $-\nabla W_i (\textbf{u})$ must be a left eigenvector of $A(\textbf{u})$ corresponding to $\lambda_i$.
+The vector $-\nabla W_i (\textbf{u})$ is therefore a right eigenvector of $A(\textbf{u})^T$, and so the matrix
+
+$$
+\begin{bmatrix}
+    \vert                   & \cdots & \vert \\
+    -\nabla W_1(\textbf{u}) & \cdots & -\nabla W_n(\textbf{u})  \\
+    \vert                   & \cdots & \vert
+\end{bmatrix} = -\textbf{J}(W)^T
+$$
+
+\noindent diagonalizes $A(\textbf{u})^T$, where $\textbf{J}(W)$ is the Jacobian of $W$. We define $L = -\textbf{J}(W)^T$
+and write $A(\textbf{u})^T = L \Lambda L^{-1}$. Taking the transpose of both sides yields:
+
+\begin{align*}
+    A(\textbf{u}) &= \left( L \Lambda L^{-1} \right)^T   \\
+                  &= \left(L^{-1}\right)^T \Lambda^T L^T \\
+                  &= L^{-T} \Lambda L^T
+\end{align*}
+
+\noindent where $L^{-T}$ denotes the inverse transpose of $L$. We recall from the beginning of this section that the 
+right eigenvectors of $A(\textbf{u})$ are given by:
+
+$$
+r_1 = \begin{bmatrix}
+    \sqrt\frac{h}{g \cos{(\alpha)}} \\
+    -1 \\
+\end{bmatrix}, \quad r_2 = \begin{bmatrix}
+    \sqrt\frac{h}{g \cos{(\alpha)}} \\
+    1
+\end{bmatrix}.
+$$
+
+\noindent and hence the matrix 
+
+$$
+R = \begin{bmatrix}
+    \vert & \cdots & \vert \\
+    r_1   & \cdots & r_n   \\
+    \vert & \cdots & \vert
+\end{bmatrix}
+$$
+
+\ \\
+\noindent diagonalizes $A(\textbf{u})$ so that $A(\textbf{u}) = R \Lambda R^{-1}$. Combining this with the above result,
+we obtain $L^T = R^{-1}$ and so:
+
+\[\renewcommand\arraystretch{2}
+-\textbf{J}(W) = L^T = R^{-1} = \begin{bmatrix}
+    \sqrt{\frac{h}{g \cos{(\alpha)}}} & 1 \\
+    -1                                & \sqrt{\frac{h}{g \cos{(\alpha)}}}
+\end{bmatrix}^{-1} = \begin{bmatrix*}[r]
+    \sqrt{\frac{g \cos{(\alpha)}}{4h}} & -\frac{1}{2} \\
+    \sqrt{\frac{g \cos{(\alpha)}}{4h}} &  \frac{1}{2} \\
+\end{bmatrix*}
+\]
+
+\noindent which at last allows us to explicitly compute the Riemann invariants, which we use to compute upwind 
+numerical flux at cell boundaries in the Discontinuous Galerkin method: \footnote{
+    We note that multiplying eigenvectors by a scalar value along the way has the effect of scaling the corresponding 
+    Riemman invariants. Our Riemann invariants may therefore be equivalently expressed \linebreak
+    $W = (v - 2 \sqrt{gh \cos{\alpha}}, v + 2 \sqrt{gh \cos{\alpha}})^T$.
+}
+
+\[\renewcommand\arraystretch{2}
+W = \begin{bmatrix}
+    \frac{v}{2} - \sqrt{g h \cos{(\alpha)}} \\ 
+    \frac{v}{2} + \sqrt{g h \cos{(\alpha)}} 
+\end{bmatrix}.
+\]

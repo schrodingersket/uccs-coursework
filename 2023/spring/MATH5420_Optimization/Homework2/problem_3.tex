@@ -1,0 +1,84 @@
+\textbf{Griva, Nash, Sofer 2.7.5}
+
+Apply Newton's method to solve $f(x) = x^2 - a = 0$, where $a > 0$. How does the iteration behave if $a \le 0$? What
+happens if you choose $x_0 \in \mathbb{C}$?
+
+\begin{solution}
+  For $a = 2$, we see rapid (quadratic) convergence to the solution $x = \sqrt{2}$:
+
+  \begin{figure}[h]
+      \centering
+      \includegraphics*[width=0.7\textwidth]{problem_3.png}
+      \caption{Quadratic Error for $x^2 - 2 = 0$}
+  \end{figure}
+
+  \begin{figure}[h]
+    \small
+      \begin{verbatim}
+        a = 2:
+        
+         i | xk              | f(xk)           | ||f(xk)||    
+        ---------------------------------------------------
+         0 | [[ 1.00000000]] | [[-1.00000000]] | 1.00000000
+         1 | [[ 1.50000000]] | [[ 0.25000000]] | 0.25000000
+         2 | [[ 1.41666667]] | [[ 0.00694444]] | 0.00694444
+         3 | [[ 1.41421569]] | [[ 0.00000601]] | 0.00000601
+         4 | [[ 1.41421356]] | [[ 0.00000000]] | 0.00000000
+        Root identified at x = [[ 1.41421356]]
+      \end{verbatim}
+    \normalsize
+    \caption{Output of \texttt{problem\_3.py}}
+  \end{figure}
+
+  \pagebreak
+
+  When $-2 = a < 0$, Newton's method fails to converge with an initial guess $1 = x_0 \in \mathbb{R}$, since no real
+  roots exist:
+
+  \begin{figure}[h]
+    \small
+    \begin{verbatim}
+        a = -2:
+        
+         i | xk              | f(xk)            | ||f(xk)||    
+        ----------------------------------------------------
+         0 | [[ 1.00000000]] | [[ 3.00000000]]  | 3.00000000
+         1 | [[-0.50000000]] | [[ 2.25000000]]  | 2.25000000
+         2 | [[ 1.75000000]] | [[ 5.06250000]]  | 5.06250000
+         3 | [[ 0.30357143]] | [[ 2.09215561]]  | 2.09215561
+         4 | [[-3.14233193]] | [[ 11.87424998]] | 11.87424998
+         5 | [[-1.25293097]] | [[ 3.56983601]]  | 3.56983601
+         6 | [[ 0.17166309]] | [[ 2.02946821]]  | 2.02946821
+         7 | [[-5.73953270]] | [[ 34.94223563]] | 34.94223563
+         8 | [[-2.69553614]] | [[ 9.26591507]]  | 9.26591507
+         9 | [[-0.97678436]] | [[ 2.95410768]]  | 2.95410768
+        No root identified!
+    \end{verbatim}
+    \normalsize
+    \caption{Output of \texttt{problem\_3.py}}
+  \end{figure}
+
+  On the other hand, if we choose $x_0 = 1 + i \in \mathbb{C}$, Newton's method converges to the complex root 
+  $x = \sqrt{-2} = \sqrt{2}i$:
+
+  \begin{figure}[h]
+    \small
+    \begin{verbatim}
+    a = -2:
+    
+     i | xk                          | f(xk)                       | ||f(xk)||    
+    ---------------------------------------------------------------------------
+     0 | [[ 1.00000000+1.00000000j]] | [[ 2.00000000+2.00000000j]] | 2.82842712
+     1 | [[ 0.00000000+1.00000000j]] | [[ 1.00000000+0.00000000j]] | 1.00000000
+     2 | [[ 0.00000000+1.50000000j]] | [[-0.25000000+0.00000000j]] | 0.25000000
+     3 | [[ 0.00000000+1.41666667j]] | [[-0.00694444+0.00000000j]] | 0.00694444
+     4 | [[ 0.00000000+1.41421569j]] | [[-0.00000601+0.00000000j]] | 0.00000601
+     5 | [[ 0.00000000+1.41421356j]] | [[-0.00000000+0.00000000j]] | 0.00000000
+    Root identified at x = [[ 0.00000000+1.41421356j]]
+    \end{verbatim}
+    \normalsize
+    \caption{Output of \texttt{problem\_3.py}}
+  \end{figure}
+
+  \ \\
+\end{solution}

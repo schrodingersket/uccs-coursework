@@ -1,0 +1,32 @@
+\textbf{Extra Credit}
+
+Prove that $\lim\limits_{n \to \infty} {a_n} = 0$, where $a_n = \left(\frac{1}{n!}\right)^{\frac{1}{n}}$.
+
+\begin{solution}
+    We first observe that each $a_n$ is strictly positive, and hence $\lim\limits_{n \to \infty} {a_n} \ge 0$.
+    Moreover, for any particular $n, j \in \mathbb{N}$ with $1 \le j \le \frac{n}{2}$, we have
+
+    $$
+    (n - j + 1) j \ge (n - 1 + 1) j = n j \ge n.
+    $$
+
+    Without loss of generality, we suppose that $n$ is even (if it is not, we simply replace $n$ with $n + 1$ and all 
+    calculations remain the same). Then we have:
+
+    $$
+        \frac{1}{n!} = \frac{1}{n \cdot (n - 1) \cdots 2 \cdot 1} 
+                     = \frac{1}{\prod_{j=0}^{n/2}(n - j + 1) j}
+                     \le \frac{1}{\prod_{j=0}^{n/2} n}
+                     = \frac{1}{n^{\frac{n}{2}}}
+    $$ 
+
+    so that
+
+    $$
+    0 \le a_n = \left(\frac{1}{n!}\right)^{\frac{1}{n}} 
+              \le \left(\frac{1}{n^{\frac{n}{2}}}\right)^{\frac{1}{n}}
+              = \sqrt{\frac{1}{n}}
+    $$
+
+    and hence $\lim\limits_{n \to \infty} {a_n} = 0$ by the squeeze theorem.
+\end{solution}

@@ -1,0 +1,37 @@
+Suppose a backtracking line search is used. Does the trial step $\alpha = 1$ satisfy the sufficient decrease condition 
+for $\mu = 0.2$? For what values of $\mu$ does $\alpha = 1$ satisfy the sufficient decrease condition?
+
+\begin{solution}
+    To satisfy the sufficient decrease condition for $\mu = 0.2$, the trial step $\alpha = 1$ must satisfy the Armijo 
+    condition:
+
+    $$
+    f(x + \alpha p) \le f(x) + \mu \alpha p^T \nabla f(x)
+    $$
+
+    At $x = (2, 1)^T$, we have 
+
+    $$
+    f(x + \alpha p) = f \left(\frac{4}{3}, \frac{2}{3} \right) = \left(\frac{4}{3} - 2 \cdot \frac{2}{3} \right)^2 + \left( \frac{4}{3} \right)^4 = \frac{256}{81} \approx 3.16
+    $$
+
+    and for $\mu = 0.2$:
+    
+    $$
+    f(x) + \mu \alpha p^T \nabla f(x) = f(2, 1) + \mu \cdot \begin{pmatrix*}[r] \sfrac{-2}{3} & \sfrac{-1}{3} \end{pmatrix*} \begin{pmatrix*}[r] 32 \\ 0 \end{pmatrix*} = 16 - \frac{64}{3} \mu \approx 11.73.
+    $$
+
+    Hence $\alpha = 1$ satisfies the sufficient decrease condition for $\mu = 0.2$. To determine all values of $\mu$ for
+    which $\alpha = 1$ satisfies the sufficient decrease condition, we solve the Armijo condition for $\mu$:
+
+    $$
+    \frac{256}{81} \le 16 - \frac{64}{3} \mu
+    $$
+
+    which yields
+
+    $$
+    0 < \mu \le \frac{3}{4} - \frac{4}{27} \approx 0.6019.
+    $$
+    \ \\
+\end{solution}

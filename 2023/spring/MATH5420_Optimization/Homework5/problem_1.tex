@@ -1,0 +1,41 @@
+\textbf{Griva, Nash, Sofer 5.4.1}
+
+Use the simplex method (via a phase-1 problem) to find a basic feasible solution to the following system of linear 
+inequalities:
+
+\begin{align*}
+  2x_1 - 3x_2 + 2x_3  & \ge 3 \\
+  -x_1 +  x_2 +  x_3  & \ge 5 \\
+  x_i                 & \ge 0.
+\end{align*}
+
+\begin{solution}
+  We begin by converting the problem to standard form by introducing excess variables $x_4$ and $x_5$:
+
+  \begin{align*}
+    2x_1 - 3x_2 + 2x_3 - x_4 & = 3 \\
+    -x_1 +  x_2 +  x_3 - x_5 & = 5 \\
+    x_i                      & \ge 0.
+  \end{align*}
+
+  Were we to allow $x_4$ and $x_5$ to be a part of our entry basis, these variables would necessarily take infeasible 
+  values $x_4 = -3$ and $x_5 = -5$. To determine a basic feasible solution, we therefore introduce artificial variables 
+  $a_1$ and $a_2$ along with an auxiliary objective function:
+
+  \begin{mini*}
+    {}{z' = a_1 + a_2}{}{}
+    \addConstraint{2x_1 - 3x_2 + 2x_3 - x_4 + a_1}{= 3}
+    \addConstraint{-x_1 + x_2 + x_3 - x_5 + a_2}{= 5}
+    \addConstraint{x_i, a_i}{\geq 0}.
+  \end{mini*}
+
+  Two iterations of the simplex method for this program yields our desired initial basis $x_B = (x_3, x_2)^T$ which
+  corresponds to the basic feasible solution $x = \left(0, \sfrac{7}{5}, \sfrac{18}{5}, 0, 0\right)^T$ and yields
+  $z' = 0$, as desired.\footnote{
+    Unless otherwise noted, all simplex method problems are solved by way of \texttt{simplex.py} which may be found at
+    \url{https://github.com/schrodingersket/uccs-coursework/blob/main/2023/spring/MATH5420_Optimization/Homework5/simplex.py}
+    along with all other code written for this assignment. For each problem, this function is called from a suitably 
+    named script; for example, this problem is solved by \texttt{problem\_1.py}.
+  }
+  \ \\
+\end{solution}

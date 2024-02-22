@@ -1,0 +1,43 @@
+\textbf{Stein, Shakarchi 2.7}
+
+Suppose $f : \mathbb{D} \to \mathbb{C}$ is holomorphic. Show that the diameter 
+$d = \sup_{z,w \in \mathbb{D}} |f(z) - f(w)|$ of the image of $f$ satisfies
+
+$$
+2 \left| f'(0) \right| \le d.
+$$
+
+Moreover, it can be shown that equality holds precisely when $f$ is affine, i.e., $f(z) = a_0 + a_1 z$.
+
+\begin{solution}
+    We consider a circle $C_r$ of radius $r < 1$ centered at $0$. Since $f$ is holomorphic in $\mathbb{D}$, it is 
+    also holomorphic on $C_r \subset \mathbb{D}$ and hence we may apply Cauchy's integral formula for the first 
+    derivative at $z = 0$ to obtain
+
+    $$
+    f'(0) = \frac{1}{2 \pi i} \int_{C_r} \frac{f(\zeta)}{(\zeta - 0)^{2}} \; d\zeta.
+    $$
+
+    Taking the same integral over $C_r$ but substituting $u = -\zeta$ (so that $du = -d\zeta$) yields
+
+    $$
+    f'(0) = -\frac{1}{2 \pi i} \int_{C_r} \frac{f(-u)}{u^{2}} \; du.
+    $$
+
+    We note that the choice of variable in the second integral is arbitrary, and hence we may combine the two integrals
+    and take the modulus to find
+
+    \begin{align*}
+      \left| 2 f'(0) \right| &=   \left| \frac{1}{2 \pi i} \int_{C_r} \frac{f(\zeta) - f(-\zeta)}{\zeta^{2}} \; d\zeta \right| \\
+                             &\le \frac{1}{2 \pi} \int_{C_r} \sup\limits_{\zeta \in C_r}{\left| \frac{f(\zeta) - f(-\zeta)}{\zeta^{2}} \right|} \; |d\zeta| \\
+                             &=   \frac{1}{2 \pi} \int_{C_r} \frac{d}{r^2} \; |d\zeta| \\
+                             &=   \frac{1}{2 \pi} \frac{d}{r^2} 2 \pi r \\
+                             &=   \frac{d}{r}.
+    \end{align*}
+
+    Hence we see that $2 \left| f'(0) \right|$ is a lower bound for every $\frac{d}{r}$ with $r < 1$ and so \linebreak
+    $2 \left| f'(0) \right| \le \inf\limits_{r \in (0, 1)} {\frac{d}{r}} = d$, as desired. Moreover, when 
+    $f = a_1 + z a_2$, we have $f'(0) = a_2$ and $d = \sup\limits_{z, w \in \mathbb{D}} |a_2 (z - w)| = 2 |a_2| = 2|f'(0)|$
+    so that equality holds.
+    \ \\
+\end{solution}

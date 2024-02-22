@@ -1,0 +1,34 @@
+(\#3 in 2.5) Verify that the set $\{1,4,7,10,\ldots\}$ is infinite, by
+Definition 2.5.2.
+
+\begin{proof}\ \\\\
+    Let $A \coloneqq \{1, 4, 7, 10, \ldots\}$, 
+    $B \coloneqq \{4, 7, 10, 13, \ldots\}$, and observe that $B \subset A$,
+    since $1 \notin B$. Let $f:A \to B$ be the mapping defined by
+    $f(a) = a + 3$, and $f^{-1}:B \to A$ be the mapping defined by
+    $f^{-1}{(b)} = b - 3$.
+
+    For any $a \in A$, we have:
+
+    \begin{align*}
+        (f^{-1} \circ f)(a) &= f^{-1}{\left(f(a)\right)} \\
+                            &= f^{-1}{\left(a + 3\right)} \\
+                            &= (a + 3) - 3 \\
+                            &= a.
+    \end{align*}
+
+    Similarly, for any $b \in B$:
+
+    \begin{align*}
+        (f \circ f^{-1})(b) &= f\left(f^{-1}{(b)}\right) \\
+                            &= f\left(b - 3\right) \\
+                            &= (b - 3) + 3 \\
+                            &= b.
+    \end{align*}
+
+    Hence $f^{-1}$ is the inverse function of $f$, and $f$ is therefore
+    bijective. Since there exists a bijection between $A$ and $B$, we see that
+    $A \sim B$ and since $B$ is a proper subset of $A$, $A$ is infinite by
+    definition.
+    \ \\
+\end{proof}

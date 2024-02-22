@@ -1,0 +1,31 @@
+\textbf{Stein, Shakarchi 1.2}
+
+Let $\langle \cdot, \cdot \rangle$ denote the usual inner product on $\mathbb{R}^2$ and $(z, w) = z \bar{w}$ a Hermitian 
+inner product on $\mathbb{C}$. Show that 
+
+$$
+\langle z, w \rangle = \frac{1}{2} \left[ (z, w) + (w, z) \right] = \text{Re}(z, w)
+$$
+
+\begin{solution}
+    Let $z = x + iy$ and $w = u + iv$, where $x, y, u, v \in \mathbb{R}$. Then we have
+
+    $$
+    (z, w) = (x + iy)\overline{(u + iv)} = (x + iy)(u - iv) = xu + yv + i(yu - xv)
+    $$
+
+    and hence $\text{Re}(z, w) = xu + yv = \langle z, w \rangle$. Moreover, we have
+
+    $$
+    (w, z) = \overline{(z, w)} = \overline{xu + yv + i(yu - xv)} = xu + yv - i(yu - xv) 
+    $$
+
+    so that upon adding $(z, w)$ and $(w, z)$, the terms $i(yu - xv)$ and $-i(yu - xv)$ cancel and we are left with
+
+    \begin{align*}
+        \frac{1}{2} \left[ (z, w) + (w, z) \right] = \frac{1}{2} (2xu + 2yv) = xu + yv = \langle z, w \rangle
+    \end{align*}
+
+    as desired.
+    \ \\
+\end{solution}

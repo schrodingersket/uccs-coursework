@@ -1,0 +1,18 @@
+\textbf{Trefethen 8.6}
+
+Write a code \texttt{chebfft2} for second-order differentiation by the FFT, and show by examples that it matches the
+results obtained by matrices, apart from rounding errors.
+
+\begin{solution}
+  We demonstrate the efficacy of second-order differentation by the FFT by way of plotting the difference between values
+  of $(D_N)^2 u$ and second-order FFT differentation of $u$ for a variety of functions $u$:
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics*[width=0.95\textwidth]{problem_8.png}
+    \caption{Comparison of second-order differentiation for several functions}\label{fig:cheb_fft2_diff}
+  \end{figure}
+
+  \ \\
+  \vfill
+\end{solution}

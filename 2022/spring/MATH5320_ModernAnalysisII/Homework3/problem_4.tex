@@ -1,0 +1,46 @@
+a.  Let $(X, d)$ be a complete metric space and suppose that $Y \subset X$ is nonempty. Prove that $(Y, d)$ is complete 
+    if and only if $Y$ is a closed subset of $X$.
+
+\begin{proof}\ \\\\
+    If $Y$ is a finite set, then it consists solely of isolated points and therefore contains no limits points or Cauchy
+    sequences, and is thus both closed and complete. We may therefore assume that $Y$ is an infinite set.
+
+    Suppose first that $(Y, d)$ is complete, and let $x_0$ be a limit point of $Y$. Then since every open ball 
+    $B_r(x_0)$ contains a point in $Y$ which is not $x_0$, we may form a sequence $\{x_n\}$ by choosing distinct points
+    of $Y$ from each open ball $B_{1/n}(x_0)$ for $n \in \mathbb{N}$. Then $d(x_n, x_0) < \frac{1}{n}$, and so for any 
+    $\epsilon > 0$, we may choose $N > \frac{1}{\epsilon}$ so that $d(x_N, x_0) < \epsilon$. Hence $\{x_n\}$ forms a 
+    sequence which converges to $x_0$, and is therefore Cauchy. Because $Y$ is complete, 
+    $\lim\limits_{n \to \infty}{\{x_n\}} = x_0 \in Y$. Since $x_0$ was chosen to be an arbitrary limit point of $Y$, 
+    all limit points of $Y$ are contained in $Y$ itself and hence $Y$ is a closed set.
+    \ \\
+
+    Conversely, suppose that $Y$ is a closed set, and let $\{y_n\}$ be a Cauchy sequence in $Y$. Then $\{y_n\}$ is also
+    a Cauchy sequence in $X$ and therefore converges to some $x \in X$ by the completeness of $X$. Because $\{y_n\}$ is
+    a convergent sequence with elements in $Y$, every open ball $B_{\epsilon}(x)$ contains a point in $Y$ which is not 
+    $x$, and $x$ is therefore a limit point of $Y$. Because $Y$ is closed, $x \in Y$; since $\{y_n\}$ was chosen to be 
+    an arbitrary Cauchy sequence in $Y$, every Cauchy sequence in $Y$ converges to a point in $Y$ and hence $Y$ is 
+    complete.
+    \ \\
+\end{proof}
+
+\pagebreak
+
+
+b. Suppose that $(X, d)$ and $(Y, d')$ are metric spaces and that $f:X \to Y$ and $g:X \to Y$ are continuous functions.
+   Prove that the set $A = \{ x \in X \mid f(x) = g(x)\}$ is closed.
+
+\begin{proof}\ \\\\
+    We first define a new function $h:X \to Y$ by the pointwise difference $h(x) = f(x) - g(x)$ and observe that $h$ is
+    continuous as the difference of continuous functions. Then 
+    $A = \{x \in X \mid f(x) = g(x)\} = \{x \in X \mid f(x) - g(x) = 0\} = \{x \in X \mid h(x) = 0\}$.
+    If $A$ has no limit points, then every limit point of $A$ is contained in $A$ and hence $A$ is closed. We may 
+    therefore assume that $A$ has at least one limit point, and we let $x_0$ be an arbitrary limit point of $A$. As 
+    before, because $x_0$ is a limit point of $A$, we may form a sequence $\{x_n\}$ by picking distinct elements of $A$ 
+    from consecutive open balls $B_{1/n}(x_0)$ centered about $x_0$ and observe that $\{x_n\} \to x_0$. By the 
+    continuity of $h$, we have that $h(x_0) = \lim\limits_{n \to \infty}{h(x_n)} = \lim\limits_{n \to \infty}{0} = 0$.
+    Hence $x_0 \in A$, and because $x_0$ was chosen to be an arbitrary limit point of $A$, we see that $A$ contains all
+    of its limit points and is therefore closed.
+    \ \\    
+\end{proof}
+
+\pagebreak

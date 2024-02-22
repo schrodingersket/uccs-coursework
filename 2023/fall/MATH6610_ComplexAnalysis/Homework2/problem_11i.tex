@@ -1,0 +1,41 @@
+Prove that there exits a holomorphic function $f$ on the unit disc such that
+
+$$
+\text{Re} (f) = u
+$$
+
+and that the imaginary part of $f$ is uniquely defined up to an additive (real) constant.
+
+\begin{solution}
+    Let $g(z) = 2 u_z$. Then by definition of the differential operator $\frac{\partial}{\partial z}$ we have
+
+    $$
+    g(z) = 2 u_z = \frac{1}{2} \left((2u)_x + \frac{1}{i} (2u)_y \right) = u_x - i u_y.
+    $$
+
+    Since $u$ is real, we have $\text{Re}(g) = u_x$ and $\text{Im}(g) = -u_y$. Moreover, since $u$ is harmonic, we have
+    $u_{xx} = -u_{yy}$. Since $u \in C^2(\mathbb{D})$ we also observe $u_{xy} = u_{yx}$ so that
+
+    \begin{align*}
+        \left[\text{Re}(g) \right]_x &= u_{xx} = -u_{yy} = \left[\text{Im}(g) \right]_y \\
+        \left[\text{Re}(g) \right]_y &= u_{xy} = u_{yx} = - \left[\text{Im}(g) \right]_y.
+    \end{align*}
+    
+    so that $g$ satisfies the Cauchy-Riemann equations. Since $\text{Re}(g)$ and $\text{Im}(g)$ are continuously 
+    differentiable on $\mathbb{D}$, $g(z)$ is holomorphic on $\mathbb{D}$. As a result, $g$ has a primitive $F$, 
+    (which we write $F(z) = U + i V + C_0$, where $U$ and $V$ are real-valued functions and $C_0 \in \mathbb{C}$) such
+    that $F'(z) = g(z)$. Hence we have $2 U_z = F_z = F' = g = 2 u_z$ so that
+
+    $$
+    2 \left(U - u \right)_z = 0
+    $$
+
+    from which we conclude $U - u = K_0$ is a real constant (since $u$ and $U$ are real-valued). We define 
+    $D_0 = K_0 + C_0$ and $f = F - D_0$ so that $f = u + i V$ is a holomorphic primitive of $g$ whose real part is $u$. 
+    To show that $f$ (subject to $\text{Re}(f) = u$) is unique up to an imaginary constant, we consider $f = u + i V$ 
+    and $\tilde{f} = u + i \tilde{V}$. We note that 
+    $f_z = 2 \left[ \text{Re}(f) \right]_z = 2u_z = 2 \left[ \text{Re}(\tilde{f}) \right]_z = \tilde{f}_z$ and hence
+    $i (V - \tilde{V}) = f - \tilde{f}$ is constant. Since $V$ and $\tilde{V}$ are real-valued, we conclude that $f$ and
+    $\tilde{f}$ differ by an imaginary constant, and hence $f$ is unique up to an imaginary constant, as desired.
+    \ \\
+\end{solution}

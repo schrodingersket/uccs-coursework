@@ -1,0 +1,48 @@
+Modify \texttt{advection\_lf\_pbc.m} so that the initial data consists of a wave packet
+
+$$
+\eta(x) = e^{-\beta (x - 0.5)^2}\sin{(\xi x)}
+$$
+
+Work out the true solution $u(x, t)$ for this data. Using $\beta = 100$, $\xi = 80$, and $U_j^1 = u(x_j, k)$, test that
+your code still exhibits second order accuracy for $k$ and $h$ sufficiently small.
+
+\begin{solution}\ \\\\
+    We observe approximately second order accuracy with the leapfrog method. The output of \texttt{problem\_4b.m} is
+    given below: \ \\\\
+
+    \begin{figure}[h]
+        \begin{verbatim}
+            h        error       ratio       observed order
+            0.01000   7.41514e-01       NaN             NaN
+            0.00500   1.72204e-01   4.30603         2.10636
+            0.00250   4.21567e-02   4.08485         2.03028
+          
+          
+         Least squares fit gives E(h) = 10068 * h^2.06832
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_4b.m}}
+    \end{figure}
+
+    Since the least squares fit is given by $E(h) = 10068 h^{2.06832}$, we see this method is roughly second order 
+    accurate as desired. The \texttt{loglog} and solution plots for this method are given below:
+
+    \begin{figure}[h]
+        \centering
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_4b_error.png}
+            \caption{\texttt{loglog} plot for the leapfrog method}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \includegraphics*[width=\textwidth]{problem_4b.png}
+            \caption{Leapfrog method solution}
+        \end{subfigure}
+    \end{figure}
+
+    % Since the true solution for the advection equation is given by $u(x, t) = \eta(x - at)$, we have:
+
+    % $$
+    % u(x, t) = e^{-\beta (x - at - 0.5)^2}\sin{[\xi (x - at)]}
+    % $$
+\end{solution}

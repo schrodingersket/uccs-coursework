@@ -1,0 +1,6 @@
+numpy == 1.23.5
+matplotlib==3.5.1
+DeepXDE==1.7.1
+tensorflow==2.12.0
+scipy==1.10.1
+git+https://github.com/clawpack/clawpack.git@v5.9.0#egg=clawpack

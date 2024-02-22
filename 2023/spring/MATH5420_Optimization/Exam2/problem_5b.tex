@@ -1,0 +1,14 @@
+Compute the value of the objective function at the optimal point.
+
+\begin{solution}
+    At $x_* = -\left( c^T Q^{-1} c \right)^{-\frac{1}{2}} Q^{-1} c$, we have
+
+    \begin{align*}
+        f(x_*) &= c^T x_* \\
+               &= - c^T \left( c^T Q^{-1} c \right)^{-\frac{1}{2}} Q^{-1} c \\
+               &= -\left( c^T Q^{-1} c \right)^{-\frac{1}{2}} c^T Q^{-1} c \\
+               &= -\left( c^T Q^{-1} c \right)^{\frac{1}{2}}.
+    \end{align*}
+
+    \ \\
+\end{solution}

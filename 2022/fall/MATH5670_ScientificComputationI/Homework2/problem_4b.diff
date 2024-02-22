@@ -1,0 +1,69 @@
+diff --git a/../fdmbook/matlab/bvp_4.m b/problem_4b.m
+old mode 100644
+new mode 100755
+index de241f5..79226fa
+--- a/../fdmbook/matlab/bvp_4.m
++++ b/problem_4b.m
+@@ -1,3 +1,4 @@
++#!/usr/bin/octave
+ %
+ % bvp4.m 
+ % second order finite difference method for the bvp
+@@ -14,11 +15,11 @@
+ 
+ ax = 0;
+ bx = 3;
+-sigma = -5;   % Neumann boundary condition at ax
+-beta = 3;     % Dirichlet boundary condtion at bx
++sigma = -5;   % Neumann boundary condition at bx
++beta = 3;     % Dirichlet boundary condtion at ax
+ 
+ f = @(x) exp(x);  % right hand side function
+-utrue = @(x) exp(x) + (sigma-exp(ax))*(x - bx) + beta - exp(bx);  % true soln
++utrue = @(x) exp(x) + (sigma-exp(bx))*(x - ax) + beta - exp(ax);  % true soln
+ 
+ % true solution on fine grid for plotting:
+ xfine = linspace(ax,bx,101);
+@@ -43,10 +44,10 @@ for jtest=1:ntest
+   % set up matrix A (using sparse matrix storage):
+   A = spalloc(m2,m2,5*m2);   % initialize to zero matrix
+ 
+-  % first row for Neumann BC on u'(x(1))
+-  A(1,1:5) = fdcoeffF(1, x(1), x(1:5));
+-  % second row for u''(x(2))
+-  A(2,1:6) = fdcoeffF(2, x(2), x(1:6));
++  % first row for Dirichlet BC on u(x(2))
++  A(1, 1:5) = fdcoeffF(0, x(1), x(1:5));
++  % last row for u''(x(2))
++  A(2, 1:6) = fdcoeffF(2, x(2), x(1:6));
+ 
+   % interior rows:
+   for i=3:m
+@@ -54,14 +55,14 @@ for jtest=1:ntest
+      end
+ 
+   % next to last row for u''(x(m+1))
+-  A(m1,m-3:m2) = fdcoeffF(2,x(m1),x(m-3:m2));
+-  % last row for Dirichlet BC on u(x(m+2))
+-  A(m2,m-2:m2) = fdcoeffF(0,x(m2),x(m-2:m2));
++  A(m1, m-3:m2) = fdcoeffF(2, x(m1), x(m-3:m2));
++  % last row for Neumann BC on u'(x(m+2))
++  A(m2, m-2:m2) = fdcoeffF(1, x(m2), x(m-2:m2));
+ 
+   % Right hand side:
+   F = f(x); 
+-  F(1) = sigma;  
+-  F(m2) = beta;
++  F(1) = beta;  
++  F(m2) = sigma;
+   
+   % solve linear system:
+   U = A\F;
+@@ -83,6 +84,7 @@ for jtest=1:ntest
+   
+   % pause to see this plot:  
+   drawnow
++  print('-dpng', sprintf('problem4b_%i_grid_points.png', m2));
+   input('Hit <return> for next plot ');
+   
+   end

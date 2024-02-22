@@ -1,0 +1,40 @@
+Prove that Newton's Method finds the minimum of $f$ in a single iteration regardless of the initial guess.
+
+\begin{solution}
+  Let $x_0 \in \mathbb{R}^n$ denote an arbitrary initial guess for Newton's method. To minimize $f$, it must 
+  satisfy the first-order necessary condition for minimization, i.e.
+
+  $$
+  \nabla f = 0.
+  $$
+
+  We therefore apply Newton's method to find a zero of $\nabla f$. Since $f$ is a quadratic function, its gradient and 
+  Hessian are given by $\nabla f = Q x - c$ and $\nabla^2 f = Q$, respectively.\footnote{
+    We assume without loss of generality that $Q$ is symmetric. 
+  } Moreover, since $Q$ is positive definite, it is invertible and so $\left[\nabla^2 f(x_0) \right]^{-1}$ exists at 
+  every $x$. Our first Newton iteration yields:
+
+  \begin{align*}
+    x_1 &= x_0 - \left[\nabla^2 f(x_0) \right]^{-1} \nabla f(x_0) \\
+        &= x_0 - \left( Q^{-1} \right) \left(Q x_0 - c \right) \\
+        &= x_0 - Q^{-1} Q x_0 + Q^{-1} c \\
+        &= x_0 - x_0 + Q^{-1} c \\
+        &= Q^{-1} c.
+  \end{align*}
+
+  We evaluate $\nabla f$ at $x = x_1$ to obtain:
+
+  \begin{align*}
+    \nabla f(x_1) &= Q \left( Q^{-1} c \right) - c \\
+                  &= \left( Q  Q^{-1} \right) c - c \\
+                  &= 0
+  \end{align*}
+
+  and hence $x_1$ is a stationary point.\footnote{
+    Since we only used the invertibility of $Q$ up to this point, we obtain the result that Newton's method converges 
+    to a stationary point in a single step when $f$ is a quadratic function.
+  } Moreover, because $Q$ is positive definite, the Hessian of $f$ is positive 
+  definite and so $x_1$ is a minimizer of $f$. Since $f$ is quadratic, it is strictly convex and $x_1$ is therefore
+  also the unique global minimizer.
+  \ \\
+\end{solution}

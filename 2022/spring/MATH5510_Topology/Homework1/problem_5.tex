@@ -1,0 +1,48 @@
+(\#8 a, b in 2.2) Let $f:X\to Y$ and $g:Y\to Z$ be any functions.
+
+a. Prove that if $f$ is one-to-one and $g$ is one-to-one, then $g\circ f:X\to Z$
+ is one-to-one. Is the converse true?\ \\
+
+\begin{proof}\ \\\\
+    Let $x_1, x_2 \in X$, and suppose that $g \circ f(x_1) = g \circ f(x_2)$.
+    By the definition of function composition, we have that
+    $g\left(f(x_1)\right) = g\left(f(x_2)\right)$. Hence $f(x_1) = f(x_2)$
+    by injectiveness of $g$, and hence $x_1 = x_2$ by injectiveness of $f$. 
+    Hence $g \circ f(x_1) = g \circ f(x_2)$ implies $x_1 = x_2$, and so
+    $g\circ f:X\to Z$ is one-to-one.
+    
+    The converse, however, does not hold. To
+    show this, it suffices to present a counterexample. Let
+    $f:\mathbb{R}^2 \to \mathbb{R}^3$ and $g:\mathbb{R}^3 \to \mathbb{R}^2$ be
+    the functions defined by $f(x, y) = (x, y, 0)$ and $g(x, y, z) = (x, y)$,
+    respectively. Then $(g \circ f)(x, y) = (x, y)$ for all 
+    $x,y \in \mathbb{R}$, and so $g \circ f = i_{\mathbb{R}^2}$. Hence
+    $g \circ f$ is bijective (and therefore one-to-one). Observe, however, that
+    $g(1, 2, 1) = g(1, 2, 2) = (1, 2)$, and hence $g$ is not one-to-one.
+    \ \\ 
+\end{proof}
+
+\pagebreak
+b. If $g$ is onto and $f$ is onto, then is $g\circ f$ always onto? Is the
+   converse true?
+
+\ \\
+\emph{Claim.} If $g:Y \to Z$ is onto and $f:X \to Y$ is onto, then $g\circ f$ is
+              also onto. The converse, however, is not true.
+
+\begin{proof}\ \\\\
+    Let $z$ be any element of $Z$. Since $g$ is onto, there exists at least one
+    $y \in Y$ such that $g(y) = z$. Furthermore, since $f$ is onto and 
+    $y \in Y$, there exists at least one $x \in X$ such that $f(x) = y$. Hence
+    for any arbitary $z \in Z$, there exists an $x \in X$ such that
+    $(g \circ f)(x) = z$, and hence $g \circ f$ is onto.
+
+    To show that the converse does not hold, we present again the same
+    counterexample from (a) and observe that because $g \circ f$ is bijective,
+    $g \circ f$ must also be onto. Recall that $f(x, y) = (x, y, 0)$, and hence
+    no $(x, y) \in \mathbb{R}^2$ can satisfy 
+    $f(x, y) = (1, 1, 1) \in \mathbb{R}^3$. The function $f$ is therefore not
+    onto, which proves our claim that the surjectiveness of $g \circ f$ does not
+    imply that $f$ and $g$ are also themselves surjective.
+    \ \\
+\end{proof}

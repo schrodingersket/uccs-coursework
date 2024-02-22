@@ -1,0 +1,81 @@
+Let $(X, d)$ be a metric space and let $A \subset X$.
+
+a.  Prove that $\bar{A}$ is the closure of $A$ if and only if $\bar{A}$ is the intersection of all closed subsets of $X$
+    which contain $A$.
+
+\begin{proof}\ \\\\
+    Let $\bar{A}$ denote the closure of $A$, and let $U = \bigcap\limits_{i \in I}{U_i}$ denote the intersection of all 
+    closed subsets of $X$ which contain $A$.\ \\
+
+    Observe that $A \subseteq A \cup A' = \bar{A}$; $A$ is therefore contained in $\bar{A}$. Then since the closure of
+    $A$ is a closed set, there exists some $k \in I$ for which $U_k = \bar{A}$, and so 
+    $U = \bigcap\limits_{i \in I}{U_i} \subseteq U_k = \bar{A}$.
+
+    To prove the reverse set inclusion, observe that because $U$ is the intersection of all closed sets which contain 
+    $A$, $U$ itself must also contain $A$. Moreover, because the arbitrary intersection of closed sets is itself closed,
+    $U$ is closed and therefore must also contain every limit point of $A$. Hence $\bar{A} = A \cup A' \subseteq U$, and
+    so $\bar{A} = U$.
+    \ \\
+ \end{proof}
+
+\pagebreak
+
+b.  Show that $x \in \bar{A}$ if and only if $\inf\limits_{y \in A}{d(x, y)} = 0$.
+
+\begin{proof}\ \\\\
+    Suppose that $x \in \bar {A} = A \cup A'$. If $x \in A$, then $0 = d(x, x) \in \{ d(x, y) \mid y \in A\}$ and hence
+    $\inf\limits_{y \in A}{d(x, y)} = 0$. If, on the other hand, $x \in A'$, then $x$ is a limit point of $A$ and every
+    open ball $B_r(x)$ with radius $r > 0$ centered about $x$ contains a point in $A$. Hence for any fixed 
+    $\epsilon > 0$, there exists a point $y \in A \cap B_{\epsilon}(x)$ and so for such a point, we have that 
+    $d(x, y) < \epsilon$.  Since $\epsilon$ was chosen to be arbitrary, we see that 
+    $\inf\limits_{y \in A}{d(x, y)} \le 0$; moreover, because $d(x, y) \ge 0$ for all $x, y \in X$, we see that 
+    $\inf\limits_{y \in A}{d(x, y)} \ge 0$. Hence $0 \le \inf\limits_{y \in A}{d(x, y)} \le 0$, and so
+    $\inf\limits_{y \in A}{d(x, y)} = 0$. \ \\
+
+    Conversely, suppose that $\inf\limits_{y \in A}{d(x, y)} = 0$. If $x$ is in $A$, then we have 
+    $x \in A \subseteq A \cup A' = \bar{A}$; we may therefore assume that $x \in X \setminus A$. Because 
+    $\inf\limits_{y \in A}{d(x, y)} = 0$, we have for any $\epsilon > 0$ that there must exist some point $y \in A$ such
+    that $d(x, y) < \epsilon$. Hence $y$ is in the open ball $B_{\epsilon}(x)$ centered about $x$. Since this holds for 
+    any $\epsilon > 0$, $x$ is a limit point of $A$, and hence $x \in A' \subseteq A \cup A' = \bar{A}$.
+    \ \\
+\end{proof}
+
+\pagebreak
+
+c.  The diameter $d(A)$ of a set $A$ in a metric space is defined to be $d(A) = \sup\limits_{x,y \in A}{d(x, y)}$. Prove
+    that $d(A) = d(\bar{A})$. (Note that $d(A) < \infty$ if $A$ is bounded and $d(A) = \infty$ if $A$ is unbounded).
+
+\begin{proof}\ \\\\
+    Observe that $A \in A \cup A' = \bar{A}$, and so 
+    $\sup\limits_{x,y \in A}{d(x, y)} \le \sup\limits_{x',y' \in \bar{A}}{d(x', y')}$
+    by definition of the supremum of a set.
+
+    To prove the reverse inequality, observe that $\bar{A} = A \cup A'$ and let $x', y' \in \bar{A}$. If $x'$ and $y'$ 
+    are points in $A$, then we have by definition that $d(x', y') \le \sup\limits_{x,y \in A}{d(x, y)}$. Hence we may 
+    assume that $x'$ and $y'$ are in $A'$. Let $\epsilon > 0$. Because $x'$ and $y'$ are limit points, there exist 
+    $x, y \in A$ such that $d(x, x') < \frac{\epsilon}{2}$ and $d(y, y') < \frac{\epsilon}{2}$. Applying the Triangle
+    Inequality twice yields the following inequality:
+
+    \begin{align*}
+        d(x', y') &\le d(x', x) + d(x, y) + d(y, y') \\
+                  &< \frac{\epsilon}{2} + d(x, y) + \frac{\epsilon}{2} \\
+                  &= d(x, y) + \epsilon.
+    \end{align*}
+
+    Since $\epsilon$ was chosen to be arbitrary, we have for any points $x', y' \in A'$ that $d(x', y') \le d(x, y)$ for
+    some $x, y \in A$, and hence $\sup\limits_{x',y' \in A'}{d(x', y')} \le \sup\limits_{x,y \in A}{d(x, y)}$. Lastly, if
+    only one of $x'$ or $y'$ is in $A'$ (we may assume without loss of generality that it is $x'$), the above inequality
+    simplifies to the following:
+    
+    \begin{align*}
+        d(x', y') &\le d(x', x) + d(x, y') \\
+                  &< \frac{\epsilon}{2} + d(x, y') \\
+                  &< d(x, y') + \epsilon.
+    \end{align*}
+
+    By a similar argument as above, we have that
+    $\sup\limits_{x' \in A', y \in A}{d(x', y)} \le \sup\limits_{x,y \in A}{d(x, y)}$ and so
+    $d(\bar{A}) = \sup\limits_{x', y' \in \bar{A}}{d(x', y')} = \sup\limits_{x,y \in A}{d(x, y)} = d(A)$, as desired.
+\end{proof}
+
+\pagebreak

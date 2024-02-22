@@ -1,0 +1,79 @@
+Consider the coefficients
+
+$$
+Q = \begin{pmatrix}
+    1 &  2 &  2 \\
+    2 &  4 & -1 \\
+    2 & -1 & 4
+\end{pmatrix}, \quad c = \begin{pmatrix}
+    1 \\
+    1 \\
+    1
+\end{pmatrix}
+$$
+
+Is $Q$ positive definite? Apply one exact iteration of Newton's method using initial guess 
+$x = \begin{pmatrix} 0 & 0 & 0 \end{pmatrix}^T$. Is this point the minimizer of $f(x)$? Discuss this result in relation 
+to part (a).
+
+\begin{solution}
+    The spectrum of $Q$ is given by 
+
+    $$
+    \lambda(Q) = \{ -1, 5, 5 \}
+    $$
+
+    and hence $Q$ is not positive definite since not all eigenvalues are strictly positive.\footnote{
+        See \texttt{problem\_4.py} for all matrix computations performed in this exercise.
+    } We apply a single Newton iteration (noting that $\nabla^2 f = Q$ is nonsingular since 0 is not an eigenvalue of 
+    $Q$) to obtain:
+
+    $$
+    x_1 = Q^{-1} c = \begin{pmatrix}
+         \sfrac{-3}{5} &  \sfrac{2}{5}  &  \sfrac{2}{5}  \\
+         \sfrac{2}{5}  &  0             &  \sfrac{-1}{5} \\
+         \sfrac{2}{5}  &  \sfrac{-1}{5} &  0             \\
+    \end{pmatrix} \begin{pmatrix}
+        1 \\
+        1 \\
+        1
+    \end{pmatrix} = \begin{pmatrix}
+        \sfrac{1}{5} \\
+        \sfrac{1}{5} \\
+        \sfrac{1}{5}
+    \end{pmatrix}.
+    $$
+
+    Substituting this into our expression for $\nabla f$ yields:
+
+    $$
+    \nabla f(x_1) = \begin{pmatrix}
+        1 &  2 &  2 \\
+        2 &  4 & -1 \\
+        2 & -1 & 4
+    \end{pmatrix} \begin{pmatrix}
+        \sfrac{1}{5} \\
+        \sfrac{1}{5} \\
+        \sfrac{1}{5}
+    \end{pmatrix} = \begin{pmatrix}
+        0 \\
+        0 \\
+        0
+    \end{pmatrix}
+    $$
+
+    which indicates that $x_1$ is a stationary point. Since the Hessian has a mix of positive and negative eigenvalues
+    at every point $x$, it is indefinite and so $x_1$ represents a saddle point of $f$ which evaluates to 
+    $f(x_1) = -0.3$. This point is not a minimizer for $f$, since evaluating $f$ at the nearby point 
+    $x^* = (1.2, -0.8, -0.8 )^T$ yields 
+    
+    $$
+    f(x^*) = -0.8 < -0.3 = f(x_1).
+    $$
+
+    In part (a), we showed that if $Q$ is invertible, Newton's method finds a stationary point in a single iteration. By
+    dropping the assumption that $Q$ be positive definite, we lose the ability to guarantee that the first Newton
+    iterate minimizes $f$ (which is consistent with the results of this exercise, since $x_1$ is a saddle point) but 
+    retain the result that a stationary point is found in a single iteration.
+    \ \\
+\end{solution}

@@ -1,0 +1,21 @@
+\textbf{Trefethen 3.5}
+
+Using the commands \texttt{tic} and \texttt{toc}, study the time taken by \texttt{MATLAB} to compute an $N$-point FFT,
+as a function of $N$. If $N = 2^k$ for $k = 0, 1, ...,15$, for example, what is the dependence of the time on $N$? What
+if $N = 500, 501, ..., 519, 520$? From a plot of the latter results, can you spot the prime numbers in this range?
+
+
+\begin{solution}
+  For powers of 2, we observe a linear dependence between the time taken to compute the FFT and $N$:
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{problem_6.png}
+    \caption{FFT Computation Time vs. $N$}
+  \end{figure}
+
+  The four most time-consuming values of $N$ occur at $N = 501, 503, 509, 519$. Of these, 501 and 519 are the product of
+  a prime number and 3; 503 and 509, on the other hand, are prime numbers. We further observe that the least 
+  time-consuming FFTs happen at multiples of two.
+  \ \\
+\end{solution}

@@ -1,0 +1,86 @@
+\textbf{Stein, Shakarchi 2.2}
+
+Show that $ \int_{0}^{\infty}{\frac{\sin x}{x} \; dx} = \frac{\pi}{2}.$
+
+\begin{solution}
+    We integrate the function $f(z) = \frac{e^{iz}}{z}$ anti-clockwise along the indented semicircle of outer radius 
+    $R$ and inner radius $\epsilon$ for some fixed but arbitrary $\epsilon > 0$. Since $f$ is holomorphic everywhere 
+    except at $z = 0$, the integral over this region sums to zero by Cauchy's Integral theorem. We split this integral 
+    into four paths: the first is the path along the outer radius (denoted $\gamma_{C_R}$), followed by the integral 
+    along the real line from the left edge of the outer circle to the left edge of the inner circle (denoted 
+    $\gamma_1$). The next integral is along the inner semicircle (denoted $\gamma_{\epsilon}$), and the path concludes 
+    with the integral along the real axis which connects the right edges of the inner and outer circles (see Figure 
+    \ref{fig:problem_2}). We parametrize these curves by $z = Re^{i \varphi}$, $z = x$, $z = \epsilon e^{i \varphi}$, 
+    and $z = x$, respectively (with $\varphi \in (0, \pi)$). Hence we have
+
+    $$
+    0 = \int_{0}^{\pi} {\frac{e^{i R e^{i \varphi}}}{R e^{i \varphi}} i R e^{i \varphi} \; d\varphi }  
+      + \int_{-R}^{-\epsilon} {\frac{e^{ix}}{x} \; dx}
+      + \int_{\pi}^{0} {\frac{e^{i \epsilon e^{i \varphi}}}{\epsilon e^{i \varphi}} i \epsilon e^{i \varphi} \; d\varphi }  
+      + \int_{\epsilon}^{R} {\frac{e^{ix}}{x} \; dx}
+    $$
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=0.8\textwidth]{problem_2.png}
+        \caption{Integration over indented semicircle.}
+        \label{fig:problem_2}
+    \end{figure}
+
+    We first examine the integral along the inner semicircle $\gamma_{\epsilon}$. We have
+
+    $$
+    I_{\gamma_{\epsilon}} 
+      = \int_{\gamma_{\epsilon}} {f \; dz } 
+      = \int_{\pi}^{0} {\frac{e^{i \epsilon e^{i \varphi}}}{\epsilon e^{i \varphi}} i \epsilon e^{i \varphi} \; d\varphi }
+      = i \int_{\pi}^{0} {e^{i \epsilon e^{i \varphi}} \; d\varphi }
+      = -i \int_{0}^{\pi} {e^{i \epsilon \cos{\varphi}} \, e^{-\epsilon \sin{\varphi}} \; d\varphi }
+    $$
+
+    where the modulus of the integrand is bounded above by the constant (and hence integrable) function 
+    $g(z) = e^{\epsilon}$ so that as $\epsilon \to 0$ we obtain $I(0) = -i \pi$ by the Dominated Convergence Theorem.
+    
+    \pagebreak
+    Next, we note that substituting $u = -x$ in the second integral yields
+
+    $$
+    \int_{-R}^{-\epsilon} {\frac{e^{ix}}{x} \; dx} 
+    = \int_{R}^{\epsilon} {\frac{e^{i(-u)}}{-u} \; (-du)}
+    = -\int_{\epsilon}^{R} {\frac{e^{-iu}}{u} \; du}
+    $$
+
+    so that upon adding this and the final integrals, we obtain
+
+    $$
+    \int_{\epsilon}^{R} {\frac{e^{ix}}{x} \; dx} + \int_{-R}^{-\epsilon} {\frac{e^{ix}}{x} \; dx} 
+    = \int_{\epsilon}^{R} {\frac{e^{ix}}{x} \; dx} + \int_{\epsilon}^{R} {\frac{e^{-ix}}{x} \; dx}
+    = \int_{\epsilon}^{R} {\frac{e^{ix} - e^{-ix}}{x} \; dx}
+    = 2i \int_{\epsilon}^{R} {\frac{\sin{x}}{x} \; dx}
+    $$
+
+    which in the limit as $\epsilon \to 0$ and $R \to \infty$ becomes $2i \int_{0}^{\infty} {\frac{\sin{x}}{x} \; dx}$.
+    To conclude the proof, we turn our attention toward the integral along the outer semicircle, $\gamma_{C_R}$:
+
+    \begin{align*}
+    \left| I_{\gamma_{C_R}} \right|
+      &= \left| \int_{\gamma_{C_R}} {f \; dz } \right| \\
+      &= \left| \int_{0}^{\pi} {\frac{e^{i R e^{i \varphi}}}{R e^{i \varphi}} i R e^{i \varphi} \; d\varphi } \right| \\
+      &= \left| i \int_{0}^{\pi} {e^{i R e^{i \varphi}} \; d\varphi } \right| \\
+      &= \left| \int_{0}^{\pi} {e^{i R \cos{\varphi}} \, e^{-R \sin{\varphi}} \; d\varphi } \right| \\
+      &\le \int_{0}^{\pi} {\left| e^{i R \cos{\varphi}}\right| \cdot \left| e^{-R \sin{\varphi}} \right| \; d\varphi } \\
+      &=   2 \int_{0}^{\sfrac{\pi}{2}} {\left| e^{-R \sin{\varphi}} \right| \; d\varphi } \\
+      &\le 2 \int_{0}^{\sfrac{\pi}{2}} {\left| e^{-\frac{2 R \varphi}{\pi} } \right| \; d\varphi } \\
+      &=   2 \left( -\frac{\pi}{2 R} \right) e^{-\frac{2 R \varphi}{\pi}} \bigg|_0^{\sfrac{\pi}{2}} \\
+      &=   \left( -\frac{\pi}{R} \right) \left( e^{-R} - 1 \right)
+    \end{align*}
+
+    which vanishes in the limit as $R \to \infty$. We therefore conclude from earlier results that
+
+    $$
+    2i \int_{0}^{\infty} {\frac{\sin{x}}{x}} - i \pi = 0
+    $$
+
+    and hence $\int_{0}^{\infty} {\frac{\sin{x}}{x}} = \frac{\pi}{2}$, as desired.
+
+    \ \\
+\end{solution}

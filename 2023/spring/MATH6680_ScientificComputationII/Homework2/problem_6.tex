@@ -1,0 +1,28 @@
+\textbf{Trefethen 8.3}
+
+Modify \texttt{Program 12} to make use of \texttt{chebfft} instead of \texttt{cheb}. The results should be the same as
+\texttt{Output 12}, except for rounding errors. Are the effects of rounding errors smaller or larger than before?
+
+\begin{solution}
+  \ \\
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{problem_6_cheb.png}
+    \caption{\texttt{Program 12} with \texttt{cheb}}
+    \label{fig:rounding_with_cheb}
+  \end{figure}
+
+  From Figures \ref{fig:rounding_with_cheb} and \ref{fig:rounding_with_chebfft}, we see that the rounding error is quite
+  similar, as expected. The effects of rounding errors for \texttt{chebfft} are marginally smaller than those for 
+  \texttt{cheb}.
+
+  \pagebreak
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.95\textwidth]{problem_6_chebfft.png}
+    \caption{\texttt{Program 12} with \texttt{chebfft}}
+    \label{fig:rounding_with_chebfft}
+  \end{figure}
+  \ \\
+\end{solution}

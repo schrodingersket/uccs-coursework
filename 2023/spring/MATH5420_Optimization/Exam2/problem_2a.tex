@@ -1,0 +1,26 @@
+Show that the gradient at $x_0$ is $\nabla f(x_0) = \lambda v$.
+
+
+\begin{solution}
+    We assume without loss of generality that $Q$ is symmetric.\footnote{
+        As discussed in lecture.
+    } The gradient of our objective function is therefore
+
+    $$
+    \nabla f(x) = Q x - c.
+    $$
+
+    Since $x_*$ is a stationary point, we know that $\nabla f(x_*) = Q x_* - c = 0$. Moreover, since $v$ is an 
+    eigenvector of $Q$, $Q v = \lambda v$. Hence at $x_0 = x_* + v$, our gradient becomes
+
+    \begin{align*}
+        \nabla f(x_0) &= \nabla f(x_* + v) \\
+        &= Q (x_* + v) - c \\
+        &= Q x_* + Q v - c \\
+        &= Q x_* - c + \lambda v \\
+        &= \lambda v,
+    \end{align*}
+
+    as desired.
+    \ \\
+\end{solution}

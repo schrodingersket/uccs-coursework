@@ -1,0 +1,24 @@
+\begin{frame}
+    \frametitle{Methodology: Optimization}
+
+    We find the best approximation to the true solution by solving the non-linear unconstrained minimization problem:
+
+    $$
+    \min_{\mathcal{N}} {\lVert R_{mass} \rVert + \lVert R_{momentum} \rVert}.
+    $$
+
+    \bigskip
+    \pause
+
+    At this point, we have a well-defined optimization problem, but we still need to decide what our approximation 
+    function $\mathcal{N}$ ``looks like". 
+
+    \bigskip
+    \pause
+
+    Ideally, we'd like a function which is ``universal" to some degree and can modified to minimize the PDE residual via 
+    existing optimization algorithms. \only<+->\footnote{
+        In the context of analysis, we'd say that our solution surrogate $\mathcal{N}$ should be dense in the 
+        appropriate Sobolev space for this system.
+    }
+\end{frame}

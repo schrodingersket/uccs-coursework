@@ -1,0 +1,8 @@
+*.npz
+*.csv
+*.dat
+*.pdf
+*.png
+.ipynb_checkpoints
+__pycache__
+_output

@@ -1,0 +1,37 @@
+\textbf{Griva, Nash, Sofer 2.3.20}
+
+Determine whether
+
+$$
+  f(x) = 2x_1^2 - 3 x_1 x_2 + 5 x_2^2 - 2 x_1 + 6 x_2
+$$
+
+is convex, concave, both, or neither for $x \in \mathbb{R}^2$.
+
+\begin{solution}
+  We first note that $f$ is non-linear and hence by 2.3.5 cannot be both convex and concave.
+  Moreover, because $f(x)$ is a real polynomial in $x_1$ and $x_2$, it is smooth and hence 
+  we may take its Hessian (by way of the gradient):
+  
+  $$
+    \nabla f(x) = \begin{pmatrix}
+      4x_1 - 3x_2 - 2 \\
+      -3x_1 + 10x_2 + 6
+    \end{pmatrix}
+  $$
+
+  $$
+    \nabla^2 f(x) = \begin{pmatrix}
+      4  & -3 \\
+      -3 & 10
+    \end{pmatrix}
+  $$
+
+  The spectrum of $\nabla^2 f(x)$ is \footnote{
+    approximately; see \texttt{problem\_7.py}.
+  } given by $\Lambda = \{2.75, 11.24 \}$; since all eigenvalues are positive, 
+  the Hessian matrix is positive definite and $f$ is therefore convex\footnote{
+    See Griva, Nash, Sofer 2.6.8
+  }. Furthermore, since $f$ cannot be both convex and concave, $f$ is not concave.
+  \ \\
+\end{solution}

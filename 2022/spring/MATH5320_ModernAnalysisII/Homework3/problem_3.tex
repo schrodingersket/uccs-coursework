@@ -1,0 +1,224 @@
+Let $(X, d)$ be a metric space. Determine for each $A \subseteq X$ whether $A$ is open, closed, or neither in $X$.
+
+a.  The set of integers $\mathbb{Z} \subset \mathbb{R}$ where $X = \mathbb{R}$ and $d$ is the usual metric.
+
+\ \\
+\emph{Claim.} $\mathbb{Z}$ is closed and not open.
+
+\begin{proof}\ \\\\
+    Observe that $\mathbb{R} \setminus \mathbb{Z} = \bigcup\limits_{z \in \mathbb{Z}}{(z, z + 1)}$. Since each 
+    $(z, z + 1)$ is open in $\mathbb{R}$ with respect to the usual metric, $\mathbb{R} \setminus \mathbb{Z}$ is the
+    union of open sets and is therefore itself open. Since the complement of $\mathbb{Z}$ is open, $\mathbb{Z}$ itself
+    is closed.
+
+    Observe also that every open ball $B_\epsilon(z)$ in $\mathbb{R}$ centered about any $z \in \mathbb{Z}$ contains a 
+    point in $\mathbb{R} \setminus \mathbb{Q}$ by the density of the irrationals; hence there exists no open ball 
+    $B_\epsilon(z) \subseteq \mathbb{Z}$ which is entirely contained in $\mathbb{Z}$, and so $\mathbb{Z}$ is not open.
+    \ \\
+\end{proof}
+
+\pagebreak
+
+b.  $A = \{(x, y) \in \mathbb{R}^2 \mid y=x^2, x \in \mathbb{Q} \}$ where $X = \mathbb{R}^2$ and $d$ is the Euclidean
+     metric.
+
+\ \\
+\emph{Claim.} $A$ is neither closed nor open.
+
+\begin{proof}\ \\\\
+    Observe that the sequence of partial sums of the sequence $\{s_n\}$ defined by 
+    $s_n = \sum\limits_{k = 0}^{n}{\frac{1}{k!}}$ is a sequence consisting of elements of $\mathbb{Q}$, but that
+    $\{s_n\}$ converges to $e \in \mathbb{R} \setminus \mathbb{Q}$. Then the sequence $\{(s_n, s_n^2)\}$ is a sequence in
+    of terms in $A$, and the element $(e, e^2)$ is a limit point\footnote{
+        Since $f(x) = x^2$ is a continuous function in $(X, d)$, and $s_n$ converges to $e$, we have that 
+        $f(s_n^2) = f(e^2)$.
+    } of $A$ which is not in $A$. Hence $A$ is not closed.
+
+    To show that $A$ is not open, observe that the point $p = (0, 0)$ lies in $A$, and consider any open ball $B_r(p)$ 
+    of radius $r > 0$ centered about $p$. Then the point $q = \left( \frac{r}{2}, 0 \right)$ is in $B_r(p)$:
+    \begin{align*}
+        d(p, q) = \left[ \left(\frac{r}{2} - 0 \right)^2 + (0 - 0)^2 \right]^\frac{1}{2}
+                = \frac{r}{2}
+                < r.
+    \end{align*}
+
+    Furthermore, $q$ is not in $A$ since $\left(\frac{r}{2}\right)^2 \neq 0$, and hence there exists no open ball 
+    centered about $p$ which is entirely contained in $A$. Hence $A$ is not open.
+    \ \\
+\end{proof}
+
+\pagebreak
+
+c.  $A = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z = 0 \}$, where $X = \mathbb{R}^3$ and $d$ is the 
+    Euclidean metric.
+
+\ \\
+\emph{Claim.} $A$ is closed and not open.
+
+\begin{proof}\ \\\\
+    To show that $A$ is not open, consider the point $p = (0, 0, 0) \in A$, and observe that for any $\epsilon > 0$, the 
+    open ball $B_\epsilon(p)$ centered about $p$ contains the point $q = \left( \frac{\epsilon}{2}, 0, 0 \right)$:
+    \begin{align*}
+        d(p, q) = \left[ \left(\frac{\epsilon}{2} - 0 \right)^2 + (0 - 0)^2 + (0 - 0)^2 \right]^\frac{1}{2}
+                = \frac{\epsilon}{2}
+                < \epsilon.
+    \end{align*}
+    
+    Then because $(\frac{\epsilon}{2})^2 + (0)^2 + (0)^2 + 2(0) > 0$, we have that $q$ is not in $A$. Thus, there exists
+    no open ball centered about $p \in A$ which is contained in $A$, and hence $A$ is not open.
+
+    \ \\
+    We next show that $A$ is closed by showing that $X \setminus A$ is open. Let  \linebreak
+    $L = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z < 0 \}$,
+    $G = \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 + 2z > 0 \}$, and observe that $X \setminus A = L \cup G$.
+    Moreover, observe that in the Euclidean metric, $L$ is precisely the open unit ball centered about the point 
+    $r_0 = (0, 0, -1)$; since open balls are open sets, $L$ is therefore an open set.
+
+    Let $p$ be a point in $G$, let $r = d(r_0, p) - 1$, and let $B_r(p)$ be the open ball of radius $r$ centered about
+    $p$. \footnote{
+        $r$ therefore represents the incremental distance between the edge of the unit sphere and the point $p$.
+    }
+
+    Consider an arbitrary point $q \in B_r(p)$, and observe that $d(r_0, q) \ge d(r_0, p) - d(p, q)$ by the Triangle
+    Inequality. Furthermore, since $q$ is in $B_r(p)$, we have that $d(p, q) < r$, and so 
+    $d(r_0, p) - d(p, q) > d(r_0, p) - r$. But $d(r_0, p) = 1 + r$, and so putting this all together yields the 
+    following inequality:
+    \begin{align*}
+        d(r_0, q) &\ge d(r_0, p) - d(p, q) \\
+                  &> d(r_0, p) - r \\
+                  &> (1 + r) - r \\
+                  &= 1.
+    \end{align*}
+
+    Hence $d(r_0, q) > 1$, and so $q \in G$. Since $q$ was chosen to be an arbitrary point in $B_r(p)$, we have that 
+    $B_r(p) \subseteq G$ is an open ball about $p$ which is entirely contained in $G$, and so $p$ is an interior point
+    of $G$. Since $p$ was chosen to be an arbitrary point in $G$, every point of $G$ is an interior point, and so $G$
+    must be open. Thus, $X \setminus A = L \cup G$ is the union of open sets and is therefore itself open, and so $A$
+    is closed, as desired.
+    \ \\
+\end{proof}
+
+\pagebreak
+
+d.  $A = \{ f \in X \mid 0 < f(x) < 1, x \in [a, b] \}$ where $d(f, g) = \sup\limits_{x \in [a, b]}{|f(x) - g(x)|}$ and 
+    $X = C[a, b]$.
+
+\ \\
+\emph{Claim.} $A$ is open and not closed. 
+
+\begin{proof}\ \\\\
+    We first show that $A$ is not closed. Observe that for every $n \in \mathbb{N}$, the function $f_n$ defined by 
+    $f_n(x) = \frac{1}{n}$ defines a continuous function which takes values strictly between zero and one and hence
+    $f_n \in A$ for all $n \in \mathbb{N}$. Moreover, for any $n \in \mathbb{N}$, we have the following:
+    \begin{align*}
+         d(f_n, 0) &= \sup\limits_{x \in [a, b]}{|f_n(x) - 0|} \\ 
+                   &= \sup\limits_{x \in [a, b]}{|f_n(x)|} \\ 
+                   &= \frac{1}{n}.
+    \end{align*}
+
+    Thus, for any fixed $\epsilon > 0$, we can find an $N \in \mathbb{N}$ such that $d(f_N, 0) < \epsilon$ and so 
+    $f_N \in B_\epsilon(0)$. Since $f_N \neq 0$, we have that $g(x) = 0$ is a limit point of $A$ which is not in $A$, 
+    and hence $A$ is not closed.
+
+    \ \\
+    We now show that $A$ is open. Let $g \in A$, and observe that because $g(x)$ is a continuous bounded function
+    in $\mathbb{R}$ defined on a compact set $[a, b]$, $g(x)$ attains its maximum and minimum values on $[a, b]$. We 
+    denote these values by $M$ and $m$, respectively, and observe that by definition of $A$, we have $0 < m \le M < 1$. 
+    Let $\epsilon = \min{\{ d(g, 0), d(g, 1) \}} = \min{\{ m, 1 - M \}}$, and observe that $g(x) \ge m \ge \epsilon$ and 
+    $1 - g(x) \ge 1 - M \ge \epsilon$ for all $x \in [a, b]$. Hence $g(x) - \epsilon \ge 0$ and $1 \ge g(x) + \epsilon$
+    for all $x \in [a, b]$.
+
+    With those inequalities in hand, we now consider the open ball $B_\epsilon(g)$ of
+    radius $\epsilon$ centered about $g$. For any $h \in B_\epsilon(g)$, we have by definition that 
+    $g(x) - \epsilon < h(x) < g(x) + \epsilon$ for all $x \in [a, b]$. By our earlier inequalities, we have that 
+    $g(x) - \epsilon \ge 0$ and $g(x) + \epsilon \le 1$, and so $0 < h(x) < 1$ and therefore $h \in A$. Since $h$ was
+    chosen to be an arbitrary element in $B_\epsilon(g)$, we have that $B_\epsilon(g) \subseteq A$, and so $g$ is an 
+    interior point of $A$. Moreover, since $g$ was chosen to be an arbitrary element of $A$, we have that every point in
+    $A$ is an interior point, and so $A$ is open.
+    \ \\
+\end{proof}
+
+\pagebreak
+
+e.  $A = \{ f \in X \mid \int_a^b{f(x) \,dx} = 0 \}$ where $d(f, g) = \sup\limits_{x \in [a, b]}{|f(x) - g(x)|}$ and 
+    $X = C[a, b]$.
+
+\ \\
+\emph{Claim.} $A$ is closed and not open.
+
+\begin{proof}\ \\\\
+    We first show that $A$ is not open. Observe that $X \setminus A = \{f \in X \mid \int_a^b{f(x) \,dx} \neq 0 \}$, and
+    let $f_n$ be the constant function defined by $f_n(x) = \frac{1}{n(b - a)}$ for $n \in \mathbb{N}$. Then 
+    $\int_a^b{f(x) \,dx} = \frac{1}{n} > 0$. As before, we have the following:
+
+
+    \begin{align*}
+         d(f_n, 0) &= \sup\limits_{x \in [a, b]}{|f_n(x) - 0|} \\ 
+                   &= \sup\limits_{x \in [a, b]}{|f_n(x)|} \\ 
+                   &= \frac{1}{n(b - a)}.
+    \end{align*}
+
+    Since $b - a > 0$ is constant, we may for any fixed $\epsilon > 0$ pick an $N \in \mathbb{N}$ to be large enough 
+    (specifically, larger than $\frac{1}{\epsilon(b - a)}$) so that $d(f_N, 0) < \epsilon$. Hence $f_N$ is in
+    the open ball $B_\epsilon(0)$ of radius $\epsilon$ centered about $g(x) = 0$. Since $\epsilon$ was chosen to be
+    arbitrary, there exists a point $f_{N_\epsilon}$ in every open ball $B_\epsilon(0)$ which is not equal to 0, and so 
+    $g(x) = 0$ is a limit point of $X \setminus A$ which is not in $A$ (since $g(x) = 0$ integrates to zero 
+    over any interval). Thus, $X \setminus A$ is not closed and so $A$ is not open.
+
+    \ \\
+    We now show that $A$ is closed. Let $p \in X$ be a limit point of $A$. Then since every open ball $B_r(p)$ of radius
+    $r$ centered about the point $p$ contains a point in $A$ which is not $p$, we may construct a sequence 
+    $\{ f_n \}$ in $X$ with each $f_n \in A$ by choosing a unique element $f_n$ from each $B_{1/n}(p)$ for each
+    $n \in \mathbb{N}$. Then $d(f_n, p) < \frac{1}{n}$ and hence for any $\epsilon > 0$, we may choose 
+    $N > \frac{1}{\epsilon}$ such that $d(f_n, p) < \epsilon$. Then $\lim\limits_{n \to \infty}{f_n} = p$, and so
+    $f_n$ converges to $p$ in the uniform metric (and hence converges uniformly); since the uniform limit of continuous 
+    functions is itself continuous, we have that $p \in C[a, b]$. Since $p$ is continuous on a closed interval, it is 
+    also Riemann integrable. Moreover, because $f_n$ converges uniformly to $p$, we have:
+    \begin{align*}
+       \int_a^b{p(x) \,dx} &= \int_a^b{\lim\limits_{n \to \infty}{f_n(x)} \,dx} \\
+                           &= \lim\limits_{n \to \infty}{\int_a^b{f_n(x) \,dx}} \\
+                           &= \lim\limits_{n \to \infty}{0} \\
+                           &= 0.
+    \end{align*}
+
+    Thus, $p \in A$, and since $p$ was chosen to be an arbitrary, $A$ contains all of its limit points and is therefore
+    closed.
+\end{proof}
+
+\pagebreak
+
+f.  $A = \{ (x, y) \in X \mid y = f(x) \}$ where $X = \mathbb{R}^2$, $f:\mathbb{R} \to \mathbb{R}$ is continuous, and 
+    $d$ is the Euclidean metric.
+
+\ \\
+\emph{Claim.} $A$ is closed and not open.
+
+\begin{proof}\ \\\\
+    We first show that $A$ is closed. Let $p = (x, y) \in \mathbb{R}^2$ be a limit point of $A$. Then since every open
+    ball $B_r(p)$ of radius $r > 0$ centered about $p$ contains a point in $A$ which is not $p$, we may construct a 
+    sequence $\{ p_n \}$ by choosing for each $n \in \mathbb{N}$ a unique element from $B_{1/n}(p)$. Then 
+    $d(p_n, p) < \frac{1}{n}$ and hence for any $\epsilon > 0$, we may choose $N > \frac{1}{\epsilon}$ such 
+    that $d(p_n, p) < \epsilon$. Then $\lim\limits_{n \to \infty}{p_n} = p$, and so $p_n$ converges to $p$ in
+    $(\mathbb{R}^2, d)$. Since convergence in $\mathbb{R}^2$ implies element-wise convergence in $\mathbb{R}$, we have 
+    for each $p_n = (x_n, f(x_n))$ that the sequence $\{x_n\}$ converges to $x \in \mathbb{R}$. Lastly, because $f$ is 
+    continuous, the sequence $\{ f(x_n) \}$ converges to $f(x)$. Since element-wise convergence in $\mathbb{R}$ implies 
+    convergence in $\mathbb{R}^2$, $\{p_n\}$ converges to $p = (x, f(x))$ and hence $p$ is an element in $A$. Since $p$ 
+    was chosen to be an arbitrary limit point of $A$, we have that $A$ contains all of its limit points and is therefore
+    closed.
+
+    To show that $A$ is not open, let $p = (x, f(x)) \in A$, and consider any open ball $B_r(p)$ of radius $r > 0$ 
+    centered about $p$. Let $q = (x, f(x) + \frac{r}{2}) \in B_r(p)$. Then in the Euclidean metric, we have that:
+    \begin{align*}
+        d(q, p) &= \left[(x - x)^2 + \left( f(x) + \frac{r}{2} - f(x) \right)^2\right]^\frac{1}{2} \\
+                &= \left[ \left(\frac{r}{2}\right)^2 \right]^\frac{1}{2} \\
+                &= \frac{r}{2} \\
+                &< r. \\
+    \end{align*}
+    
+    Hence $q \in B_r(p)$, and since $f(x) \neq f(x) + \frac{r}{2}$, we furthermore see $q$ is not in $A$. Thus, every 
+    open ball centered about $p$ contains a point not in $A$, and so no open ball about $p$ is contained in $A$. $A$ is
+    therefore not open.
+    \ \\
+\end{proof}
+
+\pagebreak

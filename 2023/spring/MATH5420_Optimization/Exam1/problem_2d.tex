@@ -1,0 +1,17 @@
+What is the stationary point when $A$ is nonsingular? What value does the minimizer take in this case?
+
+\begin{solution}
+  When $A$ is nonsingular, $A^T$ is also nonsingular (since the eigenvalues of a matrix and its transpose are 
+  identical and zero is not an eigenvalue of $A$). Moreover, $\left( A^T A \right)^{-1} = A^{-1} A^{-T}$, where $A^{-T}$
+  denotes the inverse transpose of $A$. Our stationary point is then
+
+  $$
+  x_* = \left(A^T A\right)^{-1} A^T b = A^{-1} A^{-T} A^T b = A^{-1} b.
+  $$
+
+  At $x_*$, the minimizer becomes
+
+  $$
+  f(x_0) = \lVert A x_* - b \rVert^2_2 = \lVert A A^{-1} b - b \rVert^2 = \lVert b - b \rVert^2 = 0.
+  $$
+\end{solution}

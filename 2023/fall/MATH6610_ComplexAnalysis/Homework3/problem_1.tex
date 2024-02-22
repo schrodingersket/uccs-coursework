@@ -1,0 +1,54 @@
+\textbf{Stein, Shakarchi 3.1}
+
+Using Euler's formula
+
+$$
+\sin{\pi z} = \frac{e^{i \pi z} - e^{-i \pi z}}{2i},
+$$
+
+show that the complex zeros of $f(z) = \sin{\pi z}$ are exactly at the integers, and that they are each of order $1$. 
+Calculate the residue of $g(z) = \sfrac{1}{f}$ at $z = k \in \mathbb{Z}$.
+
+\begin{solution}
+  We begin with the observation that $0 = \sin{\pi z}$ precisely when
+
+  $$
+  e^{i \pi z} = e^{-i \pi z}
+  $$
+
+  by Euler's formula; that is, when $e^{2 \pi i z } = 1$. This in turn occurs precisely when $z = k \pi$ for 
+  $k \in \mathbb{Z}$.\footnote{
+    The periodicity of $f(z) = e^{i z}$ was proved in class, and we use that result here.
+  } To compute the desired residue, we recall that the power series expansion of $\sin{\pi z}$ about $z_0 = \pi k$ is 
+  given by\footnote{
+    Technically, we are using a simple change of variables for $\sin{\zeta}$ here (e.g., $\zeta = \pi z$).
+  }
+
+  \begin{align*}
+    \sin{\pi z} &= \pi \cos(\pi k) (\pi z - \pi k) 
+                 + \frac{-\pi^3\cos(\pi k)}{3!}(\pi z - \pi k)^3 
+                 + \frac{\pi^5 \cos(\pi k)}{5!}(\pi z - \pi k)^5 +\cdots \\
+                &= \pi \cos(\pi k) (\pi z - \pi k) \left[
+                   1 
+                   + \frac{-\pi^2}{3!}(\pi z - \pi k)^2
+                   + \frac{\pi^4}{5!}(\pi z - \pi k)^4 +\cdots 
+                 \right] \\
+                &= (\pi z - \pi k) G(\pi z).
+  \end{align*}
+
+  where we have defined $G(\pi z) = (-1)^k \pi \left[1 + \frac{-\pi^2}{3!}(\pi z - \pi k)^2 + \cdots\right]$ 
+  which we observe is holomorphic near $k$ since a power series representation exists. Moreover, $G(\pi k) = \pi (-1)^k$ 
+  (since all $(\pi z - \pi k)^n$ terms vanish at $\pi z \to \pi k$), and by continuity of $G(\pi z)$ near 
+  $z = k$, there exists an open neighborhood about $z = k$ such that $G(\pi z)$ is non-vanishing for all $z$ in this
+  neighborhood. Hence $g(z) = \sfrac{1}{\sin{(\pi z)}}$ has a simple pole at $z = k$, and the residue is given by:
+
+  \begin{align*}
+    \text{res}_{\pi z = \pi k} {g(z)} 
+      &= \lim_{\pi z \to \pi k} \frac{\pi z - \pi k}{\sin{\pi z}} \\
+      &= \lim_{\pi z \to \pi k} \frac{1}{G(\pi z)} \\
+      &= \frac{1}{G(\pi k)} \\
+      &= \frac{(-1)^k}{\pi}.
+  \end{align*}
+
+  \ \\
+\end{solution}

@@ -1,0 +1,21 @@
+\textbf{Griva, Nash, Sofer 6.2.4}
+
+Prove that if $x$ is a feasible solution to the primal, $y$ is a feasible solution to the dual, and $c^Tx = b^Ty$, then
+$x$ and $y$ are optimal for their respective problems.
+
+\begin{solution}
+  Let $x$ be any feasible solution to the primal problem in standard form, $y$ be any feasible solution to the 
+  corresponding dual problem, and suppose that $c^Tx = b^Ty$. We denote the optimal feasible solutions to the primal and
+  dual problems by $\hat{x}$ and $\hat{y}$, respectively. Since the primal is a minimization problem, we have 
+  $c^T\hat{x} \le c^Tx$. Similarly, since the dual problem is a maximization problem, we have $b^T \hat{y} \ge b^T y$. 
+  We combine these inequalities with our assumption that $c^Tx = b^Ty$ to find:
+
+  $$
+  c^T \hat{x} \le c^T x = b^T y \le b^T \hat{y}.
+  $$
+
+  Moreover, because $\hat{x}$ and $\hat{y}$ are feasible solutions to their respective problems, weak duality guarantees
+  that $c^T \hat{x} \ge b^T \hat{y}$. Hence $c^T \hat{x} = c^T x = b^T y = b^T \hat{y}$, and so $x$ and $y$ are optimal
+  for their respective problems, as desired.
+  \ \\
+\end{solution}

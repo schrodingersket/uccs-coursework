@@ -1,0 +1,50 @@
+a) Let $(X, d)$ be a metric space. Prove that $X$ is sequentially compact if and only if both of the following 
+   conditions hold:
+
+   i) $X$ is a complete metric space. \\
+   ii) Every sequence $\{ x_n \} \subseteq X$ has a Cauchy subsequence.
+
+\begin{proof}\ \\\\
+   Suppose first that $X$ is sequentially compact, and let $\{x_n\} \subseteq X$ be a Cauchy sequence in $X$. Because
+   $X$ is sequentially compact, there exists a convergent subsequence $\{x_{n_k}\}$ which converges to some $x_0 \in X$.
+   Because Cauchy sequences converge to the same limit as convergent subsequences if such a convergent subsequence 
+   exists, $\{x_n\}$ also converges to $x_0 \in X$. Since $\{x_n\}$ was chosen to be an arbitrary Cauchy sequence in 
+   $X$, we see that $X$ is complete.
+   Moreover, because $X$ is sequentially compact, every sequence contains a convergent subsequence. Because convergent
+   sequences are also Cauchy, every sequence in $X$ has a Cauchy subsequence.
+   \ \\\\
+   Conversely, suppose that $X$ is a complete metric space and that every sequence in $X$ has a Cauchy
+   subsequence. Let $\{ x_n \} \subseteq X$ be a sequence in $X$. By hypothesis, $\{ x_n \}$ has a convergent 
+   subsequence $\{ x_{n_k} \}$, and since $X$ is complete, $\{ x_{n_k} \}$ converges to some $x_0 \in X$. Since 
+   $\{ x_n \}$ was chosen to be arbitrary, every sequence in $X$ has a convergent subsequence and so $X$ is sequentially
+   compact, as desired.
+   \ \\
+\end{proof}
+
+\pagebreak
+
+
+b) Let $(X, d)$ be a sequentially compact metric space, and suppose that $f:X \to \mathbb{R}$ is a continuous function
+   such that for each $x \in X$ there exists $x' \in X$ such that $|f(x')| \le \frac{1}{2}|f(x)|$.  Prove that there 
+   exists a point $x_0 \in X$ such that $f(x_0) = 0$.
+
+\begin{proof}\ \\\\
+   Observe that because $(X, d)$ is a sequentially compact metric space and $f$ is continuous, $f$ attains a maximum 
+   $M$ on $X$ such that $|f(x)| < M < \infty$ for all $x \in X$ by the Extreme Value Theorem. Hence $|f(x)|$ is finite 
+   for all $x \in X$.
+   
+   Let $x_1$ be a point in $x$. By hypothesis, there exists an $x_2 \in X$ such that \linebreak
+   $|f(x_2)| \le \frac{1}{2}|f(x_1)|$. We construct a sequence $\{ x_n \} \subseteq X$ inductively in this manner by 
+   defining each $x_n$ to be a point which satisfies $|f(x_n)| \le \frac{1}{2}|f(x_{n - 1})|$. Observe that 
+   $|f(x_n)| \le \frac{1}{2^n}|f(x_1)|$ for any $n \in \mathbb{N}$, and because $|f(x_1)|$ is finite, 
+   $\lim\limits_{n \to \infty}{f(x_n)} = 0$. 
+
+   Because $(X, d)$ is sequentially compact, $\{ x_n \}$ has a subsequence $\{ x_{n_k} \}$ which converges to some 
+   $x_0 \in X$. Moreover, because $\{f(x_n)\}$ forms a convergent sequence (to $0$) in its own right, $\{f(x_{n_k})\}$
+   defines a subsequence of a convergent subsequence. Because the subsequential limit of a convergent sequence is equal
+   to the limit of the convergent sequence, we see that $\lim\limits_{k \to \infty}{f(x_{n_k})} = 0$. Finally, by the 
+   continuity of $f$, we see that $f(x_0) = \lim\limits_{k \to \infty}{f(x_{n_k})} = 0$, as desired.
+   \ \\
+\end{proof}
+
+\pagebreak

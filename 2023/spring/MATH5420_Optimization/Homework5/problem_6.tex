@@ -1,0 +1,17 @@
+\textbf{Griva, Nash, Sofer 6.2.3}
+
+Prove that if the primal is unbounded, then the dual is infeasible, and vice versa.
+
+\begin{solution}
+  Suppose first that the primal problem (in standard form) is unbounded. For the sake of contradiction, suppose there
+  exists a feasible solution $y$ to the dual problem. By weak duality, $b^T y \le c^T x$ for all feasible points $x$ in 
+  the primal, and so $b^T y$ is a lower bound for the primal problem. This contradicts our assumption that the primal 
+  (minimization) problem is unbounded, and so the dual is infeasible.
+
+  A similar argument holds for the converse: suppose that the dual of the primal (again in standard form) is unbounded 
+  and for the sake of contradiction, suppose there exists a feasible solution $x$ to the primal problem. By weak 
+  duality, $c^T x \ge b^T y$ for all feasible solutions $y$ to the dual, and so $c^T x$ is an upper bound for the dual 
+  problem.  This contradicts our assumption that the dual (maximization) problem is unbounded, and so the primal problem 
+  is infeasible.
+  \ \\
+\end{solution}

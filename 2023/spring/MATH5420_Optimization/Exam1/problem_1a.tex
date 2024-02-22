@@ -1,0 +1,33 @@
+Express the program in standard form.
+
+\begin{solution}
+  Since $b \ge 0$, we need only introduce slack variables $x_4$ and $x_5$ to each of the first two constraints to 
+  enforce equality, which yields:
+
+  \begin{mini*}
+    {}{z = -6x_1 -14x_2 - 13x_3}{}{}
+    \addConstraint{x_1 + 4x_2 + 2x_3 + x_4}{= 48}
+    \addConstraint{x_1 + 2x_2 + 4x_3 + x_5}{= 60}
+    \addConstraint{x_1, x_2, x_3, x_4, x_5}{\geq 0}.
+  \end{mini*}
+
+  which in matrix form becomes:
+
+
+  \begin{mini*}
+    {}{z = c^T x}{}{}
+    \addConstraint{A x }{= b}
+  \end{mini*}
+
+  where 
+  $$
+  A = \begin{pmatrix}
+    1 & 4 & 2 & 1 & 0 \\
+    1 & 2 & 4 & 0 & 1
+  \end{pmatrix}, \quad c = \begin{pmatrix} 
+    -6 & -14 & -13 & 0 & 0 
+  \end{pmatrix}^T, \quad b = \begin{pmatrix}
+     48 & 60 
+  \end{pmatrix}^T.
+  $$
+\end{solution}

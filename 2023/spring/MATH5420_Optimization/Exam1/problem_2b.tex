@@ -1,0 +1,19 @@
+Find the gradient and Hessian of the objective function in part (a).
+
+\begin{solution}
+  Let $f = r^2 = \sum\limits_{i=1}^m\left[ \sum\limits_{j=1}^n A_{ij} x_j - b_i \right]^2$ so that
+  
+  \begin{align*}
+  \nabla f &= \left(\frac{\partial f}{\partial x_1}, \cdots,  \frac{\partial f}{\partial x_n} \right) \\
+           &= \left(2 \sum\limits_{i=1}^m \left( \sum\limits_{j=1}^n A_{ij} x_j - b_i \right) \cdot A_{i1}, \cdots, 2 \sum\limits_{i=1}^m \left( \sum\limits_{j=1}^n A_{ij} x_j - b_i \right) \cdot A_{in} \right) \\
+           &= 2 (Ax - b)^T A \\
+           &= 2 A^T (Ax - b)
+  \end{align*}
+
+  and hence
+
+  $$
+  \nabla^2 f = 2 A^T A.
+  $$
+  \ \\
+\end{solution}

@@ -1,0 +1,125 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[bottom]{footmisc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{upref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{subcaption}
+
+\setlength{\textwidth}{6.4in}
+\setlength{\textheight}{9.5in}
+\setlength{\topmargin}{-1in}
+\addtolength{\headheight}{0.0675in}
+\setlength{\oddsidemargin}{0.2in}
+\setlength{\evensidemargin}{0.2in}
+
+\begin{document}
+
+    \title{
+        Methods of Applied Mathematics: A Course Reflection\\
+    }
+    \author{%
+        Thompson, J.
+    }
+    \date{\today}
+    \maketitle
+
+    We began the course by deriving the 2D polar form of the Laplace operator, starting with the Cartesian form and 
+    making extensive use of the chain rule. This gave us the following forms of the Laplace operator:
+
+    $$
+    \Delta u = u_{xx} + u_{yy} = u_{rr} + \frac{1}{r} u_{r} + \frac{1}{r^2} u_{\theta\theta}.
+    $$
+
+    \section{Heat Equation}\label{sec:heat-equation}
+    We quickly moved into the physical realm by considering heat flow through a uniform cylindrical rod. By making use
+    of conservation laws for energy along with Gauss' law (also known as the divergence theorem), we arrived at the 
+    one-dimensional heat equation, which is a classical example of a parabolic partial differential equation (PDE):
+
+    $$
+    u_{t} = \frac{k}{c \rho} u_{xx}
+    $$
+
+    \noindent where $u$ describes the temperature distribution in time, $k$ is the thermal conductivity of the material,
+    $c$ is the specific heat capacity, and $\rho$ the material's density. We assumed that $\frac{k}{c \rho}$ is 
+    constant, and in doing so found that we could utilize separation of variables by assuming a product solution of the
+    form $u(x, t) = \phi(x) G(t)$ to find explicit solutions to the equation. We first examined steady-state solutions
+    by letting $u_t = 0$ and solving the resulting system; typically, we'd find that steady state solutions are simply 
+    linear functions. After that, we solved this equation with Dirichlet and Neumann boundary conditions; in the former
+    case, temperature is prescribed along subregions of the domain boundary. In the latter case, the spatial derivative
+    (that is, the rate of temperature flow) is prescribed along subregions of the domain boundary. We found in this case
+    that our solutions typically exhibited damped oscillatory behavior by decaying toward the steady state solution over 
+    time. In particular, separation of variables resulted in spatial ODE (the eigenvalue problem) and a temporal ODE; 
+    the temperal ODE yielded an exponentially decaying term, and solutions to the spatial ODE gave rise to the 
+    sinusoidal behavior described. As a result, we found that we'd need to determine valid eigenvalues along the way 
+    (those which wouldn't lead to trivial solutions) as well as how to compute solution coefficients.
+    
+    \section{Fourier Series}\label{sec:fourier series}
+    Computation of these solution coefficients gave rise to discussion regarding Fourier Series 
+    (and corresponding convergence statements), wherein we discovered that arbitrary piecewise continuous functions may 
+    be represented as linear combinations of the Schauder basis $\{\sin{(kx)}, \cos{(kx)} \}_{k \in \mathbb{Z}}$. By
+    considering solutions to the heat equation as Fourier Series, we found that we could compute Fourier coefficients
+    for solutions for a given function $f(x)$ (typically our initial condition as we solved the spatial ODE) by taking 
+    advantage of the orthogonality of sines and cosines to derive explicit coefficient formulas:
+
+    \begin{align*}
+        f(x) &\sim a_0 \sum\limits_{k=1}^{\infty}{a_k \cos{\lambda x} + b_k \sin{\lambda x}} \\
+        a_0 &= \frac{1}{2L} \int_{-L}^{L}{f(x)\; dx} \\
+        a_n &= \frac{1}{L} \int_{-L}^{L}{f(x) \sin{\lambda x}\; dx} \\
+        b_n &= \frac{1}{L} \int_{-L}^{L}{f(x) \cos{\lambda x}\; dx}
+    \end{align*}
+
+    For a domain $x \in [0, L]$, we found that these eigenvalues are given by $\lambda_n = \frac{n \pi}{L}$.
+
+    \section{Laplace Equation}\label{sec:laplace-equation}
+    With Fourier Series in hand, we directed our attention toward the 2D heat equation:
+
+    $$
+    u_t = \frac{k}{c \rho} \Delta u
+    $$
+
+    By considering only steady-state solutions to this equation, we arrived at Laplace's equation, a standard elliptic
+    PDE:
+
+    $$
+    \Delta u = 0
+    $$
+
+    We solved this over rectangular and circular (and therefore elliptic, by way of appropriate variable 
+    transformations) domains via separation of variables. We found that, in general, solutions in one spatial variable
+    were periodic and that solutions in the other spatial variable must be exponential which we further learned is 
+    generally true of harmonic equations.
+
+    \section{Wave Equation}\label{sec:wave-equation}
+    We next gave the heat equation a cold shoulder by considering a vibrating string. By analyzing the string's 
+    displacement $u$ in terms of forces applied to an infinitesimal bit of string, we arrived at the classical 1D wave 
+    equation which is perhaps the most canonical example of a hyperbolic PDE:
+
+    $$
+    u_{tt} = c^2 u_{xx}
+    $$
+
+    \noindent where $c$ is the wave velocity and is given by $c^2 = \frac{T}{\rho}$, where $T$ is the tension force 
+    exerted on the string and $\rho$ is the linear density of the string. Separation of variables yielded the following
+    solution to the wave equation:
+
+    $$
+    u(x, t) = \sum\limits_{k=1}^{\infty}{\sin{\left(\frac{k \pi x}{L}\right)} \left[ \alpha_k \cos{\left( \frac{c k \pi t}{L}\right)} + \beta_k \sin{\left( \frac{c k \pi t}{L}\right)}\right]}
+    $$
+
+    \noindent where the $\alpha_k$ term encodes contribution from the initial string displacement $u(x, 0) = f(x)$ and 
+    $\beta_k$ encodes the solution contribution from the initial string velocity $u_t(x, 0) = g(x)$. After this, we 
+    learned D'Alembert's delightful alternative analytic formulation of this solution, which is given by:
+
+    $$
+    u(x, t) = \frac{1}{2} \left[f(x - ct) + f(x + ct) \right] + \frac{1}{2c} \int_{x - ct}^{x + ct}{g(s)\; ds}.
+    $$
+
+    \ \\
+    ...which brings us up to speed to where we are today.
+\end{document}

@@ -1,0 +1,20 @@
+Suppose that the function is minimized starting from $x_0 = (0, -2)^T$. Verify that $p_0 = (0, 1)^T$ is a direction of 
+descent.
+
+\begin{solution}
+    We first observe that $f(x_0) = f(0, -2) = 4$. We move from $x_0$ in the direction of $p_0$ with step size 
+    $\alpha = 1$ to find:
+
+    $$
+    f(x_0 + \alpha p_0) = f(0, -1) = 1.
+    $$
+
+    Hence
+
+    $$
+    f(x_0 + \alpha p_0) = 1 < 4 = f(x_0)
+    $$
+
+    and so $p_0$ is a direction of descent.
+    \ \\
+\end{solution}

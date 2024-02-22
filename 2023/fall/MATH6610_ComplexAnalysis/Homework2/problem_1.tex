@@ -1,0 +1,98 @@
+\textbf{Stein, Shakarchi 2.1}
+
+Prove that 
+
+$$
+\int_{0}^{\infty}{\sin{\left( x^2 \right)} \; dx} = \int_{0}^{\infty}{\cos{\left( x^2 \right)} \; dx} 
+                                                  = \frac{\sqrt{2\pi}}{4}.
+$$
+
+\begin{solution}
+    We integrate the (entire) function $f = e^{-z^2}$ over the sector of radius $R$ and angle $\omega = \frac{\pi}{4}$
+    as in Figure \ref{fig:problem_1}. We split this integral into three components; the first component 
+    ($\gamma_1$) is the integral along the real axis from $0$ to $R$, the second component ($\gamma_2$) is the integral 
+    along the arc, and the third ($\gamma_3$) is the integral from the end of the arc back to the origin. 
+ 
+    We parametrize these integrals by $z = x$, $z = Re^{i\varphi}$, and $z = t e^{\frac{i \pi}{4}}$, respectively. With 
+    these parametrizations (along with an application of Cauchy's Integral theorem, since $f = e^{-Az}$ is entire), we 
+    obtain
+
+    $$
+    0 = \int_{\gamma} {e^{-z^2}} \; dz = \int_{0}^{R} {e^{-x^2}} \; dx + \int_{0}^{\omega} {e^{-R^2 e^{2 i\varphi}} \; iRe^{i\varphi}} \; d\varphi + \int_{R}^{0} {e^{-t^2 e^{2 i\omega}} \, e^{i\omega}} \; dt
+    $$
+
+    For the second integral, we have\footnote{
+        We observe that 
+        $\cos{(2\varphi)} \ge \frac{4}{\pi} \left( \frac{\pi}{4} - \varphi \right) = 1 - \frac{4\varphi}{\pi} \ge 0$ for 
+        $\varphi \in \left[0, \frac{\pi}{4}\right]$.
+    }
+
+    \begin{align*}
+        \left| \int_0^{\sfrac{\pi}{4}} {e^{-R^2 e^{2 i \varphi}} \; i R e^{i \varphi}} \; d\varphi \right|
+        &\le R \int_0^{\sfrac{\pi}{4}} {\left| e^{-R^2 e^{2 i \varphi}} \; d\varphi \right|} \\
+        &=   R \int_0^{\sfrac{\pi}{4}} {\left| e^{-R^2 \cos{(2 \varphi)}} \, e^{-i R^2 \sin{(2 \varphi)}} \; d\varphi \right|} \\
+        &=   R \int_0^{\sfrac{\pi}{4}} {\left| e^{-R^2 \cos{(2 \varphi)}} \; d\varphi \right|} \\
+        &\le R \int_0^{\sfrac{\pi}{4}} {\left| e^{-R^2 \left(1 - \frac{4 \varphi}{\pi}\right)} \; d\varphi \right|} \\
+        &=   R e^{-R^2} \int_0^{\sfrac{\pi}{4}} {\left| \, e^{\frac{4 R^2}{\pi} \varphi} \; d\varphi \right|} \\
+        &=   R e^{-R^2} \left( \frac{\pi}{4 R^2} \right) e^{\frac{4 R^2 \varphi}{\pi}} \bigg|_0^{\sfrac{\pi}{4}} \\
+        &=   R e^{-R^2} \left( \frac{\pi}{4 R^2} \right) \left(e^{R^2} - 1 \right) \\
+        &=   \frac{\pi}{4 R} - \frac{\pi}{4 R} e^{-R^2} \\
+    \end{align*}
+
+    which vanishes in the limit as $R \to \infty$. We therefore conclude that the second integral evaluates to zero. 
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=0.4\textwidth]{problem_3.png}
+        \caption{Integration over sector of radius $R$ and angle $\omega = \frac{\pi}{4}$.}
+        \label{fig:problem_1}
+    \end{figure}
+
+    In the limit at $R \to \infty$, the first of these integrals becomes:\footnote{
+        Since we have $\int_{-\infty}^{\infty} e^{-x^2} \; dx = \sqrt{\pi}$, we conclude 
+        $\int_{0}^{\infty} e^{-x^2} \; dx = \frac{\sqrt{\pi}}{2}$ by symmetry of the integrand since $e^{-x^2}$ is an 
+        even function.
+    }
+
+    $$
+    \lim_{R \to \infty} \int_{0}^{R} {e^{-z^2}} \; dz = \int_{0}^{\infty} {e^{-x^2}} \; dx = \frac{\sqrt{\pi}}{2}.
+    $$
+
+    Lastly, we consider the third integral. With our parametrization from above, we have
+
+    $$
+        \int_R^0 {e^{-t^2 e^{\frac{i \pi}{2}}}} e^{\frac{i \pi}{4}} \; dt 
+        = \left(\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right) \int_R^0 {e^{-i t^2}} \; dt 
+        = -\left(\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right) \int_0^R {e^{-i t^2}} \; dt 
+    $$
+
+    In the limit as $R \to \infty$, we find (upon utilizing the earlier results of applying Cauchy's Integral Formula 
+    along the semicircular arc)
+
+    $$
+    \left(\frac{\sqrt{2}}{2} + i \frac{\sqrt{2}}{2} \right) \int_0^{\infty} {\cos{t^2} - i \sin{t^2} \; dt}
+    = \int_{0}^{\infty} {e^{-x^2}} \; dx 
+    = \frac{\sqrt{\pi}}{2}
+    $$
+
+    Equating imaginary parts yields
+
+    $$
+    \frac{\sqrt{2}}{2} \int_0^{\infty} {\cos{t^2} \; dt} - \frac{\sqrt{2}}{2} \int_0^{\infty} {\sin{t^2} \; dt} = 0
+    $$
+
+    so that $\int_0^{\infty} {\cos{t^2} \; dt} = \int_0^{\infty} {\sin{t^2} \; dt}$. Equating real parts yields
+
+    $$
+    \frac{\sqrt{2}}{2} \int_0^{\infty} {\cos{t^2} \; dt} + \frac{\sqrt{2}}{2} \int_0^{\infty} {\sin{t^2} \; dt} = \frac{\sqrt{\pi}}{2}
+    $$
+
+    so that 
+    $
+    \int_{0}^{\infty}{\sin{\left( x^2 \right)} \; dx} 
+    = \int_{0}^{\infty}{\cos{\left( x^2 \right)} \; dx} 
+    = \frac{\sqrt{\pi}}{2 \sqrt{2}}
+    = \frac{\sqrt{2 \pi}}{4}
+    $, as desired.
+    \ \\
+\end{solution}

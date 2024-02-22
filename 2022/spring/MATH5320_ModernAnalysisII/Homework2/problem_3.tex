@@ -1,0 +1,46 @@
+Let $X$ be the space of all bounded real sequences and let $d$ be the metric
+defined by $d(\textbf{x}, \textbf{y}) = \sup\limits_{n \ge 1}{|x_n - y_n|}$
+for $\textbf{x}, \textbf{y} \in X$. Prove that every Cauchy sequence 
+$\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$ of bounded real sequences converges to some $\textbf{x} \in X$.
+
+\begin{proof}\ \\\\
+ Let $\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$ be a Cauchy sequence of bounded real sequences so that
+ $\textbf{x}^{(k)} \in X$ for every $k \in \mathbb{N}$, and let $x_i^{(k)}$ represent the $i^{th}$ element of
+ the $k^{th}$ sequence in $\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$. Then for any fixed $\epsilon > 0$, there exists some 
+ $N \in \mathbb{N}$ such that \linebreak
+ $\sup\limits_{i \in \mathbb{N}}{\{|x_i^{(m)} - x_i^{(n)}|\}} = d(\textbf{x}^{(m)}, \textbf{x}^{(n)}) < \frac{\epsilon}{2}$
+ whenever $m, n > N$. In particular, for any fixed $i \in \mathbb{N}$ and $m, n > N$, observe that
+ $|x_i^{(m)} - x_i^{(n)}| < \frac{\epsilon}{2} < \epsilon$ and so the real sequence
+ $\{x_i^{(k)}\}_{k=1}^{\infty}$ is Cauchy. Hence $\{x_i^{(k)}\}_{k=1}^{\infty}$ converges to some $x_i$ by the 
+ completeness of $\mathbb{R}$. We define 
+ $\textbf{x} \coloneqq \{x_i \vert x_i=\lim\limits_{k \to \infty}{x_i^{(k)}}\}_{i=1}^{\infty}$ and observe that
+ $\{\textbf{x}^{(i)}\}_{i=1}^{\infty}$ converges pointwise to the real sequence $\textbf{x}$.
+ 
+ We now show that $\textbf{x}$ is bounded and hence that $\textbf{x} \in X$. Let $\epsilon > 0$. Then because 
+ $\{x_i^{(k)}\}_{k=1}^{\infty}$ is Cauchy, there exists some $K$ such that 
+ $\sup\limits_{i \in \mathbb{N}}{\{|x_i^{(n)} - x_i^{(m)}|\}} < \frac{\epsilon}{2}$ whenever $m, n > K$. Fixing $m$ and
+ letting $n \to \infty$ yields that $\sup\limits_{i \in \mathbb{N}}{\{|x_i - x_i^{(m)}|\}} \le \frac{\epsilon}{2}$. 
+ Observe that $x_i^{(m)}$ is bounded by some $B_m > 0 \in \mathbb{R}$. Then by the reverse triangle inequality for the
+ usual metric on $\mathbb{R}$, we have for all $i \in \mathbb{N}$ that:
+
+ \begin{align*}
+   \sup\limits_{i \in \mathbb{N}}{\{|x_i|\}} - B_m &\le \sup\limits_{i \in \mathbb{N}}{\{|x_i| - |x_i^{(m)}|\}} \\
+                                                   &\le \sup\limits_{i \in \mathbb{N}}{\{|x_i - x_i^{(m)}|\}} \\
+                                                   &\le \frac{\epsilon}{2}.
+ \end{align*}
+
+ In particular, if we let $\epsilon = 1$, we have that 
+ $\sup\limits_{i \in \mathbb{N}}{\{|x_i|\}} \le B_m + \frac{1}{2}$, and so $\textbf{x}$ is a bounded real sequence and 
+ thus $\textbf{x} \in X$. Observe that the following holds for arbitrary $\epsilon > 0$ from above:
+ \begin{align*}
+   d(\textbf{x}, \textbf{x}^{(m)}) &= \sup\limits_{i \in \mathbb{N}}{\{|x_i| - |x_i^{(m)}|\}}  \\
+                                   &\le \frac{\epsilon}{2} \\
+                                   &< \epsilon.
+ \end{align*}
+
+ Hence $\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$ to $\textbf{x}$ in $(X, d)$ and since $\{\textbf{x}^{(k)}\}_{k=1}^{\infty}$
+ was chosen to be arbitrary, $(X, d)$ is complete.
+ \\
+\end{proof}
+
+\pagebreak

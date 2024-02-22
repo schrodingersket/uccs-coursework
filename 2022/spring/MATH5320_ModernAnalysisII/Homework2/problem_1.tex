@@ -1,0 +1,194 @@
+Determine whether each of the following pairs $(X, d)$ define a metric space.
+
+a.  $X = \mathbb{R}, d(x, y) = \sqrt{|x - y|}$ for $x, y \in X$. \ \\
+
+    We first prove the following lemma:
+
+    \emph{Lemma.} If $a, b$ are non-negative numbers in  $\mathbb{R}$, then $\sqrt{a} + \sqrt{b} \ge \sqrt{a + b}$.
+
+    \begin{proof}\ \\\\
+        Let $a,b$ be non-negative numbers in $\mathbb{R}$. Then the following inequality holds:
+
+        \begin{align*}
+            (\sqrt{a} + \sqrt{b})^2 &= (\sqrt{a})^2 + (\sqrt{b})^2 + \sqrt{ab} \\
+                                    &= a + b + \sqrt{ab} \\
+                                    &\ge a + b.
+        \end{align*}
+
+        Taking the square root of both sides\footnote{
+            Because $f(x) = \sqrt{x}$ is a monotonically increasing function and because the quantities on both sides of
+            the inequality are positive, the inequality is preserved when taking the square root.
+        } yields the desired inequality.
+    \end{proof}
+
+    We are now ready to prove the following claim:\ \\
+
+    \emph{Claim.} $d: X \times X \to \mathbb{R}$ defines a metric on $X$.
+
+    \begin{proof}\ \\\\
+        Let $x, y, z \in \mathbb{R}$, and observe that because $d$ is the square root of an absolute value, it defines a
+        non-negative real-valued function. Moreover, since $|x - y| =  |-(y - x)| = |y - x|$ for all 
+        $x, y \in \mathbb{R}$, we have that $d(x, y) = d(y, x)$ and $d$ is therefore transitive.
+
+        To show that $d(x, y) = 0$ if and only if $x = y$, we first let $x = y$ and observe that 
+        $d(x, y) = \sqrt{|x - y|} = \sqrt{|x - x|} = 0$. Now suppose $d(x, y) = 0$. Then $0 = \sqrt{|x - y|}$, and hence
+        $|x - y| = 0$. We therefore have that $x - y = 0$ and $-(x - y) = 0$, and so
+        $x = y$, as desired. 
+
+        To prove that the triangle inequality holds for $d$, we observe by the above lemma that:
+        
+        \begin{align*}
+            d(x, z) + d(z, y) &= \sqrt{|x - z|} + \sqrt{|z - y|} \\
+                              &\ge \sqrt{|x - z| + |z - y|} \\
+                              &\ge \sqrt{|x - z + z - y|} \\
+                              &= \sqrt{|x - y|} \\
+                              &= d(x, y).
+        \end{align*}
+    \end{proof}
+
+    \pagebreak
+
+b.  $X = \mathbb{R}, d(x, y) = |x| + |x - y| + |y|$ when $x \neq y$, and 
+    $d(x, y) = 0$ when $x = y$ for $x, y \in X$. \ \\
+
+    \emph{Claim.} $d: X \times X \to \mathbb{R}$ defines a metric on $X$.
+    \ \\
+
+    \begin{proof}\ \\\\
+        Let $x, y, z \in \mathbb{R}$ and observe that since $d$ is the sum of absolute values in $\mathbb{R}$, it is a
+        non-negative real-valued function. We first show that $d$ is transitive:
+
+        \begin{align*}
+            d(x, y) &= |x| + |x - y| + |y| \\
+                    &= |y| + |-(y - x)| + |x| \\
+                    &= |y| + |y - x| + |x| \\
+                    &= d(y, x).
+        \end{align*}
+
+        To show that $d(x, y) = 0$ if and only if $x = y$, we need only show that $d(x, y) = 0$ implies that
+        $x = y$, as the reverse direction is true by the definition of $d$. Suppose that $d(x, y) = 0$ for 
+        some $x, y \in \mathbb{R}$. Then $|x| + |x - y| + |y| = 0$ and in particular, $|x - y| = -(|x| + |y|)$.
+        Observe that the expression on the left is non-negative and the expression on the right is
+        non-positive; hence because the only intersection point of non-negative and non-positive numbers is 0, we
+        see that $|x - y| = -(|x| + |y|) = 0$. In particular, $|x - y| = 0$, and by an argument similar to that
+        in (a), we have that $x = y$, as desired.
+
+        Lastly, we show that the triangle inequality holds for $d$:
+
+        \begin{align*}
+            d(x, z) + d(z, y) &= |x| + |z| + |x - z| + |z| + |y| + |z - y| \\
+                              &= |x| + |y| + 2|z| + (|x - z| + |z - y|) \\
+                              &\ge |x| + |y| + (|x - z| + |z - y|) \\
+                              &\ge |x| + |y| + |x - z + z - y| \\
+                              &= |x| + |y| + |x - y| \\
+                              &= d(x, y).
+        \end{align*}
+    \end{proof}
+
+    \pagebreak
+
+c.  $X$ is the space of all Riemann integrable functions on $[a, b]$, and 
+    $d(f, g)$ is the function defined by 
+    $d(f, g) = \int_a^b{|f(x) - g(x)|dx}$ for $f, g \in X$. \ \\
+
+    \emph{Claim.} $d: X \times X \to \mathbb{R}$ is not a metric on $X$.
+    \ \\
+
+    \begin{proof}\ \\\\
+        To show that $d$ is not a metric on $X$, we show that $d$ violates the metric axiom which requires
+        that $f = g$ whenever $d(f, g) = 0$. In particular, let $g:[a, b] \to \mathbb{R}$ be the function defined
+        by $g(x) = 0, x \in [a, b]$, and let $f:[a, b] \to \mathbb{R}$ be defined thus:
+
+        \begin{align*}
+            f(x) = \begin{cases}
+                0, x \in [a, b) \\
+                1, x = b \\
+            \end{cases}
+        \end{align*}
+
+        Let $P_n$ be an equidistant partition of $[a, b]$ into $n$ intervals, and observe that the infimum of $f$ over
+        any neighborhood $B_{\epsilon}(b)$ centered about $b$ is equal to zero. Then because \linebreak
+        $f:[a, b - \epsilon] \to \mathbb{R}$ is identically zero, we see have that the Lower Darboux sum $L(f, P)$
+        for any partition is equal to 0 and in particular $L(f, P_n) = 0$. For any particular interval $k$ of $P_n$, let 
+        $M_k \coloneqq \sup\limits_{x \in [x_{k-1}, x_{k}]}{\{f(x)\}}$. Because $f$ is identically zero for every 
+        interval save for the last (in which $M_n = \sup\limits_{x \in [x_{n-1}, b]}{\{f(x)\}} = 1$), we have that 
+        $M_k = 0, 1 \le i < n$ and $M_n = 1$. The Upper Darboux sum for $P_n$ is thus given by:
+
+        \begin{align*}
+            U(f, P_n) &= \sum\limits_{k=1}^{n}{M_k \cdot \frac{(b - a)}{n}} \\
+                      &= M_n \cdot \frac{(b - a)}{n} + \sum\limits_{k=1}^{n-1}{0 \cdot \frac{(b - a)}{n}} \\
+                      &= \frac{(b - a)}{n}.
+        \end{align*}
+
+        Hence $\lim\limits_{n \to \infty}{L(f, P_n)} = \lim\limits_{n \to \infty}{U(f, P_n)} = 0$, and so because $f$
+        is bounded (by 1), we have by the Archimedes-Riemann Theorem that $f$ is integrable and in 
+        particular that $\int_a^b{f(x) \hspace{1mm} dx} = 0$.
+        
+        \pagebreak
+        Observe that $f - g = f - 0 = f$. Moreover, because $f$ and $g$ are non-negative functions with $f \ge g$ for 
+        all $x \in [a, b]$, we see that $f - g = |f - g|$. In particular, we have:
+        
+        \begin{align*}
+            d(f, g) &= \int_a^b{|f(x) - g(x)|dx} \\
+                    &= \int_a^b{f(x) - g(x) \hspace{1mm} dx} \\
+                    &= \int_a^b{f(x) \hspace{1mm} dx} \\
+                    &= 0.
+        \end{align*}
+
+        We have thus shown that there exist $f, g \in X$ such that $d(f, g) = 0$ but $f \neq g$, and hence $d$ does not
+        define a metric on $X$.
+            
+    \end{proof}
+
+    \pagebreak
+
+d.  Let $(U, d_U)$ and $(V, d_V)$ be metric spaces, let $X = U \times V$
+    be the set of ordered pairs $(u, v)$ with $u \in U$ and $v \in V$, and
+    let $d\left((u_1, v_1), (u_2, v_2))\right)$ be the function defined by
+    $d\left((u_1, v_1), (u_2, v_2)\right) 
+     = \text{max}\left\{d_U(u_1, u_2), d_V(v_1, v_2)\right\}$. \ \\
+    
+    \emph{Claim.} $d:X \times X \to \mathbb{R}$ defines a metric on $X$.
+    \ \\
+
+    \begin{proof}\ \\\\
+        Let $u_1, u_2, u_3 \in U$ and $v_1, v_2, v_3 \in V$ and observe that because $d$ is the maximum of non-negative
+        real-valued functions, $d$ itself is also a non-negative real-valued function. We first show that $d$ is 
+        transitive\footnote{
+            Since $d_U$ and $d_V$ are metrics, they are themselves transitive.
+        }:
+
+        \begin{align*}
+            d((u_1, v_1), (u_2, v_2)) &= \max{\{d_U(u_1, u_2), d_V(v_1, v_2)\}} \\
+                                      &= \max{\{d_U(u_2, u_1), d_V(v_2, v_1)\}} \\
+                                      &= d((u_2, v_2), (u_1, v_1)).
+        \end{align*}
+
+        To show that $d((u_1, v_1), (u_2, v_2)) = 0$ if and only if $(u_1, v_1) = (u_2, v_2)$, we first let
+        $(u_1, v_1) = (u_2, v_2)$ and observe that because $d_U$ and $d_V$ satisfy the metric axioms\footnote{
+            In particular, that $d_U(u_1, u_2) = 0$ if and only if $u_1 = u_2$ and similar for $V$.
+        }, the following
+        is true:
+        
+        \begin{align*}
+            d((u_1, v_1), (u_2, v_2)) &= d((u_1, v_1), (u_1, v_1)) \\
+                                      &= \max{\{d_U(u_1, u_1), d_V(v_1, v_1)\}} \\
+                                      &= \max{\{0, 0\}} \\
+                                      &= 0.
+        \end{align*}
+
+        Now suppose $\max{\{d_U(u_1, u_2), d_V(v_1, v_2)\}} = d((u_1, v_1), (u_2, v_2)) = 0$. Then by definition of
+        maximum, $ d_U(u_1, u_2) \le 0$ and $d_V(v_1, v_2) \le 0$. Moreover, because $d_U$ and $d_V$ are metrics, we
+        have that $d_U(u_1, u_2) \ge 0$ for all $u_1, u_2 \in U$ and $d_V(v_1, v_2) \ge 0$ for all $v_1, v_2 \in V$.
+        Hence $d_U(u_1, u_2) = d_V(v_1, v_2) = 0$, and a third application of the metric axioms to $d_U$ and $d_V$
+        yields that $u_1 = u_2$ and $v_1 = v_2$. Hence $(u_1, v_1) = (u_2, v_2)$, as desired.
+
+        Lastly, observe that $d_U(u_1, u_3) + d_U(u_3, u_2) \ge d_U(u_1, u_2)$ and 
+        $d_V(v_1, v_3) + d_V(v_3, v_2) \ge d_V(v_1, v_2)$. Hence $d$ satisfies the triangle inequality:
+        \begin{align*}
+            d((u_1, v_1), (u_3, v_3)) + d((u_3, v_3), (u_2, u_2)) &= \max{\{d_U(u_1, u_3), d_V(v_1, v_3)\}} \\
+                                                                  &+ \max{\{d_U(u_3, u_2), d_V(v_3, v_2)\}} \\
+                                                                  &\ge \max {\{d_U(u_1, u_2), d_V(v_1, v_2)\}} \\
+                                                                  &= d((u_1, v_1), (u_2, v_2)).
+        \end{align*}
+    \end{proof}

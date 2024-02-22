@@ -1,0 +1,38 @@
+$|f|$ is constant.
+
+\begin{solution}
+    Since $f$ is holomorphic, the partial derivatives of $u$ and $v$ exist and are continuous. Since $|f|$ is constant,
+    $|f|^2 = u^2 + v^2$ is also constant. We differentiate both sides with respect to $x$ and apply the Cauchy-Riemann 
+    equations to find:
+
+    $$
+    0 = \frac{\partial}{\partial x}(u^2 + v^2) = 2u\frac{\partial u}{\partial x} + 2v\frac{\partial v}{\partial x} = 2u\frac{\partial u}{\partial x} - 2v\frac{\partial u}{\partial y}
+    $$
+
+    and similarly for $y$:
+
+    $$
+    0 = \frac{\partial}{\partial y}(u^2 + v^2) = 2u\frac{\partial u}{\partial y} + 2v\frac{\partial v}{\partial y} = 2u\frac{\partial u}{\partial y} + 2v\frac{\partial u}{\partial x}
+    $$
+
+    so that (after dividing by a factor of two) we have
+
+    $$
+    \begin{pmatrix*}
+        u & -v \\
+        v & u
+    \end{pmatrix*} \begin{pmatrix*}
+        u_x \\
+        u_y
+    \end{pmatrix*} = \begin{pmatrix*}
+        0 \\
+        0
+    \end{pmatrix*}.
+    $$
+
+    We note that the determinant of this matrix is $u^2 + v^2 = |f|^2 = C$ for some constant $C$. If $C = 0$, then 
+    $|f| = 0$ and $f$ vanishes identically (by positive definiteness of the modulus) on $\Omega$ and is therefore 
+    constant. Conversely, if $C \neq 0$ then the matrix is invertible and hence its null space is trivial. Hence 
+    $u_x = u_y = 0$ and $u$ is therefore constant. By (a), $f$ must also be constant.
+    \ \\
+\end{solution}

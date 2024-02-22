@@ -1,0 +1,49 @@
+\textbf{Stein, Shakarchi 2.6}
+
+Let $\Omega$ be an open subset of $\mathbb{C}$ and let $T \in \Omega$ be a triangle whose interior is also contained in 
+$\Omega$. Suppose that $f$ is a function which is holomorphic in $\Omega$ except possibly at a point $w$ inside $T$. 
+Prove that if $f$ is bounded near $w$, then
+
+$$
+\int_T f(z) \; dz = 0.
+$$
+
+\begin{solution}
+    We consider a circle $C_{\epsilon}$ of radius $\epsilon$ centered at $w$ contained in the triangle 
+    $T \subset \Omega$ which is small enough so that $f$ is bounded as in the hypothesis. From there, we consider two 
+    simple closed curves, $\gamma_1$ and $\gamma_2$ which are created by splitting $T$ by a line segment which connects 
+    one vertex of $T$ to the edge of $C_{\epsilon}$ and another line which connects the opposite edge of $C_{\epsilon}$ 
+    to the side adjacent to the chosen vertex (See Figure \ref{fig:problem_7}). 
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics*[width=0.7\textwidth]{problem_6.png}
+        \caption{Punctured Triangle}
+        \label{fig:problem_7}
+    \end{figure}
+    
+    Since $w$ is not included in the interior of $\gamma_1$ or $\gamma_2$, $f$ is holomorphic on the interior of both 
+    curves and hence we may apply Cauchy's Theorem to both curves to find
+
+    $$
+    \int_{\gamma_1} f(z) \; dz = 0 \int_{\gamma_2} f(z) \; dz = 0.
+    $$
+
+    We note that upon summing these two path integrals, the interior line segments cancel since they are traversed twice 
+    in opposite directions, and hence we are left with
+
+    $$
+    0 = \int_{\gamma_1} f(z) \; dz + \int_{\gamma_2} f(z) \; dz = \int_{T} f(z) \; dz + \int_{C_{\epsilon}} f(z) \; dz .
+    $$
+
+    so that $\int_{T} f(z) \; dz = -\int_{C_{\epsilon}} f(z) \; dz$. Since $C_{\epsilon}$ was chosen to be small enough
+    so that $f$ is bounded by some $M \in \mathbb{R}$ on $C_{\epsilon}$, we have
+    
+    $$
+    \left| \int_{C_{\epsilon}} f(z) \; dz \right| \leq \int_{C_{\epsilon}}\sup_{z \in C_{\epsilon}} |f(z)| \; |dz| = M 2 \pi \epsilon.
+    $$
+
+    Since this expression holds for all sufficiently small $\epsilon > 0$, we conclude
+    $\int_{C_{\epsilon}} f(z) \; dz = 0$ and hence $\int_{T} f(z) \; dz = 0$, as desired.
+    \ \\
+\end{solution}

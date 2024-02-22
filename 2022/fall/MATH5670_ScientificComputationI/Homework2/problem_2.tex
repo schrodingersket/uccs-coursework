@@ -1,0 +1,180 @@
+\textbf{LeVeque 2.2} 
+
+a) Determine the Green's functions for the two-point boundary value problem $u''(x) = f(x)$ on $0 < x < 1$ with a 
+   Neumann boundary condition at $x = 0$ and a Dirichlet condition at $x = 1$, i.e., find the function $G(x, \bar{x})$
+   which solves
+
+    $$
+        u''(x) = \delta(x - \bar{x}),\; u'(0) = 0,\; u(1) = 0
+    $$
+
+   and the functions $G_0(x)$ solving
+
+    $$
+        u''(x) = 0,\; u'(0) = 1,\; u(1) = 0
+    $$
+
+   and $G_1(x)$ solving
+
+    $$
+        u''(x) = 0,\; u'(0) = 0,\; u(1) = 1.
+    $$
+
+\begin{solution}\ \\\\
+    We first solve the system 
+    
+    $$
+        u''(x) = \delta(x - \bar{x}),\; u'(0) = 0,\; u(1) = 0.
+    $$
+
+    Since $u''(x) = \delta(x - \bar{x})$, we know that $u''(x) = 0$ everywhere except at $x = \bar{x}$. Hence our 
+    solution takes the form:
+
+    $$
+    u(x) = \begin{cases}
+        m_1 x + b_1, \; x \le \bar{x} \\
+        m_2 x + b_2, \; x \ge \bar{x}
+    \end{cases}.
+    $$
+
+
+    Our Neumann condition on the left (i.e., $0 = x \le \bar{x}$) yields:
+
+    $$
+    0 = u'(0) = m_1
+    $$
+    
+    and so $m_1 = 0$. Our Dirichlet condition at $x = 1$ (i.e., $1 = x \ge \bar{x}$) yields:
+
+    $$
+    0 = u(1) = m_2 + b_2.
+    $$
+
+    and hence $b_2 = -m_2$. Our system thus far is given by:
+
+    $$
+    u(x) = \begin{cases}
+        b_1, \; x \le \bar{x} \\
+        m_2 x - m_2, \; x \ge \bar{x}
+    \end{cases}.
+    $$
+   
+    \pagebreak
+
+    Since $u(x)$ must be continuous, we have that the limit of $u(x)$ from the left and right
+    at $x = \bar{x}$ must be equal, and hence:
+
+    $$
+    b_1 = m_2 \bar{x} - m_2.
+    $$
+
+    We solve for our final remaining unknown $m_2$ by integrating $u''(x) = \delta(x - \bar{x})$ over 
+    $x \in [\bar{x} - \epsilon, \bar{x} + \epsilon]$ for some $\epsilon > 0$:
+
+    \begin{align*}
+        1 &= \int\limits_{\bar{x} - \epsilon}^{\bar{x} + \epsilon}{\delta(x - \bar{x})\, dx} \\
+          &= \int\limits_{\bar{x} - \epsilon}^{\bar{x} + \epsilon}{u''(x)\, dx} \\
+          &= u'(\bar{x} + \epsilon) - u'(\bar{x} - \epsilon).
+    \end{align*}
+
+    Hence the change in slope at $x = \bar{x}$ must be equal to one, and so we have:
+
+    \begin{align*}
+        1 &= u'_+(\bar{x}) - u'_-(\bar{x}) \\
+          &= m_2 - 0 \\
+          &= m_2.
+    \end{align*}
+
+    Our Green's function for this boundary value problem is therefore given by:
+
+    $$
+    G(x; \bar{x}) = \begin{cases}
+        \bar{x} - 1,\; 0 \le x \le \bar{x} \\
+        x - 1,\; \bar{x} \le x \le 1 \\
+    \end{cases}.
+    $$
+
+    To find $G_0(x)$ and $G_1(x)$, we integrate both sides of $u''(x) = 0$ with respect to $x$ to find that both
+    functions are linear. We first calculate $G_0(x)$. Since $G_0'(0) = 1$ we see that the slope $m$ of $G_0$ is equal
+    to one. Our second initial condition at $G_0(1) = 0$ shows:
+    
+    $$
+    0 = u(1) = m(1) + b = 1 + b
+    $$
+
+    and hence $b = -1$. $G_0(x)$ is therefore given by:
+
+    $$
+    G_0(x) = x - 1.
+    $$
+
+    Similarly, since $G_1'(x) = 0$, we know $G_1(x)$ is a constant; by our second initial condition $G_1(1) = 1$, we 
+    know that $G_1(x)$ must be identically one:
+
+    $$
+    G_1(x) = 1.
+    $$
+\end{solution}
+
+\pagebreak
+b) Using this as guidance, find the general formulas for the elements of the inverse of the matrix in equation (2.54).
+   Write out the $5 \times 5$ matrices $A$ and $A^{-1}$ for the case $h = 0.25$.
+
+\begin{solution}\ \\\\
+    Let $B$ denote the $(m+2) \times (m+2)$ inverse of $A$ from (2.54). Elements in the interior columns 
+    (i.e., $1 \le i,j \le m$) are given by:
+
+    \begin{align*}
+    B_{ij} = hG(x_i;\; x_j) = \begin{cases}
+                                x_j - 1,\; 0 \le x_i \le x_j \\
+                                x_i - 1,\; x_j \le x_i \le 1 \\
+                            \end{cases}.
+    \end{align*}
+
+    Elements in the first column (i.e, $j = 0$) of $B$ are given by:
+
+    $$
+    B_{i0} = G_0(x_i) = x_i - 1.
+    $$
+
+    Similarly, the elements in the last column (i.e., $j = m + 1$) of $B$ are given by:
+
+    $$
+    B_{i,m+1} = G_1(x_i) = 1.
+    $$
+
+    We let $h = 0.25$ and $m = 3$. From the above, we may write our matrix $B = A^{-1}$ explicitly:
+
+
+    \begingroup
+    \renewcommand*{\arraystretch}{1.5}
+    $$
+        B =A^{-1} =
+        \begin{pmatrix}
+                      -1 & -\frac{3}{16} &  -\frac{1}{8} & -\frac{1}{16} & 1 \\
+            -\frac{3}{4} & -\frac{3}{16} &  -\frac{1}{8} & -\frac{1}{16} & 1 \\
+            -\frac{1}{2} &  -\frac{1}{8} &  -\frac{1}{8} & -\frac{1}{16} & 1 \\
+            -\frac{1}{4} & -\frac{1}{16} & -\frac{1}{16} & -\frac{1}{16} & 1 \\
+                       0 &             0 &             0 &             0 & 1 \\
+        \end{pmatrix}.
+    $$
+    \endgroup
+
+    From (2.54), $A$ is given by:\footnote{
+        See \texttt{problem\_2b.m} for calculation of $B$ and verification that its inverse is $A$ in MATLAB.
+    }
+
+    \begingroup
+    \renewcommand*{\arraystretch}{1.5}
+    $$
+        A =
+        \begin{pmatrix}
+            -4 &   4 &   0  &   0 &  0 \\
+            16 & -32 &  16  &   0 &  0 \\
+             0 &  16 & -32  &  16 &  0 \\
+             0 &   0 &  16  & -32 & 16 \\
+             0 &   0 &   0  &   0 &  1 \\
+        \end{pmatrix}.
+    $$
+    \endgroup
+\end{solution}

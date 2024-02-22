@@ -1,0 +1,22 @@
+\textbf{Trefethen 2.6}
+
+Let $\delta(k)$ be the Kronecker delta function. Derive the semidiscrete differential operator by calculating the 
+inverse semidiscrete Fourier transform of $i k \hat{\delta}(k)$.
+
+\begin{solution}
+  Let $\hat{w}(k) = i k \hat{\delta}(k) = i k h$ be the Fourier transform of the derivative of $\delta(k)$. Then the 
+  inverse discrete Fourier transform of $\hat{w}(k)$ at $x_j = jh$ over $K = [-\frac{\pi}{h}, \frac{\pi}{h}]$ is given 
+  by:
+
+  \begin{align*}
+    w_j &= \frac{1}{2\pi} \int_K e^{i k x_j} \hat{w}(k)\; dk  \\
+        &= \frac{i h}{2\pi} \int_K k e^{i k x_j}\; dk  \\
+        &= \frac{i h}{2\pi} \left(\frac{k}{i x_j} e^{i k x_j} - \left(\frac{1}{i x_j}\right)^2 e^{i k x_j} \right) \bigg\vert_{-\pi/h}^{\pi/h}  \\
+        &= \frac{1}{2 x_j} \left(e^{i \pi j} + e^{-i \pi j} \right) + \frac{ih}{2 \pi x_j^2}\left(e^{i \pi j} - e^{-i \pi j} \right) \\
+        &= \frac{1}{jh} \cos{(\pi j)} + \frac{ih}{2 \pi (jh)^2} \left(2 i \sin{(\pi j)} \right) \\
+        &= \frac{1}{jh} (-1)^j
+  \end{align*}
+
+  as desired.
+  \ \\
+\end{solution}

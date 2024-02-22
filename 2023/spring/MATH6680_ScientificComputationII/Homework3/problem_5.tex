@@ -1,0 +1,32 @@
+\textbf{Trefethen 14.1}
+
+Determine the first five eigenvalues of the problem
+
+$$
+u_{xxxx} + u_{xxx} = \lambda u_{xx}, \quad u(\pm 2) = u_x(\pm 2) = 0, \quad -2 < x < 2
+$$
+
+and plot the corresponding eigenvectors.
+
+\begin{solution}
+    The first five eigenvalues for this problem are given by the output of \texttt{problem\_5.m} in Figure 
+    \ref{fig:problem_5_eigenvalues}. Eigenvalues and eigenvectors are plotted in Figure \ref{fig:problem_5_eigenvectors}.
+
+    \begin{figure}[h]
+        \begin{verbatim}
+            lambda_1:        -3.52681967637 
+            lambda_2:        -4.44469125412 
+            lambda_3:        -10.82901850630 
+            lambda_4:        -14.44437157483 
+            lambda_5:        -23.15501978145
+        \end{verbatim}
+        \caption{Output of \texttt{problem\_5.m}}
+        \label{fig:problem_5_eigenvalues}
+    \end{figure}
+
+    \begin{figure}[h]
+        \includegraphics*[width=.90\textwidth]{problem_5.png}
+        \caption{Eigenvectors and eigenvalues}
+        \label{fig:problem_5_eigenvectors}
+    \end{figure}
+\end{solution}

@@ -1,0 +1,32 @@
+\textbf{Griva, Nash, Sofer 6.1.2}
+
+Find the dual of 
+
+\begin{mini*}
+  {}{z = -2x_1 + 4x_2 - 3x_3}{}{}
+  \addConstraint{9x_1 - 2x_2 - 8x_3}{= 5}
+  \addConstraint{3x_1 + 3x_2 + 3x_3}{= 7}
+  \addConstraint{7x_1 - 5x_2 + 2x_3}{= 9}
+  \addConstraint{x_1, x_2, x_3}{\ge 0}.
+\end{mini*}
+
+
+\begin{solution}
+  \ \\
+
+  Since the primal problem is a minimization problem, the dual is a maximization problem. Moreover, since all
+  constraints are equalities in the primal, each $y_i$ in the dual is unrestricted. Lastly, since each $x_i$ is 
+  consistent with the canonical form of the primal problem, all inequality constraints in the agree with the canonical 
+  dual problem.
+
+  More concretely, the dual of this program is given by:
+
+  \begin{maxi*}
+    {}{w = b^T y = 5y_1 + 7y_2 + 9y_3}{}{}
+    \addConstraint{A_1^T y = 9y_1 + 3y_2 + 7y_3}{\le -2 = c_1}
+    \addConstraint{A_2^T y = -2y_1 + 3y_2 - 5y_3}{\le  4 = c_2}
+    \addConstraint{A_3^T y = -8y_1 + 3y_2 + 2y_3}{\le -3 = c_3}
+    \addConstraint{y_1, y_2, y_3}{\quad \text{unrestricted}}.
+  \end{maxi*}
+  \ \\
+\end{solution}
