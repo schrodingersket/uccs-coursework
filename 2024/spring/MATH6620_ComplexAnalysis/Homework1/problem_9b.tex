@@ -8,5 +8,70 @@ $$
 where $\psi_{\alpha}(z) = \frac{\alpha - z}{1 - \conj{\alpha}z}$ (where in general, $\alpha \in \mathbb{C}$ and $|\alpha| < 1$).
 
 \begin{solution}
+  We proceed as in (a), letting $M_{\psi_{\alpha}}$ denote the matrix of the linear transformation $\psi_{\alpha}(z)$
+  which is given by
+
+  $$
+  M_{\psi_\alpha} = \begin{pmatrix}
+    -1            & \alpha \\
+    -\conj{\alpha} & 1
+  \end{pmatrix}
+  $$
+
+  Our desired transformation is given by:
+
+
+  \begin{align*}
+    M_{f^{-1}} M_{\psi_\alpha} M_f &= \begin{pmatrix}
+      -i & i \\
+       1 & 1
+    \end{pmatrix} \begin{pmatrix}
+      -1             & \alpha \\
+      -\conj{\alpha} & 1
+    \end{pmatrix} \begin{pmatrix}
+      -1 & i \\
+       1 & i
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      -i & i \\
+       1 & 1
+    \end{pmatrix} \begin{pmatrix}
+      1 + \alpha        & i(\alpha -1) \\
+      \conj{\alpha} + 1 & i(1 - \conj{\alpha})
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      i(\conj{\alpha} - \alpha)  & \alpha + \conj{\alpha} - 2 \\
+      \alpha + \conj{\alpha} + 2 & i(\alpha - \conj{\alpha})
+    \end{pmatrix} \\
+    &= 2 \begin{pmatrix}
+      \text{Im}(\alpha)     &  \text{Re}(\alpha) - 1 \\
+      \text{Re}(\alpha) + 1 & -\text{Im}(\alpha)
+    \end{pmatrix}.
+  \end{align*}
+
+  We note that the determinant of this matrix is given by 
+  $-\text{Im}^2(\alpha) - \text{Re}^2(\alpha) + 1 = 1 - |\alpha|^2$. We define
+  $K = \left(1 - |\alpha|^2\right)^{-\frac{1}{2}}$ and let $a = K \text{Im}(\alpha)$, $b = K(\text{Re}(\alpha) - 1)$,
+  $c = K(\text{Re}(\alpha) + 1)$, and $d = -K \text{Im}(\alpha)$; under these definitions, we obtain the following 
+  fractional linear transformation determined by the above matrix:
+
+  $$
+  \Phi_b = \frac{2 \text{Im}(\alpha)z + 2(\text{Re}(\alpha) - 1)}{2(\text{Re}(\alpha) + 1)z - 2\text{Im}(\alpha)}
+         = \frac{K \text{Im}(\alpha)z + K(\text{Re}(\alpha) - 1)}{K(\text{Re}(\alpha) + 1)z - K\text{Im}(\alpha)}
+         = \frac{az + b}{cz + d}
+  $$
+
+  where $ad - bc = 1$ by construction. We therefore conclude that $a, b, c,$ and $d$ are the desired real numbers and 
+  define
+
+  $$
+  M_{\Phi_b} = \begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix} = \begin{pmatrix}
+    K \text{Im}(\alpha) & K(\text{Re}(\alpha) - 1) \\
+    K(\text{Re}(\alpha) + 1) & -K \text{Im}(\alpha)
+  \end{pmatrix}.
+  $$
   \ \\
 \end{solution}

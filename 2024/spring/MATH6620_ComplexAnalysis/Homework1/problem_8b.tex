@@ -8,5 +8,54 @@ Prove that there exists a unique automorphism $\Phi : \mathbb{H} \to \mathbb{H}$
 $\Phi(x_j) = y_j$ for $j = 1, 2, 3$ and that the same conclusion holds if $y_3 < y_1 < y_2$ or $y_2 < y_3 < y_1$.
 
 \begin{solution}
+  We first show that $\Phi$ is unique. To this end, suppose $\Phi_1$ and $\Phi_2$ are two automorphisms (which by 
+  definition are invertible) of $\mathbb{H}$ such that $\Phi_1(x_j) = \Phi_2(x_j) = y_j$ for $j = 1, 2, 3$. Then for 
+  each $j$, we have
+
+  $$
+  \Phi_2^{-1} \circ \Phi_1(x_j) = \Phi_2^{-1} \left(\Phi_1(x_j)\right) = \Phi_2^{-1}(y_j) = x_j
+  $$
+
+  so that $\Phi_2^{-1} \circ \Phi_1$ fixes three distinct points on the real axis. By part (a), we conclude that 
+  $\Phi_2^{-1} \circ \Phi_1(z) = z$ for all $z \in \mathbb{C}$; applying $\Phi_2$ to both sides of the equation yields 
+  the desired result.
+
+  We now show that such a $\Phi$ exists. To this end, we define the fractional linear transformations
+  $\phi_x, \phi_y \in \text{GL}(2, \mathbb{R})$ as follows:
+
+  $$
+  \phi_x(z) = \frac{z - x_1}{z - x_3} \cdot \frac{x_2 - x_3}{x_2 - x_1} \quad \text{and} \quad \phi_y(z) = \frac{z - y_1}{z - y_3} \cdot \frac{y_2 - y_3}{y_2 - y_1}.
+  $$
+
+  and note that $\phi_x$ (resp. $\phi_y$) maps $x_1$ to $0$, $x_2$ to $1$, and $x_3$ to $\infty$ (resp. $y_1$ to $0$, 
+  $y_2$ to $1$, and $y_3$ to $\infty$). We then define $\Phi = \phi_y^{-1} \circ \phi_x$ and observe that for each $j$,
+  $\Phi(x_j) = \phi_y^{-1}(\phi_x(x_j)) = y_j$. If $\phi_x$ and $\phi_y$ are automorphisms of $\mathbb{H}$, we may 
+  evidently conclude that $\Phi: \mathbb{H} \to \mathbb{H}$ is also an automorphism of $\mathbb{H}$, from which it 
+  follows that $\Phi$ is the unique automorphism of $\mathbb{H}$ that satisfies the desired properties.
+
+  We show this to be true for $\phi_y$, since the proof for $\phi_x$ is identical. First (for brevity), we denote 
+  $\beta = \frac{y_2 - y_3}{y_2 - y_1}$, and observe that with $a = \beta, b = -\beta y_1, c = 1, d = -y_3$, we have
+
+  $$
+  ad - bc = -y_3 \beta + \beta x_1 = \beta(y_1 - y_3) = (y_1 - y_3) \cdot \frac{y_2 - y_3}{y_2 - y_1} > 0
+  $$
+
+  so that $\phi_y \in \text{PGL}(2, \mathbb{R})$. Next, we observe (see \textit{Stein, Shakarchi}, p. 222) that
+
+  $$
+  \text{Im}\left(\phi_y(z)\right) = \frac{(ad - bc)\text{Im}(z)}{|z - y_3|^2} > 0, \quad \text{whenever} \; z \in \mathbb{H}
+  $$
+
+  from which we conclude that $\phi_y$ maps $\mathbb{H}$ into $\mathbb{H}$. Lastly, we define $K = \sqrt{\beta(y_1 - y_3)}$
+  and write
+
+  $$
+  \phi_y = \frac{\beta z - \beta y_1}{z - y_3} 
+         = \frac{\frac{1}{K}(\beta z - \beta y_1)}{\frac{1}{K} (z - y_3)}
+  $$
+  
+  so that the matrix corresponding to $\phi_y$ has unitary determinant. The matrix corresponding to $\phi_y$ is 
+  therefore in $\text{SL}(2, \mathbb{R})$, from which we conclude that $\phi_y$ is an automorphism of $\mathbb{H}$. Moreover, 
+  $ad - bc > 0$ also holds whenever $y_3 < y_1 < y_2$ or $y_2 < y_3 < y_1$, which completes the proof.
   \ \\
 \end{solution}

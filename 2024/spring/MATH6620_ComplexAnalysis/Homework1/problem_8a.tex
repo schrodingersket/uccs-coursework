@@ -3,5 +3,58 @@ real axis. Then $\Phi$ is the identity.
 
 
 \begin{solution}
+  Since $\Phi$ is an automorphism of $\mathbb{H}$, it must take the form
+
+  $$
+  \Phi(z) = \frac{az + b}{cz + d},
+  $$
+
+  for some $a, b, c, d \in \mathbb{R}$ where $ad - bc = 1$. For any real fixed point $x_i \in \mathbb{R}$ of $\Phi$, the 
+  above statement implies that 
+
+  $$
+  \Phi(x_i) = \frac{ax_i + b}{cx_i + d} = x_i.
+  $$
+
+  We suppose that $\Phi$ fixes three distinct points $x_1, x_2, x_3 \in \mathbb{R}$ so that 
+  $cx_i^2 + (d - a)x_i - b = 0$ for each $i = 1, 2, 3$. Rearranging this into a system of equations yields
+
+  $$
+  \begin{pmatrix}
+  1 & x_1 & x_1^2 \\
+  1 & x_2 & x_2^2 \\
+  1 & x_3 & x_3^2
+  \end{pmatrix} \begin{pmatrix}
+    -b \\
+    d - a \\
+    c
+  \end{pmatrix} = \begin{pmatrix}
+    0 \\
+    0 \\
+    0
+  \end{pmatrix}.
+  $$
+
+  The matrix on the left-hand side of the equation is a Vandermonde matrix, which we denote $V$; it is well-known that 
+  the determinant of such a matrix is given by
+
+  $$
+  \det(V) = \prod_{1 \le i < j \le 3} (x_j - x_i) = (x_1 - x_2)(x_2 - x_3)(x_1 - x_3) \neq 0,
+  $$
+
+  since $x_1, x_2, x_3$ are distinct. Since $\det(V) \neq 0$, the matrix $V$ is invertible and hence the only solution 
+  to the above system is
+
+  $$
+  c = b = 0 \quad \text{and} \quad d = a.
+  $$
+
+  Substituting these values into our original $\Phi(z)$ yields
+
+  $$
+  \Phi(z) = \frac{az + b}{cz + d} = \frac{az}{az} = z
+  $$
+
+  for all $z \in \mathbb{C}$ and therefore $\Phi$ is the identity, as was to be shown.
   \ \\
 \end{solution}

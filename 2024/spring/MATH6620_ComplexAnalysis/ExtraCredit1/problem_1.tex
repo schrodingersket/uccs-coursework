@@ -1,0 +1,40 @@
+Prove that the unit disc $\mathbb{D}$ is simply connected.
+
+\begin{solution}
+  Let $z_1, z_2 \in \mathbb{D}$. Then the line segment $\gamma: [0, 1] \to \mathbb{D}$ defined by
+  $\gamma(s) = (1 - s) z_1 + s z_2$ defines a path from $z_1$ to $z_2$ which is contained in $\mathbb{D}$, since
+  for each $s \in [0, 1]$, we have:\footnote{
+    In particular, this shows that the unit disc is convex.
+  }
+
+  $$
+  |\gamma(s)| = |(1 - s) z_1 + s z_2| \leq |(1 - s) z_1| + |s z_2| = (1 - s)|z_1| + s |z_2| < (1 - s) + s = 1.
+  $$
+ 
+  Let $\gamma_1, \gamma_2: [0, 1] \to \mathbb{D}$ be two paths from $z_1$ to $z_2$ which share the same endpoints and
+  are parametrized by $t \in [0, 1]$. Consider the function
+
+  $$
+  \psi(s, t) = \gamma_s(t) = (1 - s)\gamma_1(t) + s \gamma_2(t)
+  $$
+
+  which is continuous in $s$ and $t$ (by virtue of continuity in $t$ of $\gamma_1$ and $\gamma_2$ as paths). In 
+  particular, for $s = 0$ we have
+
+  $$
+  \psi(0, t) = (1 - 0) \gamma_1(t) + 0 \cdot \gamma_2(t) = \gamma_1(t),
+  $$
+
+  and for $s = 1$, we have
+ 
+  $$
+  \psi(1, t) = (1 - 1)\gamma_1(t) + 1 \cdot \gamma_2(t) = \gamma_2(t).
+  $$
+
+  Moreover, for every fixed $t \in [0, 1]$, our first inequality shows that $\psi(s, t) \in \mathbb{D}$ (since 
+  $\gamma_1(t), \gamma_2(t) \in \mathbb{D}$ for every $t \in [0, 1]$), so that $\psi$ defines a homotopy between 
+  $\gamma_1$ and $\gamma_2$. Since $\gamma_1$ and $\gamma_2$ were chosen to be arbitrary, there exists a homotopy
+  $\psi$ between any two curves in $\mathbb{D}$ and we may therefore conclude that $\mathbb{D}$ is simply connected.
+  
+  \ \\
+\end{solution}

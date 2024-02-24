@@ -3,10 +3,85 @@
 A holomorphic mapping $f: U \to V$ is a \textbf{local bijection} on $U$ if for every $z \in U$ there exists an open disc
 $D \subset U$ centered at $z$ such that $f: D \to f(D)$ is a bijection.
 
-Prove that a holomorphic map $f : U \to V$ is a local bijection if and only if $f'(x) \neq 0$ for all $z \in U$.
+Prove that a holomorphic map $f : U \to V$ is a local bijection if and only if $f'(z) \neq 0$ for all $z \in U$.
 
-\textit{Hint:} Use Rouche's theorem as in the proof of Proposition 1.1.
+\textit{Hint:} Use Rouché's theorem as in the proof of Proposition 1.1.
 
 \begin{solution}
+  We first show the reverse direction. Suppose that $f'(z) \neq 0$ for all $z \in U$ and let $z_0 \in U$ be arbitrary. 
+  By translation if necessary (since translation does not affect whether $f$ is bijective or holomorphic), we may assume 
+  that $z_0 = 0$ and that $f(z_0) = 0$. Since $f'(z) \neq 0$ for all $z \in U$, we have
+
+  $$
+  f(z) = a_1 z + g(z)
+  $$
+
+  where $g(z)$ vanishes to order $z^2$. We consider the function $h(z) = \frac{f(z)}{a_1}$ so that
+
+  $$
+  h(z) = z + g(z)
+  $$
+
+  where we have absorbed the constant $a_1 \neq 0$ into the definition of $g(z)$. From here, we observe that since
+  $g(z)$ vanishes to order $z^2$, we may choose $z$ sufficiently close to zero (say, $|z| < \delta$) so that 
+  $|g(z)| < C |z|^2$ for all $z \in B_{\delta}(0)$ in the open ball of radius $\delta$ centered at zero. Let 
+  $w \in B_{\delta}(0)$. Then
+
+  $$
+  h(z) - w  = z - w + g(z),
+  $$
+
+  and for sufficiently small $w$ (say, $|w| < \epsilon < \delta$), we have $|z - w| > C|z|^2 \ge |g(z)|$. We now apply 
+  Rouché's theorem on $B_{\epsilon}$ to conclude that $z - w$ and $z - w + g(z) = h(z) - w$ have the same number of 
+  zeros (that is, one) whenever $w \in B_{\epsilon}(0)$. Lastly, we note that the preimage 
+  $X = h^{-1}\left(B_{\epsilon}(0) \right)$ is open since $h$ is continuous and hence we have shown that $h$ is 
+  injective with respect to $X$. Since $h$ is always surjective with respect to its range, we conclude that $h$ defines 
+  a bijection between the open sets $X$ and $B_{\epsilon}(0)$, so that $h$ (and therefore $f$) is a local bijection, as 
+  desired.
+
+
+  To show the forward direction, we suppose that $f$ is a local bijection and fix $\zeta \in U$. Then there exists an open disc $D \subset U$ 
+  centered at $\zeta$ such that $f: D \to f(D)$ is a bijection. Since $f$ is bijective on $D$, it is not constant and 
+  hence $f(D)$ is open by the open mapping theorem.\footnote{
+    At this point, we could simply apply Proposition 1.1 on p. 206 from \textit{Stein, Shakarchi} to $D$, but it was far 
+    more illuminating to try to work out the small details in that proof and apply them here.
+  }
+  For the sake of contradiction, we suppose that $f'(z_0) = 0$ for some $z_0 \in D$; by making appropriate translations
+  if needed, we may assume that $z_0 = 0$ and $f(z_0) = 0$. Then since 
+  $f(z) = f(z_0) + a_1(z - z_0) + a_2(z - z_0)^2 + \hdots$, we obtain
+  
+  $$
+    f(z) = a_1 z + a_2 z^2 + \hdots
+  $$
+
+  Since $f'(z_0) = f'(0) = 0$, we conclude that $a_1 = 0$ and hence $f(z) = z^k[a_k + z h(z)]$ for all $z$ in $D$ near 
+  $0$ for some $k \geq 2$ such that $a_k \neq 0$, and where $h(z)$ is a non-vanishing holomorphic function in $D$. 
+
+  Furthermore, we note that for some yet-to-be-chosen $w$ near $0 = f(z_0)$, we have
+
+  $$
+  f(z) - w = \left[a_k z^k - w\right] + z \cdot z^k h(z)
+  $$
+
+  We now choose $w$ so that $a_k z^k - w$ has at least two zeros in $D$ near $z_0$. To do this, we note that
+  these zeros occur when $z = \left(\frac{w}{a_k}\right)^{1/k}$, and so we choose $w$ sufficiently small so
+  that the set $\left\{z \in \mathbb{C} : |z| < \left(\frac{w}{a_k}\right)^{1/k}\right\}$ is contained 
+  in $D$. Finally, since $D$ is an open connected subset of $\mathbb{C}$, we note that $h(z)$ must be bounded on $D$ by 
+  the maximum modulus principle and hence we may choose $z$ sufficiently close to $0$ so that 
+  $\left|z \cdot z^k h(z)\right| < \left|a_k z^k\right|$. By making $w$ sufficiently small again
+  (and taking the minimum between it and our earlier choice of $w$ if necessary), we may ensure that
+ 
+  $$
+    \left|z \cdot z^k h(z)\right| < \left|a_k z^k - w\right|
+  $$
+
+  for all $z$ near $0$. With these conditions satisfied, we apply Rouché's theorem to conclude that $f(z) - w$ has at 
+  least two zeros in $D$ near $0$. If these zeros are all the same (say, some $k \in D$), then 
+  $f'(k) = 2 (k - k) g'(k) + (k - k)^2 g(k) = 0$, which contradicts 
+  the fact that $f'(z) \neq 0$ for all $z$ sufficiently close to $0$. We therefore conclude that at least two zeros 
+  are distinct.  Since $f(z)$ is non-constant on $D$, the zeros of $f(z) - w$ are isolated, and hence we have two 
+  distinct points $z_1, z_2 \in D$ such that $f(z_1) = f(z_2) = w$ which contradicts the injectivity of $f$. With the 
+  desired contradiction in hand, we conclude that $f(z) \neq 0$ for all $z \in \mathbb{D}$. Lastly, since $\zeta$ 
+  was chosen to be arbitrary, $f'(z) \neq 0$ for every point $z \in U$, as was to be shown.
   \ \\
 \end{solution}

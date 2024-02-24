@@ -6,5 +6,51 @@ Note that this conclusion remains valid if we merely assume that there exists a 
 $V$.
 
 \begin{solution}
+  % Recall that if $U$ is a simply connected region, then any two pair of curves in $U$ with the same endpoints are 
+  % homotopic, i.e., if $\gamma_0, \gamma_1$ are two curves in $U$ with common endpoints and are parametrized on $[a, b]$
+  % such that
+ 
+  % $$
+  % \gamma_0(a) = \gamma_1(a) \quad \text{and} \quad \gamma_0(b) = \gamma_1(b),
+  % $$
+
+  % then for each $0 \le s \le 1$, there exists a curve $\gamma_s \in U$ parametrized by $\gamma_s(t)$ on $[a, b]$ such 
+  % that for every $s$,
+
+  % $$
+  % \gamma_s(a) = \gamma_0(a) \quad \text{and} \quad \gamma_s(b) = \gamma_0(b),
+  % $$
+
+  % and for all $t \in [a, b]$:
+
+  % $$
+  % \gamma_s(t)\big\vert_{s=0} = \gamma_0(t) \quad \text{and} \quad \gamma_s(t)\big\vert_{s=1} = \gamma_1(t).
+  % $$
+
+  % where $\gamma_s$ is jointly continuous in $s$ and $t$.
+ 
+  
+  Let $\gamma_0$ and $\gamma_1$ be two curves in $V$ with common endpoints and parametrized on $[a, b]$ such that
+
+  $$
+  \gamma_0(a) = \gamma_1(a) \quad \text{and} \quad \gamma_0(b) = \gamma_1(b),
+  $$
+
+  Since $U$ and $V$ are conformally equivalent, there exists a continuous bijection $f: U \to V$ whose inverse is 
+  holomorphic and therefore continuous (in other words, $f$ is a homeomorphism). In particular, since $\gamma_0$ and 
+  $\gamma_1$ are continuous in their parametrized domain, then $f^{-1} \circ \gamma_0$ and $f^{-1} \circ \gamma_1$ are 
+  also continuous curves in $U$ with common endpoints since $f^{-1} \circ \gamma_0(a) = f^{-1} \circ \gamma_1(a)$ 
+  (resp. $b$). By virtue of the fact that $U$ is simply connected, there exists a homotopy $\gamma'_s$ between 
+  $f^{-1} \circ \gamma_0$ and $f^{-1} \circ \gamma_1$ in $U$ (so that $\gamma'_0 = f^{-1} \circ \gamma_0$ and 
+  $\gamma'_1 = f^{-1} \circ \gamma_1$). Since $f$ is a homeomorphism, $f \circ \gamma'_s$ defines a function in $V$ 
+  which is jointly continuous in $s$ and $t$. In particular, for $s = 0$ (resp. $s = 1$), we have
+ 
+  $$
+  f \circ \gamma'_0(t) = f \circ f^{-1} \circ \gamma_0(t) = \gamma_0(t)
+  $$
+  
+  
+  so that $\gamma'_s$ satisfies the conditions of a homotopy between $\gamma_0$ and $\gamma_1$. Since $\gamma_0$ and 
+  $\gamma_1$ were chosen to be arbitrary, we conclude that $V$ is simply connected.
   \ \\
 \end{solution}
