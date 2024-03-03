@@ -2,5 +2,40 @@ Prove that if $f : \mathbb{D} \to \mathbb{D}$ is analytic and has two distinct f
 (i.e., $f(z) = z$ for all $z \in \mathbb{D}$).
 
 \begin{solution}
+  Let $w_1$ and $w_2$ be the two distinct fixed points of $f$, and let $\psi_{w_1}(w)$ be the conformal mapping defined
+  by
+
+  $$
+  \psi_{w_1}(w) = \frac{w_1 - w}{1 - \overline{w_1}w}.
+  $$
+
+  Since $\psi_{w_1}$ is conformal, there exists a unique $\alpha \in \mathbb{D}$ such that 
+  $\psi_{w_1}^{-1}(\alpha) = w_2$ (and $\alpha \neq 0$, since $\psi_{w_1}^{-1}(0) = w_1 \neq w_2$). We ``conjugate''
+  $\psi_{w_1}$ by $f$ to obtain a new function $h: \mathbb{D} \to \mathbb{D}$ defined by
+
+  $$
+  h(w) = \psi_{w_1} \circ f \circ \psi_{w_1}^{-1}(w)
+  $$
+
+  and note that $h$ is holomorphic (as the composition of holomorphic functions) with $h(0) = 0$. Moreover, we have
+
+  $$
+  h(\alpha) = \psi_{w_1} \circ f \circ \psi_{w_1}^{-1}(\alpha)
+            = \psi_{w_1} \circ f(w_2) 
+            = \psi_{w_1} (w_2)
+            = \alpha
+  $$
+
+  and hence $\alpha \neq 0$ is a fixed point of $h$. By the Schwarz lemma, we conclude that $h$ must be a rotation;
+  however, since $h(\alpha) = \alpha$, we conclude that $h$ rotates $\mathbb{D}$ by an integer multiple of $2 \pi$ and 
+  is therefore the identity. From this, we conclude in turn that $h(w) = w$ for all $w \in \mathbb{D}$, so that 
+  $\psi_{w_1} \circ f \circ \psi_{w_1}^{-1}(w) = w$ and hence
+
+  $$
+  f \circ \psi_{w_1}^{-1}(w) = \psi_{w_1}^{-1}(w).
+  $$
+
+  Since this must hold for every $w \in \mathbb{D}$ and $\psi_{w_1}^{-1}(w)$ is an automorphism of the unit disc, we 
+  conclude that $f(z) = z$ for all $z \in \mathbb{D}$, as desired.
   \ \\
 \end{solution}

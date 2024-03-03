@@ -9,9 +9,76 @@ $$
 is a conformal map from the half-disc $\mathbb{S} = \{z = x + iy \mid |z| < 1, y > 0\}$ onto the upper half-plane 
 $\mathbb{H} = \{z = x + iy \mid y > 0\}$.
 
-\textit{Hint:} The equation $f(z) = w$ reduces to the quadratic equation $z^2 + 2wx + 1 = 0$, which has two distinc 
+\textit{Hint:} The equation $f(z) = w$ reduces to the quadratic equation $z^2 + 2wz + 1 = 0$, which has two distinct 
 roots in $\mathbb{C}$ whenever $w \neq \pm 1$ (which is certainly the case for $w \in \mathbb{H}$).
 
 \begin{solution}
+  First, we show that $f(z)$ maps values from the half-disc $\mathbb{S}$ to the upper half-plane by writing 
+  $z = x + iy$:
+
+  \begin{align*}
+    f(z) &= -\frac{1}{2} \left( x + iy + \frac{1}{x + iy} \right) \\
+    &= -\frac{1}{2} \left( x + iy + \frac{x - iy}{x^2 + y^2} \right) \\
+    &= -\frac{1}{2} \left( x\left(1 + \frac{1}{x^2 + y^2} \right) + i y \left(1 - \frac{1}{x^2 + y^2} \right) \right) \\
+  \end{align*}
+
+  and hence the imaginary part of $f(z)$ is given by
+
+  $$
+  \text{Im}(f(z)) = -\frac{1}{2} y \left(1 - \frac{1}{x^2 + y^2} \right).
+  $$
+
+  Since $x^2 + y^2 = |z| < 1$ for every $z \in \mathbb{S}$, we conclude that the imaginary part of $f(z)$ is strictly 
+  positive whenever $z \in \mathbb{S}$ (i.e., $y > 0$) so that $f(z)$ maps $\mathbb{S}$ into (possibly a subset of) 
+  $\mathbb{H}$.
+
+  To show that $f(z)$ is a conformal map, we must show that it is holomorphic, surjective, and injective. To this end, 
+  we let $w = f(z) = -\frac{1}{2}\left(z + \frac{1}{z} \right)$; multiplying both sides by $-2z$ and collecting all 
+  terms on one side yields the quadratic equation
+
+  $$
+  z^2 + 2wz + 1 = 0.
+  $$
+
+  By the quadratic formula, the roots of this equation are
+  
+  $$
+  z = \frac{-2w \pm \sqrt{4w^2 - 4}}{2} = -w \pm \sqrt{w^2 - 1}.
+  $$
+
+  which has two distinct solutions whenever $w \neq \pm 1$. Since we know that the range of $f(z)$ is at least a subset
+  of $\mathbb{H}$, we know that $w \neq \pm 1$ and hence the above quadratic equation does in fact have two
+  distinct roots, which we denote $z_1$ and $z_2$. In particular, we observe that $z_1$ and $z_2$ are related to the 
+  coefficients of the quadratic form by Vieta's formula so that $z_1 z_2 = 1$ and $z_1 + z_2 = -2w$. Moreover, 
+  because $|z_1 z_2| = 1$, we conclude that either $|z_1| = |z_2| = 1$, or that 
+  $z_1 \neq z_2$ and $|z_1| = \frac{1}{|z_2|}$. In the former case, we observe that
+
+  $$
+  z_1 = \frac{1}{z_2} = \frac{\conj{z_2}}{|z_2|^2} = \conj{z_2},
+  $$
+
+  and hence $w = z_1 + z_2 = \conj{z_2} + z_2 = 2 \text{Re}(z_2) \in \mathbb{R}$, which is a contradiction since 
+  $w \in \mathbb{H}$. Hence $|z_1| \neq |z_2|$ and $|z_1| = \frac{1}{|z_2|}$ so that either $z_1$ or $z_2$ (but not 
+  both) must lie inside the unit disc. We have therefore shown that at most one root of $f(z) = w$ may lie in the domain
+  $\mathbb{S}$ of $f$, and hence $f(z)$ is injective.
+
+  To show that $f(z)$ is surjective, we let $w$ be an arbitrary point in the upper half plane $\mathbb{H}$ and assume 
+  without loss of generality that $z_1$ is the root of $f(z) = w$ which lies inside the unit disc. Then since 
+  $z_1 + z_2 = -2w$ and $z_2 = \frac{1}{z_1} = \frac{\conj{z_1}}{|z_1|^2}$, equating imaginary parts of the former equation (with $z_1 = x + iy$) yields
+
+  \begin{align*}
+    0 &> -2 \text{Im}(w) \\
+      &= \text{Im}(z_1 + z_2)  \\
+      &= \text{Im}\left( z_1 - \frac{\conj{z_1}}{|z_1|^2} \right) \\
+      &= \text{Im}\left( x + iy - \frac{x - iy}{x^2 + y^2} \right) \\
+      &= y\left(1 - \frac{1}{x^2 + y^2} \right).
+  \end{align*}
+
+  Moreover, since $x^2 + y^2 = |z_1|^2 < 1$, we conclude that $y > 0$ so that $z_1$ must lie in the upper half-disc 
+  $\mathbb{S}$. Since $w$ was chosen to be an arbitrary element of the upper half plane $\mathbb{H}$, we have shown that 
+  $f(z)$ is surjective.
+
+  Lastly, we note that $f(z)$ is holomorphic, since its only pole is at $z = 0$ which is does not lie in the domain 
+  $\mathbb{S}$ of $f$. Hence $f$ is a conformal map from $\mathbb{S}$ to $\mathbb{H}$, as was to be shown.
   \ \\
 \end{solution}

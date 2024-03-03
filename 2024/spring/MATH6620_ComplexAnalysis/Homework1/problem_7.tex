@@ -8,5 +8,40 @@ f(z; \; \theta, \beta) = e^{i \theta} \frac{z - \beta}{z - \conj{\beta}}, \quad 
 $$
 
 \begin{solution}
+  Let $f: \mathbb{H} \to \mathbb{D}$ be an arbitrary conformal map, and let $G: \mathbb{D} \to \mathbb{H}$ be the 
+  conformal mapping defined by $G(w) = i \frac{1 - w}{1 + w}$ with $F(z) = \frac{i - z}{i + z}$ denoting its conformal 
+  inverse. Since $f$ is a conformal map, $f \circ G$ defines an automorphism of $\mathbb{D}$ and must therefore take the 
+  form
+
+  $$
+  f \circ G(w) = e^{i \theta} \frac{\alpha - w}{1 - \conj{\alpha} w}
+  $$
+
+  for some $\theta \in \mathbb{R}$ and $\alpha \in \mathbb{D}$. Since for every $w \in \mathbb{D}$ there exists some 
+  unique $z \in \mathbb{H}$ such that $F(z) = w$, we obtain:
+
+  \begin{align*}
+    f(z) &= f \circ G (F(z)) \\
+    &= e^{i \theta} \frac{\alpha - F(z)}{1 - \conj{\alpha} F(z)} \\
+    &= e^{i \theta} \frac{\alpha - \frac{i - z}{i + z}}{1 - \conj{\alpha} \frac{i - z}{i + z}} \\
+    &= e^{i \theta} \frac{\alpha (i + z) - i + z}{i + z - \conj{\alpha} i + \conj{\alpha} z} \\
+    &= e^{i \theta} \frac{(\alpha + 1) z + i (\alpha - 1)}{(1 + \conj{\alpha}) z + i(1 - \conj{\alpha})} \\
+    &= e^{i \theta} 
+       \cdot \frac{\alpha + 1}{\conj{\alpha} + 1} 
+       \cdot \frac{z + i \frac{\alpha - 1}{\alpha + 1}}{z + i \frac{1 - \conj{\alpha}}{1 + \conj{\alpha}}} \\
+    &= e^{i \gamma} \frac{z - \beta}{z - \conj{\beta}},
+  \end{align*}
+
+  where we have used the fact that $\frac{\alpha + 1}{\conj{\alpha} + 1} = e^{i \phi}$ for some $\phi \in \mathbb{R}$
+  \footnote{
+    Since $\left| \frac{\alpha + 1}{\conj{\alpha} + 1} \right| = \frac{|\alpha + 1|}{|\conj{\alpha} + 1|} = \frac{|\alpha + 1|}{|\alpha + 1|} = 1$.
+  } and define
+
+  $$
+  \beta = -i \frac{\alpha - 1}{\alpha + 1} = i \frac{1 - \alpha}{1 + \alpha} = G(\alpha) \quad \text{and} \quad \gamma = \theta + \phi.
+  $$
+
+  Since $\theta, \phi \in \mathbb{R}$ and $\beta \in \mathbb{H}$ (by virtue of the fact that $G(\alpha) \in \mathbb{H}$ 
+  for every $\alpha \in \mathbb{D}$), we have the desired result.
   \ \\
 \end{solution}

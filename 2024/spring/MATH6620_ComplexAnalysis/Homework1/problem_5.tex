@@ -9,5 +9,46 @@ $$
 \textit{Hint: } Use the Schwarz lemma.
 
 \begin{solution}
+  We begin with the observation that if $f$ is constant, then
+  $0 = |f(z) - f(0)| \le \frac{\left|M^2 - \conj{f(0)}f(z)\right| \cdot |z|}{MR}$ 
+  and the desired inequality is trivially satisfied; we therefore assume that $f$ is non-constant. In particular, we note that $f$ maps the open disc $D(0, R)$ 
+  into the open disc $D(0, M)$ by the maximum modulus principle. In order to apply the Schwarz lemma, we must normalize 
+  the domain and range of $f$ to the open unit disc and conformally map the resulting function back to the unit disc 
+  such that $z = 0$ becomes a fixed point. Let $w = \frac{z}{R}$ and $g(w) = \frac{f(z)}{M}$. Then $g : \mathbb{D} \to \mathbb{D}$ is holomorphic (since 
+  dilations are conformal), and upon composition with the conformal map $\psi_{g(0)}: \mathbb{D} \to \mathbb{D}$ defined 
+  by
+
+  $$
+  \psi_{g(0)}(w) = \frac{w - g(0)}{1 - \conj{g(0)}w},
+  $$
+
+  we obtain our candidate function $h: \mathbb{D} \to \mathbb{D}$ given by
+
+  $$
+  h(w) = \left[\psi_{g(0)} \circ g\right] (w) = \psi_{g(0)}(g(w)) = \frac{g(w) - g(0)}{1 - \conj{g(0)}g(w)}.
+  $$
+
+  In particular, $h$ is holomorphic on $\mathbb{D}$ as the composition of holomorphic functions. Together with the fact 
+  that $h(0) = 0$, the Schwarz lemma allows us to conclude that 
+
+  $$
+  \left| \frac{g(w) - g(0)}{1 - \conj{g(0)}g(w)} \right| \le |w| \quad \text{for all } w \in \mathbb{D}.
+  $$
+
+  Substituting $w = \frac{z}{R}$ and $g(w) = \frac{f(z)}{M}$ (with the observation that $w = 0$ if and only if $z = 0$), 
+  we obtain 
+
+  $$
+  \left| \frac{\frac{1}{M}\left(f(z) - f(0)\right)}{1 - \frac{\conj{f(0)}}{M} \frac{f(z)}{M}} \right| 
+    \le \frac{|z|}{R} \quad \text{for all } z \in D(0, R)
+  $$
+
+  so that 
+
+  $$
+  \left| \frac{f(z) - f(0)}{M^2 - \conj{f(0)} f(z)} \right| \le \frac{|z|}{MR} \quad \text{for all } z \in D(0, R),
+  $$
+
+  as desired.
   \ \\
 \end{solution}

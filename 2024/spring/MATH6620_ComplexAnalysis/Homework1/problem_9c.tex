@@ -8,5 +8,43 @@ $$
 \textit{Hint: } Use parts (a) and (b).
 
 \begin{solution}
+  We begin with the observation that every automorphism $g$ of the unit disc takes the form 
+  $g = R_{\theta} \circ \psi_{\alpha}$ for some $\theta \in \mathbb{R}$ and $\alpha \in \mathbb{D}$. Moreover, because
+  fractional linear transformations are associative, we may rewrite $f^{-1} \circ f \circ g$ as follows:
+
+  $$
+  f^{-1} \circ g \circ f = f^{-1} \left(R_{\theta} \circ \psi_{\alpha}\right) \circ f
+                         = f^{-1} \left(R_{\theta} \circ f \circ f^{-1} \circ \psi_{\alpha}\right) \circ f
+                         = \left(f^{-1} R_{\theta} \circ f\right) \circ \left(f^{-1} \circ \psi_{\alpha} \circ f\right)
+  $$
+
+  where we note that $f^{-1} R_{\theta} \circ f$ corresponds to the matrix $M_{\Phi_a}$ consisting of entries from part 
+  (a) and $f^{-1} \psi_{\alpha} \circ f$ corresponds to the matrix $M_{\Phi_b}$ from part (b).
+  
+  Moreover, because $M_{\Phi_a}$ and $M_{\Phi_b}$ belong to the PSL$(2, \mathbb{R})$ group, so too does their product; 
+  hence we conclude that the fractional linear transformation corresponding to the matrix product
+
+  \begin{align*}
+    M_{\Phi_a} M_{\Phi_b} 
+    &= \begin{pmatrix}
+      \cos{\frac{\theta}{2}}  & \sin{\frac{\theta}{2}} \\
+      -\sin{\frac{\theta}{2}} & \cos{\frac{\theta}{2}}
+    \end{pmatrix} \begin{pmatrix}
+      K \text{Im}(\alpha)      & K(\text{Re}(\alpha) - 1) \\
+      K(\text{Re}(\alpha) + 1) & -K \text{Im}(\alpha)
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      K\cos{\frac{\theta}{2}} \text{Im}(\alpha) + K\sin{\frac{\theta}{2}}(\text{Re}(\alpha) - 1) 
+      & K\cos{\frac{\theta}{2}}(\text{Re}(\alpha) - 1) - K\sin{\frac{\theta}{2}} \text{Im}(\alpha) \\
+      -K\sin{\frac{\theta}{2}} \text{Im}(\alpha) + K\cos{\frac{\theta}{2}}(\text{Re}(\alpha) + 1)
+      & -K\sin{\frac{\theta}{2}}(\text{Re}(\alpha) - 1) - K\cos{\frac{\theta}{2}} \text{Im}(\alpha)
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      a & b \\
+      c & d
+    \end{pmatrix}
+  \end{align*}
+
+  has a unitary determinant and that $a, b, c,$ and $d$ are the desired real numbers.
   \ \\
 \end{solution}

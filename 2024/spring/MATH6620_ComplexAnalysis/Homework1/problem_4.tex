@@ -13,5 +13,36 @@ $$
 $$
 
 \begin{solution}
+  Let $\phi : \mathbb{H} \to \mathbb{D}$ be the conformal map defined by $\phi(z) = \frac{z - i}{z + i}$. In particular,
+  $\phi(i) = 0$, and hence $\phi^{-1}(0) = i$. Then since $F$ is holomorphic and maps $\mathbb{H}$ to the closed unit 
+  disc, the composition $F \circ \phi^{-1}: \mathbb{D} \to \overline{\mathbb{D}}$ defines a holomorphic function which satisfies
+
+  $$
+  \left[ F \circ \phi^{-1} \right] (0) = F(i) = 0.
+  $$
+
+  In particular, we note that if $F \circ \phi^{-1}$ is a constant function, then by the above statement, it (and 
+  therefore $F$) must be identically zero so that the desired inequality is trivially satisfied. We therefore assume
+  that $F \circ \phi^{-1}$ is not constant. Then by the maximum modulus principle, $F \circ \phi^{-1}$ must attain its
+  maximum modulus on the boundary of $\mathbb{D}$, and hence we conclude that $F \circ \phi^{-1}$ maps the open unit 
+  disc to the open unit disc. Moreover, $F \circ \phi^{-1}$ satisfies the hypotheses of the Shwarz lemma, and thus
+
+  $$
+  \left| F \circ \phi^{-1}(z) \right| \leq |z| \quad \text{for all} \; z \in \mathbb{D}.
+  $$
+
+  Since $\phi(z)$ maps $\mathbb{H}$ to $\mathbb{D}$, we conclude that
+
+  $$
+  \left| F \circ \phi^{-1}(\phi(z)) \right| \leq |\phi(z)| \quad \text{for all} \; z \in \mathbb{H}
+  $$
+
+  and hence
+
+  $$
+  \left| F(z) \right| \leq \left|\frac{z-i}{z+i}\right| \quad \text{for all} \; z \in \mathbb{H}
+  $$
+
+  as desired.
   \ \\
 \end{solution}

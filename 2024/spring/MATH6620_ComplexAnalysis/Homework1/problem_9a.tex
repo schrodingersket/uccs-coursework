@@ -5,6 +5,83 @@ $$
 \frac{az + b}{cz + d} = f^{-1} \left(e^{i \theta} f(z) \right).
 $$
 
+\newcommand{\hangle}[1][]{e^{#1 i\frac{\theta}{2}}}
+
 \begin{solution}
+  Let $M_{R_\theta}$ denote the matrix of the linear transformation $R_{\theta}(z) = e^{i \theta} z$, and $M_f$ and 
+  $M_{f^{-1}}$ the corresponding matrixes for $f$ and its inverse $f^{-1}$, respectively. These matrices are given by
+
+  $$
+  M_{R_\theta} = \begin{pmatrix}
+    e^{i \theta} & 0 \\
+    0            & 1
+  \end{pmatrix}, \quad M_f = \begin{pmatrix}
+    -1 & i \\
+     1 & i
+  \end{pmatrix}, \quad \text{and} \quad M_{f^{-1}} = \begin{pmatrix}
+    -i & i \\
+     1 & 1
+  \end{pmatrix}.
+  $$
+ 
+  For any two matrices $A, B \in \text{GL}(2, \mathbb{R})$, we have $f_A \circ f_B = f_{AB}$ where $f_A$ denotes the 
+  fractional linear transformation corresponding to the matrix $A$. Hence $f^{-1} \circ R_{\theta} \circ f$ is given by:
+
+  \begin{align*}
+    M_{f^{-1}} M_{R_\theta} M_f &= \begin{pmatrix}
+      -i & i \\
+       1 & 1
+    \end{pmatrix} \begin{pmatrix}
+      e^{i \theta} & 0 \\
+      0            & 1
+    \end{pmatrix} \begin{pmatrix}
+      -1 & i \\
+       1 & i
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      -i & i \\
+       1 & 1
+    \end{pmatrix} \begin{pmatrix}
+      -e^{i \theta} & ie^{i \theta} \\
+       1            & i
+    \end{pmatrix} \\
+    &= \begin{pmatrix}
+      i e^{i \theta} + 1 &  e^{i \theta} - 1 \\
+       -e^{i \theta} + 1 & ie^{i \theta} + i
+    \end{pmatrix} \\
+    &= \hangle \begin{pmatrix}
+       i \left(\hangle + \hangle[-] \right) & \hangle - \hangle[-] \\
+      -1 \left(\hangle - \hangle[-] \right) & i \left(\hangle + \hangle[-]\right)
+    \end{pmatrix} \\
+    &= \hangle \begin{pmatrix}
+       2i \cos{\frac{\theta}{2}} & 2i \sin{\frac{\theta}{2}} \\
+      -2i \sin{\frac{\theta}{2}} & 2i \cos{\frac{\theta}{2}}
+    \end{pmatrix} \\
+    &= 2i \hangle \begin{pmatrix}
+       \cos{\frac{\theta}{2}} & \sin{\frac{\theta}{2}} \\
+      -\sin{\frac{\theta}{2}} & \cos{\frac{\theta}{2}}
+    \end{pmatrix}.
+  \end{align*}
+
+  We define $K = 2 i \hangle$ and let $a = \cos{\frac{\theta}{2}}$, $b = \sin{\frac{\theta}{2}}$, 
+  $c = -\sin{\frac{\theta}{2}}$, and $d = \cos{\frac{\theta}{2}}$; under this definition, this results in the following 
+  fractional linear transformation:
+
+  $$
+  \Phi_a = \frac{Ka z + Kb}{Kc z + Kd} = \frac{az + b}{cz + d}
+  $$
+
+  With the observation that $ad - bc = \cos^2{\frac{\theta}{2}} + \sin^2{\frac{\theta}{2}} = 1$, we conclude that
+  $a, b, c,$ and $d$ are the desired real numbers and define
+
+  $$
+  M_{\Phi_a} = \begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix} = \begin{pmatrix}
+    \cos{\frac{\theta}{2}} & \sin{\frac{\theta}{2}} \\
+    -\sin{\frac{\theta}{2}} & \cos{\frac{\theta}{2}}
+  \end{pmatrix}.
+  $$
   \ \\
 \end{solution}

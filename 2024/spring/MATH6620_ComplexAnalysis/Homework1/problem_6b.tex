@@ -1,7 +1,22 @@
-Prove whether or not every holomorphic function $f : \mathbb{D} \to \mathbb{D}$ has a fixed point.
+Determine whether or not every holomorphic function $f : \mathbb{D} \to \mathbb{D}$ has a fixed point.
 
 \textit{Hint:} Consider the upper half-plane.
 
 \begin{solution}
+  Let $G: \mathbb{D} \to \mathbb{H}$ be the conformal mapping given by $G(z) = i \frac{1 - w}{1 + w}$, and let 
+  $g: \mathbb{H} \to \mathbb{H}$ be defined by $g(z) = z - 1$. Since $g$ is a holomorphic translation from $\mathbb{H}$ 
+  to itself, it is conformal; on the other hand, the equation $z = g(z) = z - 1$ has no solution and hence $g$ has no 
+  fixed points.
+
+  We claim that the function $f: \mathbb{D} \to \mathbb{D}$ defined by $f(z) = G^{-1} \circ g \circ G(z)$ is holomorphic
+  but has no fixed points; indeed, $f$ is holomorphic as the composition of conformal maps, and for any 
+  $z_0 \in \mathbb{D}$ (where we define $w_0 \in \mathbb{H}$ to be the unique point such that $w_0 = G(z_0)$), we have
+
+  $$
+  f(z_0) = G^{-1} \circ g \circ G(z_0) = G^{-1} \circ g(w_0) \neq G^{-1}(w_0) = z_0.
+  $$
+
+  Since $z_0$ was chosen to be arbitrary, $f$ has no fixed points. We therefore conclude that a holomorphic function
+  $f: \mathbb{D} \to \mathbb{D}$ need not have a fixed point.
   \ \\
 \end{solution}
