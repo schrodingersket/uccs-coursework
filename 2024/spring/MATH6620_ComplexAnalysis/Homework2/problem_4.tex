@@ -9,7 +9,7 @@ $$
 and 
 
 $$
-\frac{1}{\pi} \int\int_{\mathbb{D}} \left| \psi_{\alpha}' \right| dx \, dy = \frac{1 - |\alpha|^2}{|\alpha|^2} \log{\frac{1}{1 - |\alpha|^2}},
+\frac{1}{\pi} \int\int_{\mathbb{D}} \left| \psi_{\alpha}' \right| dx \, dy = \frac{1 - |\alpha|^2}{|\alpha|^2} \ln{\frac{1}{1 - |\alpha|^2}},
 $$
 
 where in the case $\alpha = 0$, the expression on the right is understood as the limit as $|\alpha| \to 0$.
@@ -19,5 +19,79 @@ where in the case $\alpha = 0$, the expression on the right is understood as the
 each fixed $r$ use contour integration to evaluate the integral in $\theta$.
 
 \begin{solution}
+  We begin with the observation that since $\psi_{\alpha}$ is an automorphism of $\mathbb{D}$, it acts as a coordinate
+  transformation on the unit disc from $(u, v)$ coordinates to $(x, y)$. Let $\Psi_{\alpha}(x, y) = \psi_{\alpha}(z)$. By 
+  Proposition 2.3 in \textit{Stein, Shakarchi}, we observe that the determinant of the Jacobian for this transformation 
+  is given by 
+  
+  $$\det{J_{\Psi_{\alpha}}} = |\psi_{\alpha}'|^2$$
+
+  From here, we utilize the change of variables formula (along with a transformation to polar coordinates) to obtain
+
+  \begin{align*}
+    \frac{1}{\pi} \int\int_{\mathbb{D}} \left| \psi_{\alpha}' \right|^2 \; dx \, dy 
+      &= \frac{1}{\pi} \int\int_{\mathbb{D}} \det{J_{\Psi_{\alpha}}} \; dx \, dy \\
+      &= \frac{1}{\pi} \int\int_{\mathbb{D}} \; du \, dv \\
+      &= \frac{1}{\pi} \int_0^{2 \pi}\int_0^1 r \; dr \, d\theta \\
+      &= \frac{1}{2 \pi} \int_0^{2 \pi} d\theta \\
+      &= 1,
+  \end{align*}
+
+  as was to be shown. For the second integral, we first observe that
+
+  $$
+  \left|\psi'_{\alpha}\right| = \left|\frac{(\conj{\alpha} z - 1) + \conj{\alpha}(\alpha - z)}{(1 - \conj{\alpha}z)^2}\right|
+                              = \left| \frac{|\alpha|^2 - 1}{(1 - \conj{\alpha}z)^2} \right|
+                              = \frac{1 - |\alpha|^2}{\left|1 - \conj{\alpha}z\right|^2},
+  $$
+
+  where we have used the fact that $\big\vert |\alpha|^2 - 1 \big\vert = 1 - |\alpha|^2$ since $|\alpha| < 1$. Our integral
+  therefore becomes
+
+  \begin{align*}
+    \frac{1}{\pi} \int\int_{\mathbb{D}} \left| \psi_{\alpha}' \right| \; dx \, dy 
+      &= \frac{1 - |\alpha|^2}{\pi} \int\int_{\mathbb{D}} \frac{1}{\left|1 - \conj{\alpha}z\right|^2} \; dx \, dy \\
+      &= \frac{1 - |\alpha|^2}{\pi} \int_0^1 \int_0^{2 \pi}  \frac{r}{\left|1 - \conj{\alpha}re^{i\theta}\right|^2} \; d\theta \, dr.
+  \end{align*}
+
+  From here, we fix $r$ and consider the integral in $\theta$. Letting $z = e^{i \theta}$ (and hence 
+  $dz = i e^{i \theta} \; d\theta = i z \; d\theta$), we obtain
+
+  \begin{align*}
+    \frac{1 - |\alpha|^2}{\pi} \int_0^1 \int_0^{2 \pi}  \frac{r}{\left|1 - \conj{\alpha}re^{i\theta}\right|^2} \; d\theta \, dr
+      &= \frac{1 - |\alpha|^2}{\pi} \int_0^1 \int_{|z|=1} \frac{r}{\left|1 - \conj{\alpha}rz\right|^2} \frac{1}{iz} \; dz \, dr \\
+      &= \frac{1 - |\alpha|^2}{\pi} \int_0^1 \int_{|z|=1} \frac{r}{(1 - \conj{\alpha} r z)(1 - \alpha r \conj{z})} \frac{1}{iz} \; dz \, dr \\
+      &= \frac{1 - |\alpha|^2}{\pi} \int_0^1 \int_{|z|=1} \frac{r}{(1 - \conj{\alpha} r z)\left(1 - \frac{\alpha r}{z}\right)} \frac{1}{iz} \; dz \, dr \\
+      &= \frac{1 - |\alpha|^2}{i \pi} \int_0^1 r \int_{|z|=1} \frac{1}{(1 - \conj{\alpha} r z)\left(z - \alpha r\right)} \; dz \, dr,
+  \end{align*}
+
+  where we have used the observation that $|z|^2 = 1$ (since $|z| = 1$) and hence $\conj{z} = \frac{1}{z}$. From here, 
+  we apply the residue theorem to $f(\zeta) = \frac{1}{1 - \conj{\alpha} r \zeta}$ over the curve $|z| = 1$, which 
+  yields
+
+  $$
+  \frac{1}{2 \pi i} \int_{|z|=1} \frac{1}{(1 - \conj{\alpha} r z)\left(z - \alpha r\right)} \; dz
+    = \frac{1}{1 - \conj{\alpha} r (\alpha r)} 
+    = \frac{1}{1 - |\alpha|^2 r^2}
+  $$
+
+  so that
+
+  $$
+    \frac{1 - |\alpha|^2}{i \pi} \int_0^1 r \int_{|z|=1} \frac{1}{(1 - \conj{\alpha} r z)\left(z - \alpha r\right)} \; dz \, dr
+      = \frac{1 - |\alpha|^2}{i \pi} \int_0^1 \frac{2 \pi i r}{1 - |\alpha|^2 r^2} \; dr
+      = \left(1 - |\alpha|^2 \right) \int_0^1 \frac{2 r}{1 - |\alpha|^2 r^2} \; dr.
+  $$
+
+  Finally, we apply the substitution $u = 1 - |\alpha|^2 r^2$ (and hence $du = -2 r |\alpha|^2 \; dr$) to obtain
+
+  \begin{align*}
+    \frac{1}{\pi} \int\int_{\mathbb{D}} \left| \psi_{\alpha}' \right| dx \, dy 
+      &= \left(1 - |\alpha|^2 \right) \int_0^1 \frac{2 r}{1 - |\alpha|^2 r^2} \; dr \\
+      &= \frac{1 - |\alpha|^2}{|\alpha|^2} \left(-\int_1^{1 - |\alpha|^2} \frac{1}{u} \; du\right) \\
+      &= \frac{1 - |\alpha|^2}{|\alpha|^2} \ln{\frac{1}{1 - |\alpha|^2}},
+  \end{align*}
+
+  as desired.
   \ \\
 \end{solution}

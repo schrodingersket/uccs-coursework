@@ -1,7 +1,7 @@
 \textbf{Stein, Shakarchi 8.6}
 
 \textbf{Lemma 1.3} Let $V$ and $U$ be open sets in $\mathbb{C}$ and $F: V \to U$ be a holomorphic function. If 
-$u: U \to \mathbb{C}$ is a harmonic function, the $u \circ F$ is harmonic on $V$.
+$u: U \to \mathbb{C}$ is a harmonic function, then $u \circ F$ is harmonic on $V$.
 
 \ \\
 Prove this result by showing directly that the Laplacian of $u \circ F$ is zero.
@@ -10,5 +10,45 @@ Prove this result by showing directly that the Laplacian of $u \circ F$ is zero.
 \textit{Hint:} The real and imaginary parts of $F$ satisfy the Cauchy-Riemann equations.
 
 \begin{solution}
+  We begin by writing $F = w + iv$ so that $f \coloneqq u \circ F = u(w, v)$, where $u(x, y)$ and $v(x, y)$ are 
+  real-valued functions. We apply the Chain Rule to $f$ to obtain 
+
+  $$
+    f_x = \fpartial{u}{w} \fpartial{w}{x} + \fpartial{u}{v} \fpartial{v}{x} = u_w w_x + u_v v_x.
+  $$
+
+  A second application of the Chain Rule yields:
+
+  \begin{align*}
+   f_{xx} &= (u_w w_x)_x + (u_v v_x)_x \\
+          &= w_x \left(u_{ww} w_x + u_{wv} v_x\right) + u_w w_{xx} + v_x \left(u_{vv} v_x + u_{vw} w_x\right) + u_v v_{xx} \\
+          &= u_{ww} w_x^2 + u_{wv} v_x w_x + u_w w_{xx} + u_{vv} v_x^2 + u_{vw} v_x w_x + u_v v_{xx} \\
+          &= u_{ww} w_x^2 + \left(u_{wv} + u_{vw}\right) v_x w_x + u_w w_{xx} + u_{vv} v_x^2 + u_v v_{xx}.
+  \end{align*}
+
+  Similarly, differentiating twice with respect to $y$ yields:
+
+  \begin{align*}
+   f_{yy} &= u_{ww} w_y^2 + \left(u_{wv} + u_{vw}\right) v_y w_y + u_w w_{yy} + u_{vv} v_y^2 + u_v v_{yy} \\
+          &= u_{ww} w_y^2 - \left(u_{wv} + u_{vw}\right) w_x v_x + u_w w_{yy} + u_{vv} v_y^2 + u_v v_{yy}.
+  \end{align*}
+
+  Here, we have used the fact that $F$ is holomorphic and hence $w$ and $v$ satisfy the Cauchy-Riemann equations so 
+  that $w_x = v_y$ and $w_y = -v_x$. Adding these two expressions together and cancelling relevant terms, we obtain:
+
+  \begin{align*}
+    f_{xx} + f_{yy} &= u_{ww} \left(w_x^2 + w_y^2 \right) 
+                       + u_w \left(w_{xx} + w_{yy} \right)
+                       + u_{vv} \left(v_x^2 + v_y^2 \right)
+                       + u_v \left(v_{xx} + v_{yy} \right) \\
+                    &= u_{ww} \left(w_x^2 + w_y^2 \right) + u_{vv} \left(v_x^2 + v_y^2 \right) \\
+                    &= u_{ww} \left(w_x^2 + w_y^2 \right) + u_{vv} \left[(-w_y)^2 + (w_x)^2 \right] \\
+                    &= \left(u_{ww} + u_{vv}\right) \left(w_x^2 + w_y^2 \right) \\
+                    &= 0,
+  \end{align*}
+
+  where we have used the fact that $u_{ww} + u_{vv} = w_{xx} + w_{yy} = v_{xx} + v_{yy} = 0$ since the real and 
+  imaginary parts of the holomorphic function $F$ are harmonic, as is $u = u(w, v)$ by hypothesis. Hence 
+  $\Delta (u \circ F) = \Delta f = 0$, as desired.
   \ \\
 \end{solution}

@@ -4,8 +4,58 @@ $$
 K'(k) = K(\tilde{k}).
 $$
 
+\newcommand{\kt}{\tilde{k}}
+
 \textit{Hint:} Change variables $x = \left(1 - \tilde{k}^2 y^2\right)^{-\frac{1}{2}}$ in the integral which defines $K'(k)$.
 
 \begin{solution}
+  We begin by changing variables in the integral which defines $K'(k)$ as in the hint so that
+
+  $$
+  dx = -\frac{1}{2}\left(1 - \kt^2 y^2 \right)^{-\frac{3}{2}}\left(-2 \kt^2 y\right) dy 
+     = \frac{\kt^2 y}{\left(1 - \kt^2 y^2\right)^{\frac{3}{2}}} dy.
+  $$
+
+  For the limits of integration $a$ and $b$ for $K'(k)$ under the above coordinate transformation, we have
+
+  $$
+  a = 1 
+    = \left(1 - \kt^2 y^2\right)^{-\frac{1}{2}} 
+      \implies 1 = 1 - \kt^2 y^2 
+      \implies y = 0,
+  $$
+
+  since $0 < \kt < 1$. Moreover, we have
+
+  $$
+  b = \frac{1}{k} 
+    = \left(1 - \kt^2 y^2\right)^{-\frac{1}{2}} 
+      \implies 1 - \kt^2 y^2 = k^2 
+      \implies y = \sqrt{\frac{1 - k^2}{\kt^2}} = 1,
+  $$
+
+  since $1 - k^2 = \kt^2$ and $0 < \kt < 1$. Our integrand for $K'(k)$ then becomes:
+
+  \begin{align*}
+    \frac{1}{\sqrt{\left(x^2 - 1\right)\left(1 - k^2 x^2\right)}} \, dx
+      &= \frac{1}{\left[\left(\frac{1}{1 - \kt^2 y^2} - 1 \right) \left(1 - \frac{k^2}{1 - \kt^2 y^2} \right)\right]^{\frac{1}{2}}}
+         \frac{\kt^2 y}{\left(1 - \kt^2 y^2\right)^{\frac{3}{2}}} \, dy \\
+      &= \frac{1}{\left[\left(\frac{\kt^2 y^2}{1 - \kt^2 y^2}\right) \left(\frac{1 - \kt^2 y^2 - k^2}{1 - \kt^2 y^2} \right)\right]^{\frac{1}{2}}}
+         \frac{\kt^2 y}{\left(1 - \kt^2 y^2\right)^{\frac{3}{2}}} \, dy \\
+      &= \frac{1}{\left[\left(\frac{\kt^2 y^2}{1 - \kt^2 y^2}\right) \left(\frac{\kt^2 - \kt^2 y^2}{1 - \kt^2 y^2} \right)\right]^{\frac{1}{2}}}
+         \frac{\kt^2 y}{\left(1 - \kt^2 y^2\right)^{\frac{3}{2}}} \, dy \\
+      &= \frac{\kt^2 y}{\left[\kt^4 y^2 (1 - y^2)(1 - \kt^2 y^2) \right]^{\frac{1}{2}}} \, dy \\
+      &= \frac{1}{\left[(1 - y^2)(1 - \kt^2 y^2) \right]^{\frac{1}{2}}} \, dy \\
+  \end{align*}
+
+  so that with our transformed limits of integration, we have 
+
+  \begin{align*}
+    K'(k) &= \int_1^{\frac{1}{k}} \frac{1}{\sqrt{\left(x^2 - 1\right)\left(1 - k^2 x^2\right)}} \, dx \\
+          &= \int_0^1 \left[(1 - y^2)(1 - \kt^2 y^2) \right]^{-\frac{1}{2}} \, dy \\
+          &= K(\kt),
+  \end{align*}
+
+  as was to be shown.
   \ \\
 \end{solution}

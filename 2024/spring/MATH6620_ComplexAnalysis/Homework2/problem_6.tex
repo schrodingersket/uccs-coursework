@@ -13,5 +13,30 @@ $$
 $$
 
 \begin{solution}
+  For notational simplicity, we define $\alpha = \theta - \phi$. We begin with the observation that 
+
+  $$
+  -1 \le \cos{\alpha} \le 1.
+  $$
+
+  Since $0 \le r < R$, we obtain the following inequality after multiplying by $-2 R r$ and adding $R^2 + r^2$:
+
+  $$
+  (R + r)^2 = R^2 + 2 R r + r^2 
+            \ge R^2 - 2 R r \cos{\alpha} + r^2 
+            \ge R^2 - 2 R r + r^2 
+            = (R - r)^2 > 0.
+  $$
+
+  From this inequality (along with the observation that $R - r > 0$ since $R > r$), we conclude that
+
+  $$
+  \frac{R - r}{R + r} = \frac{R^2 - r^2}{(R + r)^2} 
+                      \le 2 \pi \left(\frac{1}{2 \pi} \frac{R^2 - r^2}{R^2 - 2 R r \cos{\alpha} + r^2} \right)
+                      \le \frac{R^2 - r^2}{(R - r)^2} 
+                      = \frac{R + r}{R - r}
+  $$
+
+  as desired.
   \ \\
 \end{solution}

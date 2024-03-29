@@ -1,4 +1,4 @@
-\textbf{Lang 10.3.6}
+\textbf{Lang 10.2.6}
 
 Let $\Phi$ be the family of all analytic functions
 
@@ -12,5 +12,23 @@ defined on the open unit disk such that $|a_n| \le n$ for each $n$. Show that $\
 theorem.
 
 \begin{solution}
+  Let $K \subset \mathbb{D}$ be a compact subset of the open unit disk. We note by the Heine-Borel theorem that $K$ is a
+  closed and bounded subset of $\mathbb{D}$ and hence there exists an upper bound $M_K \in K$ such that 
+  $|z| \le M_K < 1$ for every $z \in K$. Then for any $f \in \Phi$ restricted to $K$ (noting that $a_1 = 1$), we have
+
+  $$
+    |f(z)| = \left| \sum\limits_{n=1}^{\infty} a_n z^n \right|
+           \le \sum\limits_{n=1}^{\infty} |a_n| \cdot |z|^n
+           \le \sum\limits_{n=1}^{\infty} n M_K^n
+           = M \sum\limits_{n=1}^{\infty} n M_K^{n-1}
+           = \frac{M_K}{(1 - M_K)^2},
+  $$
+  
+  where we have obtained the last equality by observing that since $M_K < 1$, we may differentiate the geometric series
+  term-by-term to obtain the equality $\sum\limits_{n=1}^{\infty} n M_K^{n-1} = \frac{1}{(1 - M_K)^2}$ where the
+  original radius of convergence is preserved. Lastly, since $|f(z)| \le M_K$ for every $z \in K$, we conclude that
+  $f(z)$ is bounded on $K$ by a constant which only depends on $K$ and hence $\Phi$ is uniformly bounded on $K$. Since
+  $K$ was chosen to be an arbitrary compact subset of $\mathbb{D}$, Montel's theorem implies that $\Phi$ is relatively
+  compact, as desired.
   \ \\
 \end{solution}

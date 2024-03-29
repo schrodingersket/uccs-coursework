@@ -1,3 +1,5 @@
+\newcommand{\argz}[1][]{e^{#1 i \theta}}
+
 \textbf{Stein, Shakarchi 8.9}
 
 Prove that the function $u$ defined by
@@ -9,5 +11,36 @@ $$
 is harmonic in the unit disc and vanishes on its boundary. Note also that $u$ is not bounded in $\mathbb{D}$.
 
 \begin{solution}
+  We begin with the observation that $f(z) = \frac{i + z}{i - z}$ is holomorphic in $\mathbb{D}$ since it is the 
+  quotient of two holomorphic functions and $i \notin \mathbb{D}$. Since the real and imaginary parts of a holomorphic 
+  function are harmonic, we conclude that $u = \text{Re} \left( \frac{i + z}{i - z} \right)$ must be harmonic in 
+  $\mathbb{D}$.
+
+  To show that $u$ vanishes on the boundary of $\mathbb{D}$, we let $z = r \argz$ to obtain the following expression for 
+  $f$:
+
+  $$
+  f(r, \theta) = \frac{i + r \argz}{i - r \argz} \cdot \frac{-i - r \argz[-]}{-i - r \argz[-]} 
+               = \frac{1 - ir\left(\argz + \argz[-]\right) - r^2}{1 + ir \left(\argz - \argz[-] \right) + r^2}
+               = \frac{1 - 2ir \cos{\theta} - r^2}{1 - 2r \sin{\theta} + r^2}.
+  $$
+
+  so that
+
+  $$
+  u(r, \theta) = \text{Re} (f) = \frac{1 - r^2}{1 - 2r \sin{\theta} + r^2}.
+  $$
+
+  In particular, we observe that $r = 1$ and $\theta = \frac{\pi}{2}$ when $x = 0$ and $y = 1$, so that in polar 
+  coordinates we have $u\left(1, \frac{\pi}{2}\right) = 0$. Moreover, for any fixed $\theta \in [0, 2 \pi) \setminus \left\{ \frac{\pi}{2} \right\}$, we have
+
+  $$
+  \lim_{|z| \to 1} \text{Re} \left(\frac{z + i}{z - i}\right) = \lim_{r \to 1} u(r, \theta) 
+                                                              = \lim_{r \to 1} \frac{1 - r^2}{1 - 2r \sin{\theta} + r^2} 
+                                                              = \frac{1 - (1)^2}{2(1 - \sin{\theta})} 
+                                                              = 0,
+  $$
+
+  from which we conclude that $u$ vanishes on the boundary of $\mathbb{D}$, as desired.
   \ \\
 \end{solution}

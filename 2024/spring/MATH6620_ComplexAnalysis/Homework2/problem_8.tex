@@ -1,8 +1,56 @@
 \textbf{Lang 8.4.4}
 
-Let $\{u_n\}$ be a sequence of harmonic functions on the open disc. Prove that if $\{u_n\}$ converges uniformly on 
-compact subsets of the disc, then the limit is harmonic.
+Let $\{u_n\}$ be a sequence of harmonic functions on the open disc $D_{\rho}$ where $\rho$ is the radius of the disc. 
+Prove that if $\{u_n\}$ converges uniformly on compact subsets of the disc, then the limit is harmonic.
 
 \begin{solution}
+  Since $u_n$ is harmonic on $D_{\rho}$, we may write $u_n = \text{Re}(f_n)$ for some holomorphic function $f_n$ on 
+  $D_{\rho}$. Since each $f_n$ is unique up to an imaginary constant, we construct a new sequence of holomorphic 
+  functions $\{g_n\}$ by subtracting off this imaginary constant $i K_n$ from each $f_n$ so that $g_n = f_n - i K_n$ for 
+  each $n$. We now let $K$ be a compact subset of $D_{\rho}$ and fix $\epsilon > $ and $0 < r < R < \rho$ such that $K$ 
+  is contained in $D_R = D(0, R)$. Since each $g_n$ is holomorphic on $\overline{D}_R$, we may apply Theorem 8.4.2 from 
+  \textit{Lang} to obtain
+
+  $$
+  g_n(z) = \frac{1}{2 \pi}\int_0^{2 \pi} \text{Re} \left(g_n(R e^{i \theta})\right) P_{R, r}(\theta - \phi) \, d\theta
+         = \frac{1}{2 \pi}\int_0^{2 \pi} u_n(R e^{i \theta}) P_{R, r}(\theta - \phi) \, d\theta
+  $$
+
+  for every $z \in D_R$. Let $u$ be the uniform limit of $\{u_n\}$ on $\overline{D}_R$. We define
+
+  $$
+  g(z) = \frac{1}{2 \pi}\int_0^{2 \pi} u(R e^{i \theta}) P_{R, r}(\theta - \phi) \, d\theta
+  $$
+
+  and observe that 
+
+  \begin{align*}
+  |g(z) - g_n(z)| &= \left| \frac{1}{2 \pi}\int_0^{2 \pi} \left(u_n(R e^{i \theta}) - u(R e^{i \theta})\right) P_{R, r}(\theta - \phi) \, d\theta  \right| \\
+                  &\le \frac{1}{2 \pi}\int_0^{2 \pi} \left|u_n(R e^{i \theta}) - u(R e^{i \theta})\right| P_{R, r}(\theta - \phi) \, d\theta \\
+                  &\le \frac{1}{2 \pi}\int_0^{2 \pi} \left|u_n(R e^{i \theta}) - u(R e^{i \theta})\right| \frac{1}{2 \pi}\frac{R + r}{R - r} \, d\theta
+  \end{align*}
+
+  where we have applied Exercise 8.4.2 from \textit{Lang} to obtain the last inequality. In particular, since 
+  $\overline{D}_R$ is compact, there exists some $N_{D_R} \in \mathbb{N}$ so that 
+  $|u_n(z) - u(z)| < 2 \pi \epsilon \frac{R - r}{R + r}$ for all $n \ge N_{D_R}$ and all $z \in C_R$. We therefore 
+  conclude
+
+  $$
+  |g(z) - g_n(z)| \le \frac{1}{2 \pi}\int_0^{2 \pi} \left|u_n(R e^{i \theta}) - u(R e^{i \theta})\right| \frac{1}{2 \pi}\frac{R + r}{R - r} \, d\theta \\
+                  < \frac{\epsilon}{2 \pi}\int_0^{2 \pi} \, d\theta \\
+                  = \epsilon,
+  $$
+
+  for all $z \in D_R$ whenever $n > N_{D_R}$. Hence $g_n$ converges uniformly to $g$ on $D_R$ (and therefore also $K$). 
+  Moreover, $g$ is the uniform limit of holomorphic functions and is therefore itself holomorphic on $K$ so that its 
+  real part is harmonic. Lastly, we note that
+
+  $$
+  u = \lim\limits_{n \to \infty} u_n = \lim\limits_{n \to \infty} \text{Re}(g_n) = \text{Re}(g)
+  $$
+
+  and hence $u$ is harmonic on $K$. Since $K$ was chosen to be arbitrary, we conclude the limit of $\{u_n\}$ is itself
+  harmonic (since for any $z \in D_{\rho}$, we may construct a compact set $K \subset D_{\rho}$ which contains $z$), 
+  as was to be shown.
   \ \\
 \end{solution}

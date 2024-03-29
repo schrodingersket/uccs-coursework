@@ -5,5 +5,17 @@ holomorphic automorphism $f$ of $U$ such that $f(z_1) = z_2$. (Distinguish the c
 $U \neq \mathbb{C}$).
 
 \begin{solution}
+  Suppose first that $U = \mathbb{C}$. Then the function $f(z) = z + z_2 - z_1$ is a translation of the entire complex 
+  plane and is therefore a holomorphic automorphism of $U = \mathbb{C}$ which maps $z_1$ to $z_2$ (with holomorphic 
+  inverse $f^{-1}(w) = w - z_2 + z_1$). Now suppose that $U \neq \mathbb{C}$. Since $U$ is simply connected, we may
+  apply the Riemann Mapping Theorem to $U$ to obtain a unique holomorphic automorphism $F_1: U \to \mathbb{D}$ (resp. 
+  $F_2: U \to \mathbb{D}$) which maps $z_1$ (resp. $z_2$) to zero. Since compositions of conformal maps are themselves
+  conformal, we conclude that the composition $f: U \to U$ defined by
+
+  $$
+  f(z) = F_1 \circ F_2^{-1} (z)
+  $$
+   
+  is a holomorphic automorphism of $U$ which maps $z_1$ to $z_2$, as desired.
   \ \\
 \end{solution}

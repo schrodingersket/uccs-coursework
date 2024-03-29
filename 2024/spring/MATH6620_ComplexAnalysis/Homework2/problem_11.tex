@@ -1,8 +1,50 @@
-\textbf{Lang 10.3.7}
+\textbf{Lang 10.2.7}
 
 Let $\{f_n\}$ be a uniformly bounded sequence of analytic functions on $U$, and assume that for each $z \in U$, the 
 sequence $\{f_n(z)\}$ converges. Show that $\{f_n\}$ converges uniformly on compact subsets of $U$.
 
 \begin{solution}
+  Let $\mathcal{F} = \bigcup_{n \in \mathbb{N}}\{f_n\}$ denote the family of functions whose elements are elements of 
+  the sequence $\{f_n\}_{n \in \mathbb{N}}$. Since each $f_n$ is holomorphic on $U$, $f_n$ is also holomorphic on every 
+  compact subset of $U$; moreover, since $\{f_n\}_{n \in \mathbb{N}}$ is uniformly bounded on $U$, it is therefore also 
+  uniformly bounded on every compact subset of $U$. We may therefore apply Montel's theorem to conclude that 
+  $\mathcal{F}$ is a normal family of functions and is equicontinuous on every compact subset of $U$.
+
+  Let $K$ be a compact subset of $U$, and let $\epsilon > 0$. We show that $\{f_n\}$ is uniformly Cauchy on $K$. 
+  Firstly, since $\mathcal{F}$ is equicontinuous on $K$, there exists some $\delta$ such that 
+  $|f_n(z) - f_n(w)| < \frac{\epsilon}{3}$ for all $n \in \mathbb{N}$ and every $z, w \in K$ whenever 
+  $|z - w| < \delta$. From this, we cover $K$ with open balls of radius $\delta$ centered at each $z_0 \in K$ so that 
+  within each ball we have $|f_n(z) - f_n(w)| < \frac{\epsilon}{3}$ for all $n \in \mathbb{N}$ and every 
+  $z, w \in B_{\delta}(z_0)$. Since $K$ is compact, there exists a finite subcover of $K$, which we denote by
+
+  $$
+    \bigcup\limits_{j = 1}^{N} B_{\delta}(z_j).
+  $$
+
+  By virtue of the fact that this set is a covering of $K$, we note that for every $z \in K$, there exists some 
+  $1 \le i \le N$ such that such that $|z - z_i| < \delta$ and hence
+
+  $$
+    |f_n(z) - f_m(z)| \le |f_n(z) - f_n(z_i)| + |f_n(z_i) - f_m(z_i)| + |f_m(z_i) - f_m(z)| 
+                      < \frac{2 \epsilon}{3} + |f_n(z_i) - f_m(z_i)|.
+  $$
+
+  Furthermore, since $\{f_n(z)\}$ converges pointwise in $U$, we observe that for each fixed $z \in K$, the sequence 
+  $\{f_n(z)\}$ is Cauchy. Therefore, for each $z_j$ from our finite subcover, there exists some $M_j \in \mathbb{N}$ 
+  such that $|f_n(z_j) - f_m(z_j)| < \frac{\epsilon}{3}$ for all $n, m \ge M_j$. Letting 
+  $M = \max\limits_{1 \le j \le N}{M_j}$, we conclude that
+
+  $$
+    |f_n(z_j) - f_m(z_j)| < \frac{\epsilon}{3} \quad \text{for all } 1 \le j \le N
+  $$
+
+  whenever $n, m > M$. Combining this result with our earlier inequality yields
+
+  $$
+    |f_n(z) - f_m(z)| < \frac{2 \epsilon}{3} + |f_n(z_i) - f_m(z_i)| < \epsilon,
+  $$
+
+  whenever $n, m > M$. Since this holds for every $z \in K$, we conclude that $f_n$ is uniformly Cauchy on the 
+  arbitrarily-chosen $K$ and so $f_n$ converges uniformly on compact subsets of $U$.
   \ \\
 \end{solution}

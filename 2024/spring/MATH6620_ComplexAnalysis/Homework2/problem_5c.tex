@@ -4,11 +4,40 @@ $$
 K(k) = \frac{\pi}{2} F \left(\frac{1}{2}, \frac{1}{2}, 1; \; k^2 \right),
 $$
 
-where $F$ is the hypergeometric series. 
-\ \\
+where $F$ is the hypergeometric series given by
 
+$$
+F(\alpha, \beta, \gamma; \; z) = \frac{\Gamma(\gamma)}{\Gamma(\beta)\Gamma(\gamma - \beta)} 
+                                 \int_0^1 t^{\beta - 1} (1 - t)^{\gamma - \beta - 1} (1 - zt)^{-\alpha} \, dt
+$$
+
+with $\alpha, \beta > 0$, $\gamma > \beta$, and $|z| < 1$. 
+
+\ \\
 \textit{Hint:} This follows from the integral representation for $F$ given in Exercise 6.9 of \textit{Stein, Shakarchi}.
 
 \begin{solution}
+  Upon substituting $\alpha = \beta = \frac{1}{2}$, $\gamma = 1$, and $z = k^2$ into the integral representation for $F$ 
+  given above and noting that $\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$, we have:
+
+  \begin{align*}
+  \frac{\pi}{2} F \left(\frac{1}{2}, \frac{1}{2}, 1; \; k^2 \right) 
+    &= \frac{\pi}{2} \frac{\Gamma(1)}{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{1}{2}\right)} 
+       \int_0^1 t^{-\frac{1}{2}} (1 - t)^{-\frac{1}{2}} (1 - k^2 t)^{-\frac{1}{2}} \, dt \\
+    &= \frac{1}{2} \int_0^1 \frac{1}{t^{-\frac{1}{2}} \left[(1 - t)(1 - k^2 t)\right]^{\frac{1}{2}}} \, dt
+  \end{align*}
+
+  We now change variables by letting $t = x^2$ so that $dt = 2x \, dx$ and our integrands remain unchanged. Our 
+  integral therefore becomes:
+
+  \begin{align*}
+  \frac{\pi}{2} F \left(\frac{1}{2}, \frac{1}{2}, 1; \; k^2 \right) 
+    &= \frac{1}{2} \int_0^1 \frac{1}{t^{\frac{1}{2}} \left[(1 - t)(1 - k^2 t)\right]^{\frac{1}{2}}} \, dt \\
+    &= \frac{1}{2} \int_0^1 \frac{2 x}{x \left[(1 - x^2)(1 - k^2 x^2)\right]^{\frac{1}{2}}} \, dx \\
+    &= \int_0^1 \frac{1}{\left[(1 - x^2)(1 - k^2 x^2)\right]^{\frac{1}{2}}} \, dx \\
+    &= K(k),
+  \end{align*}
+
+  as was to be shown.
   \ \\
 \end{solution}

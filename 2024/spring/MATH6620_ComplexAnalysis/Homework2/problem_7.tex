@@ -4,9 +4,49 @@ Let $f$ be analytic on the closed disc $\overline{D}(\alpha, R)$ and let $u = \t
 $0 \le r < R$, the following inequality holds:
 
 $$
-\frac{R - r}{R + r} u(\alpha) \le u(\alpha + r e^{i \theta}) \le \frac{R + r}{R - r} u(\alpha).
+\frac{R - r}{R + r} u(\alpha) \le u(\alpha + r e^{i \phi}) \le \frac{R + r}{R - r} u(\alpha).
 $$
 
 \begin{solution}
+  Without loss of generality, we begin by subtracting $\alpha$ from $f$ if necessary so that $f$ is analytic on the 
+  closed disc $\overline{D}(0, R)$. From the previous problem (\textit{Lang} 8.4.2), we have:
+
+  $$
+  0 < \frac{R - r}{R + r} 
+    = 2 \pi P_{R, r}(\theta - \phi)
+    \le 2 \pi \, \text{Re} \left(\frac{R e^{i\theta} + z}{{R e^{i\theta} - z}}\right)
+    \le \frac{R + r}{R - r}.
+  $$
+
+  Since every expression in the above inequality is real and greater than zero, multiplication by the non-negative 
+  function $\frac{u}{2 \pi}$ followed by integration over the unit disc preserves the inequality chain. We therefore 
+  obtain
+
+  $$
+  \frac{R - r}{R + r} \cdot \frac{1}{2 \pi} \int_0^{2 \pi} u(r e^{i \theta}) \, d\theta 
+    \le \int_0^{2 \pi} u(r e^{i \theta}) \text{Re} \left(\frac{R e^{i\theta} + z}{{R e^{i\theta} - z}}\right) \, d\theta
+    \le \frac{R + r}{R - r} \cdot \frac{1}{2 \pi} \int_0^{2 \pi} u(r e^{i \theta}) \, d\theta.
+  $$
+
+  Since $u$ is harmonic on $D(0, \alpha)$ as the real part of the holomorphic function $f$, it satisfies the mean value 
+  property and hence
+
+  $$
+  u(0) = \frac{1}{2 \pi} \int_0^{2 \pi} u(r e^{i \theta}) \, d\theta.
+  $$
+
+  Moreover, since $f$ is holomorphic on $\overline{D}(0, R)$, we have as a direct consequence of \textit{Lang's} 
+  Theorem 9.4.1 (by taking the real parts of each side with $z = r e^{i \phi}$) that
+
+  $$
+  \int_0^{2 \pi} u(r e^{i \theta}) \, \text{Re} \left(\frac{R e^{i\theta} + z}{{R e^{i\theta} - z}}\right) \, d\theta
+    = u(r e^{i \phi}).
+  $$
+
+  Combining these two results yields the desired inequality, i.e.
+
+  $$
+  \frac{R - r}{R + r} \, u(0) \le u(r e^{i \phi}) \le \frac{R + r}{R - r} \, u(0).
+  $$
   \ \\
 \end{solution}

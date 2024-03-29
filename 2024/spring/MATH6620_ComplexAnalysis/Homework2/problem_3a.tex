@@ -4,7 +4,7 @@ $$
 \rho(f(z), f(w)) \le \rho(z, w) \quad \text{for all} \; z, w \in \mathbb{D}.
 $$
 
-Moreover, prove that if $f$ is an automorphism of $\mathbb{D}$, then $f$ preserves the pseudo-hyperbolic distance, i.e.,
+Moreover, prove that if $f$ is an automorphism of $\mathbb{D}$, then 
 
 $$
 \rho(f(z), f(w)) = \rho(z, w) \quad \text{for all} \; z, w \in \mathbb{D}.
@@ -15,5 +15,50 @@ $$
 Schwarz lemma to $\psi_{f(w)} \circ f \circ \psi_{w}^{-1}$.
 
 \begin{solution}
+  Let $w \in \mathbb{D}$. We first observe that $\psi_{f(w)} \circ f \circ \psi_{w}^{-1}: \mathbb{D} \to \mathbb{D}$ is 
+  a composition of holomorphic functions and is therefore itself holomorphic. Moreover, by definition of 
+  $\psi_{\alpha}$, we note that
+
+  $$
+  \psi_{f(w)} \circ f \circ \psi_{w}^{-1} (0) = 0
+  $$
+
+  and hence we may apply the Schwarz Lemma to conclude that
+
+  $$
+  \left| \psi_{f(w)} \circ f \circ \psi_{w}^{-1} (z) \right| \le |z|
+  $$
+
+  for every $z$ in the unit disc. Furthermore, since $\psi_w$ is bijective, there exists some unique 
+  $\tilde{z} \in \mathbb{D}$ such that $\psi_w(\tilde{z}) = z$ and, in particular, $\tilde{z} = \psi_w^{-1}(z)$. Hence 
+  we have
+
+  $$
+  \left| \frac{f(\tilde{z}) - f(w)}{1 - \conj{f(w)}f(\tilde{z})} \right| = \left| \psi_{f(w)} \circ f (\tilde{z}) \right| 
+                                                                         = \left| \psi_{f(w)} \circ f \circ \psi_w^{-1}(z) \right| 
+                                                                         \le |z| 
+                                                                         = |\psi_w (\tilde{z})| 
+                                                                         = \left| \frac{\tilde{z} - w}{1 - \conj{w} \tilde{z}} \right|
+  $$
+
+  Since $\psi_w$ is an automorphism of the unit disc, the fact that this expression holds for every $z \in \mathbb{D}$ 
+  implies that it must also hold for every $\tilde{z} \in \mathbb{D}$ which shows that 
+  $\rho(f(z), f(w)) \le \rho(z, w)$. We now suppose that $f$ is an automorphism of $\mathbb{D}$ so that 
+  $f^{-1}:\mathbb{D} \to \mathbb{D}$ exists and is holomorphic. We apply the same argument to $f^{-1}$ to obtain
+
+  $$
+  \rho(f^{-1}(z), f^{-1}(w)) \le \rho(z, w)
+  $$
+
+  for every $z, w \in \mathbb{D}$. Moreover, since $f$ is an automorphism of $\mathbb{D}$, there again exist some unique 
+  $\tilde{z}, \tilde{w} \in \mathbb{D}$ in the unit disc such that $f(\tilde{z}) = z$ and $f(\tilde{w}) = w$. From this,
+  we conclude that
+
+  $$
+  \rho(\tilde{z}, \tilde{w}) \le \rho(f(\tilde{z}), f(\tilde{w}))
+  $$
+
+  and since this holds for every $\tilde{z}, \tilde{w} \in \mathbb{D}$, we conclude that 
+  $\rho(z, w) = \rho(f(z), f(w))$ as desired.
   \ \\
 \end{solution}

@@ -5,3 +5,28 @@ $$
 $$
 
 This result is called the Schwarz-Pick lemma.
+
+\begin{solution}
+    Let $z, w \in \mathbb{D}$. From part (a), we know that
+
+
+    $$
+    \left|\frac{f(z) - f(w)}{1 - \conj{f(w)}{f(z)}} \right| \le \left|\frac{z - w}{1 - \conj{w}z} \right|
+    $$
+
+    and dividing both sides by $|z - w|$ gives
+
+    $$
+    \left|\frac{f(z) - f(w)}{z - w} \right| \cdot \left| \frac{1}{1 - \conj{f(w)}{f(z)}} \right| \le \left|\frac{1}{1 - \conj{w}z} \right|.
+    $$
+
+    Since $f$ is holomorphic in $\mathbb{D}$, taking the limit of both sides as $w \to z$ yields
+
+    $$
+    \left| f'(z) \right| \cdot \frac{1}{1 - |f(z)|^2} \le \frac{1}{1 - |z|^2},
+    $$
+
+    where we have dropped the modulus operation with the observation that $|f(z)| < 1$ and $|z| < 1$ since both
+    $z$ and $f(z)$ are contained in the unit disc.
+    \ \\
+\end{solution}
