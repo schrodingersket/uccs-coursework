@@ -8,7 +8,7 @@ $$
 
 \begin{solution}
   We begin by showing that the above transformation preserves the limits of integration. We first note that since 
-  $0 < \kt < 1$, the quantities $1 + \kt$ and $1 - \kt$ are both positive. From this, we observe that
+  $0 < \kt < 1$, the quantities $1 + \kt$ and $1 - \kt$ are both positive. From this, we observe 
 
   $$
   a = 0
@@ -16,7 +16,7 @@ $$
       \implies t = 0.
   $$
 
-  For the other limit of integration, we observe that
+  For the other limit of integration, we find
 
   $$
   b = 1 
@@ -25,9 +25,15 @@ $$
   $$
 
   where an application of the quadratic formula yields the roots $t = 1$ and $t = \frac{1 - \kt}{1 + \kt}$. We choose
-  the former root since the latter is greater than 1. 
- 
-  as was to be shown. We now define $\alpha \coloneqq \frac{1 - \kt}{1 + \kt} > 0$ so that 
+  the former root since the latter is greater than 1 and therefore outside our desired range of integration. 
+  
+  For the sake of mathematical convenience, we now define the quantity 
+  
+  $$
+  \alpha = \frac{1 - \kt}{1 + \kt} > 0
+  $$ 
+  
+  and introduce the suggested change of variable $x = \frac{2t}{1 + \tilde{k} + \left(1 - \tilde{k}\right) t^2}$ so that 
  
   $$
     x = \frac{1}{1 + \kt}\frac{2t}{1 + \alpha t^2} \quad \text{and} \quad x^2 = \frac{1}{(1 + \kt)^2}\frac{4t^2}{(1 + \alpha t^2)^2}.
@@ -40,14 +46,15 @@ $$
      = \frac{2}{1 + \kt} \frac{1 - \alpha t^2}{(1 + \alpha t^2)^2} \, dt.
   $$
 
-  Before proceeding with the proof, we show two useful identities. First, we have
+  Before proceeding with the desired proof, we show two useful identities. Firstly, we have
 
   \begin{equation} \label{eq:5b-identity-the-first}
     1 + \alpha^2 = \frac{\left(1 + \kt\right)^2 + \left(1 - \kt\right)^2}{\left(1 + \kt\right)^2}
-                 = \frac{2\left(1 + \kt^2\right)}{\left(1 + \kt\right)^2},
+                 = \frac{2\left(1 + \kt^2\right)}{\left(1 + \kt\right)^2}.
   \end{equation}
 
-  and secondly 
+  \pagebreak
+  Secondly, we observe
 
   $$
     k^2 = 1 - \kt^2 = \left(1 + \kt\right)\left(1 - \kt\right)
@@ -59,7 +66,7 @@ $$
     \frac{k^2}{\left(1 + \kt\right)^2} = \frac{1 - \kt}{1 + \kt} = \alpha.
   \end{equation}
 
-  We now substitute our change of variables into $K(k)$ to obtain
+  We now substitute our change of variables into $K(k)$ to find
 
   \begin{align*}
     K(k) &= \int_0^1 \frac{dx}{\left[(1 - x^2) (1 - k^2 x^2) \right]^{\frac{1}{2}}} \\
@@ -93,7 +100,7 @@ $$
       &= 1 + \frac{t^2(2 - 2\kt^2 - 4) + (1 - \kt)^2 t^4}{\left(1 + \kt \right)^2} \\ 
       &= 1 + \alpha^2 t^4 - \frac{2 t^2(1 + \kt^2)}{\left(1 + \kt \right)^2} \\ 
       &= 1 + \alpha^2 t^4 - (1 + \alpha^2) t^2 \\
-      &= (1 - t^2)(1 - \alpha^2 t^2)
+      &= (1 - t^2)(1 - \alpha^2 t^2).
   \end{align*}
 
   Similarly, we apply \eqref{eq:5b-identity-the-second} to the second term in square brackets to obtain
@@ -104,7 +111,6 @@ $$
     = \left(1 - \alpha t^2\right)^2,
   $$
 
-  \pagebreak
   Substituting these two results back into our current expression for $K(k)$ yields
 
   \begin{align*}
@@ -125,7 +131,8 @@ $$
             \left[
               (1 - t^2)(1 - \alpha^2 t^2)
             \right]^{-\frac{1}{2}} \, dt \\
-          &= \frac{2}{1 + \kt} K(\alpha),
+          &= \frac{2}{1 + \kt} K(\alpha) \\
+          &= \frac{2}{1 + \kt} K\left(\frac{1 - \kt}{1 + \kt}\right),
   \end{align*}
 
   as desired.
