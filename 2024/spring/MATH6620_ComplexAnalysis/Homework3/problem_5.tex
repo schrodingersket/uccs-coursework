@@ -12,5 +12,77 @@ $$
 similar to the one found in the proof of Theorem 4.7. See also Theorem 4.6.
 
 \begin{solution}
+  Suppose that the conditions in the hypothesis hold, and let $\varphi: \mathbb{H} \to \mathbb{D}$ be the standard 
+  conformal map from the upper half plane to the unit disc given by
+
+  $$
+  \varphi(z) = \frac{i - z}{i + z} \quad \text{and} \quad \varphi^{-1}(w) = i \frac{1 - w}{1 + w}.
+  $$
+
+  Since $F$ is a conformal map from $\mathbb{D}$ to $P$, the composition $F \circ \varphi$ is a conformal map from 
+  $\mathbb{H}$ to $P$. Moreover, since we assume that none of the vertices of $P$ correspond to the point at infinity,
+  \footnote{
+    If they do, then we may pre-compose the upper half plane with a conformal map as in the proof of Theorem 4.7 in 
+    Chapter 8 of \textit{Stein, Shakarchi}.
+  } there are real numbers $A_1, A_2, \dots, A_n$ such that $(F \circ \varphi) (A_j) = a_j$ for each $1 \le j \le n$. By 
+  Theorem 4.6, there exist constants $c_1, c_2 \in \mathbb{C}$ such that
+
+  $$
+  F \circ \varphi(z) = c_1 \int_0^z \frac{d\zeta}{(\zeta - A_1)^{\beta_1} \cdots (\zeta - A_n)^{\beta_n}} + c_2.
+  $$
+
+  We introduce the change of variable $\zeta = \varphi^{-1}(w)$ to obtain
+
+  $$
+  d\zeta = \frac{2i}{(1 + w)^2} dw \quad \text{and} \quad \varphi(0) = 1,
+  $$
+
+  so that our integral becomes
+
+  $$
+  F \circ \varphi(z) = c_1 \int_1^{\varphi(z)} \frac{2 i }{(1 + w)^2} \frac{dw}{\left(i \frac{1 - w}{1 + w} - A_1\right)^{\beta_1} \cdots \left(i \frac{1 - w}{1 + w}  - A_n\right)^{\beta_n}} + c_2.
+  $$
+
+  Moreover, we note that $\varphi(z)$ maps the real line to the boundary of the unit circle. As a result, for any of our 
+  $A_j$, we observe that $\varphi(A_j)$ lies on the unit circle. We denote this point by $B_j$ so that
+
+  $$
+  B_j = \varphi(A_j) = \frac{i - A_j}{i + A_j}.
+  $$
+
+  \pagebreak
+  Turning our attention to the terms in the denominator of the integrand of $F \circ \varphi(z)$, we find:
+
+  \begin{align*}
+    \left(i \frac{1-w}{1+w} - A_j\right)^{\beta_j} 
+      &= \left(\frac{1}{1 + w}\right)^{\beta_j} \left[ i (1 - w) - A_j (1 + w) \right]^{\beta_j} \\
+      &= \left(\frac{1}{1 + w}\right)^{\beta_j} \left[ -(i + A_j) w  - (A_j - i) \right]^{\beta_j} \\
+      &= \left(-\frac{i + A_j}{1 + w}\right)^{\beta_j} \left( w  + \frac{A_j - i}{i + A_j} \right)^{\beta_j} \\
+      &= \left(-\frac{i + A_j}{1 + w}\right)^{\beta_j} \left( w  - \frac{i - A_j}{i + A_j} \right)^{\beta_j} \\
+      &= \left(-\frac{i + A_j}{1 + w}\right)^{\beta_j} \left( w  - B_j \right)^{\beta_j}
+  \end{align*}
+
+  Furthermore, since $\sum\limits_{j=1}^n \beta_j = 2$ (by definition of the Schwarz-Christoffel formula), we may 
+  substitute the above identity to obtain:
+
+  \begin{align*}
+  F \circ \varphi(z) &= c_1 \int_1^{\varphi(z)} \frac{2 i }{(1 + w)^2} 
+                                                \frac{dw}{\left( i \frac{1 - w}{1 + w} - A_1 \right)^{\beta_1} \cdots \left( i \frac{1 - w}{1 + w}  - A_n \right)^{\beta_n}} + c_2 \\
+                     &= c_1 \int_1^{\varphi(z)} \frac{2 i }{(1 + w)^2} \cdot
+                                                \frac{(-(1 + w))^2}{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
+                                                \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
+                     &= c_1 \int_1^{\varphi(z)} \frac{2 i }{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
+                                                \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
+  \end{align*}
+
+  Defining $C_1 = c_1 \frac{2 i}{\prod_{j=1}^n (i + A_j)^{\beta_j}}$, $C_2 = c_2$, and $\omega = \varphi(z)$ yields:
+  \begin{align*}
+  F(\omega) &= F \circ \varphi(z) \\
+            &= c_1 \int_1^{\varphi(z)} \frac{2 i }{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
+                                       \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
+            &= C_1 \int_1^{\omega} \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + C_2,
+  \end{align*}
+
+  as desired. 
   \ \\
 \end{solution}

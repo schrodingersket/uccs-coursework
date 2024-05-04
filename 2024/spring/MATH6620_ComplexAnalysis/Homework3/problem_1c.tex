@@ -2,5 +2,21 @@ Find an example of a sequence of complex numbers $\{a_n\}$ such that $\prod\limi
 but $\sum\limits_{n=0}^{\infty} a_n$ diverges.
 
 \begin{solution}
+  Let $a_n = -\frac{1}{2}$. Then we have
+
+  $$
+  \lim_{N \to \infty} \prod_{n=0}^{N} (1 + a_n) = \lim_{N \to \infty} \prod_{n=0}^{N} \frac{1}{2} 
+                                                = \lim_{N \to \infty} \left( \frac{1}{2} \right)^{N+1} 
+                                                = 0
+                                                < +\infty,
+  $$
+
+  but 
+
+  $$
+  \lim_{N \to \infty}\sum_{n=0}^{N} a_n = \lim_{N \to \infty}\sum_{n=0}^{N} -\frac{1}{2} 
+                                        = \lim_{N \to \infty} -\frac{N+1}{2} 
+                                        = -\infty.
+  $$
   \ \\
 \end{solution}

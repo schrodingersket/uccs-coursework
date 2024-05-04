@@ -9,3 +9,48 @@ is a square whose side lengths are given by
 $$
 s = \frac{\Gamma^2\left(\frac{1}{4}\right)}{2 \sqrt{2 \pi}}
 $$
+
+\begin{solution}
+    By part (a) with $\lambda = -1$, we know that $f(z)$ is a conformal map from the upper half-plane to a rectangle
+    which maps the points $0$, $1$, $-1$, and $\infty$ to the vertices of said rectangle. To show that the image is in 
+    fact a square, we must first show that two adjacent side lengths are equal. Noting that $f(0) = 0$, and employing 
+    the substitution $\zeta = -u$, we obtain
+
+    \begin{align*}
+        \left| f(-1) - f(0) \right| &= \left| \int_0^{-1} \frac{d\zeta}{\sqrt{\zeta(\zeta^2 - 1)}} \right| \\
+                                    &= \left| \int_0^{1} -\frac{du}{\sqrt{-u(u^2 - 1)}} \right| \\
+                                    &= \left| -\frac{1}{i} \int_0^{1} \frac{du}{\sqrt{u(u^2 - 1)}} \right| \\
+                                    &= \left| \int_0^{1} \frac{du}{\sqrt{u(u^2 - 1)}} \right| \\
+                                    &= \left| f(1) - f(0) \right|.
+    \end{align*}
+
+    as desired. To show that the side length is given by $s$, we employ the substitution $u = t^{\frac{1}{2}}$ and 
+    $du = \frac{1}{2 t^{\frac{1}{2}}}$ to obtain:
+
+    \begin{align*}
+        s &= \left| f(-1) - f(0) \right| \\
+          &= \left| - \int_0^1 \frac{du}{\sqrt{u (1 - u^2)}} \right| \\
+          &= \left| \int_0^1 \frac{dt}{2 t^{\frac{3}{4}} (1 - t)^{\frac{1}{2}}} \right| \\
+          &= \frac{1}{2} \left| \frac{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{1}{4}\right)}{\Gamma\left(\frac{3}{4}\right)} \right|.
+    \end{align*}
+
+    \pagebreak
+    Noting that $\Gamma(s) \Gamma(1 - s) = \frac{\pi}{\sin(\pi s)}$ whenever $0 < s < 1$, we have:\footnote{
+        See Lemma 1.5 in Chapter 6 of \textit{Stein, Shakarchi}.
+    }
+
+    $$
+    \Gamma\left(\frac{3}{4} \right) = \frac{\pi}{\Gamma\left(\frac{1}{4}\right) \sin{\left(\frac{\pi}{4} \right)}}
+                                    = \frac{2 \pi}{\Gamma\left(\frac{1}{4}\right) \sqrt{2}},
+    $$
+
+    so that together with the fact that $\Gamma\left(\frac{1}{2}\right) = \sqrt{\pi}$, we obtain:
+
+    $$
+    s = \frac{1}{2} \left| \frac{\Gamma\left(\frac{1}{2}\right)\Gamma\left(\frac{1}{4}\right)}{\Gamma\left(\frac{3}{4}\right)} \right|
+      = \frac{1}{2} \left| \frac{\sqrt{\pi} \, \Gamma^2\left(\frac{1}{4}\right) \sqrt{2}}{2 \pi} \right|
+      = \frac{\Gamma^2\left(\frac{1}{4}\right)}{2 \sqrt{2 \pi}},
+    $$
+
+    as was to be shown.
+\end{solution}

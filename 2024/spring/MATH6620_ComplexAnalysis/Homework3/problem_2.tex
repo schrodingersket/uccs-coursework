@@ -4,12 +4,56 @@ Prove that for every $z$, the following product converges to $\frac{\sin{z}}{z}$
 
 $$
 \cos{\left(\frac{z}{2}\right)} \cos{\left(\frac{z}{4}\right)} \cos{\left(\frac{z}{8}\right)} \cdots 
-  = \prod_{k=0}^{\infty} \cos{\left(\frac{z}{2^k}\right)}
+  = \prod_{k=1}^{\infty} \cos{\left(\frac{z}{2^k}\right)}
   = \frac{\sin{z}}{z}.
 $$
 
 \textit{Hint: } $\sin{2z} = 2 \sin{z} \cos{z}$
 
 \begin{solution}
+  We begin with the observation that the provided hint implies
+
+  $$
+  \cos{z} = \frac{\sin{2z}}{2 \sin{z}},
+  $$
+
+  where we observe that the singularities on the right-hand side are removable since $\sin{2 z}$ also has zeros wherever
+  $\sin{z}$ does. In particular, the $N$-th partial product of the given infinite product becomes:
+
+  $$
+  \prod_{k=1}^{N} \cos{\left(\frac{z}{2^k}\right)} 
+    = \frac{\sin{z}}{2 \sin{\frac{z}{2}}} 
+      \cdot \frac{\sin{\frac{z}{2}}}{2 \sin{\frac{z}{4}}} 
+      \cdot \frac{\sin{\frac{z}{4}}}{2 \sin{\frac{z}{8}}} 
+      \cdots \frac{\sin{\frac{z}{2^{N-2}}}}{2 \sin{\frac{z}{2^{N-1}}}}
+      \cdot \frac{\sin{\frac{z}{2^{N-1}}}}{2 \sin{\frac{z}{2^N}}}
+    = \frac{\sin{z}}{2^N \sin{\left(\frac{z}{2^N}\right)}}.
+  $$
+
+  In particular, since $\sin{\frac{z}{2^N}}$ is entire, we obtain the following expression for the denominator by 
+  expanding in a power series about $z = 0$ and multiplying by $2^N$ to obtain:
+
+  $$
+  2^N \sin{\frac{z}{2^N}} = \sum_{n=0}^{\infty} \frac{(-1)^n z^{2n+1}}{2^{nN} (2n+1)!}
+                          = z - \frac{z^3}{3! 2^{N}} + \frac{z^5}{5! 2^{2N}} - \cdots
+                          = z - \mathcal{O}\left(2^{-N}\right)
+  $$
+
+  so that 
+
+  $$
+    \frac{\sin{z}}{2^N \sin{\left(\frac{z}{2^N}\right)}} 
+      = \frac{\sin{z}}{z - \mathcal{O} \left(2^{-N}\right)}.
+  $$
+
+  For any fixed $z \in \mathbb{C}$, we let $N \to \infty$ to obtain the desired result: 
+
+  \begin{align*}
+    \prod_{k=1}^{\infty} \cos{\left(\frac{z}{2^k}\right)}
+      = \lim\limits_{N \to \infty} \prod_{k=1}^{N} \cos{\left(\frac{z}{2^k}\right)}
+      = \lim\limits_{N \to \infty} \frac{\sin{z}}{2^N \sin{\left(\frac{z}{2^N}\right)}} 
+      = \lim\limits_{N \to \infty} \frac{\sin{z}}{z - \mathcal{O} \left(2^{-N}\right)}
+      = \frac{\sin{z}}{z}.
+  \end{align*}
   \ \\
 \end{solution}

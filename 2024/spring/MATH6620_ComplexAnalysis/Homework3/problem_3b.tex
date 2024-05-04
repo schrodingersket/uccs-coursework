@@ -3,8 +3,103 @@ $\lim_{k \to \infty} |a_k| = \infty$, and let $E(z)$ denote a Weierstrass produc
 complex numbers $\{b_k\}_{k = 0}^{\infty}$, show that there exists integers $m_k \ge 1$ such that the series
 
 $$
-F(z) = \frac{b_0}{E'(z)} \frac{E(z)}{z} + \sum_{k=1}^{\infty} \frac{b_k}{E'(a_k)} \frac{E(z)}{z - a_k} \left(\frac{z}{a_k} \right)^{m_k}
+F(z) = \frac{b_0}{E'(0)} \frac{E(z)}{z} + \sum_{k=1}^{\infty} \frac{b_k}{E'(a_k)} \frac{E(z)}{z - a_k} \left(\frac{z}{a_k} \right)^{m_k}
 $$
 
 defines an entire function that satisfies $F(a_k) = b_k$ for all $k \ge 0$. This result is known as the Pringsheim 
 interpolation formula.
+
+\begin{solution}
+    We first recall that for our sequence $\{a_n\}_{n=0}^{\infty}$, the Weierstrass product $E(z)$ is defined by
+
+    $$
+    E(z) = z^m \prod_{n=1}^{\infty} E_n\left(\frac{z}{a_n}\right), \quad 
+      \text{where} \quad E_0(z) = 1 - z \quad 
+      \text{and} \quad E_n(z) = \left(1 - z\right) e^{\sum_{k=1}^n \frac{z^k}{k}}
+    $$
+
+    where $m = 1$ since $a_0 = 0 $ is a simple zero. In particular, we note that $E(a_n) = 0$ for all $n \ge 0$ and that 
+    each $a_n$ is, by construction, a simple zero of $E(z)$. We first show that $F(z)$ satisfies $F(a_k) = b_k$. To do 
+    so, we let
+
+    $$
+    \varphi_k(z) = \frac{E(z)}{(z - a_k) E'(a_k)}, \quad k \ge 0.
+    $$
+
+    Suppose first that $n \neq k$. To show that $\varphi_k(z)$ is well-defined at $a_n$, we note that $a_n - a_k \neq 0$ (since $a_n$ are 
+    distinct). Moreover, since $E(z)$ has a simple zero at $a_n$, we may write $E(z) = (z - a_n) g_n(z)$ for some 
+    holomorphic function $g_n(z)$ such that $g_n(a_n) \neq 0$. Differentiating both sides and setting $z = a_n$ yields
+
+    $$
+    E'(a_n) = \left[(z - a_n) g'_n(z) + g_n(z)\right] \big\vert_{z = a_n} = g_n(a_n) \neq 0,
+    $$
+
+    and hence $E'(a_n) \neq 0$. Since $E(a_n) = 0$, we conclude that $\varphi_k(a_n) = 0$ whenever $n \neq k$.
+    On the other hand, to show that $\varphi_k(a_k) = 1$, we note that $E(z)$ is entire so that we may expand the 
+    numerator of $\varphi_k(z)$ as a power series about $a_k$ to obtain:
+
+    \begin{align*}
+      \varphi_k(z) &= \frac{E(z)}{(z - a_k) E'(a_k)} \\
+                   &= \frac{E(a_k) + E'(a_k)(z - a_k) + \frac{1}{2!}E''(a_k)(z - a_k)^2 + \cdots}{(z - a_k) E'(a_k)} \\
+                   &= \frac{E(a_k)}{(z - a_k)E'(a_k)} 
+                    + \frac{E'(a_k)(z - a_k)}{(z - a_k)E'(a_k)} 
+                    + \frac{\frac{1}{2!}E''(a_k)(z - a_k)^2}{(z - a_k)E'(a_k)} \\
+                   &= 1 + \mathcal{O}(z - a_k).
+    \end{align*}
+
+    Evaluating this expression at $z = a_k$ yields the desired result, and shows that $\varphi_k(a_j) = \delta_{ij}$.     \ \\
+
+    Upon substituting this result into $F(z)$, we find that
+
+    $$
+    F(a_j) = b_0 \varphi_0(a_j) + \sum_{k=1}^{\infty} b_k \varphi_k(a_j) \left(\frac{a_j}{a_k}\right)^{m_k} = b_j,
+    $$
+
+    as desired. 
+   
+    \ \\
+    To complete the proof, it remains to show that the sum in $F(z)$ converges uniformly on arbitrary discs of radius 
+    $R > 0$ centered at the origin in order to conclude that $F(z)$ itself is holomorphic. Letting $|z| < R$, we note 
+    that since $E(z)$ is entire, it is holomorphic (and therefore continuous) over the closed disc $\overline{D}_R(0)$. 
+    Since $\overline{D}_R(0)$ is a compact set and $E(z)$ is continuous, $E(z)$ is bounded for all $|z| < R$ by some 
+    $B_R$ so that
+
+    $$
+    |E(z)| \leq B_R \quad \text{for all} \quad |z| < R.
+    $$
+
+    Next, we observe that since $|a_k| \to \infty$, there exists some $N \in \mathbb{N}$ such that $|a_k| > 2 R$ and 
+    $|a_k| > B_R$ for all $k \ge N$. From this, we obtain three useful inequalities when $|z| \le R$ and $k \ge N$:
+
+    $$
+    |z - a_k| \ge \Big| |a_k| - |z| \Big| > R, \quad 
+      \left| \frac{z}{a_k} \right| \le \frac{R}{2 R} = \frac{1}{2}, \quad
+      \text{and} \quad \left| \frac{z}{a_k} \right| \le \frac{R}{B_R}.
+    $$
+
+    With these inequalities in hand, we bound the tail of the series in $F(z)$ as follows:
+
+    \begin{align*}
+      \left| \sum_{k=N}^{\infty} \frac{b_k}{E'(a_k)} \frac{E(z)}{z - a_k} \left(\frac{z}{a_k} \right)^{m_k} \right|
+             &\le \sum_{k=N}^{\infty} \left| \frac{b_k}{E'(a_k)} \right| \cdot  
+                                      \left| \frac{E(z)}{z - a_k} \right| \cdot 
+                                      \left| \frac{z}{a_k} \right| \cdot 
+                                      \left|\frac{z}{a_k} \right|^{m_k - 1} \\
+             &= \sum_{k=N}^{\infty} \left| \frac{b_k}{E'(a_k)} \right| \frac{B_R}{R} \frac{R}{B_R}
+                                    \left(\frac{1}{2} \right)^{m_k - 1} \\
+             &= \sum_{k=N}^{\infty} \left| \frac{b_k}{E'(a_k)} \right| \left(\frac{1}{2} \right)^{m_k - 1}.
+    \end{align*}
+
+    Since $\left| \frac{b_k}{E'(a_k)} \right|$ is finite for each $k$, we may choose $m_k \ge 1 + k$ sufficiently large 
+    so that 
+
+    $$
+    \left( \frac{1}{2} \right)^{m_k - 1 - k} \le \left| \frac{E'(a_k)}{b_k} \right|
+    $$
+
+    and the sum converges for all $k \ge N$ irrespective of $z$. We conclude that for such $m_k$, the tail of the series 
+    in $F(z)$ converges uniformly; since the terms not in the tail comprise a finite sum of entire functions, $F(z)$ is 
+    the uniform limit of holomorphic functions and is therefore itself holomorphic on $|z| < R$. Since $R > 0$ was 
+    chosen to be arbitrary, $F(z)$ is entire.
+    \ \\
+\end{solution}
