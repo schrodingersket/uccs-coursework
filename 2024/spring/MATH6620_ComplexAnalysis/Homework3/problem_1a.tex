@@ -4,4 +4,64 @@ converges.
 
 \begin{solution}
   \ \\
+  
+  \textbf{Lemma: } Let $a_n$ and $b_n$ be sequences of complex numbers such that $\sum\limits_{n=0}^{\infty} a_n - b_n$ 
+  converges. Then $\sum\limits_{n=0}^{\infty} a_n$ and $\sum\limits_{n=0}^{\infty} b_n$ either both converge or both 
+  diverge.
+
+  \begin{proof}
+    Since $\sum\limits_{n=0}^{\infty} a_n - b_n = \lim\limits_{N \to \infty} \sum\limits_{n=0}^{N} a_n - b_n = C$, we 
+    observe that
+
+    $$
+    \lim_{N \to \infty} \sum_{n=0}^{N} a_n = \lim_{N \to \infty} \sum_{n=0}^{N} b_n 
+                                             + \lim_{N \to \infty} \sum_{n=0}^{N} a_n - b_n
+                                           = \lim_{N \to \infty} \sum_{n=0}^{N} b_n + C
+    $$
+
+    which implies that $\sum\limits_{n=0}^{\infty} a_n$ converges if and only if $\sum\limits_{n=0}^{\infty} b_n$ 
+    converges.
+  \end{proof}
+
+  We now proceed with the desired proof. Let $b_n = \log(1 + a_n)$, which is well-defined since $a_n \neq -1$. With this
+  definition in hand, we find
+
+  $$
+  \lim\limits_{N \to \infty} \log{\prod_{n=0}^{N} (1 + a_n)} 
+    = \lim\limits_{N \to \infty}\sum_{n = 0}^{N} \log{(1 + a_n)} 
+    = \lim\limits_{N \to \infty}\sum_{n = 0}^{N} b_n
+  $$
+  
+  so that $\prod\limits_{n=0}^{\infty} \left(1 + a_n\right)$ converges to a non-zero limit if and only if 
+  $\sum\limits_{n=0}^{\infty} b_n$ converges (since exponentiating both sides of the above expression yields a non-zero
+  value whenever $\sum\limits_{n=0}^{\infty} b_n$ exists). In particular, since $\sum\limits_{n=0}^{\infty} |a_n|^2$ 
+  converges, we know that $\lim\limits_{n \to \infty} |a_n| = 0$ and hence there exists some $N \in \mathbb{N}$ such 
+  that $|a_n| < \frac{1}{2}$ whenever $n \ge N$. Next, we take the difference of the series 
+  $\sum\limits_{n=0}^{\infty} a_n$ and $\sum\limits_{n=0}^{\infty} b_n$ and split the sum at $N$ to obtain:
+
+  $$
+  \sum_{n=0}^{\infty} b_n - a_n = \sum_{n=0}^{N} b_n - a_n + \sum_{n=N}^{\infty} b_n - a_n.
+  $$
+
+  \pagebreak
+  The first term is finite and therefore has a finite sum; for $n \ge N$ we have:
+
+  \begin{align*}
+    \sum_{n=N}^{\infty} b_n - a_n
+      &= \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| \log(1 + a_n) - a_n \right| \\
+      &= \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| \left(a_n - \frac{a_n^2}{2} + \frac{a_n^3}{3} - \cdots\right) - a_n \right| \\
+      &= \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| a_n^2 \left(\frac{1}{2} + \frac{a_n}{3} - \frac{a_n^2}{4} \cdots \right) \right| \\
+      &\le \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| \frac{a_n^2}{2} \left(1 + |a_n| + |a_n|^2 + \cdots \right) \right| \\
+      &= \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| \frac{a_n^2}{2} \left(1 + |a_n| + |a_n|^2 + \cdots \right) \right| \\
+      &= \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| \frac{a_n^2}{2} \cdot \frac{1}{1 - |a_n|} \right| \\
+      &\le \lim_{k \to \infty} \sum\limits_{n=N}^{k} \left| a_n \right|^2.
+  \end{align*}
+
+  where we have used the fact that $\frac{1}{1 - |a_n|} \le 2$ whenever $|a_n| < \frac{1}{2}$. Since 
+  $\sum\limits_{n=N}^{\infty} \left| a_n \right|^2$ converges, the Comparison Test (upon reassigning indices via 
+  $j = n - N$, if needed) implies that $\sum\limits_{n=N}^{\infty} b_n - a_n$ converges; by adding this limit to the 
+  finite sum $\sum\limits_{n=0}^{N} b_n - a_n$, we conclude that $\sum\limits_{n=0}^{\infty} b_n - a_n$ converges so 
+  that by our earlier lemma, the sum $\sum\limits_{n=0}^{\infty} b_n$ (and therefore the desired infinite product) 
+  converges precisely when $\sum\limits_{n=0}^{\infty} a_n$ converges.
+  \ \\
 \end{solution}

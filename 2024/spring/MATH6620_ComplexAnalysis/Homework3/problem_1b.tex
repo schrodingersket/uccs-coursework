@@ -2,5 +2,33 @@ Find an example of a sequence of complex numbers $\{a_n\}$ such that $\sum\limit
 \linebreak $\prod\limits_{n=0}^{\infty} (1 + a_n)$ diverges.
 
 \begin{solution}
+  Let $a_n = \frac{(-1)^n}{\sqrt{n+1}}$. Since $|a_n|$ is monotonically decreasing and bounded below, 
+  $\sum\limits_{n=0}^{\infty} a_n$ converges by the Alternating Series Test. We take the logarithm of the partial 
+  product to obtain:
+
+  $$
+  \log \left( \prod_{n=0}^{N} (1 + a_n) \right) 
+    = \sum_{n=0}^{N} \log(1 + a_n) 
+    = \log 2 \sum_{n=1}^{N} \log(1 + a_n).
+  $$
+
+  Furthermore, since $|a_n| < 1$ for $n > 0$, we may represent $\log(1 + a_n)$ as a power series:
+
+  $$
+  \log{(1 + a_n)} = \sum_{k=0}^{\infty} \frac{(-1)^k a_n^{k+1}}{k+1}
+  $$
+
+  By removing the tail end of this sum, we observe:
+
+  $$
+  a_n - \frac{a_n^2}{4} \ge \log(1 + a_n) \ge a_n - \frac{a_n^2}{2}
+  $$
+
+  Together with the observations that $\lim\limits_{N \to \infty} \sum\limits_{n=0}^{N} a_n < +\infty$ and 
+  $-\frac{1}{C} \sum\limits_{n=0}^{N} a_n^2$ tends to negative infinity for any real constant $C > 0$, we conclude
+  that $\sum\limits_{n=0}^{\infty} \log(1 + a_n)$ is bounded above by a sequence which diverges to negative infinity
+  and therefore does not converge. Finally, we observe that $a_0 = 1$ and hence $a_n \neq -1$ for all $n$. Since we say 
+  that $\prod\limits_{n=0}^{\infty} (1 + a_n)$ converges if and only if $\sum\limits_{n=0}^{\infty} \log(1 + a_n)$ 
+  converges and $a_n \neq -1$, we conclude that $\prod\limits_{n=0}^{\infty} (1 + a_n)$ diverges, as was to be shown.
   \ \\
 \end{solution}

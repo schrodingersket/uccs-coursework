@@ -286,3 +286,6 @@ __latexindent_temp.tex
 octave-workspace
 venv/
 __pycache__/
+
+# Overleaf token
+.overleaf
