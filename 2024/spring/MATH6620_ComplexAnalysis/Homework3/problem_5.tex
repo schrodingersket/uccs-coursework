@@ -22,8 +22,8 @@ similar to the one found in the proof of Theorem 4.7. See also Theorem 4.6.
   Since $F$ is a conformal map from $\mathbb{D}$ to $P$, the composition $F \circ \varphi$ is a conformal map from 
   $\mathbb{H}$ to $P$. Moreover, since we assume that none of the vertices of $P$ correspond to the point at infinity,
   \footnote{
-    If they do, then we may pre-compose the upper half plane with a conformal map as in the proof of Theorem 4.7 in 
-    Chapter 8 of \textit{Stein, Shakarchi}.
+    If they do, then we may pre-compose the upper half plane with the conformal map $\Phi(z) = K - \frac{1}{z}$ where 
+    $K > 0$ and $K \neq A_j$ as in the proof of Theorem 4.7 in Chapter 8 of \textit{Stein, Shakarchi}.
   } there are real numbers $A_1, A_2, \dots, A_n$ such that $(F \circ \varphi) (A_j) = a_j$ for each $1 \le j \le n$. By 
   Theorem 4.6, there exist constants $c_1, c_2 \in \mathbb{C}$ such that
 
@@ -34,13 +34,13 @@ similar to the one found in the proof of Theorem 4.7. See also Theorem 4.6.
   We introduce the change of variable $\zeta = \varphi^{-1}(w)$ to obtain
 
   $$
-  d\zeta = \frac{2i}{(1 + w)^2} dw \quad \text{and} \quad \varphi(0) = 1,
+  d\zeta = -\frac{2i}{(1 + w)^2} dw \quad \text{and} \quad \varphi(0) = 1,
   $$
 
   so that our integral becomes
 
   $$
-  F \circ \varphi(z) = c_1 \int_1^{\varphi(z)} \frac{2 i }{(1 + w)^2} \frac{dw}{\left(i \frac{1 - w}{1 + w} - A_1\right)^{\beta_1} \cdots \left(i \frac{1 - w}{1 + w}  - A_n\right)^{\beta_n}} + c_2.
+  F \circ \varphi(z) = c_1 \int_1^{\varphi(z)} -\frac{2 i }{(1 + w)^2} \frac{dw}{\left(i \frac{1 - w}{1 + w} - A_1\right)^{\beta_1} \cdots \left(i \frac{1 - w}{1 + w}  - A_n\right)^{\beta_n}} + c_2.
   $$
 
   Moreover, we note that $\varphi(z)$ maps the real line to the boundary of the unit circle. As a result, for any of our 
@@ -66,20 +66,20 @@ similar to the one found in the proof of Theorem 4.7. See also Theorem 4.6.
   substitute the above identity to obtain:
 
   \begin{align*}
-  F \circ \varphi(z) &= c_1 \int_1^{\varphi(z)} \frac{2 i }{(1 + w)^2} 
-                                                \frac{dw}{\left( i \frac{1 - w}{1 + w} - A_1 \right)^{\beta_1} \cdots \left( i \frac{1 - w}{1 + w}  - A_n \right)^{\beta_n}} + c_2 \\
-                     &= c_1 \int_1^{\varphi(z)} \frac{2 i }{(1 + w)^2} \cdot
-                                                \frac{(-(1 + w))^2}{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
-                                                \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
-                     &= c_1 \int_1^{\varphi(z)} \frac{2 i }{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
-                                                \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
+  F \circ \varphi(z) &= c_1 \int_1^{\varphi(z)} -\frac{2 i }{(1 + w)^2} 
+                                                 \frac{dw}{\left( i \frac{1 - w}{1 + w} - A_1 \right)^{\beta_1} \cdots \left( i \frac{1 - w}{1 + w}  - A_n \right)^{\beta_n}} + c_2 \\
+                     &= c_1 \int_1^{\varphi(z)} -\frac{2 i }{(1 + w)^2} \cdot
+                                                 \frac{(-(1 + w))^2}{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
+                                                 \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
+                     &= c_1 \int_1^{\varphi(z)} -\frac{2 i }{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
+                                                 \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2
   \end{align*}
 
-  Defining $C_1 = c_1 \frac{2 i}{\prod_{j=1}^n (i + A_j)^{\beta_j}}$, $C_2 = c_2$, and $\omega = \varphi(z)$ yields:
+  Defining $C_1 = -c_1 \frac{2 i}{\prod_{j=1}^n (i + A_j)^{\beta_j}}$, $C_2 = c_2$, and $\omega = \varphi(z)$ yields:
   \begin{align*}
   F(\omega) &= F \circ \varphi(z) \\
-            &= c_1 \int_1^{\varphi(z)} \frac{2 i }{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
-                                       \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
+            &= c_1 \int_1^{\varphi(z)} -\frac{2 i }{\prod_{j=1}^n (i + A_j)^{\beta_j}} \cdot
+                                        \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + c_2 \\
             &= C_1 \int_1^{\omega} \frac{dw}{\prod_{j=1}^n \left( w - B_j \right)^{\beta_j}} + C_2,
   \end{align*}
 

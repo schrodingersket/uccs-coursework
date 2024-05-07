@@ -18,17 +18,18 @@ Find an example of a sequence of complex numbers $\{a_n\}$ such that $\sum\limit
   \log{(1 + a_n)} = \sum_{k=0}^{\infty} \frac{(-1)^k a_n^{k+1}}{k+1}
   $$
 
-  By removing the tail end of this sum, we observe:
+  By removing the tail end of this sum, we observe (since $|a_n| < 1$):
 
   $$
   a_n - \frac{a_n^2}{4} \ge \log(1 + a_n) \ge a_n - \frac{a_n^2}{2}
   $$
 
   Together with the observations that $\lim\limits_{N \to \infty} \sum\limits_{n=0}^{N} a_n < +\infty$ and 
-  $-\frac{1}{C} \sum\limits_{n=0}^{N} a_n^2$ tends to negative infinity for any real constant $C > 0$, we conclude
-  that $\sum\limits_{n=0}^{\infty} \log(1 + a_n)$ is bounded above by a sequence which diverges to negative infinity
-  and therefore does not converge. Finally, we observe that $a_0 = 1$ and hence $a_n \neq -1$ for all $n$. Since we say 
-  that $\prod\limits_{n=0}^{\infty} (1 + a_n)$ converges if and only if $\sum\limits_{n=0}^{\infty} \log(1 + a_n)$ 
-  converges and $a_n \neq -1$, we conclude that $\prod\limits_{n=0}^{\infty} (1 + a_n)$ diverges, as was to be shown.
+  $-\frac{1}{C} \sum\limits_{n=0}^{N} a_n^2$ tends to negative infinity as $N \to \infty$ for any real constant $C > 0$, 
+  we conclude that $\sum\limits_{n=0}^{\infty} \log(1 + a_n)$ is bounded above by a sequence which diverges to negative 
+  infinity and therefore does not converge. Finally, we observe that $a_0 = 1$ and hence $a_n \neq -1$ for all $n$. 
+  Since we say that $\prod\limits_{n=0}^{\infty} (1 + a_n)$ converges if and only if 
+  $\sum\limits_{n=0}^{\infty} \log(1 + a_n)$ converges (and $a_n \neq -1$), we conclude that 
+  $\prod\limits_{n=0}^{\infty} (1 + a_n)$ diverges, as was to be shown.
   \ \\
 \end{solution}

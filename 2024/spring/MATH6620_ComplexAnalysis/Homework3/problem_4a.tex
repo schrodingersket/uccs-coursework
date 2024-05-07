@@ -27,25 +27,39 @@ the image of the point at infinity.
 
   Furthermore, the interior angles at $a_j$ are given by $\pi (1 - \beta_j) = \frac{\pi}{2}$, so that the image of the 
   real line under $f$ is a rectangle $R$ with vertices $a_1 = f(0) = 0$, $a_2 = f(1)$, $a_3 = f(\lambda)$, and 
-  $a_{\infty} = f(\infty)$. It remains to show that $f$ is a conformal map from $\mathbb{H}$ to $R$. By Theorems 4.6 and 
-  4.7, we know that there exist complex numbers $C_1 \neq 0$ and $C_2$ such that the conformal map $F$ of $\mathbb{H}$ 
-  to $R$ is given by
-
+  $a_{\infty} = f(\infty)$ with side lengths $s_1$ and $s_2$ given by
+ 
   $$
-  F(z) = C_1 \int_0^z \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}} + C_2.
+  s_1 = |a_2 - a_1| = \left|f(1) - f(0)\right| = \int_0^1 \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}}
   $$
 
-  Moreover, $f(A_1) = f(0)$ is given by
+  and 
+
+  $$
+  s_2 = |a_3 - a_2| = \left|f(\lambda) - f(1)\right| = \int_1^{\lambda} \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}}.
+  $$
+  
+  It remains to show that $f$ is a conformal map from $\mathbb{H}$ to $R$. By Theorems 4.6 and 4.7, we know that there 
+  exist complex numbers $C_1 \neq 0$ and $C_2$ such that the conformal map $F$ of $\mathbb{H}$ to $R$ is given by
+
+  $$
+  F(z) = C_1 \int_0^z \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}} + C_2,
+  $$
+
+  where $F$ maps $A_1, A_2, A_3, \infty$ to $a_1, a_2, a_3, a_{\infty}$, respectively.
+
+  \pagebreak
+  Moreover, $f(A_1)$ is given by
 
   $$
   f(A_1) = f(0) = \int_0^0 \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}} = 0 = a_1,
   $$
 
-  and since $F$ also maps $A_1$ to $a_1$, we conclude that $F(0) = 0$ so that $C_2 = 0$. Similarly, since 
-  $f(A_2) = f(1) = a_2$ and noting that $F(1)$ must equal $a_2$, we have
+  and since $F$ maps $A_1$ to $a_1$, we conclude that $F(0) = 0$ so that $C_2 = 0$. Similarly, since 
+  $f(1) = a_2$ and $F$ also maps $A_2$ to $a_2$, we have
 
   $$
-  F(1) = C_1 \int_0^1 \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}} = a_2 = f(1) = \int_0^1 \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}},  
+  F(A_2) = F(1) = C_1 \int_0^1 \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}} = a_2 = f(1) = \int_0^1 \frac{d\zeta}{\sqrt{\zeta(\zeta - 1)(\zeta - \lambda)}},  
   $$
 
   so that $C_1 = 1$ and $F(z) = f(z)$ for all $z \in \mathbb{H}$, which shows that $f(z) = F(z)$ is a conformal map
